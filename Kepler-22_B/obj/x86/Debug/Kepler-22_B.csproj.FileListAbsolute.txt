@@ -24,3 +24,4 @@ C:\Dev\Projet\Kepler-22_B\Kepler-22_B\obj\x86\Debug\Kepler-22_B.csprojResolveAss
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B\obj\x86\Debug\Kepler-22_B.exe
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B\obj\x86\Debug\Kepler-22_B.pdb
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\Entities\Player\Walking.xnb
+C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\MonoGame.Extended.dll
