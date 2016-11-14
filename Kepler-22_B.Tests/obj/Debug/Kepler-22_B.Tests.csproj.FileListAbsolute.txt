@@ -27,3 +27,4 @@ C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\SharpDX.XInput.xml
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\SharpDX.RawInput.xml
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\SharpDX.Direct3D9.xml
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\obj\Debug\Kepler-22_B.Tests.dll
+C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\Content\Entities\Player\Walking.xnb
