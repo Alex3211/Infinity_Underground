@@ -1,6 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Kepler_22_B.Camera;
+using MonoGame.Extended;
+using Kepler_22_B.Map;
+using MonoGame.Extended.Maps.Tiled;
+using Kepler_22_B.DebugGame;
+using Kepler_22_B.EntitiesUI;
 
 namespace Kepler_22_B
 {
@@ -11,6 +17,18 @@ namespace Kepler_22_B
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        const int windowsWidth = 1280;
+        const int windowsHeight = 800;
+
+        Player _player;
+        Texture2D _spriteSheetPlayer;
+
+        CameraLoader _cameraLoader;
+        Camera2D _camera;
+        MapLoader _mapLoader;
+        TiledMap _map;
+        Debug _debug;
 
         public Game1()
         {
@@ -40,6 +58,16 @@ namespace Kepler_22_B
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+
+
+            _spriteSheetPlayer = Content.Load<Texture2D>("Player/Walking");
+            _player = new Player(4, 9, _spriteSheetPlayer);
+
+            _mapLoader = new MapLoader(this, "map");
+            _map = _mapLoader.GetMap;
+            _cameraLoader = new CameraLoader(this, windowsWidth, windowsHeight);
+            _camera = _cameraLoader.GetCamera;
+            _debug = new Debug(this);
             // TODO: use this.Content to load your game content here
         }
 
@@ -62,7 +90,12 @@ namespace Kepler_22_B
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            _player.Update(gameTime);
+            
             // TODO: Add your update logic here
+            _debug.Update(gameTime);
+
+
 
             base.Update(gameTime);
         }
@@ -74,9 +107,15 @@ namespace Kepler_22_B
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            spriteBatch.Begin();
             // TODO: Add your drawing code here
 
+
+            _mapLoader.draw(spriteBatch);
+            _debug.draw(spriteBatch);
+
+            _player.Draw(spriteBatch);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }

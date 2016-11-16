@@ -18,7 +18,7 @@ namespace Kepler_22_B.Tests
         {
             ETPlayer sut = new ETPlayer();
 
-            sut.Deplacement(0);
+            sut.Deplacement((int)Direction.Left);
 
             Assert.That(sut.PositionX, Is.EqualTo(-1));
         }
@@ -31,7 +31,7 @@ namespace Kepler_22_B.Tests
         {
             ETPlayer sut = new ETPlayer();
 
-            sut.Deplacement(1);
+            sut.Deplacement((int)Direction.Bottom);
 
             Assert.That(sut.PositionY, Is.EqualTo(1));
         }
@@ -44,7 +44,7 @@ namespace Kepler_22_B.Tests
         {
             ETPlayer sut = new ETPlayer();
 
-            sut.Deplacement(2);
+            sut.Deplacement((int)Direction.Right);
 
             Assert.That(sut.PositionX, Is.EqualTo(1));
         }
@@ -53,11 +53,11 @@ namespace Kepler_22_B.Tests
         /// Tests if the player can go top.
         /// </summary>
         [Test]
-        public void TestIfThePlayerCanGoTop()
+        public void TestIfThePlayerCanGoUp()
         {
             ETPlayer sut = new ETPlayer();
 
-            sut.Deplacement(3);
+            sut.Deplacement((int)Direction.Up);
 
             Assert.That(sut.PositionY, Is.EqualTo(-1));
         }

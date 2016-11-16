@@ -8,9 +8,9 @@ namespace Kepler_22_B
 {
     public enum Direction
     {
+        Up,
         Left,
         Bottom,
-        Right,
-        Up
+        Right
     }
 }
