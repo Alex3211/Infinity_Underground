@@ -1,17 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\Kepler-22_B.Tests.dll" total="1" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2016-11-10" time="21:11:39">
+<test-results name="C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\Kepler-22_B.Tests.dll" total="10" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2016-11-16" time="09:13:31">
   <environment nunit-version="2.6.4.14350" clr-version="4.0.30319.42000" os-version="Microsoft Windows NT 6.2.9200.0" platform="Win32NT" cwd="C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug" machine-name="PC-HERVE_DYLAN" user="Dylan" user-domain="PC-Herve_Dylan" />
   <culture-info current-culture="fr-FR" current-uiculture="fr-FR" />
-  <test-suite type="Assembly" name="C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\Kepler-22_B.Tests.dll" executed="True" result="Success" success="True" time="0.031" asserts="0">
+  <test-suite type="Assembly" name="C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\Kepler-22_B.Tests.dll" executed="True" result="Success" success="True" time="0.218" asserts="0">
     <results>
-      <test-suite type="Namespace" name="Kepler_22_B" executed="True" result="Success" success="True" time="0.022" asserts="0">
+      <test-suite type="Namespace" name="Kepler_22_B" executed="True" result="Success" success="True" time="0.210" asserts="0">
         <results>
-          <test-suite type="Namespace" name="Tests" executed="True" result="Success" success="True" time="0.021" asserts="0">
+          <test-suite type="Namespace" name="Tests" executed="True" result="Success" success="True" time="0.210" asserts="0">
             <results>
-              <test-suite type="TestFixture" name="KeplerTests" executed="True" result="Success" success="True" time="0.020" asserts="0">
+              <test-suite type="TestFixture" name="ETPlayerTests" executed="True" result="Success" success="True" time="0.205" asserts="0">
                 <results>
-                  <test-case name="Kepler_22_B.Tests.KeplerTests.TestNunit" executed="True" result="Success" success="True" time="0.012" asserts="1" />
+                  <test-suite type="ParameterizedTest" name="InsertPositionInConstructor" executed="True" result="Success" success="True" time="0.184" asserts="0">
+                    <results>
+                      <test-case name="Kepler_22_B.Tests.ETPlayerTests.InsertPositionInConstructor(1,10)" executed="True" result="Success" success="True" time="0.172" asserts="2" />
+                      <test-case name="Kepler_22_B.Tests.ETPlayerTests.InsertPositionInConstructor(50,12)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                      <test-case name="Kepler_22_B.Tests.ETPlayerTests.InsertPositionInConstructor(500,2)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                    </results>
+                  </test-suite>
+                  <test-case name="Kepler_22_B.Tests.ETPlayerTests.TestIfThePlayerCanGoDown" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                  <test-case name="Kepler_22_B.Tests.ETPlayerTests.TestIfThePlayerCanGoOnTheLeft" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                  <test-case name="Kepler_22_B.Tests.ETPlayerTests.TestIfThePlayerCanGoTop" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                  <test-case name="Kepler_22_B.Tests.ETPlayerTests.TestIfThePlayerCanOnTheRight" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                  <test-case name="Kepler_22_B.Tests.ETPlayerTests.TestNunit" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="KeplerTests" executed="True" result="Success" success="True" time="0.002" asserts="0">
+                <results>
+                  <test-case name="Kepler_22_B.Tests.KeplerTests.test" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                  <test-case name="Kepler_22_B.Tests.KeplerTests.TestMoveOnTheDown" executed="True" result="Success" success="True" time="0.000" asserts="0" />
                 </results>
               </test-suite>
             </results>

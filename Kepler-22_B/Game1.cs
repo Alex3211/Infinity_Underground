@@ -1,8 +1,6 @@
-﻿using Kepler_22_B.Entities;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
 
 namespace Kepler_22_B
 {
@@ -14,31 +12,10 @@ namespace Kepler_22_B
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        const int _windowWidth = 1280;
-        const int _windowHeight = 800;
-
-        int speed = 5;
-
-        ETPlayer _player;
-        Texture2D _playerWalk;
-
-        Vector2 _position = new Vector2(_windowWidth / 2, _windowHeight / 2);
-        KeyboardState _state;
-
-        int _direction = 2;
-
-
-        internal int WindowWidth { get { return _windowWidth; } }
-        internal int WindowHeight { get { return _windowHeight; } }
-        /*internal int PlayerPositionX { get { return (int)_position.X; } set { _position.X = value; } }
-        internal int PlayerPositionY { get { return (int)_position.Y; } set { _position.Y = value; } }
-        */
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            graphics.PreferredBackBufferWidth = _windowWidth;
-            graphics.PreferredBackBufferHeight = _windowHeight;
         }
 
         /// <summary>
@@ -49,6 +26,7 @@ namespace Kepler_22_B
         /// </summary>
         protected override void Initialize()
         {
+            // TODO: Add your initialization logic here
 
             base.Initialize();
         }
@@ -59,11 +37,10 @@ namespace Kepler_22_B
         /// </summary>
         protected override void LoadContent()
         {
+            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            
 
-            _playerWalk = Content.Load<Texture2D>("Entities/Player/Walking");
-            _player = new ETPlayer(_playerWalk, 4, 9);
+            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -85,7 +62,7 @@ namespace Kepler_22_B
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            _player.Update(gameTime);
+            // TODO: Add your update logic here
 
             base.Update(gameTime);
         }
@@ -96,19 +73,11 @@ namespace Kepler_22_B
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            bool _isMoving = true;
-            GraphicsDevice.Clear(Color.Black);
-          
-            _state = Keyboard.GetState();
-            _position = _player.MovingObject(ref _direction, ref _isMoving, _state, _position);
-            _player.Draw(spriteBatch, new Vector2(_position.X, _position.Y), _direction, _isMoving);
+            // TODO: Add your drawing code here
 
             base.Draw(gameTime);
         }
-
-
-
-
     }
 }

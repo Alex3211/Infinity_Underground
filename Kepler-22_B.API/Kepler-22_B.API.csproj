@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Direction.cs" />
     <Compile Include="Entities\ETCharateristics.cs" />
     <Compile Include="Entities\ETPlayer.cs" />
     <Compile Include="GameControl.cs" />

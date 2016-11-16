@@ -4,10 +4,11 @@ using Kepler_22_B.API.Entities;
 
 
 
+
 namespace Kepler_22_B.Tests
 {
     [TestFixture]
-    class ETPlayerTests
+    public class ETPlayerTests : ETCharateristics
     {
         /// <summary>
         /// Tests if the player can go on the left.

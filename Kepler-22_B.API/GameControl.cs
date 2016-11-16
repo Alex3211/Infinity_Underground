@@ -7,7 +7,7 @@ using Kepler_22_B.API.Entities;
 
 namespace Kepler_22_B.API
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {

@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ShowCheckBoxes="false">
-  <TopNode>[0-1002]C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\Kepler-22_B.Tests.dll</TopNode>
-  <SelectedNode>[0-1002]C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\Kepler-22_B.Tests.dll</SelectedNode>
+  <TopNode>[0-1013]C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\Kepler-22_B.Tests.dll</TopNode>
+  <SelectedNode>[0-1013]C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\Kepler-22_B.Tests.dll</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
-    <Node UniqueName="[0-1002]C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\Kepler-22_B.Tests.dll" Expanded="true" />
-    <Node UniqueName="[0-1003]Kepler_22_B" Expanded="true" />
-    <Node UniqueName="[0-1004]Kepler_22_B.Tests" Expanded="true" />
-    <Node UniqueName="[0-1000]Kepler_22_B.Tests.KeplerTests" Expanded="true" />
+    <Node UniqueName="[0-1013]C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\Kepler-22_B.Tests.dll" Expanded="true" />
+    <Node UniqueName="[0-1014]Kepler_22_B" Expanded="true" />
+    <Node UniqueName="[0-1015]Kepler_22_B.Tests" Expanded="true" />
+    <Node UniqueName="[0-1000]Kepler_22_B.Tests.ETPlayerTests" Expanded="true" />
+    <Node UniqueName="[0-1005]Kepler_22_B.Tests.ETPlayerTests.InsertPositionInConstructor" Expanded="true" />
+    <Node UniqueName="[0-1010]Kepler_22_B.Tests.KeplerTests" Expanded="true" />
   </Nodes>
 </VisualState>

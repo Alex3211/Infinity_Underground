@@ -4,7 +4,6 @@ C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\obj\Debug\Kepler-22_B.Tests.pdb
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\nunit.framework.dll
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\nunit.framework.xml
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\Kepler-22_B.Tests.dll
-C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\Kepler-22_B.exe
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\MonoGame.Framework.dll
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\SharpDX.MediaFoundation.dll
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\SharpDX.dll
@@ -13,9 +12,6 @@ C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\SharpDX.DXGI.dll
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\SharpDX.Direct3D11.dll
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\SharpDX.Direct2D1.dll
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\SharpDX.XInput.dll
-C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\SharpDX.RawInput.dll
-C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\SharpDX.Direct3D9.dll
-C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\Kepler-22_B.pdb
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\MonoGame.Framework.xml
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\SharpDX.MediaFoundation.xml
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\SharpDX.xml
@@ -24,7 +20,6 @@ C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\SharpDX.DXGI.xml
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\SharpDX.Direct3D11.xml
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\SharpDX.Direct2D1.xml
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\SharpDX.XInput.xml
-C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\SharpDX.RawInput.xml
-C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\SharpDX.Direct3D9.xml
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\obj\Debug\Kepler-22_B.Tests.dll
-C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\Content\Entities\Player\Walking.xnb
+C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\Kepler-22_B.API.exe
+C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\Kepler-22_B.API.pdb
