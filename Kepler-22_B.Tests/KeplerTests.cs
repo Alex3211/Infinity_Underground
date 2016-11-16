@@ -7,9 +7,14 @@ namespace Kepler_22_B.Tests
     public class KeplerTests
     {
         [Test]
-        public void test()
+        public void TestNunit()
         {
             Assert.That(true);
         }
+
+
+
+
+
     }
 }
