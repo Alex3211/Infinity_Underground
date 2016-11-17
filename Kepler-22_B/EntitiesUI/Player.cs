@@ -204,20 +204,22 @@ namespace Kepler_22_B.EntitiesUI
         /// <returns></returns>
         bool BlockThePlayer(int direction)
         {
-            switch(GetTheDirectionOfThePlayer())
+
+            int _tileWidth = _context.MapLoad.GetLayerCollide.TileWidth;
+
+            switch (GetTheDirectionOfThePlayer())
             {
                 case (int)Direction.Up:
-                    return (_player.PositionY >= 0);
-                    
-
+                    return (_player.PositionY >= 0 && (_context.MapLoad.GetLayerCollide.GetTile((_player.PositionX / _tileWidth) + 1 , (_player.PositionY / _tileWidth) + 1).Id != _context.MapLoad.IdTileCollide) );
+                    //finish
                 case (int)Direction.Left:
-                    return (_player.PositionX >= 0);
+                    return (_player.PositionX >= 0 && (_context.MapLoad.GetLayerCollide.GetTile((_player.PositionX / _tileWidth), (_player.PositionY / _tileWidth) + 2).Id != _context.MapLoad.IdTileCollide));
 
                 case (int)Direction.Bottom:
-                    return (_player.PositionY <= (_context.MapLoad.GetMap.HeightInPixels - 75));
+                    return ((_player.PositionY <= (_context.MapLoad.GetMap.HeightInPixels - 75)) && (_context.MapLoad.GetLayerCollide.GetTile((_player.PositionX / _tileWidth) + 1, (_player.PositionY / _tileWidth) + 3).Id != _context.MapLoad.IdTileCollide));
 
                 case (int)Direction.Right:
-                    return (_player.PositionX <= _context.MapLoad.GetMap.WidthInPixels - 50);
+                    return ((_player.PositionX <= (_context.MapLoad.GetMap.WidthInPixels - 50)) && (_context.MapLoad.GetLayerCollide.GetTile((_player.PositionX / _tileWidth) + 2, (_player.PositionY / _tileWidth) + 2).Id != _context.MapLoad.IdTileCollide));
                     
             }
             return true;
