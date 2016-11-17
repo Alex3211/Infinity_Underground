@@ -16,8 +16,8 @@ namespace Kepler_22_B
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        const int WindowWidth = 1280;
-        const int WindowHeight = 800;
+        const int WindowWidth = 1920;
+        const int WindowHeight = 1080;
 
         Player _player;
         CameraLoader _cameraLoader;
@@ -30,7 +30,7 @@ namespace Kepler_22_B
         /// <value>
         /// The camera loader.
         /// </value>
-        public CameraLoader CameraLoader { get { return _cameraLoader; } }
+        internal CameraLoader CameraLoader { get { return _cameraLoader; } }
 
         /// <summary>
         /// Gets the map load.
@@ -38,7 +38,16 @@ namespace Kepler_22_B
         /// <value>
         /// The map load.
         /// </value>
-        internal MapLoader MapLoad { get { return _mapLoad; } } 
+        internal MapLoader MapLoad { get { return _mapLoad; } }
+
+        /// <summary>
+        /// Gets the player.
+        /// </summary>
+        /// <value>
+        /// The player.
+        /// </value>
+        internal Player Player { get { return _player; } }
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Game1"/> class.
@@ -47,6 +56,8 @@ namespace Kepler_22_B
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferHeight = WindowHeight;
+            graphics.PreferredBackBufferWidth = WindowWidth;
             _cameraLoader = new CameraLoader(this);
         }
 

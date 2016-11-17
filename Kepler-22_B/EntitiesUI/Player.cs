@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Kepler_22_B.API.Entities;
 using Kepler_22_B.Camera;
+using System;
 
 namespace Kepler_22_B.EntitiesUI
 {
@@ -15,6 +16,8 @@ namespace Kepler_22_B.EntitiesUI
 
         readonly int _spriteSheetRows, _spriteSheetColumns, _totalFrames;
         int _timeSinceLastFrame, _currentFrame, _width, _height, _playerDirection, _column, _millisecondsPerFrame;
+
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Player"/> class.
         /// </summary>
@@ -32,8 +35,7 @@ namespace Kepler_22_B.EntitiesUI
             _millisecondsPerFrame = 80;
             _totalFrames = _spriteSheetRows * _spriteSheetColumns;
             _player = new ETPlayer();
-            _playerDirection = (int)Direction.Bottom;    
-
+            _playerDirection = (int)Direction.Bottom;
         }
 
         /// <summary>
@@ -42,7 +44,8 @@ namespace Kepler_22_B.EntitiesUI
         /// <value>
         /// The get player.
         /// </value>
-        ETPlayer GetPlayer { get { return _player; } }
+        internal ETPlayer GetPlayer { get { return _player; } }
+
          
         /// <summary>
         /// Updates the specified game time.
@@ -51,12 +54,13 @@ namespace Kepler_22_B.EntitiesUI
         public void Update(GameTime gameTime)
         {
             _state = Keyboard.GetState();
-
+            
             _column = WalkAnimating(gameTime);
 
             _player.CanMove = BlockThePlayer(GetTheDirectionOfThePlayer());
 
-            _playerDirection = UpdatePositionOfPlayerAndCamera();
+            _playerDirection = UpdatePositionOfPlayerAndCamera(gameTime);
+
         }
 
         /// <summary>
@@ -96,9 +100,10 @@ namespace Kepler_22_B.EntitiesUI
         /// Updates the position of player and camera.
         /// </summary>
         /// <returns>the int of the direction</returns>
-        int UpdatePositionOfPlayerAndCamera()
+        int UpdatePositionOfPlayerAndCamera(GameTime gameTime)
         {
 
+            ZoomPlayer(gameTime);
             PlayerSpeed();
 
             if (_player.CanMove && _player.IsMoving)
@@ -159,12 +164,34 @@ namespace Kepler_22_B.EntitiesUI
         }
 
         /// <summary>
+        /// For zoom on or out the player.
+        /// </summary>
+        /// <param name="gameTime"></param>
+        void ZoomPlayer(GameTime gameTime)
+        {
+            if (_state.IsKeyDown(Keys.PageUp))
+            {
+                _context.CameraLoader.GetCamera.ZoomIn(_context.CameraLoader.Zoom);
+            }
+            if (_state.IsKeyDown(Keys.PageDown))
+            {
+                _context.CameraLoader.GetCamera.ZoomOut(_context.CameraLoader.Zoom);
+            }
+        }
+
+        /// <summary>
         /// Resets the current frame.
         /// </summary>
         /// <param name="gameTime">The game time.</param>
         void ResetCurrentFrame(GameTime gameTime)
         {
             _timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
+
+            if (!_player.CanMove || !_player.IsMoving)
+            {
+                _timeSinceLastFrame = 0;
+            }
+
             if (_timeSinceLastFrame > _millisecondsPerFrame)
             {
                 _timeSinceLastFrame -= _millisecondsPerFrame;

@@ -6,9 +6,22 @@ namespace Kepler_22_B.Camera
 {
     public class CameraLoader
     {
+
+
+
         Game1 _context;
         Camera2D _getCamera;
         BoxingViewportAdapter _viewportAdapter;
+        float _zoom;
+
+
+        /// <summary>
+        /// Gets or sets the zoom.
+        /// </summary>
+        /// <value>
+        /// The zoom.
+        /// </value>
+        internal float Zoom { get { return _zoom; } }
 
 
         /// <summary>
@@ -39,6 +52,7 @@ namespace Kepler_22_B.Camera
         public CameraLoader(Game1 context)
         {
             _context = context;
+            _zoom = (float)0.1;
         }
 
         /// <summary>
@@ -50,8 +64,9 @@ namespace Kepler_22_B.Camera
         {
             _viewportAdapter = new BoxingViewportAdapter(_context.Window, _context.GraphicsDevice, windowWidth, windowHeight);
             _getCamera = new Camera2D(_viewportAdapter);
-            _getCamera.LookAt(new Vector2(0, 0));
+            _getCamera.LookAt(new Vector2(_context.Player.GetPlayer.PositionX + 30, _context.Player.GetPlayer.PositionY + 40));
         }
+
 
         
     }
