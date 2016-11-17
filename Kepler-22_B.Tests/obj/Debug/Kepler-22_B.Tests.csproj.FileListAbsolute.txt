@@ -23,3 +23,4 @@ C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\SharpDX.XInput.xml
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\obj\Debug\Kepler-22_B.Tests.dll
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\Kepler-22_B.API.exe
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\Kepler-22_B.API.pdb
+C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\MonoGame.Extended.dll
