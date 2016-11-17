@@ -13,6 +13,7 @@ namespace Kepler_22_B.Map
         Game1 _context;
         TiledMap _getMap;
         TiledTileLayer _getLayerCollide;
+        int _idTileCollide;
 
 
         /// <summary>
@@ -27,6 +28,7 @@ namespace Kepler_22_B.Map
             _context = context;
             _getMap = _context.Content.Load<TiledMap>("map/" + nameOfMap);
             _getLayerCollide = _getMap.GetLayer<TiledTileLayer>("Collide");
+            _idTileCollide = 367;
         }
 
 
@@ -57,5 +59,13 @@ namespace Kepler_22_B.Map
         {
             _getMap.Draw(spriteBatch);
         }
+
+        /// <summary>
+        /// Gets the identifier tile collide.
+        /// </summary>
+        /// <value>
+        /// The identifier tile collide.
+        /// </value>
+        public int IdTileCollide { get { return _idTileCollide; } }
     }
 }

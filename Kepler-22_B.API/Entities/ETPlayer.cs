@@ -25,7 +25,7 @@ namespace Kepler_22_B.API.Entities
         }
 
         public ETPlayer()
-            :this(0, 0)
+            :this(50, 50)
         {
         }
 
