@@ -2,10 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Kepler_22_B.Camera;
+using MonoGame.Extended;
 
 namespace Kepler_22_B.DebugGame
 {
@@ -17,6 +15,8 @@ namespace Kepler_22_B.DebugGame
         private SpriteFont font;
         public int MousePositionY;
         public int MousePositionX;
+        CameraLoader _camera;
+        
 
         public bool DebugState { get; set; }
 
@@ -27,8 +27,9 @@ namespace Kepler_22_B.DebugGame
         /// disable at final version of the game.
         /// </summary>
         /// <param name="context">The context.</param>
-        public Debug(Game1 context)
+        public Debug(Game1 context, CameraLoader camera)
         {
+            _camera = camera;
             _context = context;
             font = _context.Content.Load<SpriteFont>("debug");
             DebugState = false;
@@ -58,7 +59,7 @@ namespace Kepler_22_B.DebugGame
             //spriteBatch.Begin();
             if (DebugState)
             {
-                spriteBatch.DrawString(font, $" Camera Vector Position: X: {0} Y: {0}", new Vector2(0, 0), Color.White);
+                spriteBatch.DrawString(font, $" Camera Vector Position: X: {_camera.GetCamera.Position.X} Y: {_camera.GetCamera.Position.Y}", new Vector2(0, 0), Color.White);
             }
             //spriteBatch.End();
         }

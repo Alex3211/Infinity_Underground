@@ -1,12 +1,32 @@
-﻿using MonoGame.Extended;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended;
 using MonoGame.Extended.ViewportAdapters;
 namespace Kepler_22_B.Camera
 {
-    internal class CameraLoader
+    public class CameraLoader
     {
-        private Game1 _context;
+        Game1 _context;
+        Camera2D _getCamera;
+        BoxingViewportAdapter _viewportAdapter;
 
-        public Camera2D GetCamera { get; }
+
+        /// <summary>
+        /// Gets the get camera.
+        /// </summary>
+        /// <value>
+        /// The get camera.
+        /// </value>
+        public Camera2D GetCamera { get { return _getCamera; } }
+
+        /// <summary>
+        /// Gets the get matrix.
+        /// </summary>
+        /// <value>
+        /// The get matrix.
+        /// </value>
+        public Matrix GetMatrix { get { return _getCamera.GetViewMatrix(); } }
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CameraLoader"/> class.
@@ -16,11 +36,23 @@ namespace Kepler_22_B.Camera
         /// <param name="_context">The context.</param>
         /// <param name="windowsWidth">Width of the windows.</param>
         /// <param name="windowsHeight">Height of the windows.</param>
-        public CameraLoader(Game1 context, int windowsWidth, int windowsHeight)
+        public CameraLoader(Game1 context)
         {
             _context = context;
-            var viewportAdapter = new BoxingViewportAdapter(_context.Window, _context.GraphicsDevice, windowsWidth, windowsHeight);
-            GetCamera = new Camera2D(viewportAdapter);
         }
+
+        /// <summary>
+        /// Viewports the adapter camera.
+        /// </summary>
+        /// <param name="windowWidth">Width of the window.</param>
+        /// <param name="windowHeight">Height of the window.</param>
+        public void ViewportAdapterCamera(int windowWidth, int windowHeight)
+        {
+            _viewportAdapter = new BoxingViewportAdapter(_context.Window, _context.GraphicsDevice, windowWidth, windowHeight);
+            _getCamera = new Camera2D(_viewportAdapter);
+            _getCamera.LookAt(new Vector2(0, 0));
+        }
+
+        
     }
 }

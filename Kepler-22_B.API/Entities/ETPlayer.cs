@@ -6,7 +6,8 @@ namespace Kepler_22_B.API.Entities
     public class ETPlayer : ETCharateristics
     {
         Vector2 _position;
-        bool _isMoving;
+        bool _isMoving, _canMove;
+        int _moveSpeed, _sprint;
 
         
         /// <summary>
@@ -17,6 +18,10 @@ namespace Kepler_22_B.API.Entities
         public ETPlayer(int x, int y)
         {
             _position = new Vector2(x, y);
+            _moveSpeed = 2;
+            _isMoving = true;
+            _canMove = true;
+            _sprint = 4;
         }
 
         public ETPlayer()
@@ -24,11 +29,36 @@ namespace Kepler_22_B.API.Entities
         {
         }
 
+
+        /// <summary>
+        /// Gets or sets the sprint.
+        /// </summary>
+        /// <value>
+        /// The sprint.
+        /// </value>
+        public int Sprint { get { return _sprint; } set { _sprint = value; } }
+
+        /// <summary>
+        /// Gets or sets the move speed.
+        /// </summary>
+        /// <value>
+        /// The move speed.
+        /// </value>
+        public int MoveSpeed { get { return _moveSpeed; } set { _moveSpeed = value; } }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance can move.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the player can move; otherwise, <c>false</c>.
+        /// </value>
+        public bool CanMove { get { return _canMove; } set { _canMove = value; } }
+
         /// <summary>
         /// Gets or sets a value indicating whether this instance is moving.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if this instance is moving; otherwise, <c>false</c>.
+        ///   <c>true</c> if the player is moving; otherwise, <c>false</c>.
         /// </value>
         public bool IsMoving { get { return _isMoving; } set { _isMoving = value; } }
 
@@ -57,31 +87,28 @@ namespace Kepler_22_B.API.Entities
         {
             switch (direction)
             {
-                case 0:
-                    PositionY--;
-                    return 0;
+                case (int)Direction.Up:
+                    PositionY -= _moveSpeed;
+                    return (int)Direction.Up;
 
 
-                case 1:
-                    PositionX--;
-                    return 1;
+                case (int)Direction.Left:
+                    PositionX -= _moveSpeed;
+                    return (int)Direction.Left;
 
 
-                case 2:
-                    PositionY++;
-                    return 2;
+                case (int)Direction.Bottom:
+                    PositionY += _moveSpeed;
+                    return (int)Direction.Bottom;
 
-                case 3:
-                    PositionX++;
-                    return 3;
+                case (int)Direction.Right:
+                    PositionX += _moveSpeed;
+                    return (int)Direction.Right;
 
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
-
-
-
 
 
     }

@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Kepler_22_B.Map
 {
-    class MapLoader
+    public class MapLoader
     {
-        private Game1 _context;
-        public TiledMap GetMap { get; }
+        Game1 _context;
+        TiledMap _getMap;
+        TiledTileLayer _getLayerCollide;
 
-        public TiledTileLayer GetLayerCollide { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MapLoader"/> class.
@@ -21,17 +21,41 @@ namespace Kepler_22_B.Map
         /// Collide is used with character move.
         /// </summary>
         /// <param name="context">The context.</param>
-        /// <param name="nameofmap">The name of the map.</param>
-        public MapLoader(Game1 context, string nameofmap)
+        /// <param name="nameOfMap">The name of the map.</param>
+        public MapLoader(Game1 context, string nameOfMap)
         {
             _context = context;
-            GetMap = _context.Content.Load<TiledMap>("map/" + nameofmap);
-            GetLayerCollide = GetMap.GetLayer<TiledTileLayer>("Collide");
+            _getMap = _context.Content.Load<TiledMap>("map/" + nameOfMap);
+            _getLayerCollide = _getMap.GetLayer<TiledTileLayer>("Collide");
         }
 
+
+        /// <summary>
+        /// Gets the get layer collide.
+        /// </summary>
+        /// <value>
+        /// The get layer collide.
+        /// </value>
+        public TiledTileLayer GetLayerCollide { get { return _getLayerCollide; } }
+
+
+        /// <summary>
+        /// Gets the get map.
+        /// </summary>
+        /// <value>
+        /// The get map.
+        /// </value>
+        public TiledMap GetMap { get { return _getMap; } }
+
+
+
+        /// <summary>
+        /// Draws the specified sprite batch.
+        /// </summary>
+        /// <param name="spriteBatch">The sprite batch.</param>
         public void draw(SpriteBatch spriteBatch)
         {
-            GetMap.Draw(spriteBatch);
+            _getMap.Draw(spriteBatch);
         }
     }
 }

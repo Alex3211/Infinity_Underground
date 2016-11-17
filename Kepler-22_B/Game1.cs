@@ -2,9 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Kepler_22_B.Camera;
-using MonoGame.Extended;
 using Kepler_22_B.Map;
-using MonoGame.Extended.Maps.Tiled;
 using Kepler_22_B.DebugGame;
 using Kepler_22_B.EntitiesUI;
 
@@ -18,22 +16,38 @@ namespace Kepler_22_B
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        const int windowsWidth = 1280;
-        const int windowsHeight = 800;
+        const int WindowWidth = 1280;
+        const int WindowHeight = 800;
 
         Player _player;
-        Texture2D _spriteSheetPlayer;
-
         CameraLoader _cameraLoader;
-        Camera2D _camera;
-        MapLoader _mapLoader;
-        TiledMap _map;
+        MapLoader _mapLoad;
         Debug _debug;
 
+        /// <summary>
+        /// Gets the camera loader.
+        /// </summary>
+        /// <value>
+        /// The camera loader.
+        /// </value>
+        public CameraLoader CameraLoader { get { return _cameraLoader; } }
+
+        /// <summary>
+        /// Gets the map load.
+        /// </summary>
+        /// <value>
+        /// The map load.
+        /// </value>
+        internal MapLoader MapLoad { get { return _mapLoad; } } 
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Game1"/> class.
+        /// </summary>
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            _cameraLoader = new CameraLoader(this);
         }
 
         /// <summary>
@@ -44,9 +58,10 @@ namespace Kepler_22_B
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
 
             base.Initialize();
+            _cameraLoader.ViewportAdapterCamera(WindowWidth, WindowHeight);
+
         }
 
         /// <summary>
@@ -58,16 +73,16 @@ namespace Kepler_22_B
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            
+            _mapLoad = new MapLoader(this, "map");
+
+            
+            _debug = new Debug(this, _cameraLoader);
 
 
-            _spriteSheetPlayer = Content.Load<Texture2D>("Player/Walking");
-            _player = new Player(4, 9, _spriteSheetPlayer);
+            _player = new Player(4, 9, this);
 
-            _mapLoader = new MapLoader(this, "map");
-            _map = _mapLoader.GetMap;
-            _cameraLoader = new CameraLoader(this, windowsWidth, windowsHeight);
-            _camera = _cameraLoader.GetCamera;
-            _debug = new Debug(this);
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -107,14 +122,14 @@ namespace Kepler_22_B
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin();
-            // TODO: Add your drawing code here
+            spriteBatch.Begin(transformMatrix: _cameraLoader.GetMatrix);
 
+            _mapLoad.draw(spriteBatch);
 
-            _mapLoader.draw(spriteBatch);
             _debug.draw(spriteBatch);
 
             _player.Draw(spriteBatch);
+
             spriteBatch.End();
             base.Draw(gameTime);
         }

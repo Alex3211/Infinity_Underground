@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Kepler_22_B.API.Entities;
-using System;
+using Kepler_22_B.Camera;
 
 namespace Kepler_22_B.EntitiesUI
 {
@@ -11,33 +11,52 @@ namespace Kepler_22_B.EntitiesUI
         Texture2D _spriteSheet;
         KeyboardState _state;
         ETPlayer _player;
+        Game1 _context;
 
-        int _spriteSheetRows, _spriteSheetColumns, _currentFrame, _totalFrames, _timeSinceLastFrame, _millisecondsPerFrame;
-
+        readonly int _spriteSheetRows, _spriteSheetColumns, _totalFrames;
+        int _timeSinceLastFrame, _currentFrame, _width, _height, _playerDirection, _column, _millisecondsPerFrame;
         /// <summary>
         /// Initializes a new instance of the <see cref="Player"/> class.
         /// </summary>
         /// <param name="spriteSheetRows">The sprite sheet rows.</param>
         /// <param name="spriteSheetColumns">The sprite sheet columns.</param>
         /// <param name="spriteSheet">The sprite sheet.</param>
-        public Player(int spriteSheetRows, int spriteSheetColumns, Texture2D spriteSheet)
+        public Player(int spriteSheetRows, int spriteSheetColumns, Game1 context)
         {
-            _spriteSheet = spriteSheet;
+            _context = context;
+
+            _spriteSheet = _context.Content.Load<Texture2D>("Player/Walking");
             _spriteSheetColumns = spriteSheetColumns;
             _spriteSheetRows = spriteSheetRows;
             _timeSinceLastFrame = 0;
             _millisecondsPerFrame = 80;
             _totalFrames = _spriteSheetRows * _spriteSheetColumns;
             _player = new ETPlayer();
+            _playerDirection = (int)Direction.Bottom;    
+
         }
 
+        /// <summary>
+        /// Gets the get player.
+        /// </summary>
+        /// <value>
+        /// The get player.
+        /// </value>
+        ETPlayer GetPlayer { get { return _player; } }
+         
         /// <summary>
         /// Updates the specified game time.
         /// </summary>
         /// <param name="gameTime">The game time.</param>
         public void Update(GameTime gameTime)
         {
-            ResetCurrentFrame(gameTime);
+            _state = Keyboard.GetState();
+
+            _column = WalkAnimating(gameTime);
+
+            _player.CanMove = BlockThePlayer(GetTheDirectionOfThePlayer());
+
+            _playerDirection = UpdatePositionOfPlayerAndCamera();
         }
 
         /// <summary>
@@ -45,47 +64,98 @@ namespace Kepler_22_B.EntitiesUI
         /// </summary>
         public void Draw(SpriteBatch spriteBatch)
         {
-            _state = Keyboard.GetState();
+            _width = _spriteSheet.Width / _spriteSheetColumns;
+            _height = _spriteSheet.Height / _spriteSheetRows;
 
-
-            int _width = _spriteSheet.Width / _spriteSheetColumns;
-            int _height = _spriteSheet.Height / _spriteSheetRows;
-            int _row = UpdatePositionOfPlayer();
-            int _column = _currentFrame % _spriteSheetColumns;
-
-            Rectangle _sourceRectangle = new Rectangle(_width * _column, _height * _row, _width, _height);
+            Rectangle _sourceRectangle = new Rectangle(_width * _column, _height * _playerDirection, _width, _height);
             Rectangle _destinationRectangle = new Rectangle(_player.PositionX, _player.PositionY, _width, _height);
 
             spriteBatch.Draw(_spriteSheet, _destinationRectangle, _sourceRectangle, Color.White);
+        }
+
+
+        /// <summary>
+        /// Walk animating.
+        /// </summary>
+        /// <param name="gameTime">The game time.</param>
+        /// <returns>int of the column for SpriteSheet</returns>
+        int WalkAnimating(GameTime gameTime)
+        {
+            if (_player.IsMoving)
+            {
+                ResetCurrentFrame(gameTime);
+                return _currentFrame % _spriteSheetColumns;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// Updates the position of player and camera.
+        /// </summary>
+        /// <returns>the int of the direction</returns>
+        int UpdatePositionOfPlayerAndCamera()
+        {
+
+            PlayerSpeed();
+
+            if (_player.CanMove && _player.IsMoving)
+            {
+                switch (GetTheDirectionOfThePlayer())
+                {
+                    case (int)Direction.Up:
+                        _context.CameraLoader.GetCamera.Move(new Vector2(0, -_player.MoveSpeed));
+                        return _player.Deplacement((int)Direction.Up);
+
+                    case (int)Direction.Bottom:
+                        _context.CameraLoader.GetCamera.Move(new Vector2(0, +_player.MoveSpeed));
+                        return _player.Deplacement((int)Direction.Bottom);
+
+                    case (int)Direction.Left:
+                        _context.CameraLoader.GetCamera.Move(new Vector2(-_player.MoveSpeed, 0));
+                        return _player.Deplacement((int)Direction.Left);
+
+                    case (int)Direction.Right:
+                        _context.CameraLoader.GetCamera.Move(new Vector2(+_player.MoveSpeed, 0));
+                        return _player.Deplacement((int)Direction.Right);
+                }
+            }
+
+            return GetTheDirectionOfThePlayer();
 
         }
 
 
         /// <summary>
-        /// Updates the position of player.
+        /// Gets the direction of the player.
         /// </summary>
-        int UpdatePositionOfPlayer()
+        /// <returns></returns>
+        int GetTheDirectionOfThePlayer()
         {
+
+            _player.IsMoving = true;
+
             if (_state.IsKeyDown(Keys.Z) || _state.IsKeyDown(Keys.Up))
             {
-                return _player.Deplacement((int)Direction.Up);
+                return (int)Direction.Up;
             }
-            else if (_state.IsKeyDown(Keys.Q) || _state.IsKeyDown(Keys.Left))
+            if (_state.IsKeyDown(Keys.S) || _state.IsKeyDown(Keys.Down))
             {
-                return _player.Deplacement((int)Direction.Left);
+                return (int)Direction.Bottom;
             }
-            else if (_state.IsKeyDown(Keys.S) || _state.IsKeyDown(Keys.Down))
+            if (_state.IsKeyDown(Keys.Q) || _state.IsKeyDown(Keys.Left))
             {
-                return _player.Deplacement((int)Direction.Bottom);
+                return (int)Direction.Left;
             }
-            else if (_state.IsKeyDown(Keys.D) || _state.IsKeyDown(Keys.Right))
+            if (_state.IsKeyDown(Keys.D) || _state.IsKeyDown(Keys.Right))
             {
-                return _player.Deplacement((int)Direction.Right);
+                return (int)Direction.Right;
             }
 
-            // Change this with the previously move
-            return 0;
-
+            _player.IsMoving = false;
+            return _playerDirection;
         }
 
         /// <summary>
@@ -108,5 +178,50 @@ namespace Kepler_22_B.EntitiesUI
                 }
             }
         }
+
+
+        /// <summary>
+        /// Control for the player srpint.
+        /// </summary>
+        void PlayerSpeed()
+        {
+            if (_state.IsKeyDown(Keys.LeftShift))
+            {
+                _player.MoveSpeed = _player.Sprint;
+                _millisecondsPerFrame = 40;
+            }
+            else if (_state.IsKeyUp(Keys.LeftShift))
+            {
+                _millisecondsPerFrame = 80;
+                _player.MoveSpeed = 1;
+            }
+        }
+
+        /// <summary>
+        /// Blocks the player.
+        /// </summary>
+        /// <param name="direction">The direction.</param>
+        /// <returns></returns>
+        bool BlockThePlayer(int direction)
+        {
+            switch(GetTheDirectionOfThePlayer())
+            {
+                case (int)Direction.Up:
+                    return (_player.PositionY >= 0);
+                    
+
+                case (int)Direction.Left:
+                    return (_player.PositionX >= 0);
+
+                case (int)Direction.Bottom:
+                    return (_player.PositionY <= (_context.MapLoad.GetMap.HeightInPixels - 75));
+
+                case (int)Direction.Right:
+                    return (_player.PositionX <= _context.MapLoad.GetMap.WidthInPixels - 50);
+                    
+            }
+            return true;
+        }
+
     }
 }
