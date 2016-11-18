@@ -33,7 +33,7 @@ namespace Kepler_22_B.Tests
 
             sut.Deplacement((int)Direction.Bottom);
 
-            Assert.That(sut.PositionY, Is.EqualTo(1));
+            Assert.That(sut.PositionY, Is.EqualTo(49));
         }
 
         /// <summary>

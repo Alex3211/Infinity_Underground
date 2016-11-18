@@ -20,6 +20,18 @@
 /processorParam:TextureFormat=Compressed
 /build:debug.spritefont
 
+#begin Player/Walking.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/Walking.png
+
 #begin Map/Artis_dock.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -80,11 +92,6 @@
 /processorParam:TextureFormat=Color
 /build:Map/forest_tiles.png
 
-#begin Map/map.tmx
-/importer:TiledMapImporter
-/processor:TiledMapProcessor
-/build:Map/map.tmx
-
 #begin Map/obj_misk_atlas.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -133,15 +140,8 @@
 /processorParam:TextureFormat=Color
 /build:Map/Walking.png
 
-#begin Player/Walking.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/Walking.png
+#begin Map\Map.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:Map\Map.tmx
 
