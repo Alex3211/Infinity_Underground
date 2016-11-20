@@ -38,7 +38,7 @@ namespace Kepler_22_B
         /// <value>
         /// The map load.
         /// </value>
-        internal MapLoader MapLoad { get { return _mapLoad; } }
+        internal MapLoader MapLoad { get { return _mapLoad; } set { _mapLoad = value; } }
 
         /// <summary>
         /// Gets the player.
@@ -121,7 +121,7 @@ namespace Kepler_22_B
             // TODO: Add your update logic here
             _debug.Update(gameTime);
 
-
+            _mapLoad.Update(gameTime);
 
             base.Update(gameTime);
         }

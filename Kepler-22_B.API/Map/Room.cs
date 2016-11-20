@@ -11,7 +11,8 @@ namespace Kepler_22_B.API.Map
     {
         List<CTNPC> _ctNpc;
         List<Door> _door;
-        TypeRoom _typeOfRoom;
+        List<string> _listOfTypeRoom;
+        string _typeOfRoom;
         Level _level;
 
         public Room(Level context)
@@ -19,7 +20,10 @@ namespace Kepler_22_B.API.Map
             _ctNpc = new List<CTNPC>();
             _door = new List<Door>();
             _level = context;
-
+            _listOfTypeRoom = new List<string>();
+            _listOfTypeRoom.Add("Labyrinthe");
+            _listOfTypeRoom.Add("BossRoom");
+            _listOfTypeRoom.Add("TrapRoom");
         }
 
     }
