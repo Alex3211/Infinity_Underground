@@ -56,7 +56,11 @@
     <Compile Include="Characteres\CTCharacter.cs" />
     <Compile Include="Characteres\CTNPC.cs" />
     <Compile Include="Characteres\CTPlayer.cs" />
-    <Compile Include="World.cs" />
+    <Compile Include="Map\Door.cs" />
+    <Compile Include="Map\Level.cs" />
+    <Compile Include="Map\Room.cs" />
+    <Compile Include="Map\TypeRoom.cs" />
+    <Compile Include="Map\World.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

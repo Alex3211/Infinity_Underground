@@ -22,3 +22,5 @@ C:\Dev\Projet\Kepler-22_B\Kepler-22_B.API\bin\Debug\SharpDX.MediaFoundation.xml
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B.API\obj\Debug\Kepler-22_B.API.exe
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B.API\obj\Debug\Kepler-22_B.API.pdb
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B.API\bin\Debug\RandomNameGeneratorLibrary.dll
+D:\s3\S3PI\projet_actuel\Kepler-22_B\Kepler-22_B.API\obj\Debug\Kepler-22_B.API.csprojResolveAssemblyReference.cache
+D:\s3\S3PI\projet_actuel\Kepler-22_B\Kepler-22_B.API\obj\Debug\Kepler-22_B.API.csproj.Kepler-22_B.API.exe.config
