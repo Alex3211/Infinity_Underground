@@ -39,3 +39,4 @@ C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\Map\obj_misk
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\Map\terrain_atlas.xnb
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\Map\tileset_stone_v4_p1.xnb
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\Map\Walking.xnb
+C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\RandomNameGeneratorLibrary.dll

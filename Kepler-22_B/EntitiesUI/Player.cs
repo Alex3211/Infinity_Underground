@@ -1,9 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Kepler_22_B.API.Entities;
-using Kepler_22_B.Camera;
-using System;
+using Kepler_22_B.API.Characteres;
+using Kepler_22_B.Characteres;
 
 namespace Kepler_22_B.EntitiesUI
 {
@@ -11,7 +10,7 @@ namespace Kepler_22_B.EntitiesUI
     {
         Texture2D _spriteSheet;
         KeyboardState _state;
-        ETPlayer _player;
+        CTPlayer _player;
         Game1 _context;
 
         readonly int _spriteSheetRows, _spriteSheetColumns, _totalFrames;
@@ -34,7 +33,7 @@ namespace Kepler_22_B.EntitiesUI
             _timeSinceLastFrame = 0;
             _millisecondsPerFrame = 80;
             _totalFrames = _spriteSheetRows * _spriteSheetColumns;
-            _player = new ETPlayer();
+            _player = new CTPlayer();
             _playerDirection = (int)Direction.Bottom;
         }
 
@@ -44,7 +43,7 @@ namespace Kepler_22_B.EntitiesUI
         /// <value>
         /// The get player.
         /// </value>
-        internal ETPlayer GetPlayer { get { return _player; } }
+        internal CTPlayer GCTPlayer { get { return _player; } }
 
          
         /// <summary>
@@ -111,19 +110,19 @@ namespace Kepler_22_B.EntitiesUI
                 switch (GetTheDirectionOfThePlayer())
                 {
                     case (int)Direction.Up:
-                        _context.CameraLoader.GetCamera.Move(new Vector2(0, -_player.MoveSpeed));
+                        _context.CameraLoader.GetCamera.Move(new Vector2(0, -_player.GetCharacterType.MoveSpeed));
                         return _player.Deplacement((int)Direction.Up);
 
                     case (int)Direction.Bottom:
-                        _context.CameraLoader.GetCamera.Move(new Vector2(0, +_player.MoveSpeed));
+                        _context.CameraLoader.GetCamera.Move(new Vector2(0, +_player.GetCharacterType.MoveSpeed));
                         return _player.Deplacement((int)Direction.Bottom);
 
                     case (int)Direction.Left:
-                        _context.CameraLoader.GetCamera.Move(new Vector2(-_player.MoveSpeed, 0));
+                        _context.CameraLoader.GetCamera.Move(new Vector2(-_player.GetCharacterType.MoveSpeed, 0));
                         return _player.Deplacement((int)Direction.Left);
 
                     case (int)Direction.Right:
-                        _context.CameraLoader.GetCamera.Move(new Vector2(+_player.MoveSpeed, 0));
+                        _context.CameraLoader.GetCamera.Move(new Vector2(+_player.GetCharacterType.MoveSpeed, 0));
                         return _player.Deplacement((int)Direction.Right);
                 }
             }
@@ -214,13 +213,13 @@ namespace Kepler_22_B.EntitiesUI
         {
             if (_state.IsKeyDown(Keys.LeftShift))
             {
-                _player.MoveSpeed = _player.Sprint;
+                _player.GetCharacterType.MoveSpeed = _player.Sprint;
                 _millisecondsPerFrame = 40;
             }
             else if (_state.IsKeyUp(Keys.LeftShift))
             {
                 _millisecondsPerFrame = 80;
-                _player.MoveSpeed = 1;
+                _player.GetCharacterType.MoveSpeed = 1;
             }
         }
 
@@ -243,7 +242,7 @@ namespace Kepler_22_B.EntitiesUI
                     return (_player.PositionX >= 0 && (_context.MapLoad.GetLayerCollide.GetTile((_player.PositionX / _tileWidth), (_player.PositionY / _tileWidth) + 2).Id != _context.MapLoad.IdTileCollide));
 
                 case (int)Direction.Bottom:
-                    return ((_player.PositionY <= (_context.MapLoad.GetMap.HeightInPixels - 75)) && (_context.MapLoad.GetLayerCollide.GetTile((_player.PositionX / _tileWidth) + 1, (_player.PositionY / _tileWidth) + 3).Id != _context.MapLoad.IdTileCollide));
+                    return ((_player.PositionY <= (_context.MapLoad.GetMap.HeightInPixels - 75)) && (_context.MapLoad.GetLayerCollide.GetTile((_player.PositionX / _tileWidth) + 1, (_player.PositionY / _tileWidth) + 2).Id != _context.MapLoad.IdTileCollide));
 
                 case (int)Direction.Right:
                     return ((_player.PositionX <= (_context.MapLoad.GetMap.WidthInPixels - 50)) && (_context.MapLoad.GetLayerCollide.GetTile((_player.PositionX / _tileWidth) + 2, (_player.PositionY / _tileWidth) + 2).Id != _context.MapLoad.IdTileCollide));

@@ -59,7 +59,7 @@ namespace Kepler_22_B.DebugGame
             //spriteBatch.Begin();
             if (DebugState)
             {
-                spriteBatch.DrawString(font, $" Camera Vector Position: X: {_camera.GetCamera.Position.X} Y: {_camera.GetCamera.Position.Y}", new Vector2(0, 0), Color.White);
+                spriteBatch.DrawString(font, $" Camera Vector Position: X: {_camera.GetCamera.Position.X} Y: {_camera.GetCamera.Position.Y}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y), Color.White);
             }
             //spriteBatch.End();
         }

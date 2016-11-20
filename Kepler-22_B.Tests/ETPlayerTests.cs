@@ -1,26 +1,36 @@
 ﻿using NUnit.Framework;
 using System;
-using Kepler_22_B.API.Entities;
-
-
-
+using Kepler_22_B.API.Characteres;
+using Kepler_22_B.Characteres;
 
 namespace Kepler_22_B.Tests
 {
     [TestFixture]
-    public class ETPlayerTests : ETCharateristics
+    public class CTPlayerTests
     {
+
+        /// <summary>
+        /// Tests the nunit.
+        /// </summary>
+        [Test]
+        public void TestNunit()
+        {
+            Assert.That(true);
+        }
+
         /// <summary>
         /// Tests if the player can go on the left.
         /// </summary>
         [Test]
         public void TestIfThePlayerCanGoOnTheLeft()
         {
-            ETPlayer sut = new ETPlayer();
+            CTPlayer sut = new CTPlayer();
+
+            int _initialPositionX = sut.PositionX;
 
             sut.Deplacement((int)Direction.Left);
 
-            Assert.That(sut.PositionX, Is.EqualTo(-1));
+            Assert.That(sut.PositionX, Is.EqualTo(_initialPositionX - sut.GetCharacterType.MoveSpeed));
         }
 
         /// <summary>
@@ -29,11 +39,13 @@ namespace Kepler_22_B.Tests
         [Test]
         public void TestIfThePlayerCanGoDown()
         {
-            ETPlayer sut = new ETPlayer();
+            CTPlayer sut = new CTPlayer();
+
+            int _initialPositionY = sut.PositionY;
 
             sut.Deplacement((int)Direction.Bottom);
 
-            Assert.That(sut.PositionY, Is.EqualTo(49));
+            Assert.That(sut.PositionY, Is.EqualTo(_initialPositionY + sut.GetCharacterType.MoveSpeed));
         }
 
         /// <summary>
@@ -42,11 +54,13 @@ namespace Kepler_22_B.Tests
         [Test]
         public void TestIfThePlayerCanOnTheRight()
         {
-            ETPlayer sut = new ETPlayer();
+            CTPlayer sut = new CTPlayer();
+
+            int _initialPositionX = sut.PositionX;
 
             sut.Deplacement((int)Direction.Right);
 
-            Assert.That(sut.PositionX, Is.EqualTo(1));
+            Assert.That(sut.PositionX, Is.EqualTo(_initialPositionX + sut.GetCharacterType.MoveSpeed));
         }
 
         /// <summary>
@@ -55,11 +69,13 @@ namespace Kepler_22_B.Tests
         [Test]
         public void TestIfThePlayerCanGoUp()
         {
-            ETPlayer sut = new ETPlayer();
+            CTPlayer sut = new CTPlayer();
+
+            int _intialPositionY = sut.PositionY;
 
             sut.Deplacement((int)Direction.Up);
 
-            Assert.That(sut.PositionY, Is.EqualTo(-1));
+            Assert.That(sut.PositionY, Is.EqualTo(_intialPositionY - sut.GetCharacterType.MoveSpeed));
         }
 
         /// <summary>
@@ -72,22 +88,34 @@ namespace Kepler_22_B.Tests
         [TestCase(500, 2)]
         public void InsertPositionInConstructor(int x, int y)
         {
-            ETPlayer sut = new ETPlayer(x, y);
+            CTPlayer sut = new CTPlayer(x, y);
 
             Assert.That(sut.PositionX, Is.EqualTo(x));
             Assert.That(sut.PositionY, Is.EqualTo(y));
 
         }
 
-
-
         /// <summary>
-        /// Tests the nunit.
+        /// Attributes the new name to the new character.
         /// </summary>
         [Test]
-        public void TestNunit()
+        public void AttributeNewNameToTheNewCharacter()
         {
-            Assert.That(true);
+            CTPlayer sut = new CTPlayer();
+
+            Assert.That(sut.Name, Is.Not.Null);
         }
+
+
+        [TestCase(-1, 12)]
+        [TestCase(-1, -2)]
+        [TestCase(0, -20)]
+        public void InsertNegativePositionX(int x, int y)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>( () => new CTPlayer(x, y));
+        }
+
+
+
     }
 }

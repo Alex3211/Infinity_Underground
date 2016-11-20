@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Kepler_22_B.API.Entities;
+using Kepler_22_B.API.Characteres;
 
 namespace Kepler_22_B.API
 {
@@ -11,6 +11,11 @@ namespace Kepler_22_B.API
     {
         static void Main(string[] args)
         {
+            List<CTPlayer> _listOfPlayer;
+            List<CTNPC> _listOfNPC;
+
+            
+
         }
     }
 }
