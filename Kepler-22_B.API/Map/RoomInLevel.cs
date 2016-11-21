@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Kepler_22_B.API.Map
 {
-    class RoomInTheLevel
+    class RoomInLevel
     {
         List<CTNPC> _ctNpc;
         Door _firstDoor;
@@ -19,7 +19,7 @@ namespace Kepler_22_B.API.Map
         /// Initializes a new instance of the <see cref="RoomInLevel"/> class.
         /// </summary>
         /// <param name="context">The context.</param>
-        public RoomInTheLevel(Level context)
+        public RoomInLevel(Level context)
         {
             rand = new Random();
             _ctNpc = new List<CTNPC>();

@@ -10,32 +10,26 @@ namespace Kepler_22_B.API.Map
     class Level
     {
         int _level;
-        List<RoomInLevel> _room;
-        Vector2 _roomVector;
-        Vector2 _roomOut;
+        RoomInLevel _room;
+        Door _roomInLevel;
         World _world;
+        Random r;
 
         public Level(World context)
         {
-            _room = new List<RoomInLevel>();
+            _room = new RoomInLevel(this);
             _world = context;
+
         }
 
-        /// <summary>
-        /// Gets the room vector.
-        /// </summary>
-        /// <value>
-        /// The get room vector.
-        /// </value>
-        public Vector2 GetRoomVector { get { return _roomVector; } }
-
-        /// <summary>
-        /// Gets the room out vector.
-        /// </summary>
-        /// <value>
-        /// The get room out.
-        /// </value>
-        public Vector2 GetRoomOut { get { return _roomOut; } }
+        public void ChangeLevel()
+        {
+            if(_room.PlayerInTheDoor() != null)
+            {
+                _roomInLevel = _room.PlayerInTheDoor();
+                _level++;
+            }
+        }
 
         /// <summary>
         /// Gets the list of rooms.
@@ -43,7 +37,7 @@ namespace Kepler_22_B.API.Map
         /// <value>
         /// The get list of rooms.
         /// </value>
-        public List<RoomInLevel> GetListOfRooms { get { return _room; } }
+        public RoomInLevel GetRooms { get { return _room; } }
 
         /// <summary>
         /// Gets the currentlevel.
@@ -52,33 +46,6 @@ namespace Kepler_22_B.API.Map
         /// The get currentlevel.
         /// </value>
         public int GetCurrentlevel { get { return _level; } }
-
-        /// <summary>
-        /// Adds the room.
-        /// </summary>
-        /// <param name="room">The room.</param>
-        public void AddRoom(RoomInLevel room)
-        {
-            _room.Add(room);
-        }
-        /// <summary>
-        /// Delete the room.
-        /// </summary>
-        /// <param name="room">The room.</param>
-        public void DelRoom(RoomInLevel room)
-        {
-            _room.Remove(room);
-        }
-        /// <summary>
-        /// Gets the room.
-        /// </summary>
-        /// <param name="room">The room.</param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public RoomInLevel GetCurrentRoom(RoomInLevel room)
-        {
-            throw new NotImplementedException();
-        }
 
         /// <summary>
         /// Gets the context.
