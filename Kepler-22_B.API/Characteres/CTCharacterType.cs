@@ -31,8 +31,6 @@ namespace Kepler_22_B.API.Characteres
         /// The get attacks.
         /// </value>
         public CTAttack GetAttacks { get { return _attacks; } }
-        public int GetDamage { get { return _damage; } }
-        public int GetArmor { get { return _armor; } }
 
         /// <summary>
         /// Gets or sets the move speed.

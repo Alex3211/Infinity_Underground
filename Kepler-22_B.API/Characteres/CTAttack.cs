@@ -22,17 +22,17 @@ namespace Kepler_22_B.API.Characteres
 
         public int MinimalAttack(CTCharacter sender, CTCharacter receiver, int damageSender, double armorReceiver)
         {
-            return receiver.LifePoint = sender.GetCharacterType.GetDamage * receiver.GetCharacterType.GetArmor;
+            return receiver.LifePoint = sender.GetCharacterType.GetContext.GetDamage * receiver.GetCharacterType.GetContext.GetArmor;
         }
 
         public int NormalAttack(CTCharacter sender, CTCharacter receiver, int damageSender, double armorReceiver)
         {
-            return receiver.LifePoint = (sender.GetCharacterType.GetDamage*receiver.GetCharacterType.GetArmor)*r.Next(1, 3);
+            return receiver.LifePoint = (sender.GetCharacterType.GetContext.GetDamage*receiver.GetCharacterType.GetContext.GetArmor)*r.Next(1, 3);
         }
 
         public int CriticalAttack(CTCharacter sender, CTCharacter receiver, int damageSender, double armorReceiver)
         {
-            return receiver.LifePoint = (sender.GetCharacterType.GetDamage * receiver.GetCharacterType.GetArmor)*r.Next(1, 5);
+            return receiver.LifePoint = (sender.GetCharacterType.GetContext.GetDamage * receiver.GetCharacterType.GetContext.GetArmor)*r.Next(1, 5);
         }
 
         
