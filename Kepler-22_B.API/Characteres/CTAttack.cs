@@ -18,21 +18,25 @@ namespace Kepler_22_B.API.Characteres
         public CTAttack(CTCharacterType context)
         {
             _context = context;
+            r = new Random();
         }
 
-        public int MinimalAttack(CTCharacter sender, CTCharacter receiver, int damageSender, double armorReceiver)
+        /// <summary>
+        /// Attack function
+        /// First if: Critical attack
+        /// Second if : Normal attack
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="receiver"></param>
+        /// <param name="damageSender"></param>
+        /// <param name="armorReceiver"></param>
+        /// <returns></returns>
+        public int Attack(CTCharacter sender, CTCharacter receiver, int damageSender, double armorReceiver)
         {
-            return receiver.LifePoint = sender.GetCharacterType.GetContext.GetDamage * receiver.GetCharacterType.GetContext.GetArmor;
-        }
-
-        public int NormalAttack(CTCharacter sender, CTCharacter receiver, int damageSender, double armorReceiver)
-        {
-            return receiver.LifePoint = (sender.GetCharacterType.GetContext.GetDamage*receiver.GetCharacterType.GetContext.GetArmor)*r.Next(1, 3);
-        }
-
-        public int CriticalAttack(CTCharacter sender, CTCharacter receiver, int damageSender, double armorReceiver)
-        {
-            return receiver.LifePoint = (sender.GetCharacterType.GetContext.GetDamage * receiver.GetCharacterType.GetContext.GetArmor)*r.Next(1, 5);
+            int random = r.Next(1, 8);
+            if (random > 5) return receiver.LifePoint = (sender.GetCharacterType.GetContext.GetDamage * receiver.GetCharacterType.GetContext.GetArmor) * random;
+            else if (random < 5 && random > 2) return receiver.LifePoint = (sender.GetCharacterType.GetContext.GetDamage * receiver.GetCharacterType.GetContext.GetArmor) * random;
+            else return 0;
         }
 
         

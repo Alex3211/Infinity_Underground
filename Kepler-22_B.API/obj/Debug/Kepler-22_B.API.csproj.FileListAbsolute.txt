@@ -66,3 +66,4 @@ D:\s3\S3PI\projet_actuel\Kepler-22_B\Kepler-22_B.API\bin\Debug\SharpDX.MediaFoun
 D:\s3\S3PI\projet_actuel\Kepler-22_B\Kepler-22_B.API\obj\Debug\Kepler-22_B.API.csproj.Kepler-22_B.API.exe.config
 D:\s3\S3PI\projet_actuel\Kepler-22_B\Kepler-22_B.API\obj\Debug\Kepler-22_B.API.exe
 D:\s3\S3PI\projet_actuel\Kepler-22_B\Kepler-22_B.API\obj\Debug\Kepler-22_B.API.pdb
+D:\s3\S3PI\projet_actuel\Kepler-22_B\Kepler-22_B.API\obj\Debug\Kepler-22_B.API.csprojResolveAssemblyReference.cache
