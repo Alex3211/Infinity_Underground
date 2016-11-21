@@ -21,7 +21,18 @@ namespace Kepler_22_B.API
         public World()
         {
             _level = new Level(this);
+            _listOfNPC = new List<CTNPC>();
+            _listOfPlayer = new List<CTPlayer>();
+            _listOfPlayer.Add(new CTPlayer());
         }
+
+        /// <summary>
+        /// Gets the players in a list.
+        /// </summary>
+        /// <value>
+        /// The players.
+        /// </value>
+        public List<CTPlayer> Players { get { return _listOfPlayer; } }
 
 
     }

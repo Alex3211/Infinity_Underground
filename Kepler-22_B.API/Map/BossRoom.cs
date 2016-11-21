@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Kepler_22_B.API.Map
 {
-    class BossRoom : Room
+    class BossRoom : RoomInLevel
     {
 
         public BossRoom()

@@ -43,7 +43,7 @@ namespace Kepler_22_B.API.Map
         /// <value>
         /// The get list of rooms.
         /// </value>
-        public List<Room> GetListOfRooms { get { return _room; } }
+        public List<RoomInLevel> GetListOfRooms { get { return _room; } }
 
         /// <summary>
         /// Gets the currentlevel.
@@ -57,7 +57,7 @@ namespace Kepler_22_B.API.Map
         /// Adds the room.
         /// </summary>
         /// <param name="room">The room.</param>
-        public void AddRoom(Room room)
+        public void AddRoom(RoomInLevel room)
         {
             _room.Add(room);
         }
@@ -65,7 +65,7 @@ namespace Kepler_22_B.API.Map
         /// Delete the room.
         /// </summary>
         /// <param name="room">The room.</param>
-        public void DelRoom(Room room)
+        public void DelRoom(RoomInLevel room)
         {
             _room.Remove(room);
         }
@@ -75,11 +75,18 @@ namespace Kepler_22_B.API.Map
         /// <param name="room">The room.</param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public Room GetCurrentRoom(Room room)
+        public RoomInLevel GetCurrentRoom(RoomInLevel room)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Gets the context.
+        /// </summary>
+        /// <value>
+        /// The world.
+        /// </value>
+        public World World { get { return _world; } }
 
 
     }

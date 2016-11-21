@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Kepler_22_B.API.Map
 {
-    abstract class Room
+    abstract class RoomInLevel
     {
         int _nbOfNPC, _nbStyleRoom;
         Random r;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Room"/> class.
+        /// Initializes a new instance of the <see cref="RoomInLevel"/> class.
         /// </summary>
-        public Room()
+        public RoomInLevel()
         {
             r = new Random();
             _nbStyleRoom = r.Next(2,10);

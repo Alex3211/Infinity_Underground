@@ -56,9 +56,16 @@
     <Compile Include="Characteres\CTNPC.cs" />
     <Compile Include="Characteres\CTPlayer.cs" />
     <Compile Include="Kepler-22_B.cs" />
+    <Compile Include="Map\BossRoom.cs" />
     <Compile Include="Map\Door.cs" />
+    <Compile Include="Map\LabyrintheRoom.cs" />
     <Compile Include="Map\Level.cs" />
+    <Compile Include="Map\MonsterRoom.cs" />
     <Compile Include="Map\Room.cs" />
+    <Compile Include="Map\RoomInLevel.cs" />
+    <Compile Include="Map\SecretRoom.cs" />
+    <Compile Include="Map\TrapRoom.cs" />
+    <Compile Include="Map\TypeRoom.cs" />
     <Compile Include="Map\World.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

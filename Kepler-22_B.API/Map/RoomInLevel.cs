@@ -2,40 +2,38 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Kepler_22_B.API.Map
 {
-    class RoomInLevel
+    class RoomInTheLevel
     {
         List<CTNPC> _ctNpc;
         Door _firstDoor;
         List<object> _listOfTypeRoom;
         object _typeOfRoom;
         Level _context;
-        Random r;
+        Random rand;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RoomInLevel"/> class.
         /// </summary>
         /// <param name="context">The context.</param>
-        public RoomInLevel(Level context)
+        public RoomInTheLevel(Level context)
         {
-            r = new Random();
+            rand = new Random();
             _ctNpc = new List<CTNPC>();
             _context = context;
             _firstDoor = null;
 
             _listOfTypeRoom = new List<object>();
             _listOfTypeRoom.Add(new LabyrintheRoom());
-            _listOfTypeRoom.Add("BossRoom");
-            _listOfTypeRoom.Add("TrapRoom");
-            _listOfTypeRoom.Add("SecretRoom");
-            _listOfTypeRoom.Add("MonsterRoom");
+            _listOfTypeRoom.Add(new TrapRoom());
+            _listOfTypeRoom.Add(new BossRoom());
+            _listOfTypeRoom.Add(new SecretRoom());
+            _listOfTypeRoom.Add(new MonsterRoom());
 
-            _typeOfRoom = _listOfTypeRoom[r.Next(_listOfTypeRoom.Count)];
+            _typeOfRoom = _listOfTypeRoom[rand.Next(_listOfTypeRoom.Count)];
         }
 
         /// <summary>
@@ -57,12 +55,22 @@ namespace Kepler_22_B.API.Map
         /// <returns></returns>
         public bool PlayerInTheDoor()
         {
-            while(_firstDoor.NextDoor != null)
+            Door _currentDoor = null;
+            if (!(_firstDoor == null))
             {
-                
+                _currentDoor = _firstDoor;
+            }
+
+            while (_currentDoor.NextDoor != null)
+            {
+                foreach(CTPlayer player in _context.World.Players)
+                {
+                    if (((player.PositionX >= _currentDoor.MoreThan.X) && (player.PositionX <= _currentDoor.LowerThan.X)) && ((player.PositionY >= _currentDoor.MoreThan.Y) && (player.PositionY <= _currentDoor.LowerThan.Y))) return true;
+                }
             }
             return false;
         }
+
 
     }
 }
