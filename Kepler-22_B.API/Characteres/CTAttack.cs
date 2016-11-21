@@ -9,6 +9,7 @@ namespace Kepler_22_B.API.Characteres
     public class CTAttack
     {
         CTCharacterType _context;
+        Random r;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CTAttack"/> class.
@@ -18,5 +19,22 @@ namespace Kepler_22_B.API.Characteres
         {
             _context = context;
         }
+
+        public int MinimalAttack(CTCharacter sender, CTCharacter receiver, int damageSender, double armorReceiver)
+        {
+            return receiver.LifePoint = sender.GetCharacterType.GetDamage * receiver.GetCharacterType.GetArmor;
+        }
+
+        public int NormalAttack(CTCharacter sender, CTCharacter receiver, int damageSender, double armorReceiver)
+        {
+            return receiver.LifePoint = (sender.GetCharacterType.GetDamage*receiver.GetCharacterType.GetArmor)*r.Next(1, 3);
+        }
+
+        public int CriticalAttack(CTCharacter sender, CTCharacter receiver, int damageSender, double armorReceiver)
+        {
+            return receiver.LifePoint = (sender.GetCharacterType.GetDamage * receiver.GetCharacterType.GetArmor)*r.Next(1, 5);
+        }
+
+        
     }
 }

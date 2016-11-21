@@ -82,3 +82,5 @@ D:\s3\S3PI\GitKraken\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\SharpDX.Direc
 D:\s3\S3PI\GitKraken\Kepler-22_B\Kepler-22_B\obj\x86\Debug\Kepler-22_B.csprojResolveAssemblyReference.cache
 D:\s3\S3PI\GitKraken\Kepler-22_B\Kepler-22_B\obj\x86\Debug\Kepler-22_B.exe
 D:\s3\S3PI\GitKraken\Kepler-22_B\Kepler-22_B\obj\x86\Debug\Kepler-22_B.pdb
+D:\s3\S3PI\projet_actuel\Kepler-22_B\Kepler-22_B\obj\x86\Debug\Kepler-22_B.exe
+D:\s3\S3PI\projet_actuel\Kepler-22_B\Kepler-22_B\obj\x86\Debug\Kepler-22_B.pdb

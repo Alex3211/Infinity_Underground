@@ -13,6 +13,10 @@ namespace Kepler_22_B.API.Characteres
         Vector2 _position;
         CTCharacterType _characterType;
         int _lifePoint;
+        int _damage;
+        int _armor;
+        double _criticalPunch;
+
         
 
         public CTCharacter(int x = 50, int y = 50)
@@ -32,6 +36,30 @@ namespace Kepler_22_B.API.Characteres
         /// The type of the get character.
         /// </value>
         public CTCharacterType GetCharacterType { get { return _characterType; } }
+
+        /// <summary>
+        /// Gets the get damage.
+        /// </summary>
+        /// <value>
+        /// The get damage.
+        /// </value>
+        public int GetDamage { get { return _damage; } }
+
+        /// <summary>
+        /// Gets the get armor.
+        /// </summary>
+        /// <value>
+        /// The get armor.
+        /// </value>
+        public int GetArmor { get { return _armor; } }
+
+        /// <summary>
+        /// Gets the get critical punch.
+        /// </summary>
+        /// <value>
+        /// The get critical punch.
+        /// </value>
+        public double GetCriticalPunch { get { return _criticalPunch; } }
 
 
         /// <summary>
@@ -64,7 +92,7 @@ namespace Kepler_22_B.API.Characteres
         /// <value>
         /// The life point.
         /// </value>
-        public int LifePoint { get { return _lifePoint; } }
+        public int LifePoint { get { return _lifePoint; } set { _lifePoint = value; } }
 
 
         /// <summary>
