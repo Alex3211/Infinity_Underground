@@ -49,12 +49,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Characteres\CTArchimage.cs" />
     <Compile Include="Characteres\CTAttack.cs" />
+    <Compile Include="Characteres\CTBat.cs" />
     <Compile Include="Characteres\CTDirection.cs" />
     <Compile Include="Characteres\CTCharacterType.cs" />
     <Compile Include="Characteres\CTCharacter.cs" />
+    <Compile Include="Characteres\CTForeman.cs" />
+    <Compile Include="Characteres\CTGolem.cs" />
+    <Compile Include="Characteres\CTMinor.cs" />
     <Compile Include="Characteres\CTNPC.cs" />
     <Compile Include="Characteres\CTPlayer.cs" />
+    <Compile Include="Characteres\CTQueenSpider.cs" />
+    <Compile Include="Characteres\CTSpiderMutant.cs" />
+    <Compile Include="Characteres\CTWorm.cs" />
     <Compile Include="Kepler-22_B.cs" />
     <Compile Include="Map\BossRoom.cs" />
     <Compile Include="Map\Door.cs" />

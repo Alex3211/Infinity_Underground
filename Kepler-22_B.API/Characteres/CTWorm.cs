@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace Kepler_22_B.API.Characteres
 {
-    class CTNPC : CTCharacter
+    class CTWorm
     {
-        bool _isBoss;
-
     }
 }
