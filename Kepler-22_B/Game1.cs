@@ -44,7 +44,7 @@ namespace Kepler_22_B
         /// <value>
         /// The camera loader.
         /// </value>
-        internal CameraLoader CameraLoader { get { return _cameraLoader; } }
+        internal CameraLoader CameraLoader { get { return _cameraLoader; } set { _cameraLoader = value; } }
 
         /// <summary>
         /// Gets the map load.
@@ -173,7 +173,7 @@ namespace Kepler_22_B
 
             _mapLoad.Draw(spriteBatch);
 
-            //_debug.draw(spriteBatch);
+            _debug.draw(spriteBatch);
 
             _player.Draw(spriteBatch);
 

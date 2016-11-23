@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework;
 using MonoGame.Extended.Maps.Tiled;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using Kepler_22_B.API.Map;
+using Kepler_22_B.Camera;
 
 namespace Kepler_22_B.Map
 {
@@ -74,6 +76,7 @@ namespace Kepler_22_B.Map
             {
                 _context.MapLoad.GetMap.Dispose();
                 _context.WorldAPI.Level.GetRooms.CreateRoom();
+                _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX, _context.WorldAPI.Players[0].PositionY));
 
                 switch (_context.WorldAPI.Level.GetRooms.TypeOfRoom.Path)
                 {
@@ -115,6 +118,16 @@ namespace Kepler_22_B.Map
             _playerIsUnderGround = true;
         }
 
+
+
+
+
+
+
+
+        /// <summary>
+        /// Switches the room underground.
+        /// </summary>
         void SwitchTheRoomUnderground()
         {
             if (_context.WorldAPI.Level.GetRooms.SwitchRoom())
@@ -123,6 +136,20 @@ namespace Kepler_22_B.Map
                 _context.WorldAPI.Level.GetRooms.CreateRoom();
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -140,7 +167,7 @@ namespace Kepler_22_B.Map
             }
             else
             {
-
+                SwitchTheRoomUnderground();
             }
         }
     }

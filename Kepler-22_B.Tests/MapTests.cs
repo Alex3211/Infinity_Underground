@@ -21,18 +21,6 @@ namespace Kepler_22_B.Tests
         }
 
         /// <summary>
-        /// Whens a boss room is créate have the good path.
-        /// </summary>
-        [Test]
-        public void WhenABossRoomIsCréateHaveTheGoodPath()
-        {
-            string path = "BossRoom";
-            BossRoom sut = new BossRoom();
-
-            Assert.That(sut.Path, Is.EqualTo(path));
-        }
-
-        /// <summary>
         /// Whens a labyrinthe room is créate have path.
         /// </summary>
         [Test]
@@ -42,19 +30,6 @@ namespace Kepler_22_B.Tests
 
             Assert.That(sut.Path, Is.Not.Null);
         }
-
-        /// <summary>
-        /// Whens a labyrinthe room is créate have the good path.
-        /// </summary>
-        [Test]
-        public void WhenALabyrintheRoomIsCréateHaveTheGoodPath()
-        {
-            string path = "LabyrintheRoom";
-            LabyrintheRoom sut = new LabyrintheRoom();
-
-            Assert.That(sut.Path, Is.EqualTo(path));
-        }
-
 
         /// <summary>
         /// Whens a Monster room is créate have path.
@@ -69,18 +44,6 @@ namespace Kepler_22_B.Tests
 
 
         /// <summary>
-        /// Whens a monster room is créate have the good path.
-        /// </summary>
-        [Test]
-        public void WhenAMonsterRoomIsCréateHaveTheGoodPath()
-        {
-            string path = "MonsterRoom";
-            MonsterRoom sut = new MonsterRoom();
-
-            Assert.That(sut.Path, Is.EqualTo(path));
-        }
-
-        /// <summary>
         /// Whens a secret room is créate have path.
         /// </summary>
         [Test]
@@ -91,18 +54,6 @@ namespace Kepler_22_B.Tests
             Assert.That(sut.Path, Is.Not.Null);
         }
 
-        /// <summary>
-        /// Whens a secret room is créate have the good path.
-        /// </summary>
-        [Test]
-        public void WhenASecretRoomIsCréateHaveTheGoodPath()
-        {
-            string path = "SecretRoom";
-
-            SecretRoom sut = new SecretRoom();
-
-            Assert.That(sut.Path, Is.EqualTo(path));
-        }
 
         /// <summary>
         /// Whens a trap room is créate have path.
@@ -113,18 +64,6 @@ namespace Kepler_22_B.Tests
             SecretRoom sut = new SecretRoom();
 
             Assert.That(sut.Path, Is.Not.Null);
-        }
-
-        /// <summary>
-        /// Whens a trap room is créate have the good path.
-        /// </summary>
-        [Test]
-        public void WhenATrapRoomIsCréateHaveTheGoodPath()
-        {
-            string path = "TrapRoom";
-            TrapRoom sut = new TrapRoom();
-
-            Assert.That(sut.Path, Is.EqualTo(path));
         }
 
         /// <summary>
@@ -158,13 +97,15 @@ namespace Kepler_22_B.Tests
         /// Addeds the new door to the room.
         /// </summary>
         [Test]
-        public void AddedNewDoorToTheRoomShouldNotReturnFalse()
+        public void ClearTheFirstRoomDeleteAllDoor()
         {
             RoomInLevel sut = new RoomInLevel(new Level(new World()));
 
             sut.AddDoor(new Vector2(0, 0), new Vector2(5, 5), DoorDirection.Top);
 
-            Assert.That(sut.FirstDoor, Is.Not.Null);
+            sut.ClearDoor();
+
+            Assert.That(sut.FirstDoor, Is.Null);
         }
 
 
@@ -192,7 +133,10 @@ namespace Kepler_22_B.Tests
         {
             RoomInLevel sut = new RoomInLevel(new Level(new World()));
 
-            sut.AddDoor(new Vector2(0, 0), new Vector2(100, 100), DoorDirection.Top);
+            sut.AddDoor(new Vector2(25, 0), new Vector2(27, 2), DoorDirection.Top);
+
+            sut.Context.World.Players[0].PositionX = 830;
+            sut.Context.World.Players[0].PositionY = 10;
 
             Assert.That(sut.PlayerInTheDoor(), Is.SameAs(sut.FirstDoor));
         }
@@ -206,7 +150,7 @@ namespace Kepler_22_B.Tests
         {
             RoomInLevel sut = new RoomInLevel(new Level(new World()));
 
-            sut.AddDoor(new Vector2(0, 0), new Vector2(100, 100), DoorDirection.Bottom);
+            sut.AddDoor(new Vector2(49, 49), new Vector2(51, 51), DoorDirection.Bottom);
 
             int lastPos = (int)sut.PosCurrentRoom.Y;
 

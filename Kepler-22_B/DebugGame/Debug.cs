@@ -60,9 +60,20 @@ namespace Kepler_22_B.DebugGame
             if (DebugState)
             {
                 spriteBatch.DrawString(font, $" Camera Vector Position: X: {_camera.GetCamera.Position.X} Y: {_camera.GetCamera.Position.Y}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y), Color.White);
-                spriteBatch.DrawString(font, $" Player Vector Position: X: {_context.Player.GCTPlayer.PositionX} Y: {_context.Player.GCTPlayer.PositionY}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 20 ), Color.White);
+                spriteBatch.DrawString(font, $" Player Vector Position: X: {_context.Player.GCTPlayer.PositionX} Y: {_context.Player.GCTPlayer.PositionY}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 20), Color.White);
+                spriteBatch.DrawString(font, $" Switch Room State: {TestSwitchRoom()}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 40), Color.White);
             }
             //spriteBatch.End();
+        }
+
+
+        public bool TestSwitchRoom()
+        {
+            if (_context.WorldAPI.Level.GetRooms.PlayerInTheDoor() != null)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

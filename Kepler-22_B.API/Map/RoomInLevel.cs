@@ -73,7 +73,7 @@ namespace Kepler_22_B.API.Map
                 changeVectorCurrentRoom(_playerDoor);
                 ClearDoor();
                 ChangeRoom();
-                ChangePositionWithTheSwitchRoom(_playerDoor.DoorDirection);
+                ChangePlayerPositionWithTheSwitchRoom(_playerDoor.DoorDirection);
                 return true;
             }
             return false;
@@ -131,10 +131,9 @@ namespace Kepler_22_B.API.Map
 
             while (_currentDoor != null)
             {
-                foreach(CTPlayer player in _context.World.Players)
-                {
-                    if (((player.PositionX / _context.World.TildeWidth >= _currentDoor.MoreThan.X) && (player.PositionX / _context.World.TildeWidth <= _currentDoor.LowerThan.X)) && ((player.PositionY / _context.World.TildeWidth >= _currentDoor.MoreThan.Y) && (player.PositionY / _context.World.TildeWidth <= _currentDoor.LowerThan.Y))) return _currentDoor;
-                }
+
+                if (((_context.World.Player1PositionXInTile >= _currentDoor.MoreThan.X) && (_context.World.Player1PositionXInTile <= _currentDoor.LowerThan.X))/* && ((_context.World.Player1PositionYInTile >= _currentDoor.MoreThan.Y) && (_context.World.Player1PositionYInTile <= _currentDoor.LowerThan.Y))*/) return _currentDoor;
+
                 _currentDoor = _currentDoor.NextDoor;
             }
             return null;
@@ -188,48 +187,50 @@ namespace Kepler_22_B.API.Map
         {
             CreateRoom();
             if (_posCurrentRoom.Y > 0)
-                AddDoor(new Vector2(26,0), new Vector2(27, 2), DoorDirection.Top);
+                AddDoor(new Vector2(25,0), new Vector2(27, 2), DoorDirection.Top);
 
             if (_posCurrentRoom.X > 0)
                 AddDoor(new Vector2(0, 14), new Vector2(0, 16), DoorDirection.Left);
 
             if (_posCurrentRoom.X <= _roomOut.X)
-                AddDoor(new Vector2(46, 31), new Vector2(47, 31), DoorDirection.Bottom);
+                AddDoor(new Vector2(45, 31), new Vector2(47, 31), DoorDirection.Bottom);
 
             if (_posCurrentRoom.Y <= _roomOut.Y)
                 AddDoor(new Vector2(63, 14), new Vector2(63, 16), DoorDirection.Right);
 
         }
 
-        void ChangePositionWithTheSwitchRoom(DoorDirection doorDirection)
+        public DoorDirection ChangePlayerPositionWithTheSwitchRoom(DoorDirection doorDirection)
         {
             foreach (CTPlayer player in _context.World.Players)
             {
                 switch (doorDirection)
                 {
                     case DoorDirection.Top:
-                        player.PositionX = 0;
-                        player.PositionY = 0;
-                        break;
+                        player.PositionX = 47;
+                        player.PositionY = 31;
+                        return DoorDirection.Top;
 
                     case DoorDirection.Left:
-                        player.PositionX = 0;
-                        player.PositionY = 0;
-                        break;
+                        player.PositionX = 63;
+                        player.PositionY = 16;
+                        return DoorDirection.Left;
 
                     case DoorDirection.Bottom:
-                        player.PositionX = 0;
-                        player.PositionY = 0;
-                        break;
+                        player.PositionX = 27;
+                        player.PositionY = 2;
+                        return DoorDirection.Bottom;
 
                     case DoorDirection.Right:
                         player.PositionX = 0;
-                        player.PositionY = 0;
-                        break;
+                        player.PositionY = 16;
+                        return DoorDirection.Right;
 
                 }
+
             }
-            
+            return DoorDirection.Top;
+
         }
         
         /// <summary>

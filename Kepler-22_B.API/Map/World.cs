@@ -62,7 +62,7 @@ namespace Kepler_22_B.API
         /// <value>
         /// The player1 position x in tile.
         /// </value>
-        public int Player1PositionXInTile { get { return (_listOfPlayer[0].PositionX / _tildeWidth)+1; } }
+        public int Player1PositionXInTile { get { return _listOfPlayer[0].PositionX / _tildeWidth; } set { _listOfPlayer[0].PositionX = value * _tildeWidth; } }
 
         /// <summary>
         /// Gets the player1 position y in tile.
@@ -70,7 +70,7 @@ namespace Kepler_22_B.API
         /// <value>
         /// The player1 position y in tile.
         /// </value>
-        public int Player1PositionYInTile { get { return (_listOfPlayer[0].PositionY / _tildeWidth)+1; } }
+        public int Player1PositionYInTile { get { return _listOfPlayer[0].PositionY / _tildeWidth; } set { _listOfPlayer[0].PositionY = value * _tildeWidth; } }
 
         /// <summary>
         /// Accesses the underground.
@@ -80,8 +80,12 @@ namespace Kepler_22_B.API
         {
             foreach(CTPlayer player in _listOfPlayer)
             {
-                if (((Player1PositionXInTile >= _enterUnderground.MoreThan.X) && (player.PositionX / _tildeWidth <= _enterUnderground.LowerThan.X)) && ((Player1PositionYInTile >= _enterUnderground.MoreThan.Y) && (player.PositionY / _tildeWidth <= _enterUnderground.LowerThan.Y))) return true;
-            }
+                if (((Player1PositionXInTile >= _enterUnderground.MoreThan.X) && (player.PositionX / _tildeWidth <= _enterUnderground.LowerThan.X)) && ((Player1PositionYInTile >= _enterUnderground.MoreThan.Y) && (player.PositionY / _tildeWidth <= _enterUnderground.LowerThan.Y)))
+                {
+                    _level.GetRooms.ChangePlayerPositionWithTheSwitchRoom(_enterUnderground.DoorDirection);
+                    return true;
+                }
+           }
             return false;
         }
         

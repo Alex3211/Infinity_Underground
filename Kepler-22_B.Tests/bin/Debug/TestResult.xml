@@ -1,60 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\Kepler-22_B.Tests.dll" total="32" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2016-11-21" time="18:51:59">
+<test-results name="C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\Kepler-22_B.Tests.dll" total="1" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2016-11-23" time="11:45:38">
   <environment nunit-version="2.6.4.14350" clr-version="4.0.30319.42000" os-version="Microsoft Windows NT 6.2.9200.0" platform="Win32NT" cwd="C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug" machine-name="PC-HERVE_DYLAN" user="Dylan" user-domain="PC-Herve_Dylan" />
   <culture-info current-culture="fr-FR" current-uiculture="fr-FR" />
-  <test-suite type="Assembly" name="C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\Kepler-22_B.Tests.dll" executed="True" result="Success" success="True" time="0.831" asserts="0">
+  <test-suite type="Assembly" name="C:\Dev\Projet\Kepler-22_B\Kepler-22_B.Tests\bin\Debug\Kepler-22_B.Tests.dll" executed="True" result="Success" success="True" time="3.579" asserts="0">
     <results>
-      <test-suite type="Namespace" name="Kepler_22_B" executed="True" result="Success" success="True" time="0.818" asserts="0">
+      <test-suite type="Namespace" name="Kepler_22_B" executed="True" result="Success" success="True" time="3.566" asserts="0">
         <results>
-          <test-suite type="Namespace" name="Tests" executed="True" result="Success" success="True" time="0.818" asserts="0">
+          <test-suite type="Namespace" name="Tests" executed="True" result="Success" success="True" time="3.566" asserts="0">
             <results>
-              <test-suite type="TestFixture" name="CTPlayerTests" executed="True" result="Success" success="True" time="0.730" asserts="0">
+              <test-suite type="TestFixture" name="MapTests" executed="True" result="Success" success="True" time="3.565" asserts="0">
                 <results>
-                  <test-case name="Kepler_22_B.Tests.CTPlayerTests.AttributeNewNameToTheNewCharacter" executed="True" result="Success" success="True" time="0.430" asserts="1" />
-                  <test-suite type="ParameterizedTest" name="InsertNegativePositionX" executed="True" result="Success" success="True" time="0.231" asserts="0">
-                    <results>
-                      <test-case name="Kepler_22_B.Tests.CTPlayerTests.InsertNegativePositionX(-1,12)" executed="True" result="Success" success="True" time="0.117" asserts="1" />
-                      <test-case name="Kepler_22_B.Tests.CTPlayerTests.InsertNegativePositionX(-1,-2)" executed="True" result="Success" success="True" time="0.063" asserts="1" />
-                      <test-case name="Kepler_22_B.Tests.CTPlayerTests.InsertNegativePositionX(0,-20)" executed="True" result="Success" success="True" time="0.042" asserts="1" />
-                    </results>
-                  </test-suite>
-                  <test-suite type="ParameterizedTest" name="InsertPositionInConstructor" executed="True" result="Success" success="True" time="0.026" asserts="0">
-                    <results>
-                      <test-case name="Kepler_22_B.Tests.CTPlayerTests.InsertPositionInConstructor(1,10)" executed="True" result="Success" success="True" time="0.013" asserts="2" />
-                      <test-case name="Kepler_22_B.Tests.CTPlayerTests.InsertPositionInConstructor(50,12)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
-                      <test-case name="Kepler_22_B.Tests.CTPlayerTests.InsertPositionInConstructor(500,2)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
-                    </results>
-                  </test-suite>
-                  <test-case name="Kepler_22_B.Tests.CTPlayerTests.TestIfThePlayerCanGoDown" executed="True" result="Success" success="True" time="0.002" asserts="1" />
-                  <test-case name="Kepler_22_B.Tests.CTPlayerTests.TestIfThePlayerCanGoOnTheLeft" executed="True" result="Success" success="True" time="0.001" asserts="1" />
-                  <test-case name="Kepler_22_B.Tests.CTPlayerTests.TestIfThePlayerCanGoUp" executed="True" result="Success" success="True" time="0.001" asserts="1" />
-                  <test-case name="Kepler_22_B.Tests.CTPlayerTests.TestIfThePlayerCanOnTheRight" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                  <test-case name="Kepler_22_B.Tests.CTPlayerTests.TestNunit" executed="True" result="Success" success="True" time="0.001" asserts="1" />
-                </results>
-              </test-suite>
-              <test-suite type="TestFixture" name="MapTests" executed="True" result="Success" success="True" time="0.085" asserts="0">
-                <results>
-                  <test-case name="Kepler_22_B.Tests.MapTests.AddedNewDoorToTheRoom" executed="True" result="Success" success="True" time="0.002" asserts="1" />
-                  <test-case name="Kepler_22_B.Tests.MapTests.AddedNewDoorToTheRoomAsTheSameVector" executed="True" result="Success" success="True" time="0.002" asserts="1" />
-                  <test-case name="Kepler_22_B.Tests.MapTests.AddedNewDoorToTheRoomShouldNotReturnFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
-                  <test-case name="Kepler_22_B.Tests.MapTests.CountTheDoorWhoWasCreateWithoutVectorRoomNegatif" executed="True" result="Success" success="True" time="0.004" asserts="1" />
-                  <test-case name="Kepler_22_B.Tests.MapTests.IncrementeTheLevel" executed="True" result="Success" success="True" time="0.001" asserts="1" />
-                  <test-case name="Kepler_22_B.Tests.MapTests.SelectATypeOfRoom" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                  <test-case name="Kepler_22_B.Tests.MapTests.TestIfThePlayerAreInOneDoor" executed="True" result="Success" success="True" time="0.002" asserts="1" />
-                  <test-case name="Kepler_22_B.Tests.MapTests.TestIfThePlayerCanGoUnderGround" executed="True" result="Success" success="True" time="0.001" asserts="1" />
-                  <test-case name="Kepler_22_B.Tests.MapTests.TestTheConvertionPixeInTilesForThePositionXOfThePlayer" executed="True" result="Success" success="True" time="0.000" asserts="2" />
-                  <test-case name="Kepler_22_B.Tests.MapTests.TestVectorForChangeRoom" executed="True" result="Success" success="True" time="0.001" asserts="1" />
-                  <test-case name="Kepler_22_B.Tests.MapTests.WhenABossRoomIsCréateHavePath" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                  <test-case name="Kepler_22_B.Tests.MapTests.WhenABossRoomIsCréateHaveTheGoodPath" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                  <test-case name="Kepler_22_B.Tests.MapTests.WhenALabyrintheRoomIsCréateHavePath" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                  <test-case name="Kepler_22_B.Tests.MapTests.WhenALabyrintheRoomIsCréateHaveTheGoodPath" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                  <test-case name="Kepler_22_B.Tests.MapTests.WhenAMonsterRoomIsCréateHavePath" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                  <test-case name="Kepler_22_B.Tests.MapTests.WhenAMonsterRoomIsCréateHaveTheGoodPath" executed="True" result="Success" success="True" time="0.001" asserts="1" />
-                  <test-case name="Kepler_22_B.Tests.MapTests.WhenASecretRoomIsCréateHavePath" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                  <test-case name="Kepler_22_B.Tests.MapTests.WhenASecretRoomIsCréateHaveTheGoodPath" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                  <test-case name="Kepler_22_B.Tests.MapTests.WhenATrapRoomIsCréateHavePath" executed="True" result="Success" success="True" time="0.001" asserts="1" />
-                  <test-case name="Kepler_22_B.Tests.MapTests.WhenATrapRoomIsCréateHaveTheGoodPath" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                  <test-case name="Kepler_22_B.Tests.MapTests.TestIfThePlayerAreInOneDoor" executed="True" result="Success" success="True" time="3.540" asserts="1" />
                 </results>
               </test-suite>
             </results>
