@@ -11,7 +11,7 @@ namespace Kepler_22_B.API.Map
     {
         Door _nextDoor;
         Vector2 _moreThan, _lowerThan;
-        DoorDirection _doorDirection;
+        string _doorPosition;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Door"/> class.
@@ -19,11 +19,11 @@ namespace Kepler_22_B.API.Map
         /// <param name="moreThan">The more than.</param>
         /// <param name="lowerThan">The lower than.</param>
         /// <param name="doorPosition">The door position.</param>
-        public Door(Vector2 moreThan, Vector2 lowerThan, DoorDirection doorDirection)
+        public Door(Vector2 moreThan, Vector2 lowerThan, string doorPosition)
         {
             _moreThan = moreThan;
             _lowerThan = lowerThan;
-            _doorDirection = doorDirection;
+            _doorPosition = doorPosition;
         }
 
         /// <summary>
@@ -56,6 +56,6 @@ namespace Kepler_22_B.API.Map
         /// <value>
         /// The door position.
         /// </value>
-        public DoorDirection DoorDirection { get { return _doorDirection; } }
+        public string DoorPosition { get { return _doorPosition; } }
     }
 }

@@ -6,15 +6,7 @@ using System.Threading.Tasks;
 
 namespace Kepler_22_B.API.Map
 {
-    public class TrapRoom : Room
+    class TrapRoom : RoomInLevel
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TrapRoom"/> class.
-        /// </summary>
-        public TrapRoom()
-        {
-            Path = 3;
-
-        }
     }
 }

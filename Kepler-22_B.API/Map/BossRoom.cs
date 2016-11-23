@@ -6,17 +6,12 @@ using System.Threading.Tasks;
 
 namespace Kepler_22_B.API.Map
 {
-    public class BossRoom : Room
+    class BossRoom : RoomInLevel
     {
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BossRoom"/> class.
-        /// </summary>
         public BossRoom()
         {
-            Path = 0;
-            NbOfNPC = 0;
+            NbOfNPC = 1;
         }
-
-     }
+    }
 }

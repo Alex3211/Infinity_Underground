@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace Kepler_22_B.API.Characteres
 {
-<<<<<<< HEAD
     class CTArchimage : CTNPC
-=======
-    class CTArchimage
->>>>>>> Feature-ManageUnderground2
     {
     }
 }
