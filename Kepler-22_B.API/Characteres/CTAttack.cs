@@ -33,9 +33,9 @@ namespace Kepler_22_B.API.Characteres
         /// <returns></returns>
         public int Attack(CTCharacter sender, CTCharacter receiver, int damageSender, double armorReceiver)
         {
-            int random = r.Next(1, 8);
-            if (random > 5) return receiver.LifePoint = (sender.GetCharacterType.GetContext.GetDamage * receiver.GetCharacterType.GetContext.GetArmor) * random;
-            else if (random < 5 && random > 2) return receiver.LifePoint = (sender.GetCharacterType.GetContext.GetDamage * receiver.GetCharacterType.GetContext.GetArmor) * random;
+            int random = r.Next(1, 6);
+            if (random > 3) return receiver.LifePoint = (sender.GetCharacterType.GetContext.GetDamage * receiver.GetCharacterType.GetContext.GetArmor) * random;
+            else if (random <= 3 && random >= 1) return receiver.LifePoint = (sender.GetCharacterType.GetContext.GetDamage * receiver.GetCharacterType.GetContext.GetArmor) * random;
             else return 0;
         }
 

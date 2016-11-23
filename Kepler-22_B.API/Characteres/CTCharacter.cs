@@ -16,6 +16,8 @@ namespace Kepler_22_B.API.Characteres
         int _damage;
         int _armor;
         double _criticalPunch;
+        double _CriticalDamage;
+        double _AttackSpeed;
 
         
 
@@ -44,6 +46,23 @@ namespace Kepler_22_B.API.Characteres
         /// The get damage.
         /// </value>
         public int GetDamage { get { return _damage; } }
+
+        /// <summary>
+        /// Gets the critical damage.
+        /// </summary>
+        /// <value>
+        /// The get critical damage.
+        /// </value>
+        public double GetCriticalDamage { get { return _CriticalDamage; } }
+
+
+        /// <summary>
+        /// Gets the speed attack.
+        /// </summary>
+        /// <value>
+        /// The get speed attack.
+        /// </value>
+        public double GetSpeedAttack { get { return _AttackSpeed; } }
 
         /// <summary>
         /// Gets the get armor.
