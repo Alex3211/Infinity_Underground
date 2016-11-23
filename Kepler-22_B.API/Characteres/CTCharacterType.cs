@@ -12,6 +12,7 @@ namespace Kepler_22_B.API.Characteres
         int _moveSpeed;
         CTCharacter _context;
         CTAttack _attacks;
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="CTCharacterType"/> class.
         /// </summary>
@@ -39,7 +40,7 @@ namespace Kepler_22_B.API.Characteres
         /// </value>
         public int MoveSpeed { get { return _moveSpeed; } set { _moveSpeed = value; } }
 
-
+        public CTCharacter GetContext { get { return _context; } }
 
 
 

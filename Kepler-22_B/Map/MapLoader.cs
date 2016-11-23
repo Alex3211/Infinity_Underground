@@ -31,7 +31,7 @@ namespace Kepler_22_B.Map
             _getMap = _context.Content.Load<TiledMap>("map/" + nameOfMap);
             _getLayerCollide = _getMap.GetLayer<TiledTileLayer>("Collide");
             _getLayerCollide.IsVisible = false;
-            _idTileCollide = 164;
+            _idTileCollide = 645;
         }
 
 

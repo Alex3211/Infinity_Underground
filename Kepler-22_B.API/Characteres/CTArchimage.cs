@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Kepler_22_B.API.Characteres
 {
-    class CTArchimage
+    class CTArchimage : CTNPC
     {
     }
 }

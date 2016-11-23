@@ -36,6 +36,7 @@ namespace Kepler_22_B.DebugGame
 
 
             // DEBUG PARAMETERS
+            _context.MapLoad.GetLayerCollide.IsVisible = true;
             _context.IsMouseVisible = true;
             _context.Window.AllowAltF4 = true;
         }
