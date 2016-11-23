@@ -7,28 +7,17 @@ using System.Threading.Tasks;
 
 namespace Kepler_22_B.API.Map
 {
-    class Level
+    public class Level
     {
         int _level;
         RoomInLevel _room;
-        Door _roomInLevel;
         World _world;
-        Random r;
 
         public Level(World context)
         {
             _room = new RoomInLevel(this);
             _world = context;
 
-        }
-
-        public void ChangeLevel()
-        {
-            if(_room.PlayerInTheDoor() != null)
-            {
-                _roomInLevel = _room.PlayerInTheDoor();
-                _level++;
-            }
         }
 
         /// <summary>
@@ -45,7 +34,7 @@ namespace Kepler_22_B.API.Map
         /// <value>
         /// The get currentlevel.
         /// </value>
-        public int GetCurrentlevel { get { return _level; } }
+        public int GetCurrentlevel { get { return _level; } set { _level = value; } }
 
         /// <summary>
         /// Gets the context.

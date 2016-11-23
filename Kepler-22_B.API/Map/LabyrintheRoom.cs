@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace Kepler_22_B.API.Map
 {
-    class LabyrintheRoom : Room
+    public class LabyrintheRoom : Room
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LabyrintheRoom"/> class.
+        /// </summary>
+        public LabyrintheRoom()
+        {
+            Path = 4;
+
+        }
+
+
     }
 }

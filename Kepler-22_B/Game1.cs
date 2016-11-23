@@ -5,6 +5,9 @@ using Kepler_22_B.Camera;
 using Kepler_22_B.Map;
 using Kepler_22_B.DebugGame;
 using Kepler_22_B.EntitiesUI;
+using Kepler_22_B.API;
+using System.Collections.Generic;
+using MonoGame.Extended.Maps.Tiled;
 
 namespace Kepler_22_B
 {
@@ -19,10 +22,21 @@ namespace Kepler_22_B
         const int WindowWidth = 1920;
         const int WindowHeight = 1080;
 
+
+        World _world;
         Player _player;
         CameraLoader _cameraLoader;
         MapLoader _mapLoad;
         Debug _debug;
+        WorldControlUI _worldControl;
+
+        /// <summary>
+        /// Gets or sets the world control.
+        /// </summary>
+        /// <value>
+        /// The world control.
+        /// </value>
+        public WorldControlUI WorldControl { get { return _worldControl; } } 
 
         /// <summary>
         /// Gets the camera loader.
@@ -48,18 +62,44 @@ namespace Kepler_22_B
         /// </value>
         internal Player Player { get { return _player; } }
 
+        /// <summary>
+        /// Gets the world API.
+        /// </summary>
+        /// <value>
+        /// The world API.
+        /// </value>
+        internal World WorldAPI { get { return _world; } }
 
+        /// <summary>
+        /// Gets the list of map.
+        /// </summary>
+        /// <value>
+        /// The list of map.
+        /// </value>
         /// <summary>
         /// Initializes a new instance of the <see cref="Game1"/> class.
         /// </summary>
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferHeight = WindowHeight;
             graphics.PreferredBackBufferWidth = WindowWidth;
+
             _cameraLoader = new CameraLoader(this);
+            _world = new World();
+            _mapLoad = new MapLoader(this);
+            _worldControl = new WorldControlUI(this);
         }
+
+        /// <summary>
+        /// Gets or sets the graphics.
+        /// </summary>
+        /// <value>
+        /// The graphics.
+        /// </value>
+        public GraphicsDeviceManager Graphics { get { return graphics; } }
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -81,20 +121,17 @@ namespace Kepler_22_B
         /// </summary>
         protected override void LoadContent()
         {
+            
+
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            
-            _mapLoad = new MapLoader(this, "map");
+            _worldControl.LoadContent(Content);
 
-            
             _debug = new Debug(this, _cameraLoader);
 
-
             _player = new Player(4, 9, this);
-
-
-            // TODO: use this.Content to load your game content here
+            
         }
 
         /// <summary>
@@ -118,10 +155,9 @@ namespace Kepler_22_B
 
             _player.Update(gameTime);
             
-            // TODO: Add your update logic here
             _debug.Update(gameTime);
 
-            _mapLoad.Update(gameTime);
+            _worldControl.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -135,9 +171,9 @@ namespace Kepler_22_B
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin(transformMatrix: _cameraLoader.GetMatrix);
 
-            _mapLoad.draw(spriteBatch);
+            _mapLoad.Draw(spriteBatch);
 
-            _debug.draw(spriteBatch);
+            //_debug.draw(spriteBatch);
 
             _player.Draw(spriteBatch);
 

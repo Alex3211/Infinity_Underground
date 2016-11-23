@@ -1,12 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Maps.Tiled;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kepler_22_B.Map
 {
@@ -25,15 +19,23 @@ namespace Kepler_22_B.Map
         /// </summary>
         /// <param name="context">The context.</param>
         /// <param name="nameOfMap">The name of the map.</param>
-        public MapLoader(Game1 context, string nameOfMap)
+        public MapLoader(Game1 context)
         {
             _context = context;
-            _getMap = _context.Content.Load<TiledMap>("map/" + nameOfMap);
-            _getLayerCollide = _getMap.GetLayer<TiledTileLayer>("Collide");
-            _getLayerCollide.IsVisible = false;
-            _idTileCollide = 164;
         }
 
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
+        /// <param name="nameOfMap">The name of map.</param>
+        /// <param name="content">The content.</param>
+        public void LoadContent(string nameOfMap, ContentManager content)
+        {
+            _getMap = content.Load<TiledMap>(nameOfMap);
+            _getLayerCollide = _getMap.GetLayer<TiledTileLayer>("Collide");
+            _getLayerCollide.IsVisible = false;
+            _idTileCollide = 645;
+        }
 
         /// <summary>
         /// Gets the get layer collide.
@@ -41,7 +43,7 @@ namespace Kepler_22_B.Map
         /// <value>
         /// The get layer collide.
         /// </value>
-        public TiledTileLayer GetLayerCollide { get { return _getLayerCollide; } }
+        public TiledTileLayer GetLayerCollide { get { return _getLayerCollide; } set { _getLayerCollide = value; } }
 
 
         /// <summary>
@@ -50,7 +52,7 @@ namespace Kepler_22_B.Map
         /// <value>
         /// The get map.
         /// </value>
-        public TiledMap GetMap { get { return _getMap; } }
+        public TiledMap GetMap { get { return _getMap; }  set { _getMap = value; } }
 
 
 
@@ -58,7 +60,7 @@ namespace Kepler_22_B.Map
         /// Draws the specified sprite batch.
         /// </summary>
         /// <param name="spriteBatch">The sprite batch.</param>
-        public void draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
             _getMap.Draw(spriteBatch);
         }
@@ -72,26 +74,6 @@ namespace Kepler_22_B.Map
         public int IdTileCollide { get { return _idTileCollide; } }
 
 
-        /// <summary>
-        /// Changes the map.
-        /// </summary>
-        /// <param name="path">The path.</param>
-        /// <param name="file">The file.</param>
-        public void ChangeMap(string path, string file)
-        {
-            string _newMap = path + "/" + file;
-            _getMap.Dispose();
-            _context.MapLoad = new MapLoader(_context, _newMap);
-        }
 
-
-        /// <summary>
-        /// Updates the specified game time.
-        /// </summary>
-        /// <param name="gameTime">The game time.</param>
-        public void Update(GameTime gameTime)
-        {
-            //ChangeMap();
-        }
     }
 }

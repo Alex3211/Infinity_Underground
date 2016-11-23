@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace Kepler_22_B.API.Map
 {
-    class MonsterRoom : Room
+    public class MonsterRoom : Room
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MonsterRoom"/> class.
+        /// </summary>
+        public MonsterRoom()
+        {
+            Path = 1;
+        }
+
+
     }
 }

@@ -10,9 +10,8 @@ namespace Kepler_22_B.EntitiesUI
     {
         Texture2D _spriteSheet;
         KeyboardState _state;
-        CTPlayer _player;
         Game1 _context;
-
+        CTPlayer _player;
         readonly int _spriteSheetRows, _spriteSheetColumns, _totalFrames;
         int _timeSinceLastFrame, _currentFrame, _width, _height, _playerDirection, _column, _millisecondsPerFrame;
 
@@ -33,7 +32,7 @@ namespace Kepler_22_B.EntitiesUI
             _timeSinceLastFrame = 0;
             _millisecondsPerFrame = 80;
             _totalFrames = _spriteSheetRows * _spriteSheetColumns;
-            _player = new CTPlayer();
+            _player = _context.WorldAPI.Players[0];
             _playerDirection = (int)Direction.Bottom;
         }
 

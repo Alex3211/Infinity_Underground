@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Kepler_22_B.API.Map
 {
-    abstract class Room
+    public abstract class Room
     {
-        int _nbOfNPC, _nbStyleRoom;
+        int _nbOfNPC;
         Random r;
+        int _path;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Room"/> class.
@@ -17,9 +18,16 @@ namespace Kepler_22_B.API.Map
         public Room()
         {
             r = new Random();
-            _nbStyleRoom = r.Next(2,10);
-            _nbStyleRoom = r.Next(4);
+            _nbOfNPC = r.Next(2,10);
         }
+
+        /// <summary>
+        /// Gets the path.
+        /// </summary>
+        /// <value>
+        /// The path.
+        /// </value>
+        public int Path { get { return _path; } set{ _path = value; } }
 
         /// <summary>
         /// Gets or sets the nb of NPC.
@@ -28,15 +36,6 @@ namespace Kepler_22_B.API.Map
         /// The nb of NPC.
         /// </value>
         public int NbOfNPC { get { return _nbOfNPC; } set { _nbOfNPC = value; } }
-
-        /// <summary>
-        /// Gets the nb style room.
-        /// </summary>
-        /// <value>
-        /// The nb style room.
-        /// </value>
-        public int NbStyleRoom { get { return _nbStyleRoom; } }
-
 
     }
 }
