@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Kepler_22_B.API.Characteres
 {
+<<<<<<< HEAD
     class CTWorm : CTNPC
+=======
+    class CTWorm
+>>>>>>> Feature-ManageUnderground2
     {
     }
 }

@@ -4,6 +4,7 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
+<<<<<<< HEAD
     <File>D:/s3/S3PI/projet_actuel/Kepler-22_B/Kepler-22_B/Content/debug.spritefont</File>
     <File>D:/s3/S3PI/projet_actuel/Kepler-22_B/Kepler-22_B/Content/Player/Walking.png</File>
     <File>D:/s3/S3PI/projet_actuel/Kepler-22_B/Kepler-22_B/Content/Map/Artis_dock.png</File>
@@ -16,5 +17,78 @@
     <File>D:/s3/S3PI/projet_actuel/Kepler-22_B/Kepler-22_B/Content/Map/tileset_stone_v4_p1.png</File>
     <File>D:/s3/S3PI/projet_actuel/Kepler-22_B/Kepler-22_B/Content/Map/Walking.png</File>
     <File>D:/s3/S3PI/projet_actuel/Kepler-22_B/Kepler-22_B/Content/Map/Map.tmx</File>
+=======
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/debug.spritefont</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/Player/Walking.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/Surface/Artis_dock.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/Surface/base_out_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/Surface/build_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/Surface/caves.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/Surface/forest_tiles.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/Surface/obj_misk_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/Surface/terrain_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/Surface/tileset_stone_v4_p1.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/Surface/Map.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/TrapRoom/1.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/TrapRoom/2.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/TrapRoom/3.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/TrapRoom/4.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/TrapRoom/Artis_dock.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/TrapRoom/base_out_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/TrapRoom/build_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/TrapRoom/caves.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/TrapRoom/forest_tiles.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/TrapRoom/obj_misk_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/TrapRoom/terrain_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/TrapRoom/tileset_stone_v4_p1.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/BossRoom/2.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/BossRoom/3.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/BossRoom/4.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/BossRoom/Artis_dock.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/BossRoom/base_out_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/BossRoom/build_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/BossRoom/caves.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/BossRoom/forest_tiles.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/BossRoom/obj_misk_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/BossRoom/terrain_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/BossRoom/tileset_stone_v4_p1.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/LabyrintheRoom/1.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/LabyrintheRoom/2.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/LabyrintheRoom/3.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/LabyrintheRoom/4.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/LabyrintheRoom/Artis_dock.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/LabyrintheRoom/base_out_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/LabyrintheRoom/build_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/LabyrintheRoom/caves.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/LabyrintheRoom/forest_tiles.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/LabyrintheRoom/obj_misk_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/LabyrintheRoom/terrain_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/LabyrintheRoom/tileset_stone_v4_p1.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/MonsterRoom/1.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/MonsterRoom/2.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/MonsterRoom/3.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/MonsterRoom/4.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/MonsterRoom/Artis_dock.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/MonsterRoom/base_out_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/MonsterRoom/build_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/MonsterRoom/caves.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/MonsterRoom/forest_tiles.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/MonsterRoom/obj_misk_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/MonsterRoom/terrain_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/MonsterRoom/tileset_stone_v4_p1.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/SecretRoom/1.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/SecretRoom/2.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/SecretRoom/3.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/SecretRoom/4.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/SecretRoom/Artis_dock.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/SecretRoom/base_out_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/SecretRoom/build_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/SecretRoom/caves.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/SecretRoom/forest_tiles.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/SecretRoom/obj_misk_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/SecretRoom/terrain_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/SecretRoom/tileset_stone_v4_p1.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/BossRoom/1.tmx</File>
+>>>>>>> Feature-ManageUnderground2
   </SourceFiles>
 </SourceFileCollection>

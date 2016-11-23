@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Kepler_22_B.API.Characteres
 {
+<<<<<<< HEAD
     class CTQueenSpider : CTNPC
+=======
+    class CTQueenSpider
+>>>>>>> Feature-ManageUnderground2
     {
     }
 }
