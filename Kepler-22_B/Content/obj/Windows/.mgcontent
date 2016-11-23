@@ -4,17 +4,17 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/debug.spritefont</File>
-    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/Player/Walking.png</File>
-    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/Map/Artis_dock.png</File>
-    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/Map/base_out_atlas.png</File>
-    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/Map/build_atlas.png</File>
-    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/Map/caves.png</File>
-    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/Map/forest_tiles.png</File>
-    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/Map/obj_misk_atlas.png</File>
-    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/Map/terrain_atlas.png</File>
-    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/Map/tileset_stone_v4_p1.png</File>
-    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/Map/Walking.png</File>
-    <File>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/Map/Map.tmx</File>
+    <File>D:/s3/S3PI/GitKraken/Kepler-22_B/Kepler-22_B/Content/debug.spritefont</File>
+    <File>D:/s3/S3PI/GitKraken/Kepler-22_B/Kepler-22_B/Content/Player/Walking.png</File>
+    <File>D:/s3/S3PI/GitKraken/Kepler-22_B/Kepler-22_B/Content/Map/Artis_dock.png</File>
+    <File>D:/s3/S3PI/GitKraken/Kepler-22_B/Kepler-22_B/Content/Map/base_out_atlas.png</File>
+    <File>D:/s3/S3PI/GitKraken/Kepler-22_B/Kepler-22_B/Content/Map/build_atlas.png</File>
+    <File>D:/s3/S3PI/GitKraken/Kepler-22_B/Kepler-22_B/Content/Map/caves.png</File>
+    <File>D:/s3/S3PI/GitKraken/Kepler-22_B/Kepler-22_B/Content/Map/forest_tiles.png</File>
+    <File>D:/s3/S3PI/GitKraken/Kepler-22_B/Kepler-22_B/Content/Map/obj_misk_atlas.png</File>
+    <File>D:/s3/S3PI/GitKraken/Kepler-22_B/Kepler-22_B/Content/Map/terrain_atlas.png</File>
+    <File>D:/s3/S3PI/GitKraken/Kepler-22_B/Kepler-22_B/Content/Map/tileset_stone_v4_p1.png</File>
+    <File>D:/s3/S3PI/GitKraken/Kepler-22_B/Kepler-22_B/Content/Map/Walking.png</File>
+    <File>D:/s3/S3PI/GitKraken/Kepler-22_B/Kepler-22_B/Content/Map/Map.tmx</File>
   </SourceFiles>
 </SourceFileCollection>

@@ -35,9 +35,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.5.1.1679, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="RandomNameGeneratorLibrary, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RandomNameGeneratorLibrary.1.2.2.0\lib\net40\RandomNameGeneratorLibrary.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="RandomNameGeneratorLibrary">
+      <HintPath>..\..\Kepler-22_B - Actual\packages\RandomNameGeneratorLibrary.1.2.2.0\lib\net40\RandomNameGeneratorLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -50,15 +49,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Characteres\CTArchimage.cs" />
     <Compile Include="Characteres\CTAttack.cs" />
+    <Compile Include="Characteres\CTBat.cs" />
     <Compile Include="Characteres\CTDirection.cs" />
     <Compile Include="Characteres\CTCharacterType.cs" />
     <Compile Include="Characteres\CTCharacter.cs" />
+    <Compile Include="Characteres\CTForeman.cs" />
+    <Compile Include="Characteres\CTGolem.cs" />
+    <Compile Include="Characteres\CTMinor.cs" />
     <Compile Include="Characteres\CTNPC.cs" />
     <Compile Include="Characteres\CTPlayer.cs" />
+    <Compile Include="Characteres\CTQueenSpider.cs" />
+    <Compile Include="Characteres\CTSpiderMutant.cs" />
+    <Compile Include="Characteres\CTWorm.cs" />
+    <Compile Include="Kepler-22_B.cs" />
+    <Compile Include="Map\BossRoom.cs" />
     <Compile Include="Map\Door.cs" />
+    <Compile Include="Map\LabyrintheRoom.cs" />
     <Compile Include="Map\Level.cs" />
+    <Compile Include="Map\MonsterRoom.cs" />
     <Compile Include="Map\Room.cs" />
+    <Compile Include="Map\RoomInLevel.cs" />
+    <Compile Include="Map\SecretRoom.cs" />
+    <Compile Include="Map\TrapRoom.cs" />
     <Compile Include="Map\TypeRoom.cs" />
     <Compile Include="Map\World.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Maps.Tiled;
 using System;
 using System.Collections.Generic;
@@ -28,7 +30,7 @@ namespace Kepler_22_B.Map
             _context = context;
             _getMap = _context.Content.Load<TiledMap>("map/" + nameOfMap);
             _getLayerCollide = _getMap.GetLayer<TiledTileLayer>("Collide");
-            _getLayerCollide.IsVisible = true;
+            _getLayerCollide.IsVisible = false;
             _idTileCollide = 164;
         }
 
@@ -68,5 +70,28 @@ namespace Kepler_22_B.Map
         /// The identifier tile collide.
         /// </value>
         public int IdTileCollide { get { return _idTileCollide; } }
+
+
+        /// <summary>
+        /// Changes the map.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <param name="file">The file.</param>
+        public void ChangeMap(string path, string file)
+        {
+            string _newMap = path + "/" + file;
+            _getMap.Dispose();
+            _context.MapLoad = new MapLoader(_context, _newMap);
+        }
+
+
+        /// <summary>
+        /// Updates the specified game time.
+        /// </summary>
+        /// <param name="gameTime">The game time.</param>
+        public void Update(GameTime gameTime)
+        {
+            //ChangeMap();
+        }
     }
 }

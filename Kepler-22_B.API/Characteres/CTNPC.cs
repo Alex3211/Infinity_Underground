@@ -8,5 +8,7 @@ namespace Kepler_22_B.API.Characteres
 {
     class CTNPC : CTCharacter
     {
+        bool _isBoss;
+
     }
 }
