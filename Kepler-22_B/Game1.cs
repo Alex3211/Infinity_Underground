@@ -27,6 +27,7 @@ namespace Kepler_22_B
         Player _player;
         CameraLoader _cameraLoader;
         MapLoader _mapLoad;
+        MapLoader _mapLoadSecond;
         Debug _debug;
         WorldControlUI _worldControl;
 
@@ -86,11 +87,12 @@ namespace Kepler_22_B
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferHeight = WindowHeight;
             graphics.PreferredBackBufferWidth = WindowWidth;
+            _worldControl = new WorldControlUI(this);
 
             _cameraLoader = new CameraLoader(this);
             _world = new World();
             _mapLoad = new MapLoader(this);
-            _worldControl = new WorldControlUI(this);
+            _mapLoadSecond = _mapLoad;
         }
 
         /// <summary>
@@ -171,11 +173,9 @@ namespace Kepler_22_B
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin(transformMatrix: _cameraLoader.GetMatrix);
 
-            _mapLoad.Draw(spriteBatch);
+            _mapLoad.Draw(spriteBatch, this);
 
             _debug.draw(spriteBatch);
-
-            _player.Draw(spriteBatch);
 
             spriteBatch.End();
             base.Draw(gameTime);

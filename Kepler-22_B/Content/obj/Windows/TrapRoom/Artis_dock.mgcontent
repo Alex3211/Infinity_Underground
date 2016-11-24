@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/TrapRoom/Artis_dock.png</SourceFile>
-  <SourceTime>2016-11-08T19:06:14.2839135+01:00</SourceTime>
-  <DestFile>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/bin/Windows/TrapRoom/Artis_dock.xnb</DestFile>
-  <DestTime>2016-11-24T09:17:44.2041414+01:00</DestTime>
+  <SourceFile>D:/s3/S3PI/projet_actuel/Kepler-22_B/Kepler-22_B/Content/TrapRoom/Artis_dock.png</SourceFile>
+  <SourceTime>2016-11-24T09:37:32.7563708+01:00</SourceTime>
+  <DestFile>D:/s3/S3PI/projet_actuel/Kepler-22_B/Kepler-22_B/Content/bin/Windows/TrapRoom/Artis_dock.xnb</DestFile>
+  <DestTime>2016-11-24T09:49:38.3950675+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

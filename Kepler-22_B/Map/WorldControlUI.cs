@@ -58,7 +58,7 @@ namespace Kepler_22_B.Map
         /// <param name="content">The content.</param>
         public void LoadContent(ContentManager content)
         {
-            _context.MapLoad = new MapLoader(_context);
+            //_context.MapLoad = new MapLoader(_context);
             _context.MapLoad.LoadContent("Surface/map", _context.Content);
 
             foreach (Underground map in _listOfUndergroundMap)
