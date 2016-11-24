@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/s3/S3PI/projet_actuel/Kepler-22_B/Kepler-22_B/Content/SecretRoom/1.tmx</SourceFile>
+  <SourceFile>D:/s3/S3PI/GitKraken/Kepler-22_B/Kepler-22_B/Content/SecretRoom/1.tmx</SourceFile>
   <SourceTime>2016-11-24T09:37:32.3829194+01:00</SourceTime>
-  <DestFile>D:/s3/S3PI/projet_actuel/Kepler-22_B/Kepler-22_B/Content/bin/Windows/SecretRoom/1.xnb</DestFile>
-  <DestTime>2016-11-24T09:49:40.9863793+01:00</DestTime>
+  <DestFile>D:/s3/S3PI/GitKraken/Kepler-22_B/Kepler-22_B/Content/bin/Windows/SecretRoom/1.xnb</DestFile>
+  <DestTime>2016-11-24T12:01:07.8297516+01:00</DestTime>
   <Importer>TiledMapImporter</Importer>
   <ImporterTime>2016-11-20T22:57:17.0574419+01:00</ImporterTime>
   <Processor>TiledMapProcessor</Processor>
