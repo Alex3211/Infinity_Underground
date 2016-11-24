@@ -16,8 +16,13 @@ namespace Kepler_22_B.DebugGame
         public int MousePositionY;
         public int MousePositionX;
         CameraLoader _camera;
-        
 
+        /// <summary>
+        /// Gets or sets a value indicating whether [debug state].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [debug state]; otherwise, <c>false</c>.
+        /// </value>
         public bool DebugState { get; set; }
 
         /// <summary>
@@ -36,7 +41,7 @@ namespace Kepler_22_B.DebugGame
 
 
             // DEBUG PARAMETERS
-            _context.MapLoad.GetLayerCollide.IsVisible = true;
+            _context.MapLoad.GetLayerCollide.IsVisible = false;
             _context.IsMouseVisible = true;
             _context.Window.AllowAltF4 = true;
         }
@@ -57,14 +62,14 @@ namespace Kepler_22_B.DebugGame
 
         public void draw(SpriteBatch spriteBatch)
         {
-            //spriteBatch.Begin();
+
             if (DebugState)
             {
                 spriteBatch.DrawString(font, $" Camera Vector Position: X: {_camera.GetCamera.Position.X} Y: {_camera.GetCamera.Position.Y}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y), Color.White);
                 spriteBatch.DrawString(font, $" Player Vector Position: X: {_context.Player.GCTPlayer.PositionX} Y: {_context.Player.GCTPlayer.PositionY}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 20), Color.White);
                 spriteBatch.DrawString(font, $" Switch Room State: {TestSwitchRoom()}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 40), Color.White);
             }
-            //spriteBatch.End();
+
         }
 
 

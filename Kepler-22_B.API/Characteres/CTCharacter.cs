@@ -12,13 +12,8 @@ namespace Kepler_22_B.API.Characteres
         string _name;
         Vector2 _position;
         CTCharacterType _characterType;
-        int _lifePoint;
-        int _damage;
-        int _armor;
-        double _criticalPunch;
-        double _CriticalDamage;
-        double _AttackSpeed;
-
+        int _lifePoint, _damage, _armor, _criticalDamage;
+        double _criticalChance, _attackSpeed;
         
 
         public CTCharacter(int x = 50, int y = 50)
@@ -30,14 +25,6 @@ namespace Kepler_22_B.API.Characteres
             _characterType = new CTCharacterType(this);
         }
 
-
-        /// <summary>
-        /// Gets the type of the get character.
-        /// </summary>
-        /// <value>
-        /// The type of the get character.
-        /// </value>
-        public CTCharacterType GetCharacterType { get { return _characterType; } }
 
         /// <summary>
         /// Gets the get damage.
@@ -53,7 +40,7 @@ namespace Kepler_22_B.API.Characteres
         /// <value>
         /// The get critical damage.
         /// </value>
-        public double GetCriticalDamage { get { return _CriticalDamage; } }
+        public double GetCriticalDamage { get { return _criticalDamage; } }
 
 
         /// <summary>
@@ -62,7 +49,7 @@ namespace Kepler_22_B.API.Characteres
         /// <value>
         /// The get speed attack.
         /// </value>
-        public double GetSpeedAttack { get { return _AttackSpeed; } }
+        public double GetSpeedAttack { get { return _attackSpeed; } }
 
         /// <summary>
         /// Gets the get armor.
@@ -78,7 +65,17 @@ namespace Kepler_22_B.API.Characteres
         /// <value>
         /// The get critical punch.
         /// </value>
-        public double GetCriticalPunch { get { return _criticalPunch; } }
+        public double GetCriticalChance { get { return _criticalChance; } }
+
+
+
+        /// <summary>
+        /// Gets the type of the get character.
+        /// </summary>
+        /// <value>
+        /// The type of the get character.
+        /// </value>
+        public CTCharacterType GetCharacterType { get { return _characterType; } }
 
 
         /// <summary>
