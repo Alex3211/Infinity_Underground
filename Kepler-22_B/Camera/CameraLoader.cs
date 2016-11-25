@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.ViewportAdapters;
 namespace Kepler_22_B.Camera
@@ -65,6 +66,11 @@ namespace Kepler_22_B.Camera
             _viewportAdapter = new BoxingViewportAdapter(_context.Window, _context.GraphicsDevice, windowWidth, windowHeight);
             _getCamera = new Camera2D(_viewportAdapter);
             _getCamera.LookAt(new Vector2(_context.Player.GCTPlayer.PositionX + 30, _context.Player.GCTPlayer.PositionY + 40));
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            
         }
 
 
