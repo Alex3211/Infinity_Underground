@@ -18,7 +18,7 @@ namespace Kepler_22_B.API.Characteres
         {
             _isMoving = true;
             _canMove = true;
-            _sprint = 4;
+            _sprint = 10;
         }
 
         /// <summary>

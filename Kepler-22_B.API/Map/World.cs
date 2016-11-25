@@ -16,20 +16,29 @@ namespace Kepler_22_B.API
         List<CTNPC> _listOfNPC;
         Level _level;
         int _tildeWidth;
-        Door _enterUnderground;
+        bool _isSurface;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="World"/> class.
         /// </summary>
         public World()
         {
-            _enterUnderground = new Door(new Vector2(10, 19), new Vector2(11,19), DoorDirection.Top );
+            _isSurface = true;
             _tildeWidth = 32;
             _level = new Level(this);
             _listOfNPC = new List<CTNPC>();
             _listOfPlayer = new List<CTPlayer>();
             _listOfPlayer.Add(new CTPlayer());
+            _level.GetRooms.AddDoorInRoom();
         }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is surface.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is surface; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsSurface { get { return _isSurface; } set { _isSurface = value; } }
 
         /// <summary>
         /// Gets the players in a list.
@@ -73,22 +82,20 @@ namespace Kepler_22_B.API
         public int Player1PositionYInTile { get { return _listOfPlayer[0].PositionY / _tildeWidth; } set { _listOfPlayer[0].PositionY = value * _tildeWidth; } }
 
         /// <summary>
-        /// Accesses the underground.
+        /// Players the is surface or not.
         /// </summary>
-        /// <returns>Bool condition</returns>
-        public bool AccessUnderground()
+        public void PlayerIsSurfaceOrNot()
         {
-            foreach(CTPlayer player in _listOfPlayer)
+            if (_level.GetCurrentlevel == 0)
             {
-                if (((Player1PositionXInTile >= _enterUnderground.MoreThan.X) && (player.PositionX / _tildeWidth <= _enterUnderground.LowerThan.X)) && ((Player1PositionYInTile >= _enterUnderground.MoreThan.Y) && (player.PositionY / _tildeWidth <= _enterUnderground.LowerThan.Y)))
-                {
-                    _level.GetRooms.ChangePlayerPositionWithTheSwitchRoom(_enterUnderground.DoorDirection);
-                    return true;
-                }
-           }
-            return false;
+                _isSurface = true;
+            }
+            else
+            {
+                _isSurface = false;
+            }
+
         }
-        
     }
 }
 

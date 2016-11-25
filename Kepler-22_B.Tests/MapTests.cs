@@ -154,13 +154,13 @@ namespace Kepler_22_B.Tests
 
             int lastPos = (int)sut.PosCurrentRoom.Y;
 
-            sut.changeVectorCurrentRoom(sut.PlayerInTheDoor());
+            sut.ChangeVectorCurrentRoom(sut.PlayerInTheDoor());
 
             Assert.That((int)sut.PosCurrentRoom.Y, Is.EqualTo(lastPos+1));
         }
 
 
-        /// <summary>
+        /*/// <summary>
         /// Counts the door who not send to the negative Vector room.
         /// </summary>
         [Test]
@@ -184,10 +184,10 @@ namespace Kepler_22_B.Tests
             }
 
             Assert.That(countDoor, Is.EqualTo(countDoorEstmating));
-        }
+        }*/
 
 
-        /// <summary>
+        /*/// <summary>
         /// Incrementes the level.
         /// </summary>
         [Test]
@@ -201,7 +201,7 @@ namespace Kepler_22_B.Tests
 
             Assert.That(sut.Context.GetCurrentlevel, Is.EqualTo(currentLevel+1));
 
-        }
+        }*/
 
         /// <summary>
         /// Tests the convertion pixe in tiles for the position x of the player.
@@ -215,8 +215,8 @@ namespace Kepler_22_B.Tests
 
             sut.Players[0] = new CTPlayer(128, 256);
 
-            int posX = (sut.Players[0].PositionX / tilesWidth)+1;
-            int posY = (sut.Players[0].PositionY / tilesWidth)+1;
+            int posX = (sut.Players[0].PositionX / tilesWidth);
+            int posY = (sut.Players[0].PositionY / tilesWidth);
 
             Assert.That(sut.Player1PositionXInTile, Is.EqualTo(posX));
             Assert.That(sut.Player1PositionYInTile, Is.EqualTo(posY));
@@ -224,7 +224,7 @@ namespace Kepler_22_B.Tests
         }
 
 
-        /// <summary>
+        /*/// <summary>
         /// Tests if the player can go under ground.
         /// </summary>
         [Test]
@@ -235,8 +235,7 @@ namespace Kepler_22_B.Tests
             sut.Players[0] = new CTPlayer(288, 576);
 
             Assert.That(sut.AccessUnderground(), Is.True);
-
-        }
+        }*/
 
 
 
