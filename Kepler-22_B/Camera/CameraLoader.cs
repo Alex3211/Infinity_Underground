@@ -67,11 +67,7 @@ namespace Kepler_22_B.Camera
             _getCamera = new Camera2D(_viewportAdapter);
             _getCamera.LookAt(new Vector2(_context.Player.GCTPlayer.PositionX + 30, _context.Player.GCTPlayer.PositionY + 40));
         }
-
-        public void Update(GameTime gameTime)
-        {
-            
-        }
+        
 
 
         

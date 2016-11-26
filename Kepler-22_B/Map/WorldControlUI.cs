@@ -120,6 +120,7 @@ namespace Kepler_22_B.Map
                 _context.MapLoad.GetMap.Dispose();
                 _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX, _context.WorldAPI.Players[0].PositionY));
                 SelectBetweenFourStyleRoom();
+                _context.MapLoad.IdTileCollide = 3143;
             }
         }
 
@@ -137,6 +138,7 @@ namespace Kepler_22_B.Map
             if (_context.WorldAPI.Level.GetRooms.SwitchRoom())
             {
                 _context.MapLoad.GetMap.Dispose();
+                SelectBetweenFourStyleRoom();
                 _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX, _context.WorldAPI.Players[0].PositionY));
             }
         }

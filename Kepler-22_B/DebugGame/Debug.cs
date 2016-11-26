@@ -10,8 +10,10 @@ namespace Kepler_22_B.DebugGame
     class Debug
     {
         private Game1 _context;
-        private static readonly TimeSpan IntervalBetweenF10Menu = TimeSpan.FromMilliseconds(200);
+        private readonly TimeSpan IntervalBetweenF10Menu;
+        private readonly TimeSpan IntervalBetweenF11Menu;
         private TimeSpan LastActiveF10Menu;
+        private TimeSpan LastActiveF11Menu;
         private SpriteFont font;
         public int MousePositionY;
         public int MousePositionX;
@@ -39,6 +41,8 @@ namespace Kepler_22_B.DebugGame
             font = _context.Content.Load<SpriteFont>("debug");
             DebugState = false;
 
+            IntervalBetweenF10Menu = TimeSpan.FromMilliseconds(200);
+            IntervalBetweenF11Menu = TimeSpan.FromMilliseconds(1000);
 
             // DEBUG PARAMETERS
             _context.MapLoad.GetLayerCollide.IsVisible = false;
@@ -58,6 +62,12 @@ namespace Kepler_22_B.DebugGame
                 DebugState = !DebugState;
                 LastActiveF10Menu = gameTime.TotalGameTime;
             }
+            if (Keyboard.GetState().IsKeyDown(Keys.F11) && LastActiveF11Menu + IntervalBetweenF11Menu < gameTime.TotalGameTime)
+            {
+                _context.Graphics.ToggleFullScreen();
+                LastActiveF11Menu = gameTime.TotalGameTime;
+            }
+
         }
 
         public void draw(SpriteBatch spriteBatch)
@@ -70,7 +80,6 @@ namespace Kepler_22_B.DebugGame
                 spriteBatch.DrawString(font, $" Switch Room State: {TestSwitchRoom()}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 40), Color.White);
                 spriteBatch.DrawString(font, $" Player Vector Position: X: {_context.WorldAPI.Player1PositionXInTile} Y: {_context.WorldAPI.Player1PositionYInTile}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 60), Color.White);
                 spriteBatch.DrawString(font, $" Room Vector Position: X: {_context.WorldAPI.Level.GetRooms.PosCurrentRoom.X} Y: {_context.WorldAPI.Level.GetRooms.PosCurrentRoom.Y}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 80), Color.White);
-                spriteBatch.DrawString(font, $" Switch Room State: {TestSwitchRoom()}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 100), Color.White);
                 spriteBatch.DrawString(font, $" Final Room Vector Position: X: {_context.WorldAPI.Level.GetRooms.RoomOut.X} Y: {_context.WorldAPI.Level.GetRooms.RoomOut.Y}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 120), Color.White);
                 spriteBatch.DrawString(font, $" Level : {_context.WorldAPI.Level.GetCurrentlevel}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 140), Color.White);
 

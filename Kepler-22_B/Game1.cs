@@ -152,10 +152,8 @@ namespace Kepler_22_B
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            if (Keyboard.GetState().IsKeyDown(Keys.F11)) Graphics.ToggleFullScreen();
 
             _player.Update(gameTime);
-            _cameraLoader.Update(gameTime);
             _debug.Update(gameTime);
             _worldControl.Update(gameTime);
 
