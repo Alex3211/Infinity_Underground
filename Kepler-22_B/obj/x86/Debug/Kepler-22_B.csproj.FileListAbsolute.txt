@@ -302,3 +302,5 @@ C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\Ressources\f
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\Ressources\obj_misk_atlas.xnb
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\Ressources\terrain_atlas.xnb
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\Ressources\tileset_stone_v4_p1.xnb
+C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\AccessRoom\1.xnb
+C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\AccessRoom\2.xnb

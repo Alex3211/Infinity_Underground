@@ -46,6 +46,8 @@ namespace Kepler_22_B.Map
             _listOfUndergroundMap.Add(new Underground("LabyrintheRoom/2"));
             _listOfUndergroundMap.Add(new Underground("LabyrintheRoom/3"));
             _listOfUndergroundMap.Add(new Underground("LabyrintheRoom/4"));
+            _listOfUndergroundMap.Add(new Underground("AccessRoom/1"));
+            _listOfUndergroundMap.Add(new Underground("AccessRoom/2"));
         }
 
 
@@ -109,6 +111,26 @@ namespace Kepler_22_B.Map
             _context.MapLoad.GetLayerCollide = _context.MapLoad.GetMap.GetLayer<TiledTileLayer>("Collide");
         }
 
+        /// <summary>
+        /// Changes the map for access room.
+        /// </summary>
+        /// <param name="theIntOfTheList">The int of the list.</param>
+        void ChangeMap(bool inOrOut)
+        {
+            switch(inOrOut)
+            {
+                case true:
+                    _context.MapLoad.GetMap = _listOfUndergroundMap[20].MapUnderground;
+                    break;
+
+                case false:
+                    _context.MapLoad.GetMap = _listOfUndergroundMap[21].MapUnderground;
+                    break;
+
+            }
+            _context.MapLoad.GetLayerCollide = _context.MapLoad.GetMap.GetLayer<TiledTileLayer>("Collide");
+        }
+
 
         /// <summary>
         /// Creates the new level.
@@ -119,7 +141,7 @@ namespace Kepler_22_B.Map
             {
                 _context.MapLoad.GetMap.Dispose();
                 _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX, _context.WorldAPI.Players[0].PositionY));
-                SelectBetweenFourStyleRoom();
+                ChangeMap(true);
                 _context.MapLoad.IdTileCollide = 3143;
             }
         }
@@ -138,7 +160,18 @@ namespace Kepler_22_B.Map
             if (_context.WorldAPI.Level.GetRooms.SwitchRoom())
             {
                 _context.MapLoad.GetMap.Dispose();
-                SelectBetweenFourStyleRoom();
+                if (_context.WorldAPI.Level.GetRooms.IsFinalRoom)
+                {
+                    ChangeMap(false);
+                }
+                else if(_context.WorldAPI.Level.GetRooms.PosCurrentRoom == new Vector2(0,0))
+                {
+                    ChangeMap(true);
+                }
+                else
+                {
+                    SelectBetweenFourStyleRoom();
+                }
                 _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX, _context.WorldAPI.Players[0].PositionY));
             }
         }

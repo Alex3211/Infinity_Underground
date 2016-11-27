@@ -329,3 +329,13 @@
 /processorParam:TextureFormat=Color
 /build:Ressources/tileset_stone_v4_p1.png
 
+#begin AccessRoom/1.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:AccessRoom/1.tmx
+
+#begin AccessRoom/2.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:AccessRoom/2.tmx
+

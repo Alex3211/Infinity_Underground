@@ -29,8 +29,6 @@ namespace Kepler_22_B.API.Map
             _firstDoor = null;
             _posCurrentRoom = new Vector2(0, 0);
             _roomOut = new Vector2(0, 0);
-
-
             _listOfTypeRoom = new List<Room>();
         }
 
@@ -188,25 +186,27 @@ namespace Kepler_22_B.API.Map
             
             if (_context.World.IsSurface)
             {
-                AddDoor(new Vector2(10, 20), new Vector2(11, 20), DoorDirection.Center);
+                AddDoor(new Vector2(9, 19), new Vector2(10, 19), DoorDirection.Center);
             }
             else
             {
 
                 if (_isFinalRoom)
-                    AddDoor(new Vector2(30, 15), new Vector2(35, 20), DoorDirection.Center);
+                {
+                    AddDoor(new Vector2(30, 11), new Vector2(30, 11), DoorDirection.Center);
+                }
 
                 if (_posCurrentRoom.Y > 0)
-                    AddDoor(new Vector2(30, 2), new Vector2(33, 3), DoorDirection.Top);
+                    AddDoor(new Vector2(29, 2), new Vector2(32, 3), DoorDirection.Top);
 
                 if (_posCurrentRoom.X > 0)
-                    AddDoor(new Vector2(1, 12), new Vector2(1, 15), DoorDirection.Left);
+                    AddDoor(new Vector2(0, 11), new Vector2(0, 13), DoorDirection.Left);
 
                 if (_posCurrentRoom.X <= (_roomOut.X * 2))
-                    AddDoor(new Vector2(30, 30), new Vector2(33, 30), DoorDirection.Bottom);
+                    AddDoor(new Vector2(30, 28), new Vector2(31, 28), DoorDirection.Bottom);
 
                 if (_posCurrentRoom.Y <= (_roomOut.Y * 2))
-                    AddDoor(new Vector2(62, 12), new Vector2(62, 15), DoorDirection.Right);
+                    AddDoor(new Vector2(61, 11), new Vector2(61, 13), DoorDirection.Right);
             }
 
         }
@@ -304,28 +304,24 @@ namespace Kepler_22_B.API.Map
                 switch (doorDirection)
                 {
                     case DoorDirection.Top:
-                        player.PositionX = 32 * _context.World.TildeWidth;
                         player.PositionY = 28 * _context.World.TildeWidth;
                         return DoorDirection.Top;
 
                     case DoorDirection.Left:
                         player.PositionX = 60 * _context.World.TildeWidth;
-                        player.PositionY = 14 * _context.World.TildeWidth;
                         return DoorDirection.Left;
 
                     case DoorDirection.Bottom:
-                        player.PositionX = 31 * _context.World.TildeWidth;
                         player.PositionY = 5 * _context.World.TildeWidth;
                         return DoorDirection.Bottom;
 
                     case DoorDirection.Right:
                         player.PositionX = 3 * _context.World.TildeWidth;
-                        player.PositionY = 13 * _context.World.TildeWidth;
                         return DoorDirection.Right;
 
                     case DoorDirection.Center:
-                        player.PositionX = 15 * _context.World.TildeWidth;
-                        player.PositionY = 15 * _context.World.TildeWidth;
+                        player.PositionX = 31 * _context.World.TildeWidth;
+                        player.PositionY = 11 * _context.World.TildeWidth;
                         return DoorDirection.Center;
 
                     default:
