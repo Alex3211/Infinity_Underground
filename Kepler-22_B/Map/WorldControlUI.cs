@@ -14,9 +14,6 @@ namespace Kepler_22_B.Map
 
 
         List<Underground> _listOfUndergroundMap;
-
-
-        bool _playerIsUnderGround;
         Game1 _context;
         Random r;
 
@@ -49,6 +46,8 @@ namespace Kepler_22_B.Map
             _listOfUndergroundMap.Add(new Underground("LabyrintheRoom/2"));
             _listOfUndergroundMap.Add(new Underground("LabyrintheRoom/3"));
             _listOfUndergroundMap.Add(new Underground("LabyrintheRoom/4"));
+            _listOfUndergroundMap.Add(new Underground("AccessRoom/1"));
+            _listOfUndergroundMap.Add(new Underground("AccessRoom/2"));
         }
 
 
@@ -67,45 +66,40 @@ namespace Kepler_22_B.Map
             }
         }
 
+
         /// <summary>
-        /// Accesses to the underground.
+        /// Selectes the between four style room.
         /// </summary>
-        public void AccessUnderground()
+        void SelectBetweenFourStyleRoom()
         {
-            if (_context.WorldAPI.AccessUnderground())
+            switch (_context.WorldAPI.Level.GetRooms.TypeOfRoom.Path)
             {
-                _context.MapLoad.GetMap.Dispose();
-                _context.WorldAPI.Level.GetRooms.CreateRoom();
-                _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX, _context.WorldAPI.Players[0].PositionY));
+                case 0:
+                    ChangeMap(0);
+                    break;
 
-                switch (_context.WorldAPI.Level.GetRooms.TypeOfRoom.Path)
-                {
-                    case 0:
-                        ChangeMap(0);
-                        break;
+                case 1:
+                    ChangeMap(4);
+                    break;
 
-                    case 1:
-                        ChangeMap(4);
-                        break;
+                case 2:
+                    ChangeMap(8);
+                    break;
 
-                    case 2:
-                        ChangeMap(8);
-                        break;
+                case 3:
+                    ChangeMap(12);
+                    break;
 
-                    case 3:
-                        ChangeMap(12);
-                        break;
+                case 4:
+                    ChangeMap(16);
+                    break;
 
-                    case 4:
-                        ChangeMap(16);
-                        break;
+                default:
+                    throw new ArgumentNullException();
 
-                    default:
-                        throw new ArgumentNullException();
-
-                }
-            } 
+            }
         }
+
 
         /// <summary>
         /// Changes the map.
@@ -115,9 +109,42 @@ namespace Kepler_22_B.Map
         {
             _context.MapLoad.GetMap = _listOfUndergroundMap[theIntOfTheList + r.Next(0, 3)].MapUnderground;
             _context.MapLoad.GetLayerCollide = _context.MapLoad.GetMap.GetLayer<TiledTileLayer>("Collide");
-            _playerIsUnderGround = true;
         }
 
+        /// <summary>
+        /// Changes the map for access room.
+        /// </summary>
+        /// <param name="theIntOfTheList">The int of the list.</param>
+        void ChangeMap(bool inOrOut)
+        {
+            switch(inOrOut)
+            {
+                case true:
+                    _context.MapLoad.GetMap = _listOfUndergroundMap[20].MapUnderground;
+                    break;
+
+                case false:
+                    _context.MapLoad.GetMap = _listOfUndergroundMap[21].MapUnderground;
+                    break;
+
+            }
+            _context.MapLoad.GetLayerCollide = _context.MapLoad.GetMap.GetLayer<TiledTileLayer>("Collide");
+        }
+
+
+        /// <summary>
+        /// Creates the new level.
+        /// </summary>
+        void GoToNextLevel()
+        {
+            if (_context.WorldAPI.Level.GetRooms.SwitchLevel())
+            {
+                _context.MapLoad.GetMap.Dispose();
+                _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX, _context.WorldAPI.Players[0].PositionY));
+                ChangeMap(true);
+                _context.MapLoad.IdTileCollide = 3143;
+            }
+        }
 
 
 
@@ -133,10 +160,21 @@ namespace Kepler_22_B.Map
             if (_context.WorldAPI.Level.GetRooms.SwitchRoom())
             {
                 _context.MapLoad.GetMap.Dispose();
-                _context.WorldAPI.Level.GetRooms.CreateRoom();
+                if (_context.WorldAPI.Level.GetRooms.IsFinalRoom)
+                {
+                    ChangeMap(false);
+                }
+                else if(_context.WorldAPI.Level.GetRooms.PosCurrentRoom == new Vector2(0,0))
+                {
+                    ChangeMap(true);
+                }
+                else
+                {
+                    SelectBetweenFourStyleRoom();
+                }
+                _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX, _context.WorldAPI.Players[0].PositionY));
             }
         }
-
 
 
 
@@ -160,15 +198,9 @@ namespace Kepler_22_B.Map
         /// <param name="gameTime">The game time.</param>
         public void Update(GameTime gameTime)
         {
-            if (!_playerIsUnderGround)
-            {
-                AccessUnderground();
+            SwitchTheRoomUnderground();
 
-            }
-            else
-            {
-                SwitchTheRoomUnderground();
-            }
+            GoToNextLevel();
         }
     }
 }

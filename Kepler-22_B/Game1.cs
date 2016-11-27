@@ -154,9 +154,7 @@ namespace Kepler_22_B
                 Exit();
 
             _player.Update(gameTime);
-            
             _debug.Update(gameTime);
-
             _worldControl.Update(gameTime);
 
             base.Update(gameTime);

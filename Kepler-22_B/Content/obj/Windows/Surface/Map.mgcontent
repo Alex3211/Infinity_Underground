@@ -3,7 +3,7 @@
   <SourceFile>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/Surface/Map.tmx</SourceFile>
   <SourceTime>2016-11-23T17:03:19.1308306+01:00</SourceTime>
   <DestFile>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/bin/Windows/Surface/Map.xnb</DestFile>
-  <DestTime>2016-11-24T09:17:43.9728801+01:00</DestTime>
+  <DestTime>2016-11-26T16:55:18.1504449+01:00</DestTime>
   <Importer>TiledMapImporter</Importer>
   <ImporterTime>2016-11-20T22:57:32.5281901+01:00</ImporterTime>
   <Processor>TiledMapProcessor</Processor>

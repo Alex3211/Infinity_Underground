@@ -71,7 +71,7 @@ namespace Kepler_22_B.Map
         /// <value>
         /// The identifier tile collide.
         /// </value>
-        public int IdTileCollide { get { return _idTileCollide; } }
+        public int IdTileCollide { get { return _idTileCollide; } set { _idTileCollide = value; } }
 
 
 
