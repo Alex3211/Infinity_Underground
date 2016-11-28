@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/s3/S3PI/projet_actuel/Kepler-22_B/Kepler-22_B/Content/Surface/Map.tmx</SourceFile>
-  <SourceTime>2016-11-28T11:10:30.5342259+01:00</SourceTime>
-  <DestFile>D:/s3/S3PI/projet_actuel/Kepler-22_B/Kepler-22_B/Content/bin/Windows/Surface/Map.xnb</DestFile>
-  <DestTime>2016-11-28T11:10:43.8652938+01:00</DestTime>
+  <SourceFile>D:/s3/test/Kepler-22_B/Content/Surface/Map.tmx</SourceFile>
+  <SourceTime>2016-11-28T16:14:05.2707523+01:00</SourceTime>
+  <DestFile>D:/s3/test/Kepler-22_B/Content/bin/Windows/Surface/Map.xnb</DestFile>
+  <DestTime>2016-11-28T17:19:23.323295+01:00</DestTime>
   <Importer>TiledMapImporter</Importer>
-  <ImporterTime>2016-11-20T22:57:17.0574419+01:00</ImporterTime>
+  <ImporterTime>2016-11-20T22:57:32.5281901+01:00</ImporterTime>
   <Processor>TiledMapProcessor</Processor>
-  <ProcessorTime>2016-11-20T22:57:17.0574419+01:00</ProcessorTime>
+  <ProcessorTime>2016-11-20T22:57:32.5281901+01:00</ProcessorTime>
   <Dependencies />
   <BuildAsset />
   <BuildOutput />

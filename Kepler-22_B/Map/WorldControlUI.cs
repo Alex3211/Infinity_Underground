@@ -16,6 +16,8 @@ namespace Kepler_22_B.Map
         List<Underground> _listOfUndergroundMap;
         Game1 _context;
         Random r;
+        TiledMap _surface;
+        TiledTileLayer _collideSurface;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WorldControlUI"/> class.
@@ -59,14 +61,22 @@ namespace Kepler_22_B.Map
         {
             _context.MapLoad = new MapLoader(_context);
             _context.MapLoad.LoadContent("Surface/map", _context.Content);
-
+            _surface = _context.MapLoad.GetMap;
+            _collideSurface = _context.MapLoad.GetLayerCollide;
             foreach (Underground map in _listOfUndergroundMap)
             {
                 map.LoadContent(content);
             }
         }
 
-
+        /// <summary>
+        /// Gets the surface.
+        /// </summary>
+        /// <value>
+        /// The surface.
+        /// </value>
+        public TiledMap Surface { get { return _surface; } }
+        
         /// <summary>
         /// Selectes the between four style room.
         /// </summary>
@@ -141,13 +151,30 @@ namespace Kepler_22_B.Map
             {
                 _context.MapLoad.GetMap.Dispose();
                 _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX, _context.WorldAPI.Players[0].PositionY));
-                ChangeMap(true);
-                _context.MapLoad.IdTileCollide = 3143;
+                if (!_context.WorldAPI.IsSurface)
+                {
+                    ChangeMap(true);
+                    _context.MapLoad.IdTileCollide = 3143;
+                }
             }
         }
 
-
-
+        /// <summary>
+        /// s this instance.
+        /// </summary>
+        /// <returns></returns>
+        bool ReturnToTheSurface()
+        {
+            if (_context.WorldAPI.Level.GetRooms.ReturnSurface())
+            {
+                _context.MapLoad.GetMap = _surface;
+                _context.MapLoad.GetLayerCollide = _collideSurface;
+                _context.MapLoad.IdTileCollide = 645;
+                _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX, _context.WorldAPI.Players[0].PositionY));
+                return true;
+            }
+            return false;
+        }
 
 
 
@@ -198,9 +225,13 @@ namespace Kepler_22_B.Map
         /// <param name="gameTime">The game time.</param>
         public void Update(GameTime gameTime)
         {
-            SwitchTheRoomUnderground();
+            if (!ReturnToTheSurface())
+            {
+                GoToNextLevel();
 
-            GoToNextLevel();
+                SwitchTheRoomUnderground();
+            }
+            
         }
     }
 }

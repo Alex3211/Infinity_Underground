@@ -9,7 +9,7 @@ namespace Kepler_22_B.API.Map
 {
     public class Level
     {
-        int _level;
+        int _level, _maxLevel;
         RoomInLevel _room;
         World _world;
 
@@ -17,7 +17,6 @@ namespace Kepler_22_B.API.Map
         {
             _room = new RoomInLevel(this);
             _world = context;
-
         }
 
         /// <summary>
@@ -35,6 +34,15 @@ namespace Kepler_22_B.API.Map
         /// The get currentlevel.
         /// </value>
         public int GetCurrentlevel { get { return _level; } set { _level = value; } }
+
+
+        /// <summary>
+        /// Gets or sets the get maxlevel.
+        /// </summary>
+        /// <value>
+        /// The get maxlevel.
+        /// </value>
+        public int GetMaxlevel { get { return _maxLevel; } set { _maxLevel = value; } }
 
         /// <summary>
         /// Gets the context.

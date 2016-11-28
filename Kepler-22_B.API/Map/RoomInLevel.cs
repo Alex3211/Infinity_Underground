@@ -15,7 +15,7 @@ namespace Kepler_22_B.API.Map
         Level _context;
         Random rand;
         Vector2 _roomOut, _posCurrentRoom;
-        bool _isFinalRoom;
+        bool _isFinalRoom, _isBeginRoom;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RoomInLevel"/> class.
@@ -27,10 +27,18 @@ namespace Kepler_22_B.API.Map
             _ctNpc = new List<CTNPC>();
             _context = context;
             _firstDoor = null;
-            _posCurrentRoom = new Vector2(0, 0);
+            _posCurrentRoom = new Vector2(1, 1);
             _roomOut = new Vector2(0, 0);
             _listOfTypeRoom = new List<Room>();
         }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is begin room.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is begin room; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsBeginRoom { get { return _isBeginRoom; } set { _isBeginRoom = value; } }
 
         /// <summary>
         /// Gets a value indicating whether this instance is final room.
@@ -117,6 +125,20 @@ namespace Kepler_22_B.API.Map
             return null;
         }
 
+        /// <summary>
+        /// Ifs the is begin room.
+        /// </summary>
+        public void IfIsBeginRoom()
+        {
+            if (_posCurrentRoom == new Vector2(0, 0))
+            {
+                _isBeginRoom = true;
+            }
+            else
+            {
+                _isBeginRoom = false;
+            }
+        }
 
         /// <summary>
         /// Change the Vector of the current Room
@@ -146,7 +168,11 @@ namespace Kepler_22_B.API.Map
                     return DoorDirection.Right;
 
                 case DoorDirection.Center:
-                    _context.GetCurrentlevel++;
+                    if (_context.GetMaxlevel == 0 || _isFinalRoom)
+                    {
+                        _context.GetCurrentlevel++;
+                        _context.GetMaxlevel++;
+                    }
                     return DoorDirection.Center;
 
                 default:
@@ -190,11 +216,13 @@ namespace Kepler_22_B.API.Map
             }
             else
             {
+                IfIsBeginRoom();
+                if (_isBeginRoom)
+                    AddDoor(new Vector2(30, 8), new Vector2(30, 8), DoorDirection.Up);
 
                 if (_isFinalRoom)
-                {
                     AddDoor(new Vector2(30, 11), new Vector2(30, 11), DoorDirection.Center);
-                }
+                
 
                 if (_posCurrentRoom.Y > 0)
                     AddDoor(new Vector2(29, 2), new Vector2(32, 3), DoorDirection.Top);
@@ -208,7 +236,6 @@ namespace Kepler_22_B.API.Map
                 if (_posCurrentRoom.Y <= (_roomOut.Y * 2))
                     AddDoor(new Vector2(61, 11), new Vector2(61, 13), DoorDirection.Right);
             }
-
         }
 
 
@@ -219,6 +246,7 @@ namespace Kepler_22_B.API.Map
         /// </summary>
         public bool SwitchRoom()
         {
+            IfIsBeginRoom();
             Door _doorPlayer = PlayerInTheDoor();
             if (_doorPlayer != null && !_isFinalRoom && !_context.World.IsSurface)
             {
@@ -238,36 +266,67 @@ namespace Kepler_22_B.API.Map
         /// </summary>
         public bool SwitchLevel()
         {
+            _context.World.PlayerIsSurfaceOrNot();
+
             Door _doorPlayer = PlayerInTheDoor();
             if (_doorPlayer != null && _doorPlayer.DoorDirection == DoorDirection.Center)
             {
-                _posCurrentRoom = new Vector2(0, 0);
-
-                _context.World.Player1PositionXInTile = 0;
-                _context.World.Player1PositionYInTile = 0;
-
-                _isFinalRoom = false;
-                do
+                if ((_isFinalRoom || _context.World.IsSurface))
                 {
-                    if (_context.GetCurrentlevel != 0)
+                    _posCurrentRoom = new Vector2(0, 0);
+                    if (_context.GetMaxlevel < _context.GetCurrentlevel)
                     {
-                        _roomOut.X = rand.Next(0, (2 * _context.GetCurrentlevel));
-                        _roomOut.Y = rand.Next(0, (2 * _context.GetCurrentlevel));
+                        _context.GetMaxlevel = _context.GetCurrentlevel;
                     }
                     else
                     {
-                        _roomOut.X = rand.Next(0, 2);
-                        _roomOut.Y = rand.Next(0, 2);
+                        _context.GetCurrentlevel = _context.GetMaxlevel;
                     }
-                } while (_roomOut == new Vector2(0,0));
 
-                ManageUnderground(_doorPlayer);
+                    do
+                    {
+                        if (_context.GetCurrentlevel != 0)
+                        {
+                            _roomOut.X = rand.Next(0, (2 * _context.GetCurrentlevel));
+                            _roomOut.Y = rand.Next(0, (2 * _context.GetCurrentlevel));
+                        }
+                        else
+                        {
+                            _roomOut.X = rand.Next(0, 2);
+                            _roomOut.Y = rand.Next(0, 2);
+                        }
+                    } while (_roomOut == new Vector2(0, 0));
 
-                return true;
+                    ManageUnderground(_doorPlayer);
+                    _isFinalRoom = false;
+                    return true;
+                }
             }
             return false;
         }
 
+
+        /// <summary>
+        /// Returns the surface.
+        /// </summary>
+        public bool ReturnSurface()
+        {
+            Door _doorPlayer = PlayerInTheDoor();
+            IfIsBeginRoom();
+            if (_doorPlayer != null && _doorPlayer.DoorDirection == DoorDirection.Up)
+            {
+                if (_isBeginRoom && !_context.World.IsSurface)
+                {
+                    _context.GetMaxlevel = _context.GetCurrentlevel;
+                    _context.World.IsSurface = true;
+                    _context.GetCurrentlevel = 0;
+                    AddDoorInRoom();
+                    ChangePlayerPositionWithTheSwitchRoom(_doorPlayer.DoorDirection);
+                    return true;
+                }
+            }
+            return false;
+        }
 
         /// <summary>
         /// Manage the underground
@@ -312,7 +371,7 @@ namespace Kepler_22_B.API.Map
                         return DoorDirection.Left;
 
                     case DoorDirection.Bottom:
-                        player.PositionY = 5 * _context.World.TildeWidth;
+                        player.PositionY = 4 * _context.World.TildeWidth;
                         return DoorDirection.Bottom;
 
                     case DoorDirection.Right:
@@ -323,6 +382,11 @@ namespace Kepler_22_B.API.Map
                         player.PositionX = 31 * _context.World.TildeWidth;
                         player.PositionY = 11 * _context.World.TildeWidth;
                         return DoorDirection.Center;
+
+                    case DoorDirection.Up:
+                        player.PositionX = 10 * _context.World.TildeWidth;
+                        player.PositionY = 21 * _context.World.TildeWidth;
+                        return DoorDirection.Up;
 
                     default:
                         throw new ArgumentOutOfRangeException("The player did'nt take door");

@@ -89,8 +89,8 @@ namespace Kepler_22_B
 
             _cameraLoader = new CameraLoader(this);
             _world = new World();
-            _mapLoad = new MapLoader(this);
             _worldControl = new WorldControlUI(this);
+            _mapLoad = new MapLoader(this);
         }
 
         /// <summary>
