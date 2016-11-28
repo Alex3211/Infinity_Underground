@@ -169,11 +169,10 @@ namespace Kepler_22_B
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin(transformMatrix: _cameraLoader.GetMatrix);
 
-            _mapLoad.Draw(spriteBatch);
+            _mapLoad.Draw(spriteBatch, this);
 
             _debug.draw(spriteBatch);
 
-            _player.Draw(spriteBatch);
 
             spriteBatch.End();
             base.Draw(gameTime);

@@ -8,7 +8,7 @@ namespace Kepler_22_B.Map
     {
         Game1 _context;
         TiledMap _getMap;
-        TiledTileLayer _getLayerCollide;
+        TiledTileLayer _getLayerCollide, _couche, _couche2, _couche3, _couche4;
         int _idTileCollide;
 
 
@@ -32,9 +32,32 @@ namespace Kepler_22_B.Map
         public void LoadContent(string nameOfMap, ContentManager content)
         {
             _getMap = content.Load<TiledMap>(nameOfMap);
-            _getLayerCollide = _getMap.GetLayer<TiledTileLayer>("Collide");
+            foreach (TiledTileLayer e in _getMap.TileLayers)
+            {
+                if (e.Name == "Collide") _getLayerCollide = e;
+                if (e.Name == "UpOne") _couche2 = e;
+                if (e.Name == "UpTwo") _couche3 = e;
+            }
             _getLayerCollide.IsVisible = false;
             _idTileCollide = 645;
+        }
+
+        /// <summary>
+        /// Define which Layers the is visible.
+        /// </summary>
+        /// <param name="couche">if set to <c>true</c> [couche].</param>
+        public void LayerIsVisible(bool couche)
+        {
+            if (couche)
+            {
+                _couche2.IsVisible = true;
+                _couche3.IsVisible = true;
+            }
+            else
+            {
+                _couche2.IsVisible = false;
+                _couche3.IsVisible = false;
+            }
         }
 
         /// <summary>
@@ -52,7 +75,7 @@ namespace Kepler_22_B.Map
         /// <value>
         /// The get map.
         /// </value>
-        public TiledMap GetMap { get { return _getMap; }  set { _getMap = value; } }
+        public TiledMap GetMap { get { return _getMap; } set { _getMap = value; } }
 
 
 
@@ -60,9 +83,14 @@ namespace Kepler_22_B.Map
         /// Draws the specified sprite batch.
         /// </summary>
         /// <param name="spriteBatch">The sprite batch.</param>
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Game1 context)
         {
+            LayerIsVisible(false);
             _getMap.Draw(spriteBatch);
+            context.Player.Draw(spriteBatch);
+            LayerIsVisible(true);
+            _couche2.Draw(spriteBatch);
+            _couche3.Draw(spriteBatch);
         }
 
         /// <summary>
