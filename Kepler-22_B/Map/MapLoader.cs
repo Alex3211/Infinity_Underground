@@ -8,20 +8,21 @@ namespace Kepler_22_B.Map
     {
         Game1 _context;
         TiledMap _getMap;
-        TiledTileLayer _getLayerCollide, _couche, _couche2, _couche3, _couche4;
+        TiledTileLayer _getLayerCollide, _firstLayer, _secondLayer;
         int _idTileCollide;
 
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MapLoader"/> class.
         /// This class is use to use any maps and detect any collide.
-        /// Collide is used with character move.
+        /// Collide is used with character moves.
         /// </summary>
         /// <param name="context">The context.</param>
         /// <param name="nameOfMap">The name of the map.</param>
         public MapLoader(Game1 context)
         {
             _context = context;
+            
         }
 
         /// <summary>
@@ -35,33 +36,25 @@ namespace Kepler_22_B.Map
             foreach (TiledTileLayer e in _getMap.TileLayers)
             {
                 if (e.Name == "Collide") _getLayerCollide = e;
-                if (e.Name == "UpOne") _couche2 = e;
-                if (e.Name == "UpTwo") _couche3 = e;
+                if (e.Name == "UpOne") _firstLayer = e;
+                if (e.Name == "UpTwo") _secondLayer = e;
             }
             _getLayerCollide.IsVisible = false;
             _idTileCollide = 645;
         }
 
         /// <summary>
-        /// Define which Layers the is visible.
+        /// Define which Layers is visible.
         /// </summary>
         /// <param name="couche">if set to <c>true</c> [couche].</param>
         public void LayerIsVisible(bool couche)
         {
-            if (couche)
-            {
-                _couche2.IsVisible = true;
-                _couche3.IsVisible = true;
-            }
-            else
-            {
-                _couche2.IsVisible = false;
-                _couche3.IsVisible = false;
-            }
+            if (couche) { _firstLayer.IsVisible = true; _secondLayer.IsVisible = true; }
+            else { _firstLayer.IsVisible = false; _secondLayer.IsVisible = false; }
         }
 
         /// <summary>
-        /// Gets the get layer collide.
+        /// Gets the layer collide.
         /// </summary>
         /// <value>
         /// The get layer collide.
@@ -70,7 +63,7 @@ namespace Kepler_22_B.Map
 
 
         /// <summary>
-        /// Gets the get map.
+        /// Gets the map.
         /// </summary>
         /// <value>
         /// The get map.
@@ -89,8 +82,8 @@ namespace Kepler_22_B.Map
             _getMap.Draw(spriteBatch);
             context.Player.Draw(spriteBatch);
             LayerIsVisible(true);
-            _couche2.Draw(spriteBatch);
-            _couche3.Draw(spriteBatch);
+            _firstLayer.Draw(spriteBatch);
+            _secondLayer.Draw(spriteBatch);
         }
 
         /// <summary>

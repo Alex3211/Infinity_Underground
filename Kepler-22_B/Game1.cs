@@ -19,8 +19,8 @@ namespace Kepler_22_B
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        const int WindowWidth = 1920;
-        const int WindowHeight = 1080;
+        const int WindowWidth = 960;
+        const int WindowHeight = 540;
 
 
         World _world;
@@ -141,6 +141,7 @@ namespace Kepler_22_B
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
+            Dispose();
         }
 
         /// <summary>
@@ -166,7 +167,7 @@ namespace Kepler_22_B
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(new Color(39,33,41));
             spriteBatch.Begin(transformMatrix: _cameraLoader.GetMatrix);
 
             _mapLoad.Draw(spriteBatch, this);
