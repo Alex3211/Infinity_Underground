@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kepler-22_B.Tests", "Kepler
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kepler-22_B.API", "Kepler-22_B.API\Kepler-22_B.API.csproj", "{6540BFEE-1520-4496-BC55-4EF90E7D4DD0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kepler-Launcher", "Kepler-Launcher\Kepler-Launcher.csproj", "{C59657AC-299F-4BD2-A62D-F8F6B5A1E28E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,14 @@ Global
 		{6540BFEE-1520-4496-BC55-4EF90E7D4DD0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6540BFEE-1520-4496-BC55-4EF90E7D4DD0}.Release|x86.ActiveCfg = Release|Any CPU
 		{6540BFEE-1520-4496-BC55-4EF90E7D4DD0}.Release|x86.Build.0 = Release|Any CPU
+		{C59657AC-299F-4BD2-A62D-F8F6B5A1E28E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C59657AC-299F-4BD2-A62D-F8F6B5A1E28E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C59657AC-299F-4BD2-A62D-F8F6B5A1E28E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C59657AC-299F-4BD2-A62D-F8F6B5A1E28E}.Debug|x86.Build.0 = Debug|Any CPU
+		{C59657AC-299F-4BD2-A62D-F8F6B5A1E28E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C59657AC-299F-4BD2-A62D-F8F6B5A1E28E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C59657AC-299F-4BD2-A62D-F8F6B5A1E28E}.Release|x86.ActiveCfg = Release|Any CPU
+		{C59657AC-299F-4BD2-A62D-F8F6B5A1E28E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

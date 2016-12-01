@@ -100,9 +100,7 @@ namespace Kepler_22_B.Map
 
                 case 2:
                     ChangeMap(8);
-
                     IsSecretRoom = true;
-
                     break;
 
                 case 3:
