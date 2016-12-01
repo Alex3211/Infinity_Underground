@@ -36,7 +36,7 @@ namespace Kepler_22_B
         /// <value>
         /// The world control.
         /// </value>
-        public WorldControlUI WorldControl { get { return _worldControl; } } 
+        public WorldControlUI WorldControl { get { return _worldControl; } }
 
         /// <summary>
         /// Gets the camera loader.
@@ -121,7 +121,7 @@ namespace Kepler_22_B
         /// </summary>
         protected override void LoadContent()
         {
-            
+
 
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -131,7 +131,7 @@ namespace Kepler_22_B
             _debug = new Debug(this, _cameraLoader);
 
             _player = new Player(4, 9, this);
-            
+
         }
 
         /// <summary>
@@ -167,13 +167,11 @@ namespace Kepler_22_B
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(new Color(39,33,41));
+            GraphicsDevice.Clear(new Color(39, 33, 41));
             spriteBatch.Begin(transformMatrix: _cameraLoader.GetMatrix);
-
             _mapLoad.Draw(spriteBatch, this);
-
+            _worldControl.DrawSecretRoom(spriteBatch);
             _debug.draw(spriteBatch);
-
 
             spriteBatch.End();
             base.Draw(gameTime);

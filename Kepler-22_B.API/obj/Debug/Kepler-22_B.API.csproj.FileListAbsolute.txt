@@ -5,7 +5,6 @@ D:\s3\S3PI\GitKraken\Kepler-22_B\Kepler-22_B.API\bin\Debug\Kepler-22_B.API.exe.c
 D:\s3\S3PI\GitKraken\Kepler-22_B\Kepler-22_B.API\bin\Debug\Kepler-22_B.API.exe
 D:\s3\S3PI\GitKraken\Kepler-22_B\Kepler-22_B.API\bin\Debug\Kepler-22_B.API.pdb
 D:\s3\S3PI\GitKraken\Kepler-22_B\Kepler-22_B.API\bin\Debug\MonoGame.Framework.dll
-D:\s3\S3PI\GitKraken\Kepler-22_B\Kepler-22_B.API\bin\Debug\RandomNameGeneratorLibrary.dll
 D:\s3\S3PI\GitKraken\Kepler-22_B\Kepler-22_B.API\bin\Debug\SharpDX.XAudio2.dll
 D:\s3\S3PI\GitKraken\Kepler-22_B\Kepler-22_B.API\bin\Debug\SharpDX.dll
 D:\s3\S3PI\GitKraken\Kepler-22_B\Kepler-22_B.API\bin\Debug\SharpDX.DXGI.dll
@@ -92,3 +91,4 @@ D:\s3\test\Kepler-22_B.API\bin\Debug\SharpDX.Direct3D11.xml
 D:\s3\test\Kepler-22_B.API\bin\Debug\SharpDX.Direct2D1.xml
 D:\s3\test\Kepler-22_B.API\bin\Debug\SharpDX.XInput.xml
 D:\s3\test\Kepler-22_B.API\bin\Debug\SharpDX.MediaFoundation.xml
+D:\S3\S3PI\GitKraken\Kepler-22_B\Kepler-22_B.API\obj\Debug\Kepler-22_B.API.csprojResolveAssemblyReference.cache

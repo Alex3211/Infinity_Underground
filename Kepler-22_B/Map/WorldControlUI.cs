@@ -18,7 +18,10 @@ namespace Kepler_22_B.Map
         Random r;
         TiledMap _surface;
         TiledTileLayer _collideSurface;
-
+        int random;
+        bool _IsSecretRoom = false;
+        SpriteFont _font;
+        string _textDraw;
         /// <summary>
         /// Initializes a new instance of the <see cref="WorldControlUI"/> class.
         /// </summary>
@@ -59,6 +62,7 @@ namespace Kepler_22_B.Map
         /// <param name="content">The content.</param>
         public void LoadContent(ContentManager content)
         {
+            _font = _context.Content.Load<SpriteFont>("debug");
             _context.MapLoad = new MapLoader(_context);
             _context.MapLoad.LoadContent("Surface/map", _context.Content);
             _surface = _context.MapLoad.GetMap;
@@ -76,12 +80,14 @@ namespace Kepler_22_B.Map
         /// The surface.
         /// </value>
         public TiledMap Surface { get { return _surface; } }
-        
+
         /// <summary>
         /// Selectes the between four style room.
         /// </summary>
         void SelectBetweenFourStyleRoom()
         {
+            IsSecretRoom = false;
+
             switch (_context.WorldAPI.Level.GetRooms.TypeOfRoom.Path)
             {
                 case 0:
@@ -94,6 +100,9 @@ namespace Kepler_22_B.Map
 
                 case 2:
                     ChangeMap(8);
+
+                    IsSecretRoom = true;
+
                     break;
 
                 case 3:
@@ -117,9 +126,38 @@ namespace Kepler_22_B.Map
         /// <param name="theIntOfTheList">The int of the list.</param>
         void ChangeMap(int theIntOfTheList)
         {
-            _context.MapLoad.GetMap = _listOfUndergroundMap[theIntOfTheList + r.Next(0, 3)].MapUnderground;
+            random = theIntOfTheList + r.Next(0, 3);
+            _context.MapLoad.GetMap = _listOfUndergroundMap[random].MapUnderground;
             _context.MapLoad.GetLayerCollide = _context.MapLoad.GetMap.GetLayer<TiledTileLayer>("Collide");
         }
+
+
+        /// <summary>
+        /// Determines the actual room is a secret room.
+        /// </summary>
+        /// <param name="room">The room.</param>
+        public bool IsSecretRoom { get { return _IsSecretRoom; } set { _IsSecretRoom = value; } }
+
+        /// <summary>
+        /// Draws in the secret room.
+        /// </summary>
+        /// <param name="spriteBatch">The sprite batch.</param>
+        public void DrawSecretRoom(SpriteBatch spriteBatch)
+        {
+            if (IsSecretRoom)
+            {
+                _textDraw = string.Format("ENIGME", _context.Player.GCTPlayer.PositionX, _context.Player.GCTPlayer.PositionY);
+                //_textDraw = string.Format("ENIGME", _context.CameraLoader.GetCamera.Position.X, _context.CameraLoader.GetCamera.Position.Y + 120);
+            }
+            else
+            {
+                _textDraw = "";
+            }
+            spriteBatch.DrawString(_font, _textDraw, Vector2.Zero, Color.Red);
+
+        }
+
+
 
         /// <summary>
         /// Changes the map for access room.
@@ -127,7 +165,7 @@ namespace Kepler_22_B.Map
         /// <param name="theIntOfTheList">The int of the list.</param>
         void ChangeMap(bool inOrOut)
         {
-            switch(inOrOut)
+            switch (inOrOut)
             {
                 case true:
                     _context.MapLoad.GetMap = _listOfUndergroundMap[20].MapUnderground;
@@ -191,7 +229,7 @@ namespace Kepler_22_B.Map
                 {
                     ChangeMap(false);
                 }
-                else if(_context.WorldAPI.Level.GetRooms.PosCurrentRoom == new Vector2(0,0))
+                else if (_context.WorldAPI.Level.GetRooms.PosCurrentRoom == new Vector2(0, 0))
                 {
                     ChangeMap(true);
                 }
@@ -202,22 +240,6 @@ namespace Kepler_22_B.Map
                 _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX, _context.WorldAPI.Players[0].PositionY));
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         /// <summary>
         /// Updates the specified game time.
@@ -231,7 +253,7 @@ namespace Kepler_22_B.Map
 
                 SwitchTheRoomUnderground();
             }
-            
+
         }
     }
 }

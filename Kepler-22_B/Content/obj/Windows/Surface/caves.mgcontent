@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/s3/test/Kepler-22_B/Content/Surface/caves.png</SourceFile>
+  <SourceFile>D:/S3/S3PI/GitKraken/Kepler-22_B/Kepler-22_B/Content/Surface/caves.png</SourceFile>
   <SourceTime>2016-11-09T09:47:40.6240426+01:00</SourceTime>
-  <DestFile>D:/s3/test/Kepler-22_B/Content/bin/Windows/Surface/caves.xnb</DestFile>
-  <DestTime>2016-11-28T17:19:22.6447998+01:00</DestTime>
+  <DestFile>D:/S3/S3PI/GitKraken/Kepler-22_B/Kepler-22_B/Content/bin/Windows/Surface/caves.xnb</DestFile>
+  <DestTime>2016-11-30T15:19:28.4504356+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
