@@ -8,7 +8,7 @@ namespace Kepler_22_B.Map
     {
         Game1 _context;
         TiledMap _getMap;
-        TiledTileLayer _getLayerCollide, _firstLayer, _secondLayer;
+        TiledTileLayer _getLayerCollide, _getLayerDoorCollide, _firstLayer, _secondLayer;
         int _idTileCollide;
 
 
@@ -36,11 +36,13 @@ namespace Kepler_22_B.Map
             foreach (TiledTileLayer e in _getMap.TileLayers)
             {
                 if (e.Name == "Collide") _getLayerCollide = e;
+                if (e.Name == "SecretCollide") _getLayerDoorCollide = e;
                 if (e.Name == "UpOne") _firstLayer = e;
                 if (e.Name == "UpTwo") _secondLayer = e;
             }
             _getLayerCollide.IsVisible = false;
             _idTileCollide = 645;
+
         }
 
         /// <summary>
@@ -60,6 +62,14 @@ namespace Kepler_22_B.Map
         /// The get layer collide.
         /// </value>
         public TiledTileLayer GetLayerCollide { get { return _getLayerCollide; } set { _getLayerCollide = value; } }
+
+        /// <summary>
+        /// Gets the layer door collide, for secret room.
+        /// </summary>
+        /// <value>
+        /// The get layer collide.
+        /// </value>
+        public TiledTileLayer GetLayerDoorCollide { get { return _getLayerDoorCollide; } set { _getLayerDoorCollide = value; } }
 
 
         /// <summary>

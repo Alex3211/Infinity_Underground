@@ -157,6 +157,7 @@ namespace Kepler_22_B
             _player.Update(gameTime);
             _debug.Update(gameTime);
             _worldControl.Update(gameTime);
+            
 
             base.Update(gameTime);
         }
@@ -170,7 +171,6 @@ namespace Kepler_22_B
             GraphicsDevice.Clear(new Color(39, 33, 41));
             spriteBatch.Begin(transformMatrix: _cameraLoader.GetMatrix);
             _mapLoad.Draw(spriteBatch, this);
-            _worldControl.DrawSecretRoom(spriteBatch);
             _debug.draw(spriteBatch);
 
             spriteBatch.End();

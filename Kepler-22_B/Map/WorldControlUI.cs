@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Kepler_22_B.API.Map;
 using Kepler_22_B.Camera;
+using Microsoft.Xna.Framework.Input;
 
 namespace Kepler_22_B.Map
 {
@@ -22,6 +23,9 @@ namespace Kepler_22_B.Map
         bool _IsSecretRoom = false;
         SpriteFont _font;
         string _textDraw;
+        private readonly TimeSpan IntervalBetweenF1Menu;
+        private TimeSpan LastActiveF1Menu;
+        private bool _stateSecretDoor = false;
         /// <summary>
         /// Initializes a new instance of the <see cref="WorldControlUI"/> class.
         /// </summary>
@@ -53,6 +57,7 @@ namespace Kepler_22_B.Map
             _listOfUndergroundMap.Add(new Underground("LabyrintheRoom/4"));
             _listOfUndergroundMap.Add(new Underground("AccessRoom/1"));
             _listOfUndergroundMap.Add(new Underground("AccessRoom/2"));
+            IntervalBetweenF1Menu = TimeSpan.FromMilliseconds(1000);
         }
 
 
@@ -73,6 +78,9 @@ namespace Kepler_22_B.Map
             }
         }
 
+        public bool GetStateSecretDoor { get { return _stateSecretDoor; } set { _stateSecretDoor = value; } }
+
+
         /// <summary>
         /// Gets the surface.
         /// </summary>
@@ -83,6 +91,7 @@ namespace Kepler_22_B.Map
 
         /// <summary>
         /// Selectes the between four style room.
+        /// And define if it's a secret room or not.
         /// </summary>
         void SelectBetweenFourStyleRoom()
         {
@@ -127,8 +136,8 @@ namespace Kepler_22_B.Map
             random = theIntOfTheList + r.Next(0, 3);
             _context.MapLoad.GetMap = _listOfUndergroundMap[random].MapUnderground;
             _context.MapLoad.GetLayerCollide = _context.MapLoad.GetMap.GetLayer<TiledTileLayer>("Collide");
+            if (_context.MapLoad.GetMap.GetLayer<TiledTileLayer>("SecretDoor") != null) _context.MapLoad.GetMap.GetLayer<TiledTileLayer>("SecretDoor").IsVisible = true;
         }
-
 
         /// <summary>
         /// Determines the actual room is a secret room.
@@ -145,7 +154,6 @@ namespace Kepler_22_B.Map
             if (IsSecretRoom)
             {
                 _textDraw = string.Format("ENIGME", _context.Player.GCTPlayer.PositionX, _context.Player.GCTPlayer.PositionY);
-                //_textDraw = string.Format("ENIGME", _context.CameraLoader.GetCamera.Position.X, _context.CameraLoader.GetCamera.Position.Y + 120);
             }
             else
             {
@@ -212,9 +220,6 @@ namespace Kepler_22_B.Map
             return false;
         }
 
-
-
-
         /// <summary>
         /// Switches the room underground.
         /// </summary>
@@ -252,6 +257,20 @@ namespace Kepler_22_B.Map
                 SwitchTheRoomUnderground();
             }
 
+            if(Keyboard.GetState().IsKeyDown(Keys.F1) && LastActiveF1Menu + IntervalBetweenF1Menu < gameTime.TotalGameTime) 
+            {
+                OpenSecretRoom();
+                LastActiveF1Menu = gameTime.TotalGameTime;
+            }
+        }
+
+        /// <summary>
+        /// Define if the secret room is open or not.
+        /// </summary>
+        public void OpenSecretRoom()
+        {
+            _stateSecretDoor = !_stateSecretDoor;
+            _context.MapLoad.GetMap.GetLayer<TiledTileLayer>("SecretDoor").IsVisible = !_context.MapLoad.GetMap.GetLayer<TiledTileLayer>("SecretDoor").IsVisible;
         }
     }
 }
