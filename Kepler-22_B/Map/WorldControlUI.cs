@@ -32,9 +32,9 @@ namespace Kepler_22_B.Map
         public WorldControlUI(Game1 context)
         {
             _listOfUndergroundMap = new List<Underground>();
+            IntervalBetweenF1Menu = TimeSpan.FromMilliseconds(1000);
             r = new Random();
             _context = context;
-
             _listOfUndergroundMap.Add(new Underground("BossRoom/1"));
             _listOfUndergroundMap.Add(new Underground("BossRoom/2"));
             _listOfUndergroundMap.Add(new Underground("BossRoom/3"));
@@ -57,7 +57,6 @@ namespace Kepler_22_B.Map
             _listOfUndergroundMap.Add(new Underground("LabyrintheRoom/4"));
             _listOfUndergroundMap.Add(new Underground("AccessRoom/1"));
             _listOfUndergroundMap.Add(new Underground("AccessRoom/2"));
-            IntervalBetweenF1Menu = TimeSpan.FromMilliseconds(1000);
         }
 
 
@@ -146,31 +145,12 @@ namespace Kepler_22_B.Map
         public bool IsSecretRoom { get { return _IsSecretRoom; } set { _IsSecretRoom = value; } }
 
         /// <summary>
-        /// Draws in the secret room.
-        /// </summary>
-        /// <param name="spriteBatch">The sprite batch.</param>
-        public void DrawSecretRoom(SpriteBatch spriteBatch)
-        {
-            if (IsSecretRoom)
-            {
-                _textDraw = string.Format("ENIGME", _context.Player.GCTPlayer.PositionX, _context.Player.GCTPlayer.PositionY);
-            }
-            else
-            {
-                _textDraw = "";
-            }
-            spriteBatch.DrawString(_font, _textDraw, Vector2.Zero, Color.Red);
-
-        }
-
-
-
-        /// <summary>
         /// Changes the map for access room.
         /// </summary>
         /// <param name="theIntOfTheList">The int of the list.</param>
         void ChangeMap(bool inOrOut)
         {
+            _IsSecretRoom = false;
             switch (inOrOut)
             {
                 case true:
@@ -257,7 +237,7 @@ namespace Kepler_22_B.Map
                 SwitchTheRoomUnderground();
             }
 
-            if(Keyboard.GetState().IsKeyDown(Keys.F1) && LastActiveF1Menu + IntervalBetweenF1Menu < gameTime.TotalGameTime) 
+            if(Keyboard.GetState().IsKeyDown(Keys.F1) && LastActiveF1Menu + IntervalBetweenF1Menu < gameTime.TotalGameTime && IsSecretRoom) 
             {
                 OpenSecretRoom();
                 LastActiveF1Menu = gameTime.TotalGameTime;

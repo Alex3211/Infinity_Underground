@@ -16,7 +16,7 @@ namespace Kepler_22_B.API.Characteres
         double _criticalChance, _attackSpeed;
         
 
-        public CTCharacter(int x = 50, int y = 50)
+        public CTCharacter(int x = 450, int y = 250)
         {
             if (x < 0 || y < 0) throw new ArgumentOutOfRangeException("The x and y position can not be negative");
             _position = new Vector2(x, y);

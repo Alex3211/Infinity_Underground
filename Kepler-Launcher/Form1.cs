@@ -29,7 +29,7 @@ namespace Kepler_Launcher
 
         }
 
-        private void btn_newParty_Click(object sender, EventArgs e)
+        private void btn_play_Click(object sender, EventArgs e)
         {
             LaunchGame();
             var p = new Process();
@@ -58,5 +58,9 @@ namespace Kepler_Launcher
             }
         }
 
+        private void btn_ResetSave_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
