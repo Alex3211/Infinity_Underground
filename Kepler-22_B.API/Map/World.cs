@@ -28,9 +28,20 @@ namespace Kepler_22_B.API
             _level = new Level(this);
             _listOfNPC = new List<CTNPC>();
             _listOfPlayer = new List<CTPlayer>();
-            _listOfPlayer.Add(new CTPlayer());
+            _listOfPlayer.Add(new CTPlayer(this));
+            _listOfNPC.Add(new CTBat(200, 200, this));
             _level.GetRooms.AddDoorInRoom();
         }
+
+
+        /// <summary>
+        /// Gets the list of pc.
+        /// </summary>
+        /// <value>
+        /// The list of pc.
+        /// </value>
+        public List<CTNPC> ListOfNPC { get { return _listOfNPC; } }
+
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is surface.

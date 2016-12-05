@@ -24,7 +24,7 @@ namespace Kepler_22_B.Tests
         [Test]
         public void TestIfThePlayerCanGoOnTheLeft()
         {
-            CTPlayer sut = new CTPlayer();
+            CTPlayer sut = new CTPlayer(new API.World());
 
             int _initialPositionX = sut.PositionX;
 
@@ -39,7 +39,7 @@ namespace Kepler_22_B.Tests
         [Test]
         public void TestIfThePlayerCanGoDown()
         {
-            CTPlayer sut = new CTPlayer();
+            CTPlayer sut = new CTPlayer(new API.World());
 
             int _initialPositionY = sut.PositionY;
 
@@ -54,7 +54,7 @@ namespace Kepler_22_B.Tests
         [Test]
         public void TestIfThePlayerCanOnTheRight()
         {
-            CTPlayer sut = new CTPlayer();
+            CTPlayer sut = new CTPlayer(new API.World());
 
             int _initialPositionX = sut.PositionX;
 
@@ -69,7 +69,7 @@ namespace Kepler_22_B.Tests
         [Test]
         public void TestIfThePlayerCanGoUp()
         {
-            CTPlayer sut = new CTPlayer();
+            CTPlayer sut = new CTPlayer(new API.World());
 
             int _intialPositionY = sut.PositionY;
 
@@ -101,7 +101,7 @@ namespace Kepler_22_B.Tests
         [Test]
         public void AttributeNewNameToTheNewCharacter()
         {
-            CTPlayer sut = new CTPlayer();
+            CTPlayer sut = new CTPlayer(new API.World());
 
             Assert.That(sut.Name, Is.Not.Null);
         }

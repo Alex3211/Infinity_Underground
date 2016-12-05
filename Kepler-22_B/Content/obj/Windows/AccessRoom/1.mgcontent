@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/s3/test/Kepler-22_B/Content/AccessRoom/1.tmx</SourceFile>
+  <SourceFile>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/AccessRoom/1.tmx</SourceFile>
   <SourceTime>2016-11-27T21:26:11.061286+01:00</SourceTime>
-  <DestFile>D:/s3/test/Kepler-22_B/Content/bin/Windows/AccessRoom/1.xnb</DestFile>
-  <DestTime>2016-11-28T17:19:25.2016799+01:00</DestTime>
+  <DestFile>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/bin/Windows/AccessRoom/1.xnb</DestFile>
+  <DestTime>2016-11-29T12:28:29.1512277+01:00</DestTime>
   <Importer>TiledMapImporter</Importer>
   <ImporterTime>2016-11-20T22:57:32.5281901+01:00</ImporterTime>
   <Processor>TiledMapProcessor</Processor>

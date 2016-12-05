@@ -8,6 +8,7 @@ using Kepler_22_B.EntitiesUI;
 using Kepler_22_B.API;
 using System.Collections.Generic;
 using MonoGame.Extended.Maps.Tiled;
+using Microsoft.Xna.Framework.Content;
 
 namespace Kepler_22_B
 {
@@ -29,6 +30,7 @@ namespace Kepler_22_B
         MapLoader _mapLoad;
         Debug _debug;
         WorldControlUI _worldControl;
+        Bat _bat;
 
         /// <summary>
         /// Gets or sets the world control.
@@ -82,7 +84,6 @@ namespace Kepler_22_B
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferHeight = WindowHeight;
             graphics.PreferredBackBufferWidth = WindowWidth;
@@ -130,8 +131,9 @@ namespace Kepler_22_B
 
             _debug = new Debug(this, _cameraLoader);
 
-            _player = new Player(4, 9, this);
-            
+            _player = new Player(21, 13, this);
+
+            _bat = new Bat(4, 4, this);
         }
 
         /// <summary>
@@ -155,6 +157,7 @@ namespace Kepler_22_B
                 Exit();
 
             _player.Update(gameTime);
+            _bat.Update(gameTime);
             _debug.Update(gameTime);
             _worldControl.Update(gameTime);
 
@@ -171,7 +174,7 @@ namespace Kepler_22_B
             spriteBatch.Begin(transformMatrix: _cameraLoader.GetMatrix);
 
             _mapLoad.Draw(spriteBatch, this);
-
+            _bat.Draw(spriteBatch);
             _debug.draw(spriteBatch);
 
 
