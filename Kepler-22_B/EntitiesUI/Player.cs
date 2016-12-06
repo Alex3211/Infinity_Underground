@@ -111,19 +111,19 @@ namespace Kepler_22_B.EntitiesUI
                 switch (GetTheDirectionOfThePlayer())
                 {
                     case (int)Direction.Up:
-                        if(_context.CameraLoader.GetCamera.Position.Y > 0 && _context.Player.GCTPlayer.PositionY < _context.MapLoad.GetMap.HeightInPixels- 350) _context.CameraLoader.GetCamera.Move(new Vector2(0, -_player.GetCharacterType.MoveSpeed));
+                        if(_context.CameraLoader.GetCamera.Position.Y > 10 && _context.CameraLoader.GetCamera.Position.Y < _context.MapLoad.GetMap.HeightInPixels && _context.Player.GCTPlayer.PositionY < _context.MapLoad.GetMap.HeightInPixels-238) _context.CameraLoader.GetCamera.Move(new Vector2(0, -_player.GetCharacterType.MoveSpeed));
                         return _player.Deplacement((int)Direction.Up);
 
                     case (int)Direction.Bottom:
-                        if(_context.CameraLoader.GetCamera.Position.Y < _context.MapLoad.GetMap.HeightInPixels - 650 && _context.Player.GCTPlayer.PositionY > 250 ) _context.CameraLoader.GetCamera.Move(new Vector2(0, +_player.GetCharacterType.MoveSpeed));
+                        if(_context.CameraLoader.GetCamera.Position.Y < _context.MapLoad.GetMap.HeightInPixels - 550 && _context.Player.GCTPlayer.PositionY > 238 ) _context.CameraLoader.GetCamera.Move(new Vector2(0, +_player.GetCharacterType.MoveSpeed));
                         return _player.Deplacement((int)Direction.Bottom);
 
                     case (int)Direction.Left:
-                        if (_context.CameraLoader.GetCamera.Position.X > 0 && _context.Player.GCTPlayer.PositionY < _context.MapLoad.GetMap.WidthInPixels - 450) _context.CameraLoader.GetCamera.Move(new Vector2(-_player.GetCharacterType.MoveSpeed, 0));
+                        if (_context.CameraLoader.GetCamera.Position.X > 10 && _context.CameraLoader.GetCamera.Position.X < _context.MapLoad.GetMap.WidthInPixels && _context.Player.GCTPlayer.PositionX < _context.MapLoad.GetMap.WidthInPixels-448) _context.CameraLoader.GetCamera.Move(new Vector2(-_player.GetCharacterType.MoveSpeed, 0));
                         return _player.Deplacement((int)Direction.Left);
 
                     case (int)Direction.Right:
-                        if(_context.CameraLoader.GetCamera.Position.X < 0 || _context.Player.GCTPlayer.PositionX > 450) _context.CameraLoader.GetCamera.Move(new Vector2(+_player.GetCharacterType.MoveSpeed, 0));
+                        if(_context.CameraLoader.GetCamera.Position.X < _context.MapLoad.GetMap.WidthInPixels - 970 && _context.Player.GCTPlayer.PositionX > 448) _context.CameraLoader.GetCamera.Move(new Vector2(+_player.GetCharacterType.MoveSpeed, 0));
                         return _player.Deplacement((int)Direction.Right);
                 }
             }
