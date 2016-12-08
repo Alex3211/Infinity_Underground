@@ -157,6 +157,8 @@ namespace Kepler_22_B
             {
                 entity.LoadContent(Content);
             }
+
+            _debug.LoadContent(Content);
         }
 
         /// <summary>
@@ -229,7 +231,7 @@ namespace Kepler_22_B
                 switch (_gameState)
                 {
                     case GameState.UNDERGROUND:
-                        UnloadContent();
+                        //UnloadContent();
                         Entities.Clear();
                         Entities.Add(new Underground(this));
                         Entities.Add(new MapLoader(this));
@@ -237,7 +239,7 @@ namespace Kepler_22_B
                         break;
 
                     case GameState.SURFACE:
-                        UnloadContent();
+                        //UnloadContent();
                         Entities.Clear();
                         Entities.Add(new Surface(this));
                         Entities.Add(new MapLoader(this));

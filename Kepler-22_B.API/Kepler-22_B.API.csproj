@@ -37,7 +37,7 @@
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.5.1.1679, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="RandomNameGeneratorLibrary">
-      <HintPath>..\..\Kepler-22_B - Actual\packages\RandomNameGeneratorLibrary.1.2.2.0\lib\net40\RandomNameGeneratorLibrary.dll</HintPath>
+      <HintPath>..\..\..\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\RandomNameGeneratorLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

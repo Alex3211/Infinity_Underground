@@ -175,28 +175,29 @@ namespace Kepler_22_B.EntitiesUI
 
 
         /// <summary>
-        /// Blocks the player.
+        /// Blocks the player with GetLayerCollide and GetLayerDoorColide.
         /// </summary>
         /// <param name="direction">The direction.</param>
         /// <returns></returns>
         bool BlockThePlayer(int direction)
         {
-
+            if (Context.MapLoad.GetMap.GetLayer<TiledTileLayer>("SecretDoor") != null && Context.MapLoad.GetMap.GetLayer<TiledTileLayer>("SecretDoor").IsVisible == false) Context.MapLoad.GetLayerDoorCollide = Context.MapLoad.GetLayerCollide;
+            else if (Context.MapLoad.GetMap.GetLayer<TiledTileLayer>("SecretDoor") != null) Context.MapLoad.GetLayerDoorCollide = Context.MapLoad.GetMap.GetLayer<TiledTileLayer>("SecretCollide");
+            else Context.MapLoad.GetLayerDoorCollide = Context.MapLoad.GetLayerCollide;
             int _tileWidth = Context.MapLoad.GetLayerCollide.TileWidth;
 
             switch (GetTheDirectionOfThePlayer())
             {
                 case (int)Direction.Up:
-                    return (_player.PositionY >= 0 && (Context.MapLoad.GetLayerCollide.GetTile((int)Math.Floor((decimal)_player.PositionX / (decimal)_tileWidth) + 1, (int)Math.Round((decimal)_player.PositionY / (decimal)_tileWidth)).Id != Context.MapLoad.IdTileCollide));
-
+                    return (_player.PositionY >= 0 && (Context.MapLoad.GetLayerCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)_tileWidth) + 1, (int)Math.Round((decimal)_player.PositionY / (decimal)_tileWidth)).Id != Context.MapLoad.IdTileCollide) && (Context.MapLoad.GetLayerDoorCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)_tileWidth) + 1, (int)Math.Round((decimal)_player.PositionY / (decimal)_tileWidth)).Id != Context.MapLoad.IdTileCollide));
                 case (int)Direction.Left:
-                    return (_player.PositionX >= 0 && (Context.MapLoad.GetLayerCollide.GetTile((int)Math.Round((decimal)_player.PositionX / (decimal)_tileWidth), (int)Math.Round((decimal)_player.PositionY / (decimal)_tileWidth) + 1).Id != Context.MapLoad.IdTileCollide));
+                    return (_player.PositionX >= 0 && (Context.MapLoad.GetLayerCollide.GetTile((int)Math.Round((decimal)_player.PositionX / _tileWidth), (int)Math.Round((decimal)_player.PositionY / _tileWidth) + 1).Id != Context.MapLoad.IdTileCollide) && (Context.MapLoad.GetLayerDoorCollide.GetTile((int)Math.Round((decimal)_player.PositionX / _tileWidth), (int)Math.Round((decimal)_player.PositionY / _tileWidth) + 1).Id != Context.MapLoad.IdTileCollide));
 
                 case (int)Direction.Bottom:
-                    return ((_player.PositionY <= (Context.MapLoad.GetMap.HeightInPixels - 50)) && (Context.MapLoad.GetLayerCollide.GetTile((int)Math.Floor((decimal)(_player.PositionX / (decimal)_tileWidth)) + 1, ((int)Math.Floor((decimal)_player.PositionY / (decimal)_tileWidth)) + 2).Id != Context.MapLoad.IdTileCollide));
+                    return ((_player.PositionY <= (Context.MapLoad.GetMap.HeightInPixels - 50)) && (Context.MapLoad.GetLayerCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)_tileWidth) + 1, ((int)Math.Floor(_player.PositionY / (decimal)_tileWidth)) + 2).Id != Context.MapLoad.IdTileCollide) && (Context.MapLoad.GetLayerDoorCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)_tileWidth) + 1, ((int)Math.Floor(_player.PositionY / (decimal)_tileWidth)) + 2).Id != Context.MapLoad.IdTileCollide));
 
                 case (int)Direction.Right:
-                    return ((_player.PositionX <= (Context.MapLoad.GetMap.WidthInPixels)) && (Context.MapLoad.GetLayerCollide.GetTile(((int)Math.Round((decimal)_player.PositionX / (decimal)_tileWidth)) + 1, ((int)Math.Round((decimal)_player.PositionY / (decimal)_tileWidth)) + 1).Id != Context.MapLoad.IdTileCollide));
+                    return ((_player.PositionX <= (Context.MapLoad.GetMap.WidthInPixels)) && (Context.MapLoad.GetLayerCollide.GetTile(((int)Math.Round((decimal)_player.PositionX / _tileWidth)) + 1, ((int)Math.Round((decimal)_player.PositionY / _tileWidth)) + 1).Id != Context.MapLoad.IdTileCollide) && (Context.MapLoad.GetLayerDoorCollide.GetTile(((int)Math.Round((decimal)_player.PositionX / _tileWidth)) + 1, ((int)Math.Round((decimal)_player.PositionY / _tileWidth)) + 1).Id != Context.MapLoad.IdTileCollide));
 
             }
             return true;
@@ -249,19 +250,19 @@ namespace Kepler_22_B.EntitiesUI
                 switch (GetTheDirectionOfThePlayer())
                 {
                     case (int)Direction.Up:
-                        Context.CameraLoader.GetCamera.Move(new Vector2(0, -_player.GetCharacterType.MoveSpeed));
+                        if (Context.CameraLoader.GetCamera.Position.Y > 10 && Context.CameraLoader.GetCamera.Position.Y < Context.MapLoad.GetMap.HeightInPixels && Context.Player.CTPlayer.PositionY < Context.MapLoad.GetMap.HeightInPixels - (Context.Graphics.PreferredBackBufferHeight / 2 - (Context.Player.Height / 2))) Context.CameraLoader.GetCamera.Move(new Vector2(0, -_player.GetCharacterType.MoveSpeed));
                         return _player.Deplacement((int)Direction.Up);
 
                     case (int)Direction.Bottom:
-                        Context.CameraLoader.GetCamera.Move(new Vector2(0, +_player.GetCharacterType.MoveSpeed));
+                        if (Context.CameraLoader.GetCamera.Position.Y < Context.MapLoad.GetMap.HeightInPixels - 550 && Context.Player.CTPlayer.PositionY > (Context.Graphics.PreferredBackBufferHeight / 2 - (Context.Player.Height / 2))) Context.CameraLoader.GetCamera.Move(new Vector2(0, +_player.GetCharacterType.MoveSpeed));
                         return _player.Deplacement((int)Direction.Bottom);
 
                     case (int)Direction.Left:
-                        Context.CameraLoader.GetCamera.Move(new Vector2(-_player.GetCharacterType.MoveSpeed, 0));
+                        if (Context.CameraLoader.GetCamera.Position.X > 10 && Context.CameraLoader.GetCamera.Position.X < Context.MapLoad.GetMap.WidthInPixels && Context.Player.CTPlayer.PositionX < Context.MapLoad.GetMap.WidthInPixels - (Context.Graphics.PreferredBackBufferWidth / 2 - (Context.Player.Width / 2))) Context.CameraLoader.GetCamera.Move(new Vector2(-_player.GetCharacterType.MoveSpeed, 0));
                         return _player.Deplacement((int)Direction.Left);
 
                     case (int)Direction.Right:
-                        Context.CameraLoader.GetCamera.Move(new Vector2(+_player.GetCharacterType.MoveSpeed, 0));
+                        if (Context.CameraLoader.GetCamera.Position.X < Context.MapLoad.GetMap.WidthInPixels - 960 && Context.Player.CTPlayer.PositionX > (Context.Graphics.PreferredBackBufferWidth / 2 - (Context.Player.Width / 2))) Context.CameraLoader.GetCamera.Move(new Vector2(+_player.GetCharacterType.MoveSpeed, 0));
                         return _player.Deplacement((int)Direction.Right);
                 }
             }

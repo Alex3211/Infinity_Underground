@@ -66,11 +66,11 @@ namespace Kepler_22_B.Camera
         {
             _viewportAdapter = new BoxingViewportAdapter(_context.Window, _context.GraphicsDevice, windowWidth, windowHeight);
             _getCamera = new Camera2D(_viewportAdapter);
-            _getCamera.LookAt(new Vector2(80, 90));
+            _getCamera.LookAt(new Vector2(_context.Player.CTPlayer.PositionX + 30, _context.Player.CTPlayer.PositionY + 40));
         }
-        
 
 
-        
+
+
     }
 }

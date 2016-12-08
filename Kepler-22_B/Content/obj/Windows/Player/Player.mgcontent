@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/Player/Player.png</SourceFile>
-  <SourceTime>2016-11-29T12:20:06.9454141+01:00</SourceTime>
-  <DestFile>C:/Dev/Projet/Kepler-22_B/Kepler-22_B/Content/bin/Windows/Player/Player.xnb</DestFile>
-  <DestTime>2016-12-07T09:47:50.8833869+01:00</DestTime>
+  <SourceFile>D:/S3/S3PI/projet_actuel/merge/Kepler-22_B/Kepler-22_B/Content/Player/Player.png</SourceFile>
+  <SourceTime>2016-12-08T10:29:40.9857525+01:00</SourceTime>
+  <DestFile>D:/S3/S3PI/projet_actuel/merge/Kepler-22_B/Kepler-22_B/Content/bin/Windows/Player/Player.xnb</DestFile>
+  <DestTime>2016-12-08T11:10:28.5116982+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

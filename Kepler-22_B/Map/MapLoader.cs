@@ -38,10 +38,10 @@ namespace Kepler_22_B.Map
             _context.Player.LoadContent(content);
             foreach (TiledTileLayer e in _getMap.TileLayers)
             {
-                if (e.Name == "Collide") _getLayerCollide = e;
-                if (e.Name == "SecretCollide") _getLayerDoorCollide = e;
-                if (e.Name == "UpOne") _firstLayer = e;
-                if (e.Name == "UpTwo") _secondLayer = e;
+                if (e != null && e.Name == "Collide") _getLayerCollide = e;
+                if (e != null && e.Name == "SecretCollide") _getLayerDoorCollide = e;
+                if (e != null && e.Name == "UpOne") _firstLayer = e;
+                if (e != null && e.Name == "UpTwo") _secondLayer = e;
             }
             _getLayerCollide.IsVisible = false;
         }

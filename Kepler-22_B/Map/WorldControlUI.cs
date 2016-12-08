@@ -15,9 +15,6 @@ namespace Kepler_22_B.Map
         List<Underground> _listOfUndergroundMap;
         Game1 _context;
         Random r;
-        TiledMap _surface;
-        TiledTileLayer _collideSurface;
-        int random;
         bool _IsSecretRoom = false;
         SpriteFont _font;
         private readonly TimeSpan IntervalBetweenF1Menu;
@@ -42,18 +39,14 @@ namespace Kepler_22_B.Map
         public void LoadContent(ContentManager content)
         {
 
-        public bool GetStateSecretDoor { get { return _stateSecretDoor; } set { _stateSecretDoor = value; } }
+        }
 
-
-        /// <summary>
-        /// Gets the surface.
-        /// </summary>
-        /// <value>
-        /// The surface.
-        /// </value>
-        public TiledMap Surface { get { return _surface; } }
+        public void Unload()
+        {
 
         }
+
+        public bool GetStateSecretDoor { get { return _stateSecretDoor; } set { _stateSecretDoor = value; } }
 
         /// <summary>
         /// Determines the actual room is a secret room.
@@ -103,24 +96,9 @@ namespace Kepler_22_B.Map
                 _context.MapLoad.GetMap.Dispose();
 
                 _context.LoadGameState = true;
-
-                //if (_context.WorldAPI.Level.GetRooms.IsFinalRoom)
-                //{
-                //    _context.GetGameState = Game1.GameState.CHANGEROOM;
-                //}
-                //else if(_context.WorldAPI.Level.GetRooms.PosCurrentRoom == new Vector2(0,0))
-                //{
-                //    _context.GetGameState = Game1.GameState.CHANGEROOM;
-                //}
-                ////else
-                ////{
-                ////    SelectBetweenFourStyleRoom();
-                //}
                 _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX, _context.WorldAPI.Players[0].PositionY));
             }
         }
-
-
 
         /// <summary>
         /// Updates the specified game time.
@@ -140,6 +118,24 @@ namespace Kepler_22_B.Map
                 OpenSecretRoom();
                 LastActiveF1Menu = gameTime.TotalGameTime;
             }
+        }
+
+        /// <summary>
+        /// Opens the secret room.
+        /// </summary>
+        public void OpenSecretRoom()
+        {
+            _stateSecretDoor = !_stateSecretDoor;
+            _context.MapLoad.GetMap.GetLayer<TiledTileLayer>("SecretDoor").IsVisible = !_context.MapLoad.GetMap.GetLayer<TiledTileLayer>("SecretDoor").IsVisible;
+        }
+
+        /// <summary>
+        /// Draws the specified sprite batch.
+        /// </summary>
+        /// <param name="spriteBatch">The sprite batch.</param>
+        /// <exception cref="NotImplementedException"></exception>
+        public void Draw(SpriteBatch spriteBatch)
+        {
         }
     }
 }
