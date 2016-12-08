@@ -53,6 +53,8 @@ namespace Kepler_22_B.Map
         /// </summary>
         /// <param name="room">The room.</param>
         public bool IsSecretRoom { get { return _IsSecretRoom; } set { _IsSecretRoom = value; } }
+        
+        ///<summary>
         /// Creates the new level.
         /// </summary>
         void GoToNextLevel()
@@ -96,7 +98,7 @@ namespace Kepler_22_B.Map
                 _context.MapLoad.GetMap.Dispose();
 
                 _context.LoadGameState = true;
-                _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX, _context.WorldAPI.Players[0].PositionY));
+                _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX+350, _context.WorldAPI.Players[0].PositionY));
             }
         }
 
@@ -112,6 +114,12 @@ namespace Kepler_22_B.Map
 
                 SwitchTheRoomUnderground();
             }
+
+            if (!_context.WorldAPI.IsSurface && _context.WorldAPI.Level.GetRooms.TypeOfRoom.NameOfMap == "SecretRoom")
+            {
+                _IsSecretRoom = true;
+            }
+
 
             if(Keyboard.GetState().IsKeyDown(Keys.F1) && LastActiveF1Menu + IntervalBetweenF1Menu < gameTime.TotalGameTime && IsSecretRoom) 
             {
@@ -137,5 +145,6 @@ namespace Kepler_22_B.Map
         public void Draw(SpriteBatch spriteBatch)
         {
         }
+        
     }
 }
