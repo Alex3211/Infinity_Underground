@@ -61,11 +61,11 @@ namespace Kepler_22_B.Tests
         {
             World sut = new World();
 
-            int _initialLifePoint = sut.ListOfNPC[0].GetCharacterType.LifePoint;
+            int _initialLifePoint = sut.ListOfPlayer[0].GetCharacterType.LifePoint;
 
-            sut.Players[0].GetCharacterType.GetAttacks.NormalAttack(sut.Players[0], sut.ListOfNPC[0]);
+            sut.Players[0].GetCharacterType.GetAttacks.NormalAttack(sut.Players[0], sut.ListOfPlayer[0]);
 
-            Assert.That(sut.ListOfNPC[0].GetCharacterType.LifePoint, Is.EqualTo(_initialLifePoint - sut.Players[0].GetCharacterType.GetDamage));
+            Assert.That(sut.ListOfPlayer[0].GetCharacterType.LifePoint, Is.EqualTo(_initialLifePoint - sut.Players[0].GetCharacterType.GetDamage));
         }
     }
 }

@@ -14,6 +14,7 @@ namespace Kepler_22_B.API.Map
         public MonsterRoom()
         {
             Path = 1;
+            NameOfMap = "MonsterRoom";
         }
 
 

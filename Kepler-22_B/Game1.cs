@@ -9,6 +9,7 @@ using Kepler_22_B.API;
 using System.Collections.Generic;
 using MonoGame.Extended.Maps.Tiled;
 using Microsoft.Xna.Framework.Content;
+using System.Threading;
 
 namespace Kepler_22_B
 {
@@ -17,6 +18,13 @@ namespace Kepler_22_B
     /// </summary>
     public class Game1 : Game
     {
+        public enum GameState
+        {
+            SURFACE,
+            UNDERGROUND,
+            CHANGEROOM
+        }
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -26,19 +34,31 @@ namespace Kepler_22_B
 
         World _world;
         Player _player;
+        Debug _debug;
         CameraLoader _cameraLoader;
         MapLoader _mapLoad;
-        Debug _debug;
-        WorldControlUI _worldControl;
-        Bat _bat;
+        List<IEntity> _entities;
+        GameState _gameState;
+        bool _loadGameState;
+
 
         /// <summary>
-        /// Gets or sets the world control.
+        /// Load the GameState.
+        /// </summary>
+        public bool LoadGameState { get{ return _loadGameState; } set { _loadGameState = value; } }
+        
+        /// <summary>
+        /// Get or Set the State of the game.
+        /// </summary>
+        public GameState GetGameState { get{ return _gameState; } set { _gameState = value; } }
+
+        /// <summary>
+        /// Gets or sets the entities.
         /// </summary>
         /// <value>
-        /// The world control.
+        /// The entities.
         /// </value>
-        public WorldControlUI WorldControl { get { return _worldControl; } } 
+        public List<IEntity> Entities { get { return _entities; } }
 
         /// <summary>
         /// Gets the camera loader.
@@ -62,7 +82,7 @@ namespace Kepler_22_B
         /// <value>
         /// The player.
         /// </value>
-        internal Player Player { get { return _player; } }
+        internal Player Player { get { return _player; } set { _player = value; } }
 
         /// <summary>
         /// Gets the world API.
@@ -90,8 +110,13 @@ namespace Kepler_22_B
 
             _cameraLoader = new CameraLoader(this);
             _world = new World();
-            _worldControl = new WorldControlUI(this);
-            _mapLoad = new MapLoader(this);
+
+            _entities = new List<IEntity>();
+            _gameState = GameState.SURFACE;
+            _loadGameState = true;
+
+            _debug = new Debug(this, _cameraLoader);
+            _player = new Player(21, 13, this);
         }
 
         /// <summary>
@@ -123,17 +148,14 @@ namespace Kepler_22_B
         protected override void LoadContent()
         {
             
-
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _worldControl.LoadContent(Content);
 
-            _debug = new Debug(this, _cameraLoader);
-
-            _player = new Player(21, 13, this);
-
-            _bat = new Bat(4, 4, this);
+            foreach (var entity in _entities)
+            {
+                entity.LoadContent(Content);
+            }
         }
 
         /// <summary>
@@ -156,10 +178,19 @@ namespace Kepler_22_B
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            _player.Update(gameTime);
-            _bat.Update(gameTime);
+
+
+
+            SwitchGameState();
+
+
+
+            foreach (var entity in _entities)
+            {
+                entity.Update(gameTime);
+            }
+
             _debug.Update(gameTime);
-            _worldControl.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -173,13 +204,53 @@ namespace Kepler_22_B
             GraphicsDevice.Clear(new Color(39,33,41));
             spriteBatch.Begin(transformMatrix: _cameraLoader.GetMatrix);
 
-            _mapLoad.Draw(spriteBatch, this);
-            _bat.Draw(spriteBatch);
-            _debug.draw(spriteBatch);
 
+            foreach (var entity in _entities)
+            {
+                entity.Draw(spriteBatch);
+            }
+
+            _debug.Draw(spriteBatch);
 
             spriteBatch.End();
             base.Draw(gameTime);
         }
+
+
+
+        /// <summary>
+        /// Switches the state of the game.
+        /// </summary>
+        void SwitchGameState()
+        {
+            if (_loadGameState)
+            {
+                switch (_gameState)
+                {
+                    case GameState.UNDERGROUND:
+                        UnloadContent();
+                        Entities.Clear();
+                        Entities.Add(new Underground(this));
+                        Entities.Add(new MapLoader(this));
+                        Entities.Add(new WorldControlUI(this));
+                        break;
+
+                    case GameState.SURFACE:
+                        UnloadContent();
+                        Entities.Clear();
+                        Entities.Add(new Surface(this));
+                        Entities.Add(new MapLoader(this));
+                        Entities.Add(new Bat(4, 4, this));
+                        Entities.Add(new WorldControlUI(this));
+
+                        break;
+
+
+                }
+                LoadContent();
+                _loadGameState = false;
+            }
+        }
+
     }
 }

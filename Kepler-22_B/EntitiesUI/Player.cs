@@ -6,10 +6,11 @@ using Kepler_22_B.Characteres;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Xna.Framework.Content;
 
 namespace Kepler_22_B.EntitiesUI
 {
-    class Player : Spritesheet
+    class Player : Spritesheet , IEntity 
     {
         KeyboardState _state;
         CTPlayer _player;
@@ -28,8 +29,8 @@ namespace Kepler_22_B.EntitiesUI
         public Player(int spriteSheetRows, int spriteSheetColumns, Game1 context)
         {
             Context = context;
-
-            SpriteSheet = Context.Content.Load<Texture2D>("Player/Player");
+            Context.Player = this;
+            
             SpriteSheetColumns = spriteSheetColumns;
             SpriteSheetRows = spriteSheetRows;
 
@@ -69,9 +70,14 @@ namespace Kepler_22_B.EntitiesUI
         /// <value>
         /// The get player.
         /// </value>
-        internal CTPlayer GCTPlayer { get { return _player; } }
+        internal CTPlayer CTPlayer { get { return _player; } }
 
-         
+
+        public void LoadContent(ContentManager content)
+        {
+            SpriteSheet = Context.Content.Load<Texture2D>("Player/Player");
+        }
+
         /// <summary>
         /// For zoom on or out the player.
         /// </summary>
@@ -99,6 +105,7 @@ namespace Kepler_22_B.EntitiesUI
             if (_playerAttack && (Column + 1) == _actualAction.Column)
             {
                 _playerAttack = false;
+                MillisecondsPerFrame = 80;
             }
             else
             {
@@ -352,6 +359,7 @@ namespace Kepler_22_B.EntitiesUI
 
 
                 _playerAttack = true;
+                MillisecondsPerFrame = 20;
                 switch ((int)_actualAction.IDActionPlayer % 4)
                 {
                     case 0:
@@ -390,5 +398,11 @@ namespace Kepler_22_B.EntitiesUI
             return _actualAction;
         }
 
+        /// <summary>
+        /// Unloads this instance.
+        /// </summary>
+        public void Unload()
+        {
+        }
     }
 }

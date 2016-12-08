@@ -89,7 +89,7 @@ namespace Kepler_22_B.API.Characteres
             }
             timeSinceLastAttack++;
 
-            foreach (CTCharacter NPC in Context.ListOfNPC)
+            foreach (CTCharacter NPC in Context.ListOfPlayer)
             {
                 switch (direction)
                 {

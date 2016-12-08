@@ -53,6 +53,7 @@ namespace Kepler_22_B.Camera
         public CameraLoader(Game1 context)
         {
             _context = context;
+            _context.CameraLoader = this;
             _zoom = (float)0.1;
         }
 
@@ -65,7 +66,7 @@ namespace Kepler_22_B.Camera
         {
             _viewportAdapter = new BoxingViewportAdapter(_context.Window, _context.GraphicsDevice, windowWidth, windowHeight);
             _getCamera = new Camera2D(_viewportAdapter);
-            _getCamera.LookAt(new Vector2(_context.Player.GCTPlayer.PositionX + 30, _context.Player.GCTPlayer.PositionY + 40));
+            _getCamera.LookAt(new Vector2(80, 90));
         }
         
 

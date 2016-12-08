@@ -15,7 +15,7 @@ namespace Kepler_22_B.API.Map
         {
             NbOfNPC = 0;
             Path = 2;
-
+            NameOfMap = "SecretRoom";
         }
 
 

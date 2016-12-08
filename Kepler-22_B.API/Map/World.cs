@@ -40,7 +40,7 @@ namespace Kepler_22_B.API
         /// <value>
         /// The list of pc.
         /// </value>
-        public List<CTNPC> ListOfNPC { get { return _listOfNPC; } }
+        public List<CTNPC> ListOfPlayer { get { return _listOfNPC; } }
 
 
         /// <summary>

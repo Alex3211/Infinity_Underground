@@ -14,7 +14,7 @@ namespace Kepler_22_B.API.Map
         public LabyrintheRoom()
         {
             Path = 4;
-
+            NameOfMap = "LabyrintheRoom";
         }
 
 

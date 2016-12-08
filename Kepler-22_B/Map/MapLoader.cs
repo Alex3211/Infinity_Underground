@@ -1,10 +1,13 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended;
 using MonoGame.Extended.Maps.Tiled;
 
 namespace Kepler_22_B.Map
 {
-    public class MapLoader
+    public class MapLoader : IEntity
     {
         Game1 _context;
         TiledMap _getMap;
@@ -22,7 +25,7 @@ namespace Kepler_22_B.Map
         public MapLoader(Game1 context)
         {
             _context = context;
-            
+            _context.MapLoad = this;
         }
 
         /// <summary>
@@ -30,9 +33,9 @@ namespace Kepler_22_B.Map
         /// </summary>
         /// <param name="nameOfMap">The name of map.</param>
         /// <param name="content">The content.</param>
-        public void LoadContent(string nameOfMap, ContentManager content)
+        public void LoadContent(ContentManager content)
         {
-            _getMap = content.Load<TiledMap>(nameOfMap);
+            _context.Player.LoadContent(content);
             foreach (TiledTileLayer e in _getMap.TileLayers)
             {
                 if (e.Name == "Collide") _getLayerCollide = e;
@@ -40,7 +43,6 @@ namespace Kepler_22_B.Map
                 if (e.Name == "UpTwo") _secondLayer = e;
             }
             _getLayerCollide.IsVisible = false;
-            _idTileCollide = 645;
         }
 
         /// <summary>
@@ -76,14 +78,23 @@ namespace Kepler_22_B.Map
         /// Draws the specified sprite batch.
         /// </summary>
         /// <param name="spriteBatch">The sprite batch.</param>
-        public void Draw(SpriteBatch spriteBatch, Game1 context)
+        public void Draw(SpriteBatch spriteBatch)
         {
             LayerIsVisible(false);
             _getMap.Draw(spriteBatch);
-            context.Player.Draw(spriteBatch);
+            _context.Player.Draw(spriteBatch);
             LayerIsVisible(true);
             _firstLayer.Draw(spriteBatch);
             _secondLayer.Draw(spriteBatch);
+        }
+
+        /// <summary>
+        /// Update the map.
+        /// </summary>
+        /// <param name="gameTime"></param>
+        public void Update(GameTime gameTime)
+        {
+            _context.Player.Update(gameTime);
         }
 
         /// <summary>
@@ -94,7 +105,12 @@ namespace Kepler_22_B.Map
         /// </value>
         public int IdTileCollide { get { return _idTileCollide; } set { _idTileCollide = value; } }
 
-
+        /// <summary>
+        /// Unloads this instance.
+        /// </summary>
+        public void Unload()
+        {
+        }
 
     }
 }

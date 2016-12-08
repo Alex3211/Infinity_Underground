@@ -4,10 +4,11 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using Kepler_22_B.Camera;
 using MonoGame.Extended;
+using Microsoft.Xna.Framework.Content;
 
 namespace Kepler_22_B.DebugGame
 {
-    class Debug
+    class Debug : IEntity
     {
         private Game1 _context;
         private readonly TimeSpan IntervalBetweenF10Menu;
@@ -38,20 +39,33 @@ namespace Kepler_22_B.DebugGame
         {
             _camera = camera;
             _context = context;
-            font = _context.Content.Load<SpriteFont>("debug");
             DebugState = false;
 
             IntervalBetweenF10Menu = TimeSpan.FromMilliseconds(200);
             IntervalBetweenF11Menu = TimeSpan.FromMilliseconds(1000);
+        }
 
+        /// <summary>
+        /// Loads the content.
+        /// </summary>
+        /// <param name="content">The content.</param>
+        public void LoadContent(ContentManager content)
+        {
+            font = _context.Content.Load<SpriteFont>("debug");
+        }
+
+
+        /// <summary>
+        /// Updates the specified game time.
+        /// </summary>
+        /// <param name="gameTime">The game time.</param>
+        public void Update(GameTime gameTime)
+        {
             // DEBUG PARAMETERS
             _context.MapLoad.GetLayerCollide.IsVisible = false;
             _context.IsMouseVisible = true;
             _context.Window.AllowAltF4 = true;
-        }
 
-        public void Update(GameTime gameTime)
-        {
             MouseState Mousstate = Mouse.GetState();
             MousePositionY = Mousstate.Y;
             MousePositionX = Mousstate.X;
@@ -70,18 +84,18 @@ namespace Kepler_22_B.DebugGame
 
         }
 
-        public void draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
 
             if (DebugState)
             {
                 spriteBatch.DrawString(font, $" Camera Vector Position: X: {_camera.GetCamera.Position.X} Y: {_camera.GetCamera.Position.Y}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y), Color.White);
-                spriteBatch.DrawString(font, $" Player Vector Position: X: {_context.Player.GCTPlayer.PositionX} Y: {_context.Player.GCTPlayer.PositionY}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 20), Color.White);
+                spriteBatch.DrawString(font, $" Player Vector Position: X: {_context.Player.CTPlayer.PositionX} Y: {_context.Player.CTPlayer.PositionY}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 20), Color.White);
                 spriteBatch.DrawString(font, $" Player Vector Position: X: {_context.WorldAPI.Player1PositionXInTile} Y: {_context.WorldAPI.Player1PositionYInTile}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 40), Color.White);
                 spriteBatch.DrawString(font, $" Room Vector Position: X: {_context.WorldAPI.Level.GetRooms.PosCurrentRoom.X} Y: {_context.WorldAPI.Level.GetRooms.PosCurrentRoom.Y}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 60), Color.White);
                 spriteBatch.DrawString(font, $" Final Room Vector Position: X: {_context.WorldAPI.Level.GetRooms.RoomOut.X} Y: {_context.WorldAPI.Level.GetRooms.RoomOut.Y}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 80), Color.White);
                 spriteBatch.DrawString(font, $" Level : {_context.WorldAPI.Level.GetCurrentlevel}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 100), Color.White);
-                spriteBatch.DrawString(font, $" Bat LifePoint : {_context.WorldAPI.ListOfNPC[0].GetCharacterType.LifePoint}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 120), Color.White);
+                spriteBatch.DrawString(font, $" Bat LifePoint : {_context.WorldAPI.ListOfPlayer[0].GetCharacterType.LifePoint}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 120), Color.White);
             }
         }
 
@@ -98,5 +112,12 @@ namespace Kepler_22_B.DebugGame
         /// </summary>
         /// <returns></returns>
         public bool TestSwitchRoom() => (_context.WorldAPI.Level.GetRooms.PlayerInTheDoor() != null);
+
+        /// <summary>
+        /// Unloads this instance.
+        /// </summary>
+        public void Unload()
+        {
+        }
     }
 }

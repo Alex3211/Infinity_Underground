@@ -8,9 +8,9 @@ namespace Kepler_22_B.API.Map
 {
     public abstract class Room
     {
-        int _nbOfNPC;
+        int _nbOfNPC, _path;
         Random r;
-        int _path;
+        string _nameOfMap;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Room"/> class.
@@ -20,6 +20,14 @@ namespace Kepler_22_B.API.Map
             r = new Random();
             _nbOfNPC = r.Next(2,10);
         }
+
+        /// <summary>
+        /// Gets or sets the name of map.
+        /// </summary>
+        /// <value>
+        /// The name of map.
+        /// </value>
+        public string NameOfMap { get { return _nameOfMap; } set { _nameOfMap = value; } }
 
         /// <summary>
         /// Gets the path.

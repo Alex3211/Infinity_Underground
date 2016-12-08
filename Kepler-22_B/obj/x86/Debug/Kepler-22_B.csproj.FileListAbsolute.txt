@@ -447,15 +447,7 @@ C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\SecretRoom\1
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\SecretRoom\2.xnb
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\SecretRoom\3.xnb
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\SecretRoom\4.xnb
-C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\Surface\Artis_dock.xnb
-C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\Surface\base_out_atlas.xnb
-C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\Surface\build_atlas.xnb
-C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\Surface\caves.xnb
-C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\Surface\forest_tiles.xnb
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\Surface\Map.xnb
-C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\Surface\obj_misk_atlas.xnb
-C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\Surface\terrain_atlas.xnb
-C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\Surface\tileset_stone_v4_p1.xnb
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\TrapRoom\1.xnb
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\TrapRoom\2.xnb
 C:\Dev\Projet\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\Content\TrapRoom\3.xnb

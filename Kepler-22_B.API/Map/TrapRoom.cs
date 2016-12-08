@@ -14,7 +14,7 @@ namespace Kepler_22_B.API.Map
         public TrapRoom()
         {
             Path = 3;
-
+            NameOfMap = "TrapRoom";
         }
     }
 }

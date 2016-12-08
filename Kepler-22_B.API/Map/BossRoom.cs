@@ -16,6 +16,7 @@ namespace Kepler_22_B.API.Map
         {
             Path = 0;
             NbOfNPC = 0;
+            NameOfMap = "BossRoom";
         }
 
      }

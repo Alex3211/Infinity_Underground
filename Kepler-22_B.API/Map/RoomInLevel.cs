@@ -16,6 +16,14 @@ namespace Kepler_22_B.API.Map
         Random rand;
         Vector2 _roomOut, _posCurrentRoom;
         bool _isFinalRoom, _isBeginRoom;
+        enum RoomType
+        {
+            LABYRINTHEROOM,
+            TRAPROOM,
+            BOSSROOM,
+            SECRETROOM,
+            MONSTERROOM
+        };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RoomInLevel"/> class.
@@ -193,14 +201,28 @@ namespace Kepler_22_B.API.Map
         /// </summary>
         public void CreateRoom()
         {
-            _listOfTypeRoom.Add(new LabyrintheRoom());
-            _listOfTypeRoom.Add(new TrapRoom());
-            _listOfTypeRoom.Add(new BossRoom());
-            _listOfTypeRoom.Add(new SecretRoom());
-            _listOfTypeRoom.Add(new MonsterRoom());
+            switch(rand.Next(4))
+            {
+                case (int)RoomType.LABYRINTHEROOM:
+                    _typeOfRoom = new LabyrintheRoom();
+                    break;
 
-            _typeOfRoom = _listOfTypeRoom[rand.Next(_listOfTypeRoom.Count)];
+                case (int)RoomType.TRAPROOM:
+                    _typeOfRoom = new TrapRoom();
+                    break;
 
+                case (int)RoomType.BOSSROOM:
+                    _typeOfRoom = new BossRoom();
+                    break;
+
+                case (int)RoomType.SECRETROOM:
+                    _typeOfRoom = new SecretRoom();
+                    break;
+
+                case (int)RoomType.MONSTERROOM:
+                    _typeOfRoom = new MonsterRoom();
+                    break;
+            }
         }
 
 
