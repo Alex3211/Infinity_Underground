@@ -7,9 +7,7 @@ using Kepler_22_B.DebugGame;
 using Kepler_22_B.EntitiesUI;
 using Kepler_22_B.API;
 using System.Collections.Generic;
-using MonoGame.Extended.Maps.Tiled;
-using Microsoft.Xna.Framework.Content;
-using System.Threading;
+
 
 namespace Kepler_22_B
 {
@@ -168,7 +166,7 @@ namespace Kepler_22_B
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
-            Dispose();
+            //Dispose();
         }
 
         /// <summary>
@@ -231,7 +229,7 @@ namespace Kepler_22_B
                 switch (_gameState)
                 {
                     case GameState.UNDERGROUND:
-                        //UnloadContent();
+                        UnloadContent();
                         Entities.Clear();
                         Entities.Add(new Underground(this));
                         Entities.Add(new MapLoader(this));
@@ -239,13 +237,12 @@ namespace Kepler_22_B
                         break;
 
                     case GameState.SURFACE:
-                        //UnloadContent();
+                        UnloadContent();
                         Entities.Clear();
                         Entities.Add(new Surface(this));
                         Entities.Add(new MapLoader(this));
                         Entities.Add(new Bat(4, 4, this));
                         Entities.Add(new WorldControlUI(this));
-
                         break;
 
 

@@ -119,6 +119,9 @@ namespace Kepler_22_B.Map
         /// </summary>
         public void Unload()
         {
+            _getMap.Dispose();
+            _getLayerCollide.Dispose();
+            _getLayerDoorCollide.Dispose();
         }
 
     }
