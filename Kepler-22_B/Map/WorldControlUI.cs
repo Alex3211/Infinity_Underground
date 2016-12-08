@@ -4,8 +4,7 @@ using Microsoft.Xna.Framework;
 using MonoGame.Extended.Maps.Tiled;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-using Kepler_22_B.API.Map;
-using Kepler_22_B.Camera;
+using Microsoft.Xna.Framework.Input;
 
 namespace Kepler_22_B.Map
 {
@@ -16,13 +15,21 @@ namespace Kepler_22_B.Map
         List<Underground> _listOfUndergroundMap;
         Game1 _context;
         Random r;
-
+        TiledMap _surface;
+        TiledTileLayer _collideSurface;
+        int random;
+        bool _IsSecretRoom = false;
+        SpriteFont _font;
+        private readonly TimeSpan IntervalBetweenF1Menu;
+        private TimeSpan LastActiveF1Menu;
+        private bool _stateSecretDoor = false;
         /// <summary>
         /// Initializes a new instance of the <see cref="WorldControlUI"/> class.
         /// </summary>
         public WorldControlUI(Game1 context)
         {
             _listOfUndergroundMap = new List<Underground>();
+            IntervalBetweenF1Menu = TimeSpan.FromMilliseconds(1000);
             r = new Random();
             _context = context;
         }
@@ -35,10 +42,24 @@ namespace Kepler_22_B.Map
         public void LoadContent(ContentManager content)
         {
 
+        public bool GetStateSecretDoor { get { return _stateSecretDoor; } set { _stateSecretDoor = value; } }
+
+
+        /// <summary>
+        /// Gets the surface.
+        /// </summary>
+        /// <value>
+        /// The surface.
+        /// </value>
+        public TiledMap Surface { get { return _surface; } }
 
         }
 
         /// <summary>
+        /// Determines the actual room is a secret room.
+        /// </summary>
+        /// <param name="room">The room.</param>
+        public bool IsSecretRoom { get { return _IsSecretRoom; } set { _IsSecretRoom = value; } }
         /// Creates the new level.
         /// </summary>
         void GoToNextLevel()
@@ -66,14 +87,11 @@ namespace Kepler_22_B.Map
             {
                 _context.GetGameState = Game1.GameState.SURFACE;
                 _context.LoadGameState = true;
-                _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX, _context.WorldAPI.Players[0].PositionY));
+                _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX+250, _context.WorldAPI.Players[0].PositionY));
                 return true;
             }
             return false;
         }
-
-
-
 
         /// <summary>
         /// Switches the room underground.
@@ -116,27 +134,12 @@ namespace Kepler_22_B.Map
 
                 SwitchTheRoomUnderground();
             }
-            
+
+            if(Keyboard.GetState().IsKeyDown(Keys.F1) && LastActiveF1Menu + IntervalBetweenF1Menu < gameTime.TotalGameTime && IsSecretRoom) 
+            {
+                OpenSecretRoom();
+                LastActiveF1Menu = gameTime.TotalGameTime;
+            }
         }
-
-
-
-
-
-        /// <summary>
-        /// Draws the specified sprite batch.
-        /// </summary>
-        /// <param name="spriteBatch">The sprite batch.</param>
-        public void Draw(SpriteBatch spriteBatch)
-        {
-        }
-
-        /// <summary>
-        /// Unloads this instance.
-        /// </summary>
-        public void Unload()
-        {
-        }
-
     }
 }

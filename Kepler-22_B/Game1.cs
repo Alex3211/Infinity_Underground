@@ -148,6 +148,7 @@ namespace Kepler_22_B
         protected override void LoadContent()
         {
             
+
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -201,7 +202,7 @@ namespace Kepler_22_B
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(new Color(39,33,41));
+            GraphicsDevice.Clear(new Color(39, 33, 41));
             spriteBatch.Begin(transformMatrix: _cameraLoader.GetMatrix);
 
 

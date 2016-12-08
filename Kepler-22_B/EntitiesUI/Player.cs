@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework.Content;
+using MonoGame.Extended.Maps.Tiled;
 
 namespace Kepler_22_B.EntitiesUI
 {
