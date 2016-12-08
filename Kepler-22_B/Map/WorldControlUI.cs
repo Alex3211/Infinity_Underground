@@ -4,8 +4,6 @@ using Microsoft.Xna.Framework;
 using MonoGame.Extended.Maps.Tiled;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-using Kepler_22_B.API.Map;
-using Kepler_22_B.Camera;
 using Microsoft.Xna.Framework.Input;
 
 namespace Kepler_22_B.Map
@@ -22,7 +20,6 @@ namespace Kepler_22_B.Map
         int random;
         bool _IsSecretRoom = false;
         SpriteFont _font;
-        string _textDraw;
         private readonly TimeSpan IntervalBetweenF1Menu;
         private TimeSpan LastActiveF1Menu;
         private bool _stateSecretDoor = false;
@@ -194,7 +191,7 @@ namespace Kepler_22_B.Map
                 _context.MapLoad.GetMap = _surface;
                 _context.MapLoad.GetLayerCollide = _collideSurface;
                 _context.MapLoad.IdTileCollide = 645;
-                _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX, _context.WorldAPI.Players[0].PositionY));
+                _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX+250, _context.WorldAPI.Players[0].PositionY));
                 return true;
             }
             return false;

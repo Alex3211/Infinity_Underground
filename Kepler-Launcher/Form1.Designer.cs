@@ -79,17 +79,7 @@
             this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 29;
-            this.listBox1.Items.AddRange(new object[] {
-            "SAVE 1",
-            "SAVE 2",
-            "SAVE 3",
-            "SAVE 4",
-            "SAVE 5",
-            "SAVE 6",
-            "SAVE 7",
-            "SAVE 8",
-            "SAVE 9",
-            "SAVE 10"});
+
             this.listBox1.Location = new System.Drawing.Point(13, 170);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(782, 294);
