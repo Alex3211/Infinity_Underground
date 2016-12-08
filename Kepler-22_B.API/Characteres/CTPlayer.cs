@@ -1,5 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using Kepler_22_B.Characteres;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Kepler_22_B.API.Characteres
 {
@@ -7,18 +8,30 @@ namespace Kepler_22_B.API.Characteres
     {
         bool _isMoving, _canMove;
         int _sprint;
-
+        List<CTAttack> _listOfAttack;
         
         /// <summary>
         /// Initializes a new instance of the <see cref="CTPlayer"/> class.
         /// </summary>
         /// <param name="x">The x position.</param>
         /// <param name="y">The y position.</param>
-        public CTPlayer()
+        public CTPlayer(World context)
         {
+            GetCharacterType.GetArmor = 1.0;
+            GetCharacterType.GetCriticalChance = 2.0;
+            GetCharacterType.GetCriticalDamage = 10;
+            GetCharacterType.GetSpeedAttack = 2.0;
+            GetCharacterType.LifePoint = 1000;
+            GetCharacterType.MoveSpeed = 2;
+            GetCharacterType.GetDamage = 10;
             _isMoving = true;
             _canMove = true;
             _sprint = 10;
+            Context = context;
+
+
+            _listOfAttack = new List<CTAttack>();
+            _listOfAttack.Add(new CTAttack(GetCharacterType));
         }
 
         /// <summary>
@@ -57,7 +70,65 @@ namespace Kepler_22_B.API.Characteres
         /// </value>
         public bool IsMoving { get { return _isMoving; } set { _isMoving = value; } }
 
-     
+        /// <summary>
+        /// Attack Player.
+        /// </summary>
+        /// <param name="direction">The direction.</param>
+        public bool PlayerAttack(Direction direction, ref int timeSinceLastAttack)
+        {
 
+
+            if ((timeSinceLastAttack <= GetCharacterType.GetSpeedAttack * 1000) && !(timeSinceLastAttack == 0))
+            {
+                return false;
+            }
+
+            if (timeSinceLastAttack >= GetCharacterType.GetSpeedAttack * 1000)
+            {
+                timeSinceLastAttack = 0;
+            }
+            timeSinceLastAttack++;
+
+            foreach (CTCharacter NPC in Context.ListOfNPC)
+            {
+                switch (direction)
+                {
+                    case Direction.Up:
+                        if ((NPC.PositionY < PositionY) && (NPC.PositionY > PositionY - GetCharacterType.Range))
+                        {
+                            GetCharacterType.GetAttacks.NormalAttack(this, NPC);
+                        }
+                        break;
+
+                    case Direction.Left:
+                        if ((NPC.PositionX < PositionX) && (NPC.PositionX > PositionX - GetCharacterType.Range))
+                        {
+                            GetCharacterType.GetAttacks.NormalAttack(this, NPC);
+                        }
+                        break;
+
+                    case Direction.Bottom:
+                        if ((NPC.PositionY > PositionY) && (NPC.PositionY < PositionY + GetCharacterType.Range))
+                        {
+                            GetCharacterType.GetAttacks.NormalAttack(this, NPC);
+                        }
+                        break;
+
+                    case Direction.Right:
+                        if ((NPC.PositionX > PositionX) && (NPC.PositionX < PositionX + GetCharacterType.Range))
+                        {
+                            GetCharacterType.GetAttacks.NormalAttack(this, NPC);
+                        }
+                        break;
+
+                }
+
+                if (NPC.GetCharacterType.LifePoint <= 0)
+                {
+                    NPC.IsDead = true;
+                }
+            }
+            return true;       
+        }
     }
 }

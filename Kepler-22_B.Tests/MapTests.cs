@@ -150,7 +150,7 @@ namespace Kepler_22_B.Tests
         {
             RoomInLevel sut = new RoomInLevel(new Level(new World()));
 
-            sut.AddDoor(new Vector2(49, 49), new Vector2(51, 51), DoorDirection.Bottom);
+            sut.AddDoor(new Vector2(0, 0), new Vector2(100, 100), DoorDirection.Bottom);
 
             int lastPos = (int)sut.PosCurrentRoom.Y;
 
@@ -158,50 +158,7 @@ namespace Kepler_22_B.Tests
 
             Assert.That((int)sut.PosCurrentRoom.Y, Is.EqualTo(lastPos+1));
         }
-
-
-        /*/// <summary>
-        /// Counts the door who not send to the negative Vector room.
-        /// </summary>
-        [Test]
-        public void CountTheDoorWhoWasCreateWithoutVectorRoomNegatif()
-        {
-            int countDoorEstmating = 2;
-
-            RoomInLevel sut = new RoomInLevel(new Level(new World()));
-
-            sut.ChangeRoom();
-            sut.Context.GetCurrentlevel = 5;
-            sut.CreateRoomOut();
-
-            Door currentDoor = sut.FirstDoor;
-            int countDoor = 0;
-
-            while (currentDoor != null)
-            {
-                countDoor++;
-                currentDoor = currentDoor.NextDoor;
-            }
-
-            Assert.That(countDoor, Is.EqualTo(countDoorEstmating));
-        }*/
-
-
-        /*/// <summary>
-        /// Incrementes the level.
-        /// </summary>
-        [Test]
-        public void IncrementeTheLevel()
-        {
-            RoomInLevel sut = new RoomInLevel(new Level(new World()));
-
-            int currentLevel = sut.Context.GetCurrentlevel;
-
-            sut.RoomForNextLevel();
-
-            Assert.That(sut.Context.GetCurrentlevel, Is.EqualTo(currentLevel+1));
-
-        }*/
+    
 
         /// <summary>
         /// Tests the convertion pixe in tiles for the position x of the player.
@@ -222,22 +179,6 @@ namespace Kepler_22_B.Tests
             Assert.That(sut.Player1PositionYInTile, Is.EqualTo(posY));
 
         }
-
-
-        /*/// <summary>
-        /// Tests if the player can go under ground.
-        /// </summary>
-        [Test]
-        public void TestIfThePlayerCanGoUnderGround()
-        {
-            World sut = new World();
-
-            sut.Players[0] = new CTPlayer(288, 576);
-
-            Assert.That(sut.AccessUnderground(), Is.True);
-        }*/
-
-
 
     }
 }

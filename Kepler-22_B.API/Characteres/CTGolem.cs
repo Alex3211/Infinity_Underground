@@ -8,5 +8,9 @@ namespace Kepler_22_B.API.Characteres
 {
     class CTGolem : CTNPC
     {
+        public CTGolem(int x, int y)
+            :base(x,y)
+        {
+        }
     }
 }

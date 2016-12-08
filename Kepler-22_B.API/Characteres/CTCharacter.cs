@@ -12,8 +12,9 @@ namespace Kepler_22_B.API.Characteres
         string _name;
         Vector2 _position;
         CTCharacterType _characterType;
-        int _lifePoint, _damage, _armor, _criticalDamage;
-        double _criticalChance, _attackSpeed;
+        double _spawnChance;
+        World _context;
+        bool _isDead;
         
 
         public CTCharacter(int x = 50, int y = 50)
@@ -23,51 +24,17 @@ namespace Kepler_22_B.API.Characteres
             _nameGenerator = new PersonNameGenerator();
             _name = _nameGenerator.GenerateRandomFirstName();
             _characterType = new CTCharacterType(this);
+            _isDead = false;
         }
 
 
         /// <summary>
-        /// Gets the get damage.
+        /// Gets or sets the context.
         /// </summary>
         /// <value>
-        /// The get damage.
+        /// The context.
         /// </value>
-        public int GetDamage { get { return _damage; } }
-
-        /// <summary>
-        /// Gets the critical damage.
-        /// </summary>
-        /// <value>
-        /// The get critical damage.
-        /// </value>
-        public double GetCriticalDamage { get { return _criticalDamage; } }
-
-
-        /// <summary>
-        /// Gets the speed attack.
-        /// </summary>
-        /// <value>
-        /// The get speed attack.
-        /// </value>
-        public double GetSpeedAttack { get { return _attackSpeed; } }
-
-        /// <summary>
-        /// Gets the get armor.
-        /// </summary>
-        /// <value>
-        /// The get armor.
-        /// </value>
-        public int GetArmor { get { return _armor; } }
-
-        /// <summary>
-        /// Gets the get critical punch.
-        /// </summary>
-        /// <value>
-        /// The get critical punch.
-        /// </value>
-        public double GetCriticalChance { get { return _criticalChance; } }
-
-
+        public World Context { get { return _context; } set { _context = value; } }
 
         /// <summary>
         /// Gets the type of the get character.
@@ -103,13 +70,12 @@ namespace Kepler_22_B.API.Characteres
         public string Name { get { return _name; } }
 
         /// <summary>
-        /// Gets the life point.
+        /// Gets or sets a value indicating whether this instance is dead.
         /// </summary>
         /// <value>
-        /// The life point.
+        ///   <c>true</c> if this instance is dead; otherwise, <c>false</c>.
         /// </value>
-        public int LifePoint { get { return _lifePoint; } set { _lifePoint = value; } }
-
+        public bool IsDead { get { return _isDead; } set { _isDead = value; } }
 
         /// <summary>
         /// Deplacements the specified direction.
