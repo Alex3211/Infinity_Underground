@@ -14,15 +14,13 @@ namespace InfinityUnderground.EntitiesUI
         int _direction, _widthBar;
         LifePointMonster _healthBar;
 
-        public Bat(int spriteSheetRows, int spriteSheetColumns, Game1 context)
+        public Bat(int spriteSheetRows, int spriteSheetColumns, Game1 context, CTBat bat)
         {
             Context = context;
 
             _widthBar = 50;
-            
 
-            _bat = (CTBat)Context.WorldAPI.ListOfPlayer[0];
-
+            _bat = bat;
             
             SpriteSheetColumns = spriteSheetColumns;
             SpriteSheetRows = spriteSheetRows;
@@ -133,35 +131,8 @@ namespace InfinityUnderground.EntitiesUI
         }
 
         /// <summary>
-        /// Chooses the direction.
+        /// Sets the health bar.
         /// </summary>
-        /// <returns></returns>
-        int ChooseDirection()
-        {
-            switch(_bat.MoveDirectionToThePlayer())
-            {
-                case 0:
-                    return 2;
-                    
-
-                case 1:
-                    return 3;
-
-
-                case 2:
-                    return 0;
-
-
-                case 3:
-                    return 1;
-
-
-
-            }
-
-            return _direction;
-        }
-
         public void SetHealthBar()
         {
             _widthBar = (_widthBar * _bat.GetCharacterType.LifePoint / 100);

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InfinityUnderground.EntitiesUI
 {
-    class Spritesheet
+    public class Spritesheet
     {
         Texture2D _spriteSheet;
 

@@ -19,3 +19,4 @@ C:\Dev\Projet\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\MonoGame.Framework
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\nunit.framework.xml
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground.Tests\obj\Debug\Kepler-22_B.Tests.dll
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground.Tests\obj\Debug\Kepler-22_B.Tests.pdb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground.Tests\obj\Debug\InfinityUnderground.Tests.csprojResolveAssemblyReference.cache

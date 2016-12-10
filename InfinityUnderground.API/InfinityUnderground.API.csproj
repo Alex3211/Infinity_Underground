@@ -58,6 +58,7 @@
     <Compile Include="Characteres\CTCharacter.cs" />
     <Compile Include="Characteres\CTForeman.cs" />
     <Compile Include="Characteres\CTGolem.cs" />
+    <Compile Include="Characteres\CTIDMonster.cs" />
     <Compile Include="Characteres\CTMinor.cs" />
     <Compile Include="Characteres\CTNPC.cs" />
     <Compile Include="Characteres\CTPlayer.cs" />

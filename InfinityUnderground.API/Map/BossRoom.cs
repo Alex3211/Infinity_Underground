@@ -15,7 +15,7 @@ namespace InfinityUnderground.API.Map
         public BossRoom()
         {
             Path = 0;
-            NbOfNPC = 0;
+            NbOfNPC = 1;
             NameOfMap = "BossRoom";
         }
 

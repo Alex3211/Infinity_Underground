@@ -10,6 +10,7 @@ namespace InfinityUnderground.API.Characteres
     public class CTNPC : CTCharacter
     {
         bool _isBoss;
+        CTIDMonster _idMonster;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CTNPC"/> class.
@@ -29,8 +30,15 @@ namespace InfinityUnderground.API.Characteres
         /// <value>
         ///   <c>true</c> if this instance is boss; otherwise, <c>false</c>.
         /// </value>
-        public bool IsBoss { get { return _isBoss; } set { _isBoss = value; } } 
+        public bool IsBoss { get { return _isBoss; } set { _isBoss = value; } }
 
+        /// <summary>
+        /// Gets the identifier monster.
+        /// </summary>
+        /// <value>
+        /// The identifier monster.
+        /// </value>
+        public CTIDMonster IdMonster { get { return _idMonster; } set { _idMonster = value; } }
 
         public int MoveDirectionToThePlayer()
         {

@@ -55,17 +55,5 @@ namespace InfinityUnderground.Tests
             Assert.That(sut.Players[0].GetCharacterType.GetAttacks.ReduceDamageWithArmor(damage, pourcentToReduce), Is.EqualTo(result));
         }
 
-
-        [Test]
-        public void TestIfTheNormalAttackWork()
-        {
-            World sut = new World();
-
-            int _initialLifePoint = sut.ListOfPlayer[0].GetCharacterType.LifePoint;
-
-            sut.Players[0].GetCharacterType.GetAttacks.NormalAttack(sut.Players[0], sut.ListOfPlayer[0]);
-
-            Assert.That(sut.ListOfPlayer[0].GetCharacterType.LifePoint, Is.EqualTo(_initialLifePoint - sut.Players[0].GetCharacterType.GetDamage));
-        }
     }
 }

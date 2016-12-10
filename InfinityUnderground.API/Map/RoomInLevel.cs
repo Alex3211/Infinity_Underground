@@ -41,6 +41,14 @@ namespace InfinityUnderground.API.Map
         }
 
         /// <summary>
+        /// Gets the list of NPC.
+        /// </summary>
+        /// <value>
+        /// The list of NPC.
+        /// </value>
+        public List<CTNPC> ListOfNPC { get { return _ctNpc; } }
+
+        /// <summary>
         /// Gets or sets a value indicating whether this instance is begin room.
         /// </summary>
         /// <value>
@@ -364,14 +372,6 @@ namespace InfinityUnderground.API.Map
             AddDoorInRoom();
         }
 
-
-
-
-
-
-
-
-
         /// <summary>
         /// Changes the player position with the switch room.
         /// </summary>
@@ -419,8 +419,6 @@ namespace InfinityUnderground.API.Map
             return DoorDirection.Center;
 
         }
-        
-
 
         /// <summary>
         /// Ifs the player are final room.
@@ -429,6 +427,18 @@ namespace InfinityUnderground.API.Map
         {
             if (_posCurrentRoom == _roomOut) _isFinalRoom = true;
         }
+
+        /// <summary>
+        /// Creates the monster.
+        /// </summary>
+        public void CreateMonster()
+        {
+            for (int i = 0; i < _typeOfRoom.NbOfNPC; i++)
+            {
+                _ctNpc.Add(new CTBat(_context.World));
+            }
+        }
+
 
     }
 }

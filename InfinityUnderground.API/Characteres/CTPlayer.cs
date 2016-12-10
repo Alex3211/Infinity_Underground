@@ -20,7 +20,7 @@ namespace InfinityUnderground.API.Characteres
             GetCharacterType.GetArmor = 1.0;
             GetCharacterType.GetCriticalChance = 2.0;
             GetCharacterType.GetCriticalDamage = 10;
-            GetCharacterType.GetSpeedAttack = 2.0;
+            GetCharacterType.GetSpeedAttack = 0.4;
             GetCharacterType.LifePoint = 1000;
             GetCharacterType.MoveSpeed = 2;
             GetCharacterType.GetDamage = 10;
@@ -89,7 +89,7 @@ namespace InfinityUnderground.API.Characteres
             }
             timeSinceLastAttack++;
 
-            foreach (CTCharacter NPC in Context.ListOfPlayer)
+            foreach (CTCharacter NPC in Context.Level.GetRooms.ListOfNPC)
             {
                 switch (direction)
                 {
@@ -97,6 +97,8 @@ namespace InfinityUnderground.API.Characteres
                         if ((NPC.PositionY < PositionY) && (NPC.PositionY > PositionY - GetCharacterType.Range))
                         {
                             GetCharacterType.GetAttacks.NormalAttack(this, NPC);
+                            NPCIsDead(NPC);
+                            return true;
                         }
                         break;
 
@@ -104,13 +106,18 @@ namespace InfinityUnderground.API.Characteres
                         if ((NPC.PositionX < PositionX) && (NPC.PositionX > PositionX - GetCharacterType.Range))
                         {
                             GetCharacterType.GetAttacks.NormalAttack(this, NPC);
+                            NPCIsDead(NPC);
+                            return true;
                         }
                         break;
+                        
 
                     case Direction.Bottom:
                         if ((NPC.PositionY > PositionY) && (NPC.PositionY < PositionY + GetCharacterType.Range))
                         {
                             GetCharacterType.GetAttacks.NormalAttack(this, NPC);
+                            NPCIsDead(NPC);
+                            return true;
                         }
                         break;
 
@@ -118,17 +125,28 @@ namespace InfinityUnderground.API.Characteres
                         if ((NPC.PositionX > PositionX) && (NPC.PositionX < PositionX + GetCharacterType.Range))
                         {
                             GetCharacterType.GetAttacks.NormalAttack(this, NPC);
+                            NPCIsDead(NPC);
+                            return true;
                         }
                         break;
+                        
 
                 }
 
-                if (NPC.GetCharacterType.LifePoint <= 0)
-                {
-                    NPC.IsDead = true;
-                }
             }
-            return true;       
+            return false;       
+        }
+
+        /// <summary>
+        /// NPCs the is dead.
+        /// </summary>
+        /// <param name="NPC">The NPC.</param>
+        public void NPCIsDead(CTCharacter NPC)
+        {
+            if (NPC.GetCharacterType.LifePoint <= 0)
+            {
+                NPC.IsDead = true;
+            }
         }
     }
 }

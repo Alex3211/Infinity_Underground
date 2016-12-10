@@ -13,7 +13,6 @@ namespace InfinityUnderground.API.Map
         /// </summary>
         public SecretRoom()
         {
-            NbOfNPC = 0;
             Path = 2;
             NameOfMap = "SecretRoom";
         }

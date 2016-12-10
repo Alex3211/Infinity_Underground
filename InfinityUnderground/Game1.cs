@@ -30,7 +30,7 @@ namespace InfinityUnderground
         const int WindowWidth = 960;
         const int WindowHeight = 540;
 
-
+        //CreateMonster _monster;
         World _world;
         Player _player;
         Debug _debug;
@@ -39,6 +39,7 @@ namespace InfinityUnderground
         List<IEntity> _entities;
         GameState _gameState;
         bool _loadGameState;
+        List<Spritesheet> _listOfMob;
 
 
         /// <summary>
@@ -234,13 +235,13 @@ namespace InfinityUnderground
                     case GameState.UNDERGROUND:
                         Entities.Add(new Underground(this));
                         Entities.Add(new MapLoader(this));
+                        Entities.Add(new CreateMonster(this));
                         Entities.Add(new WorldControlUI(this));
                         break;
 
                     case GameState.SURFACE:
                         Entities.Add(new Surface(this));
                         Entities.Add(new MapLoader(this));
-                        Entities.Add(new Bat(4, 4, this));
                         Entities.Add(new WorldControlUI(this));
                         break;
 

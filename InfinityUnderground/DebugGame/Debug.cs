@@ -11,7 +11,7 @@ namespace InfinityUnderground.DebugGame
 {
     class Debug : IEntity
     {
-        private InfinityUnderground.Game1 _context;
+        private Game1 _context;
         private readonly TimeSpan IntervalBetweenF10Menu;
         private readonly TimeSpan IntervalBetweenF11Menu;
         private TimeSpan LastActiveF10Menu;
@@ -96,8 +96,12 @@ namespace InfinityUnderground.DebugGame
                 spriteBatch.DrawString(font, $" Room Vector Position: X: {_context.WorldAPI.Level.GetRooms.PosCurrentRoom.X} Y: {_context.WorldAPI.Level.GetRooms.PosCurrentRoom.Y}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 60), Color.White);
                 spriteBatch.DrawString(font, $" Final Room Vector Position: X: {_context.WorldAPI.Level.GetRooms.RoomOut.X} Y: {_context.WorldAPI.Level.GetRooms.RoomOut.Y}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 80), Color.White);
                 spriteBatch.DrawString(font, $" Level : {_context.WorldAPI.Level.GetCurrentlevel}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 100), Color.White);
-                spriteBatch.DrawString(font, $" Bat LifePoint : {_context.WorldAPI.ListOfPlayer[0].GetCharacterType.LifePoint}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 120), Color.White);
-           }
+                if (_context.GetGameState == Game1.GameState.UNDERGROUND)
+                {
+                    spriteBatch.DrawString(font, $" NB of Monster : {_context.WorldAPI.Level.GetRooms.TypeOfRoom.NbOfNPC}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 120), Color.White);
+                    spriteBatch.DrawString(font, $" bAT POS : X: {_context.WorldAPI.Level.GetRooms.ListOfNPC[0].PositionX} Y: {_context.WorldAPI.Level.GetRooms.ListOfNPC[0].PositionY}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 140), Color.White);
+                }
+            }
         }
 
         /// <summary>

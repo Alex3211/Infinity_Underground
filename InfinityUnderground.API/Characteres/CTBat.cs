@@ -22,8 +22,7 @@ namespace InfinityUnderground.API.Characteres
             GetCharacterType.MoveSpeed = 5;
             GetCharacterType.GetDamage = 10;
             IsBoss = false;
-
-            //GetCharacterType.GetAttacks;
+            IdMonster = CTIDMonster.Bat;
         }
 
         /// <summary>
@@ -53,7 +52,7 @@ namespace InfinityUnderground.API.Characteres
             }
             timeSinceLastAttack++;
 
-            foreach (CTCharacter player in Context.ListOfPlayer)
+            foreach (CTCharacter player in Context.Players)
             {
                 switch (direction)
                 {

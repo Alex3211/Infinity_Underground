@@ -13,7 +13,6 @@ namespace InfinityUnderground.API
     {
 
         List<CTPlayer> _listOfPlayer;
-        List<CTNPC> _listOfNPC;
         Level _level;
         int _tildeWidth;
         bool _isSurface;
@@ -26,21 +25,10 @@ namespace InfinityUnderground.API
             _isSurface = true;
             _tildeWidth = 32;
             _level = new Level(this);
-            _listOfNPC = new List<CTNPC>();
             _listOfPlayer = new List<CTPlayer>();
             _listOfPlayer.Add(new CTPlayer(this));
-            _listOfNPC.Add(new CTBat(200, 200, this));
             _level.GetRooms.AddDoorInRoom();
         }
-
-
-        /// <summary>
-        /// Gets the list of pc.
-        /// </summary>
-        /// <value>
-        /// The list of pc.
-        /// </value>
-        public List<CTNPC> ListOfPlayer { get { return _listOfNPC; } }
 
 
         /// <summary>

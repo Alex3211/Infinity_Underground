@@ -1,10 +1,13 @@
 ﻿using InfinityUnderground;
+using InfinityUnderground.API.Characteres;
+using InfinityUnderground.EntitiesUI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.Maps.Tiled;
+using System.Collections.Generic;
 
 namespace InfinityUnderground.Map
 {
@@ -73,7 +76,6 @@ namespace InfinityUnderground.Map
         /// </value>
         public TiledTileLayer GetLayerDoorCollide { get { return _getLayerDoorCollide; } set { _getLayerDoorCollide = value; } }
 
-
         /// <summary>
         /// Gets the map.
         /// </summary>
@@ -81,8 +83,6 @@ namespace InfinityUnderground.Map
         /// The get map.
         /// </value>
         public TiledMap GetMap { get { return _getMap; } set { _getMap = value; } }
-
-
 
         /// <summary>
         /// Draws the specified sprite batch.
@@ -124,6 +124,7 @@ namespace InfinityUnderground.Map
             _getLayerCollide.Dispose();
             _getLayerDoorCollide.Dispose();
         }
+
 
     }
 }
