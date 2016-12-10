@@ -1,0 +1,9 @@
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground-Launcher\bin\Debug\Kepler-Launcher.exe.config
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground-Launcher\bin\Debug\Kepler-Launcher.exe
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground-Launcher\bin\Debug\Kepler-Launcher.pdb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground-Launcher\obj\Debug\InfinityUnderground-Launcher.csprojResolveAssemblyReference.cache
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground-Launcher\obj\Debug\Kepler_Launcher.Form1.resources
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground-Launcher\obj\Debug\Kepler_Launcher.Properties.Resources.resources
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground-Launcher\obj\Debug\InfinityUnderground-Launcher.csproj.GenerateResource.Cache
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground-Launcher\obj\Debug\Kepler-Launcher.exe
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground-Launcher\obj\Debug\Kepler-Launcher.pdb

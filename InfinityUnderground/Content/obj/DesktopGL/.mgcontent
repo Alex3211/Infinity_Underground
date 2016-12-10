@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/AccessRoom/1.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/AccessRoom/2.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/BossRoom/1.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/BossRoom/2.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/BossRoom/3.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/BossRoom/4.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/LabyrintheRoom/1.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/LabyrintheRoom/2.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/LabyrintheRoom/3.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/LabyrintheRoom/4.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/Monster/Bat.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/MonsterRoom/1.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/MonsterRoom/2.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/MonsterRoom/3.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/MonsterRoom/4.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/Player/Player.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/Ressources/Artis_dock.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/Ressources/base_out_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/Ressources/build_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/Ressources/caves.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/Ressources/forest_tiles.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/Ressources/obj_misk_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/Ressources/terrain_atlas.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/Ressources/tileset_stone_v4_p1.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/SecretRoom/1.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/SecretRoom/2.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/SecretRoom/3.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/SecretRoom/4.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/Surface/Map.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/TrapRoom/1.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/TrapRoom/2.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/TrapRoom/3.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/TrapRoom/4.tmx</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/debug.spritefont</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/debugSpriteFont.spritefont</File>
+  </SourceFiles>
+</SourceFileCollection>

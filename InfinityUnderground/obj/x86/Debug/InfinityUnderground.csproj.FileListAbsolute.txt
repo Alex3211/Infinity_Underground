@@ -1,0 +1,96 @@
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\obj\x86\Debug\InfinityUnderground.csprojResolveAssemblyReference.cache
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\debug.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\debugSpriteFont.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\AccessRoom\1.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\AccessRoom\2.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\BossRoom\1.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\BossRoom\2.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\BossRoom\3.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\BossRoom\4.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\LabyrintheRoom\1.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\LabyrintheRoom\2.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\LabyrintheRoom\3.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\LabyrintheRoom\4.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Monster\Bat.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\MonsterRoom\1.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\MonsterRoom\2.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\MonsterRoom\3.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\MonsterRoom\4.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Player\Player.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Ressources\Artis_dock.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Ressources\base_out_atlas.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Ressources\build_atlas.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Ressources\caves.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Ressources\forest_tiles.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Ressources\obj_misk_atlas.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Ressources\terrain_atlas.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Ressources\tileset_stone_v4_p1.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\SecretRoom\1.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\SecretRoom\2.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\SecretRoom\3.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\SecretRoom\4.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Surface\Map.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\TrapRoom\1.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\TrapRoom\2.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\TrapRoom\3.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\TrapRoom\4.xnb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\OpenTK.dll.config
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\InfinityUnderground.exe
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\InfinityUnderground.pdb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Kepler-22_B.API.exe
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\MonoGame.Extended.dll
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\MonoGame.Framework.dll
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\NVorbis.dll
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\OpenTK.dll
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\RandomNameGeneratorLibrary.dll
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Kepler-22_B.API.pdb
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\obj\x86\Debug\InfinityUnderground.exe
+C:\Dev\Projet\Test Kepler-22_B\InfinityUnderground\obj\x86\Debug\InfinityUnderground.pdb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\obj\x86\Debug\InfinityUnderground.exe
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\obj\x86\Debug\InfinityUnderground.pdb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\debug.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\debugSpriteFont.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\AccessRoom\1.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\AccessRoom\2.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\BossRoom\1.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\BossRoom\2.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\BossRoom\3.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\BossRoom\4.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\LabyrintheRoom\1.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\LabyrintheRoom\2.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\LabyrintheRoom\3.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\LabyrintheRoom\4.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Monster\Bat.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\MonsterRoom\1.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\MonsterRoom\2.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\MonsterRoom\3.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\MonsterRoom\4.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Player\Player.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Ressources\Artis_dock.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Ressources\base_out_atlas.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Ressources\build_atlas.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Ressources\caves.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Ressources\forest_tiles.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Ressources\obj_misk_atlas.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Ressources\terrain_atlas.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Ressources\tileset_stone_v4_p1.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\SecretRoom\1.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\SecretRoom\2.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\SecretRoom\3.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\SecretRoom\4.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Surface\Map.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\TrapRoom\1.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\TrapRoom\2.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\TrapRoom\3.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\TrapRoom\4.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\OpenTK.dll.config
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\InfinityUnderground.exe
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\InfinityUnderground.pdb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\MonoGame.Extended.dll
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\MonoGame.Framework.dll
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\NVorbis.dll
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\OpenTK.dll
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\obj\x86\Debug\InfinityUnderground.csprojResolveAssemblyReference.cache
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Kepler-22_B.API.exe
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\RandomNameGeneratorLibrary.dll
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Kepler-22_B.API.pdb
