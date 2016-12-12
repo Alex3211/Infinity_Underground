@@ -72,7 +72,6 @@ namespace InfinityUnderground.Map
         {
             if (_context.WorldAPI.Level.GetRooms.SwitchLevel())
             {
-                _context.MapLoad.GetMap.Dispose();
                 _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX, _context.WorldAPI.Players[0].PositionY));
                 if (!_context.WorldAPI.IsSurface)
                 {

@@ -122,7 +122,9 @@ namespace InfinityUnderground.Map
         {
             _getMap.Dispose();
             _getLayerCollide.Dispose();
-            _getLayerDoorCollide.Dispose();
+            if (_getLayerDoorCollide != null) _getLayerDoorCollide.Dispose();
+            if (_firstLayer != null) _firstLayer.Dispose();
+            if (_secondLayer != null) _secondLayer.Dispose();
         }
 
 

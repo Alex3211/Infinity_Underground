@@ -42,7 +42,10 @@ namespace InfinityUnderground.EntitiesUI
         /// <param name="content"></param>
         public void Unload(ContentManager content)
         {
-
+            foreach(Spritesheet monster in _listOfMob)
+            {
+                monster.SpriteSheet.Dispose();
+            }
         }
 
         /// <summary>

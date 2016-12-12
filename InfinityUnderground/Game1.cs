@@ -20,8 +20,7 @@ namespace InfinityUnderground
         public enum GameState
         {
             SURFACE,
-            UNDERGROUND,
-            CHANGEROOM
+            UNDERGROUND
         }
 
         GraphicsDeviceManager graphics;
@@ -167,6 +166,11 @@ namespace InfinityUnderground
         /// </summary>
         protected override void UnloadContent()
         {
+
+            foreach (var entity in _entities)
+            {
+                entity.Unload(Content);
+            }
             // TODO: Unload any non ContentManager content here
             //Dispose();
         }
@@ -228,7 +232,7 @@ namespace InfinityUnderground
         {
             if (_loadGameState)
             {
-
+                UnloadContent();
                 Entities.Clear();
                 switch (_gameState)
                 {
@@ -248,8 +252,6 @@ namespace InfinityUnderground
 
                 }
                 LoadContent();
-                UnloadContent();
-                GC.Collect();
                 _loadGameState = false;
             }
         }

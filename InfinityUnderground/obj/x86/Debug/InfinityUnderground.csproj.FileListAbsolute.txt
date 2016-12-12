@@ -94,3 +94,5 @@ C:\Dev\Projet\Kepler-22_B\InfinityUnderground\obj\x86\Debug\InfinityUnderground.
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Kepler-22_B.API.exe
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\RandomNameGeneratorLibrary.dll
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Kepler-22_B.API.pdb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Monster\Spider.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Monster\Dragon.xnb
