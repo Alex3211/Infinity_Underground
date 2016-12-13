@@ -198,8 +198,6 @@ namespace InfinityUnderground
             }
 
             _debug.Update(gameTime);
-
-            base.Update(gameTime);
         }
 
         /// <summary>
@@ -220,7 +218,6 @@ namespace InfinityUnderground
             _debug.Draw(spriteBatch);
 
             spriteBatch.End();
-            base.Draw(gameTime);
         }
 
 

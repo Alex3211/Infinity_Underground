@@ -23,6 +23,7 @@ namespace InfinityUnderground.UserInterface
         /// <param name="graphicsDevice">The graphics device.</param>
         public LifePointMonster(int width, int height)
         {
+            _colorBar = Color.AliceBlue;
             _width = width;
             _height = height;
             data = new Color[_width * _height];
@@ -46,10 +47,10 @@ namespace InfinityUnderground.UserInterface
             {
                 _colorBar = Color.Orange;
             }
-            /*else if (lifepoint <= (_maxLifepoint / 1.5))
+            else if (lifepoint <= (_maxLifepoint / 1.5))
             {
                 _colorBar = Color.GreenYellow;
-            }*/
+            }
             else
             {
                 _colorBar = Color.Green;
@@ -80,6 +81,7 @@ namespace InfinityUnderground.UserInterface
         /// </summary>
         void CreateLifeBar(GraphicsDevice graphicsDevice)
         {
+            if (_healthBar != null) _healthBar.Dispose();
             _healthBar = new Texture2D(graphicsDevice, _width, _height);
         }
 
