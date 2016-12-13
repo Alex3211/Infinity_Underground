@@ -1,30 +1,8 @@
-C:\Dev\Projet\Test Kepler-22_B\Kepler-22_B.API\bin\Debug\Kepler-22_B.API.exe.config
-C:\Dev\Projet\Test Kepler-22_B\Kepler-22_B.API\bin\Debug\Kepler-22_B.API.exe
-C:\Dev\Projet\Test Kepler-22_B\Kepler-22_B.API\bin\Debug\Kepler-22_B.API.pdb
-C:\Dev\Projet\Test Kepler-22_B\Kepler-22_B.API\bin\Debug\MonoGame.Framework.dll
-C:\Dev\Projet\Test Kepler-22_B\Kepler-22_B.API\bin\Debug\SharpDX.XAudio2.dll
-C:\Dev\Projet\Test Kepler-22_B\Kepler-22_B.API\bin\Debug\SharpDX.dll
-C:\Dev\Projet\Test Kepler-22_B\Kepler-22_B.API\bin\Debug\SharpDX.DXGI.dll
-C:\Dev\Projet\Test Kepler-22_B\Kepler-22_B.API\bin\Debug\SharpDX.Direct3D11.dll
-C:\Dev\Projet\Test Kepler-22_B\Kepler-22_B.API\bin\Debug\SharpDX.Direct2D1.dll
-C:\Dev\Projet\Test Kepler-22_B\Kepler-22_B.API\bin\Debug\SharpDX.XInput.dll
-C:\Dev\Projet\Test Kepler-22_B\Kepler-22_B.API\bin\Debug\SharpDX.MediaFoundation.dll
-C:\Dev\Projet\Test Kepler-22_B\Kepler-22_B.API\bin\Debug\MonoGame.Framework.xml
-C:\Dev\Projet\Test Kepler-22_B\Kepler-22_B.API\bin\Debug\SharpDX.XAudio2.xml
-C:\Dev\Projet\Test Kepler-22_B\Kepler-22_B.API\bin\Debug\SharpDX.xml
-C:\Dev\Projet\Test Kepler-22_B\Kepler-22_B.API\bin\Debug\SharpDX.DXGI.xml
-C:\Dev\Projet\Test Kepler-22_B\Kepler-22_B.API\bin\Debug\SharpDX.Direct3D11.xml
-C:\Dev\Projet\Test Kepler-22_B\Kepler-22_B.API\bin\Debug\SharpDX.Direct2D1.xml
-C:\Dev\Projet\Test Kepler-22_B\Kepler-22_B.API\bin\Debug\SharpDX.XInput.xml
-C:\Dev\Projet\Test Kepler-22_B\Kepler-22_B.API\bin\Debug\SharpDX.MediaFoundation.xml
-C:\Dev\Projet\Test Kepler-22_B\Kepler-22_B.API\obj\Debug\InfinityUnderground.API.csprojResolveAssemblyReference.cache
-C:\Dev\Projet\Test Kepler-22_B\Kepler-22_B.API\obj\Debug\InfinityUnderground.API.csproj.Kepler-22_B.API.exe.config
-C:\Dev\Projet\Test Kepler-22_B\Kepler-22_B.API\obj\Debug\Kepler-22_B.API.exe
-C:\Dev\Projet\Test Kepler-22_B\Kepler-22_B.API\obj\Debug\Kepler-22_B.API.pdb
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground.API\bin\Debug\Kepler-22_B.API.exe.config
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground.API\bin\Debug\Kepler-22_B.API.exe
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground.API\bin\Debug\Kepler-22_B.API.pdb
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground.API\bin\Debug\MonoGame.Framework.dll
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground.API\bin\Debug\RandomNameGeneratorLibrary.dll
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground.API\bin\Debug\SharpDX.XAudio2.dll
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground.API\bin\Debug\SharpDX.dll
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground.API\bin\Debug\SharpDX.DXGI.dll

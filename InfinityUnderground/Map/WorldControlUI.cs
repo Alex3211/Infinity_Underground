@@ -148,9 +148,9 @@ namespace InfinityUnderground.Map
         }
 
         /// <summary>
-        /// Draws the specified sprite batch.
+        /// Draws the specified sprite dragonch.
         /// </summary>
-        /// <param name="spriteBatch">The sprite batch.</param>
+        /// <param name="spriteBatch">The sprite dragonch.</param>
         /// <exception cref="NotImplementedException"></exception>
         public void Draw(SpriteBatch spriteBatch)
         {

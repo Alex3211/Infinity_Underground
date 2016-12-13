@@ -148,7 +148,7 @@ namespace InfinityUnderground
         {
 
 
-            // Create a new SpriteBatch, which can be used to draw textures.
+            // Create a new spriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
 

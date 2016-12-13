@@ -8,7 +8,7 @@ namespace InfinityUnderground.API.Characteres
 {
     public enum CTIDMonster
     {
-        Bat,
+        Dragon,
         Foreman,
         Golem,
         Minor,
