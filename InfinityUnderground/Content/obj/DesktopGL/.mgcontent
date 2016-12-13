@@ -39,5 +39,7 @@
     <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/TrapRoom/4.tmx</File>
     <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/debug.spritefont</File>
     <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/debugSpriteFont.spritefont</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/Monster/Spider.png</File>
+    <File>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/Monster/Dragon.png</File>
   </SourceFiles>
 </SourceFileCollection>

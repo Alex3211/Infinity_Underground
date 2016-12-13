@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InfinityUnderground.API.Characteres
 {
-    class CTSpiderMutant
+    public class CTSpiderMutant
     {
     }
 }

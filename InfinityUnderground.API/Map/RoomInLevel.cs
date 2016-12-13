@@ -433,6 +433,7 @@ namespace InfinityUnderground.API.Map
         /// </summary>
         public void CreateMonster()
         {
+            _ctNpc.Clear();
             for (int i = 0; i < _typeOfRoom.NbOfNPC; i++)
             {
                 _ctNpc.Add(new CTBat(_context.World));

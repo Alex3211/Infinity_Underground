@@ -40,6 +40,10 @@ namespace InfinityUnderground.API.Characteres
         /// </value>
         public CTIDMonster IdMonster { get { return _idMonster; } set { _idMonster = value; } }
 
+        /// <summary>
+        /// Moves the direction to the player.
+        /// </summary>
+        /// <returns></returns>
         public int MoveDirectionToThePlayer()
         {
             if (Context.Players[0].PositionY < PositionY - 30)

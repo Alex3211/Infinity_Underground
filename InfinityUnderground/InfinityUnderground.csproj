@@ -45,7 +45,9 @@
     <Compile Include="EntitiesUI\CreateMonster.cs" />
     <Compile Include="EntitiesUI\IDActionBat.cs" />
     <Compile Include="EntitiesUI\IDActionPlayer.cs" />
+    <Compile Include="EntitiesUI\IDActionSpider.cs" />
     <Compile Include="EntitiesUI\Player.cs" />
+    <Compile Include="EntitiesUI\Spider.cs" />
     <Compile Include="EntitiesUI\Spritesheet.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="IEntity.cs" />

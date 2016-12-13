@@ -15,6 +15,8 @@ namespace InfinityUnderground.EntitiesUI
 
         List<Spritesheet> _listOfMob;
         Game1 _context;
+        Random _random;
+        int _x, _y;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateMonster"/> class.
@@ -22,6 +24,7 @@ namespace InfinityUnderground.EntitiesUI
         /// <param name="context">The context.</param>
         public CreateMonster(Game1 context)
         {
+            _random = new Random();
             _listOfMob = new List<Spritesheet>();
             _context = context;
         }
@@ -42,7 +45,6 @@ namespace InfinityUnderground.EntitiesUI
         /// <param name="content"></param>
         public void Unload(ContentManager content)
         {
-
         }
 
         /// <summary>
@@ -91,6 +93,8 @@ namespace InfinityUnderground.EntitiesUI
                 monster.LoadContent(content);
             }
 
+            SetPositionRandom();
+
         }
 
         /// <summary>
@@ -117,8 +121,26 @@ namespace InfinityUnderground.EntitiesUI
             }
         }
 
+        /// <summary>
+        /// Set th spawn position at random.
+        /// </summary>
+        void SetPositionRandom()
+        {
+            foreach (CTNPC monster in _context.WorldAPI.Level.GetRooms.ListOfNPC)
+            {
+                do
+                {
 
+                    _x = _random.Next(_context.MapLoad.GetMap.WidthInPixels);
+                    _y = _random.Next(_context.MapLoad.GetMap.HeightInPixels);
 
+                } while (_context.MapLoad.GetLayerCollide.GetTile(_x / _context.MapLoad.GetMap.TileWidth, _y / _context.MapLoad.GetMap.TileWidth).Id == _context.MapLoad.IdTileCollide);
 
+                monster.PositionX = _x;
+                monster.PositionY = _y;
+
+            }
+        }
+            
     }
 }

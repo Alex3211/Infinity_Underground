@@ -16,53 +16,53 @@
 #---------------------------------- Content ---------------------------------#
 
 #begin AccessRoom/1.tmx
-/importer:
-/processor:
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
 /build:AccessRoom/1.tmx
 
 #begin AccessRoom/2.tmx
-/importer:
-/processor:
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
 /build:AccessRoom/2.tmx
 
 #begin BossRoom/1.tmx
-/importer:
-/processor:
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
 /build:BossRoom/1.tmx
 
 #begin BossRoom/2.tmx
-/importer:
-/processor:
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
 /build:BossRoom/2.tmx
 
 #begin BossRoom/3.tmx
-/importer:
-/processor:
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
 /build:BossRoom/3.tmx
 
 #begin BossRoom/4.tmx
-/importer:
-/processor:
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
 /build:BossRoom/4.tmx
 
 #begin LabyrintheRoom/1.tmx
-/importer:
-/processor:
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
 /build:LabyrintheRoom/1.tmx
 
 #begin LabyrintheRoom/2.tmx
-/importer:
-/processor:
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
 /build:LabyrintheRoom/2.tmx
 
 #begin LabyrintheRoom/3.tmx
-/importer:
-/processor:
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
 /build:LabyrintheRoom/3.tmx
 
 #begin LabyrintheRoom/4.tmx
-/importer:
-/processor:
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
 /build:LabyrintheRoom/4.tmx
 
 #begin Monster/Bat.png
@@ -78,23 +78,23 @@
 /build:Monster/Bat.png
 
 #begin MonsterRoom/1.tmx
-/importer:
-/processor:
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
 /build:MonsterRoom/1.tmx
 
 #begin MonsterRoom/2.tmx
-/importer:
-/processor:
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
 /build:MonsterRoom/2.tmx
 
 #begin MonsterRoom/3.tmx
-/importer:
-/processor:
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
 /build:MonsterRoom/3.tmx
 
 #begin MonsterRoom/4.tmx
-/importer:
-/processor:
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
 /build:MonsterRoom/4.tmx
 
 #begin Player/Player.png
@@ -206,48 +206,48 @@
 /build:Ressources/tileset_stone_v4_p1.png
 
 #begin SecretRoom/1.tmx
-/importer:
-/processor:
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
 /build:SecretRoom/1.tmx
 
 #begin SecretRoom/2.tmx
-/importer:
-/processor:
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
 /build:SecretRoom/2.tmx
 
 #begin SecretRoom/3.tmx
-/importer:
-/processor:
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
 /build:SecretRoom/3.tmx
 
 #begin SecretRoom/4.tmx
-/importer:
-/processor:
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
 /build:SecretRoom/4.tmx
 
 #begin Surface/Map.tmx
-/importer:
-/processor:
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
 /build:Surface/Map.tmx
 
 #begin TrapRoom/1.tmx
-/importer:
-/processor:
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
 /build:TrapRoom/1.tmx
 
 #begin TrapRoom/2.tmx
-/importer:
-/processor:
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
 /build:TrapRoom/2.tmx
 
 #begin TrapRoom/3.tmx
-/importer:
-/processor:
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
 /build:TrapRoom/3.tmx
 
 #begin TrapRoom/4.tmx
-/importer:
-/processor:
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
 /build:TrapRoom/4.tmx
 
 #begin debug.spritefont
@@ -261,4 +261,28 @@
 /processor:FontDescriptionProcessor
 /processorParam:TextureFormat=Compressed
 /build:debugSpriteFont.spritefont
+
+#begin Monster/Spider.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Monster/Spider.png
+
+#begin Monster/Dragon.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Monster/Dragon.png
 

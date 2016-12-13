@@ -18,7 +18,7 @@ namespace InfinityUnderground.API.Characteres
             GetCharacterType.GetCriticalChance = 1.0;
             GetCharacterType.GetCriticalDamage = 10;
             GetCharacterType.GetSpeedAttack = 3.0;
-            GetCharacterType.LifePoint = 50;
+            GetCharacterType.LifePoint = 30;
             GetCharacterType.MoveSpeed = 5;
             GetCharacterType.GetDamage = 10;
             IsBoss = false;
@@ -93,10 +93,5 @@ namespace InfinityUnderground.API.Characteres
             }
             return true;       
         }
-
-
-
-
-
     }
 }

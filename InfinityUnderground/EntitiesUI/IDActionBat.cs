@@ -9,8 +9,8 @@ namespace InfinityUnderground.EntitiesUI
     enum IDActionBat
     {
         WalkBottom,
+        WalkLeft,
         WalkRight,
-        WalkTop,
-        WalkLeft
+        WalkTop
     }
 }

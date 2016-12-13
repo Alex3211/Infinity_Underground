@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using InfinityUnderground.UserInterface;
 using Microsoft.Xna.Framework.Content;
+using InfinityUnderground.Characteres;
 
 namespace InfinityUnderground.EntitiesUI
 {
@@ -18,7 +19,7 @@ namespace InfinityUnderground.EntitiesUI
         {
             Context = context;
 
-            _widthBar = 50;
+            _widthBar = 100;
 
             _bat = bat;
             
@@ -34,6 +35,8 @@ namespace InfinityUnderground.EntitiesUI
             _action.Add(new Action((int)IDActionBat.WalkRight, 4));
             _action.Add(new Action((int)IDActionBat.WalkBottom, 4));
             _action.Add(new Action((int)IDActionBat.WalkLeft, 4));
+
+            _healthBar = new LifePointMonster(_widthBar, 5);
         }
 
 
@@ -42,7 +45,7 @@ namespace InfinityUnderground.EntitiesUI
         /// </summary>
         public void LoadContent(ContentManager content)
         {
-            SpriteSheet = Context.Content.Load<Texture2D>("Monster/Bat");
+            SpriteSheet = Context.Content.Load<Texture2D>("Monster/Dragon");
         }
 
         /// <summary>
@@ -111,11 +114,15 @@ namespace InfinityUnderground.EntitiesUI
             if (!_bat.IsDead)
             {
                 _direction = _bat.MoveDirectionToThePlayer();
+                _direction = (int)ConvertDirection();
+            }
+            if (_bat.IsDead)
+            {
+                Column = 3;
             }
 
-            /*SetHealthBar();
-            _healthBar = new LifePointMonster(Context.GraphicsDevice, _widthBar, 5);
-            _healthBar.Draw(spriteBatch, _bat.PositionX, _bat.PositionY-10);*/
+            
+            _healthBar.Draw(spriteBatch, _bat.PositionX, _bat.PositionY-20, _bat.GetCharacterType.LifePoint, Context.GraphicsDevice, SetHealthBar());
 
             Rectangle _sourceRectangle = new Rectangle(Width * Column, Height * _direction, Width, Height);
             Rectangle _destinationRectangle = new Rectangle(_bat.PositionX, _bat.PositionY, Width, Height);
@@ -133,9 +140,10 @@ namespace InfinityUnderground.EntitiesUI
         /// <summary>
         /// Sets the health bar.
         /// </summary>
-        public void SetHealthBar()
+        public int SetHealthBar()
         {
-            _widthBar = (_widthBar * _bat.GetCharacterType.LifePoint / 100);
+            //////////////
+            return (_widthBar * _bat.GetCharacterType.LifePoint / 20);
         }
 
 
@@ -144,6 +152,28 @@ namespace InfinityUnderground.EntitiesUI
         /// </summary>
         public void Unload(ContentManager content)
         {
+        }
+
+        /// <summary>
+        /// Converts the direction.
+        /// </summary>
+        IDActionBat ConvertDirection()
+        {
+            switch (_direction)
+            {
+                case (int)Direction.Up:
+                    return IDActionBat.WalkTop;
+
+                case (int)Direction.Left:
+                    return IDActionBat.WalkLeft;
+
+                case (int)Direction.Bottom:
+                    return IDActionBat.WalkBottom;
+
+                case (int)Direction.Right:
+                    return IDActionBat.WalkRight;
+            }
+            return (IDActionBat)_direction;
         }
 
     }
