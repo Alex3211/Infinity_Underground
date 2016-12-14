@@ -37,7 +37,7 @@
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.5.1.1679, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="RandomNameGeneratorLibrary">
-      <HintPath>..\..\..\Kepler-22_B\Kepler-22_B\bin\Windows\x86\Debug\RandomNameGeneratorLibrary.dll</HintPath>
+      <HintPath>..\..\..\GitKraken\Kepler-22_B\packages\RandomNameGeneratorLibrary.1.2.2.0\lib\net40\RandomNameGeneratorLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -65,6 +65,7 @@
     <Compile Include="Characteres\CTQueenSpider.cs" />
     <Compile Include="Characteres\CTSpiderMutant.cs" />
     <Compile Include="Characteres\CTWorm.cs" />
+    <Compile Include="Data\Data.cs" />
     <Compile Include="InfinityUnderground.cs" />
     <Compile Include="Map\BossRoom.cs" />
     <Compile Include="Map\Door.cs" />

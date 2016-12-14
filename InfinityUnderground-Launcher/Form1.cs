@@ -1,32 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using Kepler_22_B.API.Data;
+using System;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+
 
 namespace Kepler_Launcher
 {
     public partial class Form1 : Form
     {
+
+        XmlNodeList dataTab;
+        Data data;
         public Form1()
         {
             InitializeComponent();
 
-            //utiliser
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load("test-doc.xml");
-            XmlNodeList userNodes = xmlDoc.SelectNodes("//users/user");
-            foreach (XmlNode userNodee in userNodes)
-            {
-                listBox1.Items.Add(userNodee.InnerXml);
-            }
+            data = new Data("test-doc");
+            dataTab = data.GetDataInTab("test-doc");
+
         }
 
         private void btn_website_Click(object sender, EventArgs e)
@@ -36,40 +29,11 @@ namespace Kepler_Launcher
 
         private void btn_loadSave_Click(object sender, EventArgs e)
         {
-
-             // Crée
-            //XmlDocument xmlDoc = new XmlDocument();
-            //XmlNode rootNode = xmlDoc.CreateElement("users");
-            //xmlDoc.AppendChild(rootNode);
-
-            //XmlNode userNode = xmlDoc.CreateElement("user");
-            //XmlAttribute attribute = xmlDoc.CreateAttribute("age");
-            //attribute.Value = "42";
-            //userNode.Attributes.Append(attribute);
-            //userNode.InnerText = "John Doe";
-            //rootNode.AppendChild(userNode);
-
-            //userNode = xmlDoc.CreateElement("user");
-            //attribute = xmlDoc.CreateAttribute("age");
-            //attribute.Value = "39";
-            //userNode.Attributes.Append(attribute);
-            //userNode.InnerText = "Jane Doe";
-            //rootNode.AppendChild(userNode);
-
-            //xmlDoc.Save("test-doc.xml");
-
-            // MODIFIER
-
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load("test-doc.xml");
-            XmlNodeList userNodes = xmlDoc.SelectNodes("//users/user");
-            foreach (XmlNode userNodee in userNodes)
+            data.ReplaceAttributeInTab("test-doc",1, "4");
+            foreach (XmlNode userNodee in dataTab)
             {
-                int age = int.Parse(userNodee.Attributes["age"].Value);
-                userNodee.Attributes["age"].Value = (age + 1).ToString();
-                btn_loadSave.Text = userNodee.InnerXml;
+                listBox1.Items.Add(userNodee.InnerXml+" "+userNodee.Attributes["age"].Value);
             }
-            xmlDoc.Save("test-doc.xml");
         }
 
         private void btn_play_Click(object sender, EventArgs e)

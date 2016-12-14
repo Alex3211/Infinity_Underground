@@ -79,6 +79,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InfinityUnderground.API\InfinityUnderground.API.csproj">
+      <Project>{6540BFEE-1520-4496-BC55-4EF90E7D4DD0}</Project>
+      <Name>InfinityUnderground.API</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
