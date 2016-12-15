@@ -141,7 +141,11 @@ namespace InfinityUnderground.Map
             if (_context.WorldAPI.Level.GetRooms.SwitchRoom())
             {
                 _context.MapLoad.GetMap.Dispose();
-
+                if (IsSecretRoom)
+                {
+                    OpenSecretRoom();
+                    _stateEnigm = false;
+                }
                 _context.LoadGameState = true;
                 _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX+350, _context.WorldAPI.Players[0].PositionY));
             }
