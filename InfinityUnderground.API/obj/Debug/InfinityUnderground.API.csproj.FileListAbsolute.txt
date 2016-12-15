@@ -44,7 +44,6 @@ C:\Dev\Projet\Kepler-22_B\InfinityUnderground.API\obj\Debug\InfinityUnderground.
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground.API\obj\Debug\InfinityUnderground.API.csproj.Kepler-22_B.API.exe.config
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground.API\obj\Debug\Kepler-22_B.API.exe
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground.API\obj\Debug\Kepler-22_B.API.pdb
-D:\S3\S3PI\projet_actuel\Kepler-22_B\InfinityUnderground.API\obj\Debug\InfinityUnderground.API.csprojResolveAssemblyReference.cache
 D:\S3\S3PI\projet_actuel\Kepler-22_B\InfinityUnderground.API\obj\Debug\InfinityUnderground.API.csproj.Kepler-22_B.API.exe.config
 D:\S3\S3PI\projet_actuel\Kepler-22_B\InfinityUnderground.API\bin\Debug\Kepler-22_B.API.exe.config
 D:\S3\S3PI\projet_actuel\Kepler-22_B\InfinityUnderground.API\bin\Debug\Kepler-22_B.API.exe
