@@ -39,6 +39,7 @@ namespace InfinityUnderground
         GameState _gameState;
         bool _loadGameState;
         List<Spritesheet> _listOfMob;
+        WorldControlUI _worldControl;
 
 
         /// <summary>
@@ -74,6 +75,10 @@ namespace InfinityUnderground
         /// The map load.
         /// </value>
         internal MapLoader MapLoad { get { return _mapLoad; } set { _mapLoad = value; } }
+
+
+
+        internal WorldControlUI WorldControl { get { return _worldControl; } set { _worldControl = value; } }
 
         /// <summary>
         /// Gets the player.
