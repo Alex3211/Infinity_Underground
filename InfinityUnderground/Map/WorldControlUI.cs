@@ -12,24 +12,23 @@ namespace InfinityUnderground.Map
     public class WorldControlUI : IEntity
     {
 
-
-        List<Underground> _listOfUndergroundMap;
         Game1 _context;
         Random r;
         bool _IsSecretRoom = false;
         SpriteFont _font;
         private readonly TimeSpan IntervalBetweenF1Menu;
         private TimeSpan LastActiveF1Menu;
-        private bool _stateSecretDoor = false;
+        private bool _stateSecretDoor;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="WorldControlUI"/> class.
         /// </summary>
         public WorldControlUI(Game1 context)
         {
-            _listOfUndergroundMap = new List<Underground>();
             IntervalBetweenF1Menu = TimeSpan.FromMilliseconds(1000);
             r = new Random();
             _context = context;
+            _stateSecretDoor = false;
         }
 
 
@@ -72,13 +71,13 @@ namespace InfinityUnderground.Map
         {
             if (_context.WorldAPI.Level.GetRooms.SwitchLevel())
             {
-                _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX, _context.WorldAPI.Players[0].PositionY));
-                if (!_context.WorldAPI.IsSurface)
-                {
+                //if (!_context.WorldAPI.IsSurface)
+                //{
                     _context.GetGameState = Game1.GameState.UNDERGROUND;
                     _context.LoadGameState = true;
-                    
-                }
+                    _context.ManageUnderGroundGame.ListOfRoomLevelUnderground.Clear();
+                    _context.WorldAPI.PlayerIsSurfaceOrNot();
+                //}
             }
         }
 
@@ -93,6 +92,7 @@ namespace InfinityUnderground.Map
                 _context.GetGameState = Game1.GameState.SURFACE;
                 _context.LoadGameState = true;
                 _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX+250, _context.WorldAPI.Players[0].PositionY));
+                _context.WorldAPI.PlayerIsSurfaceOrNot();
                 return true;
             }
             return false;

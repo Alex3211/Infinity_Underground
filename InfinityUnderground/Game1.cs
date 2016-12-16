@@ -38,8 +38,16 @@ namespace InfinityUnderground
         List<IEntity> _entities;
         GameState _gameState;
         bool _loadGameState;
-        List<Spritesheet> _listOfMob;
+        ManageUnderground _manageUnderground;
 
+
+        /// <summary>
+        /// Gets or sets the manage under ground game.
+        /// </summary>
+        /// <value>
+        /// The manage under ground game.
+        /// </value>
+        public ManageUnderground ManageUnderGroundGame { get { return _manageUnderground; } set { _manageUnderground = value; } }
 
         /// <summary>
         /// Load the GameState.
@@ -116,6 +124,7 @@ namespace InfinityUnderground
 
             _debug = new Debug(this, _cameraLoader);
             _player = new Player(21, 13, this);
+            _manageUnderground = new ManageUnderground(this);
         }
 
         /// <summary>
@@ -156,6 +165,8 @@ namespace InfinityUnderground
             {
                 entity.LoadContent(Content);
             }
+
+            if (MapLoad != null && GetGameState == GameState.UNDERGROUND) ManageUnderGroundGame.AddRoomToTheList(WorldAPI.Level.GetRooms.PosCurrentRoom, MapLoad);
 
             _debug.LoadContent(Content);
         }
@@ -231,17 +242,27 @@ namespace InfinityUnderground
             {
                 UnloadContent();
                 Entities.Clear();
+                MapLoad = null;
+
                 switch (_gameState)
                 {
                     case GameState.UNDERGROUND:
-                        Entities.Add(new Underground(this));
-                        Entities.Add(new MapLoader(this));
-                        Entities.Add(new CreateMonster(this));
+                        if (!ManageUnderGroundGame.ListOfRoomLevelUnderground.ContainsKey(WorldAPI.Level.GetRooms.PosCurrentRoom))
+                        {
+                            Entities.Add(new LoadUnderground(this));
+                            Entities.Add(new MapLoader(this));
+                            Entities.Add(new CreateMonster(this));
+                        }
+                        else
+                        {
+                            Entities.Add(ManageUnderGroundGame.ListOfRoomLevelUnderground[WorldAPI.Level.GetRooms.PosCurrentRoom]);
+                            MapLoad = ManageUnderGroundGame.ListOfRoomLevelUnderground[WorldAPI.Level.GetRooms.PosCurrentRoom];
+                        }
                         Entities.Add(new WorldControlUI(this));
                         break;
 
                     case GameState.SURFACE:
-                        Entities.Add(new Surface(this));
+                        Entities.Add(new LoadSurface(this));
                         Entities.Add(new MapLoader(this));
                         Entities.Add(new WorldControlUI(this));
                         break;
@@ -249,6 +270,7 @@ namespace InfinityUnderground
 
                 }
                 LoadContent();
+                CameraLoader.GetCamera.LookAt(new Vector2(WorldAPI.Players[0].PositionX, WorldAPI.Players[0].PositionY));
                 _loadGameState = false;
             }
         }

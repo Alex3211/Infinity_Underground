@@ -51,9 +51,10 @@
     <Compile Include="EntitiesUI\Spritesheet.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="IEntity.cs" />
+    <Compile Include="Map\ManageUnderground.cs" />
     <Compile Include="Map\MapLoader.cs" />
-    <Compile Include="Map\Surface.cs" />
-    <Compile Include="Map\Underground.cs" />
+    <Compile Include="Map\LoadSurface.cs" />
+    <Compile Include="Map\LoadUnderground.cs" />
     <Compile Include="Map\WorldControlUI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

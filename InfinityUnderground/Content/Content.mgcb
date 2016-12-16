@@ -65,18 +65,6 @@
 /processor:TiledMapProcessor
 /build:LabyrintheRoom/4.tmx
 
-#begin Monster/dragon.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Monster/dragon.png
-
 #begin MonsterRoom/1.tmx
 /importer:TiledMapImporter
 /processor:TiledMapProcessor
@@ -285,4 +273,22 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Monster/Dragon.png
+
+#begin Effect/Flame.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Effect/Flame.png
+
+#begin Song/Dragon/DreathIce.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Song/Dragon/DreathIce.wav
 

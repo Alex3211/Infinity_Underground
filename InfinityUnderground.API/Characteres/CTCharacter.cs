@@ -109,6 +109,71 @@ namespace InfinityUnderground.API.Characteres
             }
         }
 
+        /// <summary>
+        /// Attacks the specified direction.
+        /// </summary>
+        /// <param name="direction">The direction.</param>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
+        public bool Attack(Direction direction, CTCharacter entity)
+        {
+            switch (direction)
+            {
+                case Direction.Up:
+                    if ((entity.PositionY < PositionY) && (entity.PositionY > PositionY - GetCharacterType.Range))
+                    {
+                        GetCharacterType.GetAttacks.NormalAttack(this, entity);
+                        entityIsDead(entity);
+                        return true;
+                    }
+                    break;
+
+                case Direction.Left:
+                    if ((entity.PositionX < PositionX) && (entity.PositionX > PositionX - GetCharacterType.Range))
+                    {
+                        GetCharacterType.GetAttacks.NormalAttack(this, entity);
+                        entityIsDead(entity);
+                        return true;
+                    }
+                    break;
+
+
+                case Direction.Bottom:
+                    if ((entity.PositionY > PositionY) && (entity.PositionY < PositionY + GetCharacterType.Range))
+                    {
+                        GetCharacterType.GetAttacks.NormalAttack(this, entity);
+                        entityIsDead(entity);
+                        return true;
+                    }
+                    break;
+
+                case Direction.Right:
+                    if ((entity.PositionX > PositionX) && (entity.PositionX < PositionX + GetCharacterType.Range))
+                    {
+                        GetCharacterType.GetAttacks.NormalAttack(this, entity);
+                        entityIsDead(entity);
+                        return true;
+                    }
+                    break;
+
+
+            }
+
+            return false;
+
+        }
+
+        /// <summary>
+        /// Entities the is dead.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        public void entityIsDead(CTCharacter entity)
+        {
+            if (entity.GetCharacterType.LifePoint <= 0)
+            {
+                entity.IsDead = true;
+            }
+        }
 
     }
 }

@@ -11,6 +11,7 @@ namespace InfinityUnderground.API.Characteres
     {
         bool _isBoss;
         CTIDMonster _idMonster;
+        List<CTAttack> _listOfAttacks;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CTNPC"/> class.
@@ -20,9 +21,17 @@ namespace InfinityUnderground.API.Characteres
         public CTNPC(int x, int y)
             :base(x, y)
         {
+            _listOfAttacks = new List<CTAttack>();
         }
 
-        
+
+        /// <summary>
+        /// Gets the list of attack.
+        /// </summary>
+        /// <value>
+        /// The list of attack.
+        /// </value>
+        public List<CTAttack> ListOfAttack { get{ return _listOfAttacks; }}
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is boss.
@@ -44,29 +53,31 @@ namespace InfinityUnderground.API.Characteres
         /// Moves the direction to the player.
         /// </summary>
         /// <returns></returns>
-        public int MoveDirectionToThePlayer()
+        public int MoveDirectionToThePlayer(ref int direction, ref bool _isMoving)
         {
-            if (Context.Players[0].PositionY < PositionY - 30)
+            _isMoving = true;
+            if (Context.Players[0].PositionY < PositionY - GetCharacterType.Range)
             {
                 return Deplacement((int)Direction.Up);
             }
 
-            if (Context.Players[0].PositionY > PositionY + 30)
+            if (Context.Players[0].PositionY > PositionY + GetCharacterType.Range)
             {
                 return Deplacement((int)Direction.Bottom);
             }
 
-            if (Context.Players[0].PositionX > PositionX + 30)
+            if (Context.Players[0].PositionX > PositionX + GetCharacterType.Range)
             {
                 return Deplacement((int)Direction.Right);
             }
 
-            if (Context.Players[0].PositionX < PositionX - 30)
+            if (Context.Players[0].PositionX < PositionX - GetCharacterType.Range)
             {
                 return Deplacement((int)Direction.Left);
             }
 
-            return 0;
+            _isMoving = false;
+            return direction;
         }
     }
 }

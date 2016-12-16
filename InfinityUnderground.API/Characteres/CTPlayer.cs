@@ -91,62 +91,13 @@ namespace InfinityUnderground.API.Characteres
 
             foreach (CTCharacter NPC in Context.Level.GetRooms.ListOfNPC)
             {
-                switch (direction)
+                if (Attack(direction, NPC))
                 {
-                    case Direction.Up:
-                        if ((NPC.PositionY < PositionY) && (NPC.PositionY > PositionY - GetCharacterType.Range))
-                        {
-                            GetCharacterType.GetAttacks.NormalAttack(this, NPC);
-                            NPCIsDead(NPC);
-                            return true;
-                        }
-                        break;
-
-                    case Direction.Left:
-                        if ((NPC.PositionX < PositionX) && (NPC.PositionX > PositionX - GetCharacterType.Range))
-                        {
-                            GetCharacterType.GetAttacks.NormalAttack(this, NPC);
-                            NPCIsDead(NPC);
-                            return true;
-                        }
-                        break;
-                        
-
-                    case Direction.Bottom:
-                        if ((NPC.PositionY > PositionY) && (NPC.PositionY < PositionY + GetCharacterType.Range))
-                        {
-                            GetCharacterType.GetAttacks.NormalAttack(this, NPC);
-                            NPCIsDead(NPC);
-                            return true;
-                        }
-                        break;
-
-                    case Direction.Right:
-                        if ((NPC.PositionX > PositionX) && (NPC.PositionX < PositionX + GetCharacterType.Range))
-                        {
-                            GetCharacterType.GetAttacks.NormalAttack(this, NPC);
-                            NPCIsDead(NPC);
-                            return true;
-                        }
-                        break;
-                        
-
+                    return true;
                 }
-
             }
             return false;       
         }
 
-        /// <summary>
-        /// NPCs the is dead.
-        /// </summary>
-        /// <param name="NPC">The NPC.</param>
-        public void NPCIsDead(CTCharacter NPC)
-        {
-            if (NPC.GetCharacterType.LifePoint <= 0)
-            {
-                NPC.IsDead = true;
-            }
-        }
     }
 }

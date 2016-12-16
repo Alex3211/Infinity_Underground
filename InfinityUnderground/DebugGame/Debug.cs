@@ -101,6 +101,8 @@ namespace InfinityUnderground.DebugGame
                     spriteBatch.DrawString(font, $" NB of Monster : {_context.WorldAPI.Level.GetRooms.TypeOfRoom.NbOfNPC}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 120), Color.White);
                     spriteBatch.DrawString(font, $" dragon POS : X: {_context.WorldAPI.Level.GetRooms.ListOfNPC[0].PositionX} Y: {_context.WorldAPI.Level.GetRooms.ListOfNPC[0].PositionY}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 140), Color.White);
                 }
+                spriteBatch.DrawString(font, $" Player LifePoint : {_context.WorldAPI.Players[0].GetCharacterType.LifePoint}", new Vector2(_camera.GetCamera.Position.X, _camera.GetCamera.Position.Y + 160), Color.White);
+
             }
         }
 

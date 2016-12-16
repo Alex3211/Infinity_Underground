@@ -1,4 +1,5 @@
 ﻿using InfinityUnderground.Characteres;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,9 @@ namespace InfinityUnderground.API.Characteres
     public class CTDragon : CTNPC
     {
 
+        GameTime gameTime;
+        int _timeSinceLastAttack;
+
         public CTDragon(int x, int y, World context)
             :base(x, y)
         {
@@ -19,10 +23,14 @@ namespace InfinityUnderground.API.Characteres
             GetCharacterType.GetCriticalDamage = 10;
             GetCharacterType.GetSpeedAttack = 3.0;
             GetCharacterType.LifePoint = 30;
-            GetCharacterType.MoveSpeed = 5;
+            GetCharacterType.MoveSpeed = 1;
             GetCharacterType.GetDamage = 10;
+            GetCharacterType.Range = 200;
             IsBoss = false;
             IdMonster = CTIDMonster.Dragon;
+
+            ListOfAttack.Add(new CTAttack(GetCharacterType));
+            
         }
 
         /// <summary>
@@ -37,10 +45,8 @@ namespace InfinityUnderground.API.Characteres
         /// Attack Player.
         /// </summary>
         /// <param name="direction">The direction.</param>
-        public bool PlayerAttack(Direction direction, ref int timeSinceLastAttack)
+        public bool DragonAttack(Direction direction, ref int timeSinceLastAttack)
         {
-
-
             if ((timeSinceLastAttack <= GetCharacterType.GetSpeedAttack * 1000) && !(timeSinceLastAttack == 0))
             {
                 return false;
@@ -52,46 +58,19 @@ namespace InfinityUnderground.API.Characteres
             }
             timeSinceLastAttack++;
 
-            foreach (CTCharacter player in Context.Players)
+
+            foreach (CTPlayer player in Context.Players)
             {
-                switch (direction)
+                if (Attack(direction, player))
                 {
-                    case Direction.Up:
-                        if ((player.PositionY < PositionY) && (player.PositionY > PositionY - GetCharacterType.Range))
-                        {
-                            GetCharacterType.GetAttacks.NormalAttack(this, player);
-                        }
-                        break;
-
-                    case Direction.Left:
-                        if ((player.PositionX < PositionX) && (player.PositionX > PositionX - GetCharacterType.Range))
-                        {
-                            GetCharacterType.GetAttacks.NormalAttack(this, player);
-                        }
-                        break;
-
-                    case Direction.Bottom:
-                        if ((player.PositionY > PositionY) && (player.PositionY < PositionY + GetCharacterType.Range))
-                        {
-                            GetCharacterType.GetAttacks.NormalAttack(this, player);
-                        }
-                        break;
-
-                    case Direction.Right:
-                        if ((player.PositionX > PositionX) && (player.PositionX < PositionX + GetCharacterType.Range))
-                        {
-                            GetCharacterType.GetAttacks.NormalAttack(this, player);
-                        }
-                        break;
-
+                    return true;
                 }
 
-                if (player.GetCharacterType.LifePoint <= 0)
-                {
-                    player.IsDead = true;
-                }
             }
-            return true;       
+        
+            return false;
         }
+
+
     }
 }

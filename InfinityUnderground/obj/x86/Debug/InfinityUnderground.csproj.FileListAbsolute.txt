@@ -47,3 +47,8 @@ C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Kepler-22_
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground\obj\x86\Debug\InfinityUnderground.csprojResolveAssemblyReference.cache
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground\obj\x86\Debug\InfinityUnderground.exe
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground\obj\x86\Debug\InfinityUnderground.pdb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Effect\Flame.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Effect\Flame2.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Effect\lightning.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Effect\ThunderFlame.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Song\Dragon\DreathIce.xnb

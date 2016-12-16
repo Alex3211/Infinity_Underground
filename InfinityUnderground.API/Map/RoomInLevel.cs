@@ -327,6 +327,11 @@ namespace InfinityUnderground.API.Map
                         }
                     } while (_roomOut == new Vector2(0, 0));
 
+
+                    Context.HeightLevel = (int)(_roomOut.Y * 2);
+                    Context.WidthLevel = (int)(_roomOut.X * 2);
+
+
                     ManageUnderground(_doorPlayer);
                     _isFinalRoom = false;
                     return true;

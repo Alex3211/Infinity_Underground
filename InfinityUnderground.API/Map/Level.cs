@@ -9,7 +9,7 @@ namespace InfinityUnderground.API.Map
 {
     public class Level
     {
-        int _level, _maxLevel;
+        int _level, _maxLevel, _widthLevel, _heightLevel;
         RoomInLevel _room;
         World _world;
 
@@ -51,6 +51,23 @@ namespace InfinityUnderground.API.Map
         /// The world.
         /// </value>
         public World World { get { return _world; } }
+
+
+        /// <summary>
+        /// Gets or sets the height level.
+        /// </summary>
+        /// <value>
+        /// The height level.
+        /// </value>
+        public int HeightLevel { get { return _heightLevel; } set { _heightLevel = value; } }
+
+        /// <summary>
+        /// Gets or sets the width level.
+        /// </summary>
+        /// <value>
+        /// The width level.
+        /// </value>
+        public int WidthLevel { get { return _widthLevel; } set { _heightLevel = value; } }
 
 
     }
