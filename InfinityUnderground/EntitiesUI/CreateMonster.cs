@@ -58,37 +58,37 @@ namespace InfinityUnderground.EntitiesUI
             {
                 switch(monster.IdMonster)
                 {
-                    case CTIDMonster.Bat:
-                        _listOfMob.Add(new Bat(4, 4, _context, (CTBat)monster));
+                    case CTIDMonster.Dragon:
+                        _listOfMob.Add(new Dragon(4, 4, _context, (CTDragon)monster));
                         break;
 
                     case CTIDMonster.Foreman:
-                        _listOfMob.Add(new Bat(4, 4, _context, (CTBat)monster));
+                        _listOfMob.Add(new Dragon(4, 4, _context, (CTDragon)monster));
                         break;
 
                     case CTIDMonster.Golem:
-                        _listOfMob.Add(new Bat(4, 4, _context, (CTBat)monster));
+                        _listOfMob.Add(new Dragon(4, 4, _context, (CTDragon)monster));
                         break;
 
                     case CTIDMonster.Minor:
-                        _listOfMob.Add(new Bat(4, 4, _context, (CTBat)monster));
+                        _listOfMob.Add(new Dragon(4, 4, _context, (CTDragon)monster));
                         break;
 
                     case CTIDMonster.QueenSpider:
-                        _listOfMob.Add(new Bat(4, 4, _context, (CTBat)monster));
+                        _listOfMob.Add(new Dragon(4, 4, _context, (CTDragon)monster));
                         break;
 
                     case CTIDMonster.SpiderMutant:
-                        _listOfMob.Add(new Bat(4, 4, _context, (CTBat)monster));
+                        _listOfMob.Add(new Dragon(4, 4, _context, (CTDragon)monster));
                         break;
 
                     case CTIDMonster.Worm:
-                        _listOfMob.Add(new Bat(4, 4, _context, (CTBat)monster));
+                        _listOfMob.Add(new Dragon(4, 4, _context, (CTDragon)monster));
                         break;
                 }
             }
 
-            foreach(Bat monster in _listOfMob)
+            foreach(Dragon monster in _listOfMob)
             {
                 monster.LoadContent(content);
             }
@@ -103,7 +103,7 @@ namespace InfinityUnderground.EntitiesUI
         /// <param name="spritebatch">The spritebatch.</param>
         public void Draw(SpriteBatch spritebatch)
         {
-            foreach(Bat monster in _listOfMob)
+            foreach(Dragon monster in _listOfMob)
             {
                 monster.Draw(spritebatch);
             }
@@ -115,7 +115,7 @@ namespace InfinityUnderground.EntitiesUI
         /// <param name="gameTime">The game time.</param>
         public void Update(GameTime gameTime)
         {
-            foreach (Bat monster in _listOfMob)
+            foreach (Dragon monster in _listOfMob)
             {
                 monster.Update(gameTime);
             }

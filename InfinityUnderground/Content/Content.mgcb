@@ -65,7 +65,7 @@
 /processor:TiledMapProcessor
 /build:LabyrintheRoom/4.tmx
 
-#begin Monster/Bat.png
+#begin Monster/dragon.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -75,7 +75,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Monster/Bat.png
+/build:Monster/dragon.png
 
 #begin MonsterRoom/1.tmx
 /importer:TiledMapImporter

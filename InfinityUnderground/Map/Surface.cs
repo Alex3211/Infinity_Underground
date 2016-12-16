@@ -39,7 +39,7 @@ namespace InfinityUnderground.Map
         /// <summary>
         /// Draws this instance.
         /// </summary>
-        public void Draw(SpriteBatch spritebatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
 
         }

@@ -436,7 +436,7 @@ namespace InfinityUnderground.API.Map
             _ctNpc.Clear();
             for (int i = 0; i < _typeOfRoom.NbOfNPC; i++)
             {
-                _ctNpc.Add(new CTBat(_context.World));
+                _ctNpc.Add(new CTDragon(_context.World));
             }
         }
 

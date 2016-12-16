@@ -41,9 +41,9 @@
     <Compile Include="Camera\CameraLoader.cs" />
     <Compile Include="DebugGame\Debug.cs" />
     <Compile Include="EntitiesUI\Action.cs" />
-    <Compile Include="EntitiesUI\Bat.cs" />
+    <Compile Include="EntitiesUI\Dragon.cs" />
     <Compile Include="EntitiesUI\CreateMonster.cs" />
-    <Compile Include="EntitiesUI\IDActionBat.cs" />
+    <Compile Include="EntitiesUI\IDActionDragon.cs" />
     <Compile Include="EntitiesUI\IDActionPlayer.cs" />
     <Compile Include="EntitiesUI\IDActionSpider.cs" />
     <Compile Include="EntitiesUI\Player.cs" />

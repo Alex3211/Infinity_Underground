@@ -17,6 +17,6 @@ C:\Dev\Projet\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\SharpDX.Direct3D9.
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\Kepler-22_B.API.pdb
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\MonoGame.Framework.xml
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\nunit.framework.xml
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground.Tests\obj\Debug\InfinityUnderground.Tests.csprojResolveAssemblyReference.cache
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground.Tests\obj\Debug\Kepler-22_B.Tests.dll
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground.Tests\obj\Debug\Kepler-22_B.Tests.pdb
-C:\Dev\Projet\Kepler-22_B\InfinityUnderground.Tests\obj\Debug\InfinityUnderground.Tests.csprojResolveAssemblyReference.cache

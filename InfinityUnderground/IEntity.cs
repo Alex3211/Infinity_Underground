@@ -31,9 +31,9 @@ namespace InfinityUnderground
 
 
         /// <summary>
-        /// Draws the specified sprite batch.
+        /// Draws the specified sprite dragonch.
         /// </summary>
-        /// <param name="spriteBatch">The sprite batch.</param>
+        /// <param name="spriteBatch">The sprite dragonch.</param>
         /// <param name="frozenMatrix">The frozen matrix.</param>
         /// <param name="cameraMatrix">The camera matrix.</param>
         void Draw(SpriteBatch spriteBatch);
