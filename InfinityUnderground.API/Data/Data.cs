@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace Kepler_22_B.API.Data
 {
@@ -18,6 +19,7 @@ namespace Kepler_22_B.API.Data
         string _contentElement;
         string _element;
         string _nameAttribute;
+        string _path;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Data"/> class.
@@ -32,6 +34,17 @@ namespace Kepler_22_B.API.Data
             _contentElement = "users";
             _element = "user";
             _nameAttribute = "attribute";
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Data"/> class.
+        /// </summary>
+        /// <param name="NameOfDocument">The name of document.</param>
+        public Data(string NameOfDocument, string firstElement, string path = @"..\..\..\..\..\data\")
+        {
+            _path = path;
+            _nameOfDocument = NameOfDocument;
+            new XDocument(new XElement(firstElement)).Save(path + _nameOfDocument);
         }
 
         /// <summary>
@@ -116,7 +129,7 @@ namespace Kepler_22_B.API.Data
         /// <returns></returns>
         public XmlNodeList GetDataInTab(string NameOfDocument)
         {
-            _xmlDocument.Load("./../../../data/" + NameOfDocument+".xml");
+            _xmlDocument.Load(@"..\..\..\..\..\data\" + NameOfDocument+".xml");
             _userNodes = _xmlDocument.SelectNodes("//"+ _contentElement + "/"+_element);
             return _userNodes;
         }

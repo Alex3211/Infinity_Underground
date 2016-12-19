@@ -12,10 +12,9 @@ namespace InfinityUnderground.UserInterface
     class LifePointMonster 
     {
         Texture2D _healthBar;
-        readonly int _height;
         Color[] data;
         Color _colorBar;
-        int _maxLifepoint, _width;
+        int _maxLifepoint, _width, _height;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LifePointMonster"/> class.
@@ -78,24 +77,21 @@ namespace InfinityUnderground.UserInterface
         }
 
 
-        /// <summary>
-        /// Creates the life bar.
-        /// </summary>
-        void CreateLifeBar(GraphicsDevice graphicsDevice)
-        {
-            if (_healthBar != null) _healthBar.Dispose();
-            _healthBar = new Texture2D(graphicsDevice, _width, _height);
-        }
 
         /// <summary>
         /// Draws the specified game time.
         /// </summary>
         /// <param name="gameTime">The game time.</param>
-        public void Draw(SpriteBatch spriteBatch, int posX, int posY, int lifepoint, GraphicsDevice graphicsDevice, int width)
+        public void Draw(SpriteBatch spriteBatch, int posX, int posY, int lifepoint, GraphicsDevice graphicsDevice, int width, int height)
         {
             _width = width;
+            _height = height;
+
             SetMaxLifePoint(lifepoint);
-            CreateLifeBar(graphicsDevice);
+
+            if(_healthBar != null) _healthBar.Dispose();
+            _healthBar = new Texture2D(graphicsDevice, _width, _height);
+
             SetRectangle(lifepoint);
             spriteBatch.Draw(_healthBar, new Vector2(posX, posY), Color.White);
         }

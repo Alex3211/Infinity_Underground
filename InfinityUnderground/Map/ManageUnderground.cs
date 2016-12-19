@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Kepler_22_B.API.Data;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,20 @@ namespace InfinityUnderground.Map
         Dictionary<Vector2, MapLoader> _undergroundMapLevel;
         Game1 _context;
         MiniMap _miniMap;
+        Data _saveMap;
+        string _guid;
 
         public ManageUnderground(Game1 context)
         {
             _context = context;
             _context.ManageUnderGroundGame = this;
             _undergroundMapLevel = new Dictionary<Vector2, MapLoader>();
+
+            _guid = Guid.NewGuid().ToString();
+
+            //_saveMap = new Data(_guid, "Underground");
+            //_saveMap = new Data(_guid);
+
             _miniMap = new MiniMap(this);
         }
 
@@ -52,6 +61,15 @@ namespace InfinityUnderground.Map
         {
             if (!_undergroundMapLevel.ContainsKey(position))
             {
+
+                //_saveMap.GetContentElementName = "room";
+                //_saveMap.CreateDataDocument(_guid);
+
+
+                    
+
+
+
                 _undergroundMapLevel.Add(position, map);
                 _miniMap.AddRoom(position);
                 _context.DrawMiniMap = true;

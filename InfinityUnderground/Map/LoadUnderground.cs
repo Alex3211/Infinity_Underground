@@ -10,7 +10,6 @@ namespace InfinityUnderground.Map
     public class LoadUnderground : IEntity
     {
         Game1 _context;
-        Random r;
         string _nameOfPath;
 
         /// <summary>
@@ -20,8 +19,8 @@ namespace InfinityUnderground.Map
         public LoadUnderground(Game1 context)
         {
             _context = context;
-            r = new Random();
-            _nameOfPath = _context.WorldAPI.Level.GetRooms.TypeOfRoom.NameOfMap + "/" + r.Next(1, 4);
+            _context.WorldAPI.Level.GetRooms.SetRandomNumber();
+            _nameOfPath = _context.WorldAPI.Level.GetRooms.TypeOfRoom.NameOfMap + "/" + _context.WorldAPI.Level.GetRooms.NBRandom;
         }
 
         /// <summary>

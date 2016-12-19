@@ -259,13 +259,13 @@ namespace InfinityUnderground
                             Entities.Add(new LoadUnderground(this));
                             Entities.Add(new MapLoader(this));
                             Entities.Add(new CreateMonster(this));
-                            Entities.Add(new WorldControlUI(this));
                         }
                         else
                         {
                             Entities.Add(ManageUnderGroundGame.ListOfRoomLevelUnderground[WorldAPI.Level.GetRooms.PosCurrentRoom]);
                             MapLoad = ManageUnderGroundGame.ListOfRoomLevelUnderground[WorldAPI.Level.GetRooms.PosCurrentRoom];
                         }
+                        Entities.Add(new WorldControlUI(this));
                         _manageUnderground.MiniMap.ChangeRoom = true;
                         break;
 

@@ -326,7 +326,7 @@ namespace InfinityUnderground.EntitiesUI
                 CurrentFrame = 0;
             }
 
-            _healthBar.Draw(spriteBatch, (int)(Context.CameraLoader.GetCamera.Position.X + 20), (int)(Context.CameraLoader.GetCamera.Position.Y + 20), _player.GetCharacterType.LifePoint, Context.GraphicsDevice, SetHealthBar());
+            _healthBar.Draw(spriteBatch, (int)(Context.CameraLoader.GetCamera.Position.X + 20), (int)(Context.CameraLoader.GetCamera.Position.Y + 20), _player.GetCharacterType.LifePoint, Context.GraphicsDevice, SetHealthBar(), 10);
 
             Rectangle _sourceRectangle = new Rectangle(Width * Column, Height * (int)_actualAction.IDActionPlayer, Width, Height);
             Rectangle _destinationRectangle = new Rectangle(_player.PositionX, _player.PositionY, Width, Height);

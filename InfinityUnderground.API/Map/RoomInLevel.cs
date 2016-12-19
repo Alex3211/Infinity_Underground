@@ -16,6 +16,7 @@ namespace InfinityUnderground.API.Map
         Random rand;
         Vector2 _roomOut, _posCurrentRoom;
         bool _isFinalRoom, _isBeginRoom;
+        int _nbRandom;
         enum RoomType
         {
             LABYRINTHEROOM,
@@ -39,6 +40,14 @@ namespace InfinityUnderground.API.Map
             _roomOut = new Vector2(0, 0);
             _listOfTypeRoom = new List<Room>();
         }
+
+        /// <summary>
+        /// Gets the nb random.
+        /// </summary>
+        /// <value>
+        /// The nb random.
+        /// </value>
+        public int NBRandom { get { return _nbRandom; } }
 
         /// <summary>
         /// Gets the list of NPC.
@@ -101,6 +110,11 @@ namespace InfinityUnderground.API.Map
         /// </summary>
         public Room TypeOfRoom { get { return _typeOfRoom; } }
 
+
+        public void SetRandomNumber()
+        {
+            _nbRandom = rand.Next(1, 4);
+        }
 
         /// <summary>
         /// Adds the door.

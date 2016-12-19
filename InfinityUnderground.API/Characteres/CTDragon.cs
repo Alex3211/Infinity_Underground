@@ -11,9 +11,6 @@ namespace InfinityUnderground.API.Characteres
     public class CTDragon : CTNPC
     {
 
-        GameTime gameTime;
-        int _timeSinceLastAttack;
-
         public CTDragon(int x, int y, World context)
             :base(x, y)
         {
@@ -25,7 +22,7 @@ namespace InfinityUnderground.API.Characteres
             GetCharacterType.LifePoint = 30;
             GetCharacterType.MoveSpeed = 1;
             GetCharacterType.GetDamage = 10;
-            GetCharacterType.Range = 200;
+            GetCharacterType.Range = 100;
             IsBoss = false;
             IdMonster = CTIDMonster.Dragon;
 

@@ -190,7 +190,7 @@ namespace InfinityUnderground.EntitiesUI
             int heightFlame = _flame.Height / _spriteSheetFlameRows;
 
             
-            _healthBar.Draw(spriteBatch, _dragon.PositionX, _dragon.PositionY-20, _dragon.GetCharacterType.LifePoint, Context.GraphicsDevice, SetHealthBar());
+            _healthBar.Draw(spriteBatch, _dragon.PositionX, _dragon.PositionY-20, _dragon.GetCharacterType.LifePoint, Context.GraphicsDevice, SetHealthBar(), 2);
 
             Rectangle _sourceRectangle = new Rectangle(Width * Column, Height * _direction, Width, Height);
             Rectangle _destinationRectangle = new Rectangle(_dragon.PositionX, _dragon.PositionY, Width, Height);
@@ -210,6 +210,7 @@ namespace InfinityUnderground.EntitiesUI
                 if (_animateFlame)
                 {
                     FlipSpriteSheet(_destinationRectangleFlame, _sourceRectangleFlame, spriteBatch);
+                    _songAttack.CreateInstance();
                     _songAttack.Play();
                 }
 
