@@ -42,3 +42,25 @@ D:\S3\S3PI\projet_actuel\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\MonoGam
 D:\S3\S3PI\projet_actuel\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\nunit.framework.xml
 D:\S3\S3PI\projet_actuel\Kepler-22_B\InfinityUnderground.Tests\obj\Debug\Kepler-22_B.Tests.dll
 D:\S3\S3PI\projet_actuel\Kepler-22_B\InfinityUnderground.Tests\obj\Debug\Kepler-22_B.Tests.pdb
+D:\S3 PI\S3PI\projet_actuel\keplertest\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\Kepler-22_B.Tests.dll
+D:\S3 PI\S3PI\projet_actuel\keplertest\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\Kepler-22_B.Tests.pdb
+D:\S3 PI\S3PI\projet_actuel\keplertest\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\Kepler-22_B.API.exe
+D:\S3 PI\S3PI\projet_actuel\keplertest\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\MonoGame.Extended.dll
+D:\S3 PI\S3PI\projet_actuel\keplertest\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\MonoGame.Framework.dll
+D:\S3 PI\S3PI\projet_actuel\keplertest\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\nunit.framework.dll
+D:\S3 PI\S3PI\projet_actuel\keplertest\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\RandomNameGeneratorLibrary.dll
+D:\S3 PI\S3PI\projet_actuel\keplertest\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\SharpDX.MediaFoundation.dll
+D:\S3 PI\S3PI\projet_actuel\keplertest\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\SharpDX.dll
+D:\S3 PI\S3PI\projet_actuel\keplertest\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\SharpDX.XAudio2.dll
+D:\S3 PI\S3PI\projet_actuel\keplertest\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\SharpDX.DXGI.dll
+D:\S3 PI\S3PI\projet_actuel\keplertest\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\SharpDX.Direct3D11.dll
+D:\S3 PI\S3PI\projet_actuel\keplertest\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\SharpDX.Direct2D1.dll
+D:\S3 PI\S3PI\projet_actuel\keplertest\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\SharpDX.XInput.dll
+D:\S3 PI\S3PI\projet_actuel\keplertest\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\SharpDX.RawInput.dll
+D:\S3 PI\S3PI\projet_actuel\keplertest\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\SharpDX.Direct3D9.dll
+D:\S3 PI\S3PI\projet_actuel\keplertest\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\Kepler-22_B.API.pdb
+D:\S3 PI\S3PI\projet_actuel\keplertest\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\MonoGame.Framework.xml
+D:\S3 PI\S3PI\projet_actuel\keplertest\Kepler-22_B\InfinityUnderground.Tests\bin\Debug\nunit.framework.xml
+D:\S3 PI\S3PI\projet_actuel\keplertest\Kepler-22_B\InfinityUnderground.Tests\obj\Debug\InfinityUnderground.Tests.csprojResolveAssemblyReference.cache
+D:\S3 PI\S3PI\projet_actuel\keplertest\Kepler-22_B\InfinityUnderground.Tests\obj\Debug\Kepler-22_B.Tests.dll
+D:\S3 PI\S3PI\projet_actuel\keplertest\Kepler-22_B\InfinityUnderground.Tests\obj\Debug\Kepler-22_B.Tests.pdb
