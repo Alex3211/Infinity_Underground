@@ -120,8 +120,8 @@ namespace InfinityUnderground.Map
         /// </summary>
         public void Unload(ContentManager content)
         {
-            _getMap.Dispose();
-            _getLayerCollide.Dispose();
+            if (_getLayerCollide != null) _getMap.Dispose();
+            if (_getMap != null) _getLayerCollide.Dispose();
             if (_getLayerDoorCollide != null) _getLayerDoorCollide.Dispose();
             if (_firstLayer != null) _firstLayer.Dispose();
             if (_secondLayer != null) _secondLayer.Dispose();

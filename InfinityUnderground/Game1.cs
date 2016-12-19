@@ -186,10 +186,10 @@ namespace InfinityUnderground
         /// </summary>
         protected override void UnloadContent()
         {
-            foreach (var entity in _entities)
-            {
-                entity.Unload(Content);
-            }
+            //foreach (var entity in _entities)
+            //{
+            //    entity.Unload(Content);
+            //}
             // TODO: Unload any non ContentManager content here
             //Dispose();
         }
@@ -204,12 +204,7 @@ namespace InfinityUnderground
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-
-
-
             SwitchGameState();
-
-
 
             foreach (var entity in _entities)
             {

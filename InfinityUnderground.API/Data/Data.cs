@@ -27,7 +27,7 @@ namespace Kepler_22_B.API.Data
         {
             _nameOfDocument = NameOfDocument;
             _xmlDocument = new XmlDocument();
-            _xmlDocument.Load("./../../../../../data/"+NameOfDocument + ".xml");
+            _xmlDocument.Load("./../../../data/"+NameOfDocument + ".xml");
             _userNodes = _xmlDocument.SelectNodes("//users/user");
             _contentElement = "users";
             _element = "user";
@@ -116,7 +116,7 @@ namespace Kepler_22_B.API.Data
         /// <returns></returns>
         public XmlNodeList GetDataInTab(string NameOfDocument)
         {
-            _xmlDocument.Load("./../../../../../data/" + NameOfDocument+".xml");
+            _xmlDocument.Load("./../../../data/" + NameOfDocument+".xml");
             _userNodes = _xmlDocument.SelectNodes("//"+ _contentElement + "/"+_element);
             return _userNodes;
         }

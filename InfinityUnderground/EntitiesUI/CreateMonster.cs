@@ -47,7 +47,7 @@ namespace InfinityUnderground.EntitiesUI
         {
             foreach (Dragon monster in _listOfMob)
             {
-                monster.Unload(content);
+                if(monster != null) monster.Unload(content);
             }
         }
 

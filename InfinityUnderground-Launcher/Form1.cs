@@ -40,7 +40,7 @@ namespace Kepler_Launcher
         {
             LaunchGame();
             var p = new Process();
-            p.StartInfo.FileName = @"..\..\..\Kepler-22_B\bin\Windows\x86\Debug\Kepler-22_B.exe";
+            p.StartInfo.FileName = @"..\..\..\InfinityUnderground\bin\DesktopGL\x86\Debug\InfinityUnderground.exe";
             p.Start();
             Close();
         }

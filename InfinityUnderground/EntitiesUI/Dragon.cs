@@ -231,9 +231,9 @@ namespace InfinityUnderground.EntitiesUI
         /// </summary>
         public void Unload(ContentManager content)
         {
-            SpriteSheet.Dispose();
-            _flame.Dispose();
-            _songAttack.Dispose();
+            if (SpriteSheet != null) SpriteSheet.Dispose();
+            if (_flame != null)  _flame.Dispose();
+            if (_songAttack != null)  _songAttack.Dispose();
             content.Unload();
         }
 
