@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/S3 PI/S3PI/projet_actuel/keplertest/Kepler-22_B/InfinityUnderground/Content/TrapRoom/3.tmx</SourceFile>
+  <SourceFile>D:/S3 PI/S3PI/projet_actuel/Kepler-22_B/InfinityUnderground/Content/TrapRoom/3.tmx</SourceFile>
   <SourceTime>2016-12-12T09:21:52.1067386+01:00</SourceTime>
-  <DestFile>D:/S3 PI/S3PI/projet_actuel/keplertest/Kepler-22_B/InfinityUnderground/Content/bin/DesktopGL/TrapRoom/3.xnb</DestFile>
-  <DestTime>2016-12-19T11:34:40.1668145+01:00</DestTime>
+  <DestFile>D:/S3 PI/S3PI/projet_actuel/Kepler-22_B/InfinityUnderground/Content/bin/DesktopGL/TrapRoom/3.xnb</DestFile>
+  <DestTime>2016-12-19T11:43:02.4997184+01:00</DestTime>
   <Importer>TiledMapImporter</Importer>
   <ImporterTime>2016-11-20T22:57:32.5281901+01:00</ImporterTime>
   <Processor>TiledMapProcessor</Processor>
