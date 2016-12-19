@@ -18,13 +18,14 @@ namespace Kepler_Launcher
             InitializeComponent();
 
             data = new Data("test-doc");
+            data.GetAttributeName = "age";
             dataTab = data.GetDataInTab("test-doc");
 
         }
 
         private void btn_website_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://google.com");
+            System.Diagnostics.Process.Start("http://www.alexandrepicard.fr/InfinityUnderground/");
         }
 
         private void btn_loadSave_Click(object sender, EventArgs e)

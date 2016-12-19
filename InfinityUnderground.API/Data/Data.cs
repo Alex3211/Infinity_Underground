@@ -68,7 +68,7 @@ namespace Kepler_22_B.API.Data
             _rootNode = _xmlDocument.CreateElement(_contentElement);
             _xmlDocument.AppendChild(_rootNode);
             _userNode = _xmlDocument.CreateElement(_element);
-            _xmlDocument.Save("./../../../../../data/" + NameOfDocument+".xml");
+            _xmlDocument.Save("./../../../data/" + NameOfDocument+".xml");
             return true;
         }
 
@@ -82,13 +82,13 @@ namespace Kepler_22_B.API.Data
         /// <returns></returns>
         public bool AddDataInDocument(string NameOfDocument, string AttributeValue, string Value)
         {
-            _xmlDocument.Load("./../../../../../data/" + NameOfDocument + ".xml");
+            _xmlDocument.Load("./../../../data/" + NameOfDocument + ".xml");
             _userNode = _xmlDocument.CreateElement(_element);
             _attribute = _xmlDocument.CreateAttribute(_nameAttribute);
             _attribute.Value = AttributeValue;
             _userNode.Attributes.Append(_attribute);
             _userNode.InnerText = Value;
-            _xmlDocument.Save("./../../../../../data/" + NameOfDocument + ".xml");
+            _xmlDocument.Save("./../../../data/" + NameOfDocument + ".xml");
             return true;
         }
 
@@ -100,7 +100,7 @@ namespace Kepler_22_B.API.Data
         /// <returns></returns>
         public bool DeleteDataInDocument(string NameOfDocument, string Value)
         {
-            _xmlDocument.Load("./../../../../../data/" + NameOfDocument + ".xml");
+            _xmlDocument.Load("./../../../data/" + NameOfDocument + ".xml");
             _userNodes = _xmlDocument.SelectNodes("//"+_contentElement+"/"+_element);
             foreach (XmlNode userNodee in _userNodes)
             {
@@ -129,10 +129,10 @@ namespace Kepler_22_B.API.Data
         /// <returns></returns>
         public XmlNodeList ReplaceDataInTab(string NameOfDocument, int index, string Value)
         {
-            _xmlDocument.Load("./../../../../../data/" + NameOfDocument + ".xml");
+            _xmlDocument.Load("./../../../data/" + NameOfDocument + ".xml");
             XmlNodeList userNodes = _xmlDocument.SelectNodes("//" + _contentElement + "/" + _element);
             userNodes.Item(index).FirstChild.Value = Value;
-            _xmlDocument.Save("./../../../../../data/" + NameOfDocument + ".xml");
+            _xmlDocument.Save("./../../../data/" + NameOfDocument + ".xml");
             return userNodes;
         }
 
@@ -145,13 +145,13 @@ namespace Kepler_22_B.API.Data
         /// <returns></returns>
         public XmlNodeList ReplaceAttributeInTab(string NameOfDocument, int index, string Value)
         {
-            _xmlDocument.Load("./../../../../../data/" + NameOfDocument + ".xml");
+            _xmlDocument.Load("./../../../data/" + NameOfDocument + ".xml");
             XmlNodeList userNodes = _xmlDocument.SelectNodes("//" + _contentElement + "/" + _element);
 
             int Attribute = int.Parse(_userNodes.Item(index).Attributes[_nameAttribute].Value);
             _userNodes.Item(index).Attributes[_nameAttribute].Value = Value.ToString();
 
-            _xmlDocument.Save("./../../../../../data/" + NameOfDocument + ".xml");
+            _xmlDocument.Save("./../../../data/" + NameOfDocument + ".xml");
             return userNodes;
         }
 
