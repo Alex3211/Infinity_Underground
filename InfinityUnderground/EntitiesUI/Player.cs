@@ -8,6 +8,7 @@ using System.Linq;
 using Microsoft.Xna.Framework.Content;
 using MonoGame.Extended.Maps.Tiled;
 using InfinityUnderground.Characteres;
+using InfinityUnderground.UserInterface;
 
 namespace InfinityUnderground.EntitiesUI
 {
@@ -15,11 +16,11 @@ namespace InfinityUnderground.EntitiesUI
     {
         KeyboardState _state;
         CTPlayer _player;
-        int _playerDirection, _lastMoveSpeed, _timeSinceLastAttack;
+        int _playerDirection, _lastMoveSpeed, _timeSinceLastAttack, _widthBar;
         List<Action> _playerAction;
         Action _actualAction, _lastAction;
         bool _playerAttack, _isAttacking;
- 
+        LifePointMonster _healthBar;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Player"/> class.
@@ -62,7 +63,11 @@ namespace InfinityUnderground.EntitiesUI
             {
                 _actualAction = action;
             }
-            
+
+            _widthBar = 100;
+
+            _healthBar = new LifePointMonster(_widthBar, 25);
+
         }
 
         /// <summary>
@@ -73,6 +78,13 @@ namespace InfinityUnderground.EntitiesUI
         /// </value>
         internal CTPlayer CTPlayer { get { return _player; } }
 
+        /// <summary>
+        /// Sets the health bar.
+        /// </summary>
+        public int SetHealthBar()
+        {
+            return (_widthBar * _player.GetCharacterType.LifePoint / 500);
+        }
 
         public void LoadContent(ContentManager content)
         {
@@ -313,7 +325,8 @@ namespace InfinityUnderground.EntitiesUI
             {
                 CurrentFrame = 0;
             }
-            
+
+            _healthBar.Draw(spriteBatch, (int)(Context.CameraLoader.GetCamera.Position.X + 20), (int)(Context.CameraLoader.GetCamera.Position.Y + 20), _player.GetCharacterType.LifePoint, Context.GraphicsDevice, SetHealthBar());
 
             Rectangle _sourceRectangle = new Rectangle(Width * Column, Height * (int)_actualAction.IDActionPlayer, Width, Height);
             Rectangle _destinationRectangle = new Rectangle(_player.PositionX, _player.PositionY, Width, Height);
