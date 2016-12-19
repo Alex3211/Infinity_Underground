@@ -124,10 +124,5 @@ namespace Kepler_22_B.API.Data
             _xmlDocument.Save("./../../../../../data/" + NameOfDocument + ".xml");
             return userNodes;
         }
-
-        public int SearchIndex()
-        {
-            return 1;
-        }
     }
 }

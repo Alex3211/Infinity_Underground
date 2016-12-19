@@ -219,11 +219,9 @@ namespace InfinityUnderground.Map
         /// <returns></returns>
         public string DoAnEnigm()
         {
-
             tab = _dataXml.GetDataInTab("enigm");
-            string toto = "Question : "+ tab.Item(_enigmRandom).FirstChild.Value+" / Réponse : "+ tab.Item(_enigmRandom).Attributes["reponse"].Value;
-            return toto;
-
+            string StringEnigm = "Question : "+ tab.Item(_enigmRandom).FirstChild.Value+" / Réponse : "+ tab.Item(_enigmRandom).Attributes["reponse"].Value;
+            return StringEnigm;
         }
 
         /// <summary>
@@ -234,7 +232,6 @@ namespace InfinityUnderground.Map
         /// <param name="spriteBatch">The sprite batch.</param>
         private void DrawRectangle(Rectangle coords, Color color, SpriteBatch spriteBatch)
         {
-
             var rect = new Texture2D(_context.GraphicsDevice, 1, 1);
             rect.SetData(new[] { color });
             spriteBatch.Draw(rect, coords, color);
