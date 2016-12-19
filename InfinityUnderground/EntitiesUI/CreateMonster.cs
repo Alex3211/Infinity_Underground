@@ -45,6 +45,10 @@ namespace InfinityUnderground.EntitiesUI
         /// <param name="content"></param>
         public void Unload(ContentManager content)
         {
+            foreach (Dragon monster in _listOfMob)
+            {
+                monster.Unload(content);
+            }
         }
 
         /// <summary>

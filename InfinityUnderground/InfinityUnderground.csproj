@@ -39,7 +39,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Camera\CameraLoader.cs" />
-    <Compile Include="DebugGame\Debug.cs" />
     <Compile Include="EntitiesUI\Action.cs" />
     <Compile Include="EntitiesUI\Dragon.cs" />
     <Compile Include="EntitiesUI\CreateMonster.cs" />
@@ -55,6 +54,7 @@
     <Compile Include="Map\MapLoader.cs" />
     <Compile Include="Map\LoadSurface.cs" />
     <Compile Include="Map\LoadUnderground.cs" />
+    <Compile Include="Map\MiniMap.cs" />
     <Compile Include="Map\WorldControlUI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,6 +91,9 @@
       <Project>{6540bfee-1520-4496-bc55-4ef90e7d4dd0}</Project>
       <Name>InfinityUnderground.API</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DebugGame\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

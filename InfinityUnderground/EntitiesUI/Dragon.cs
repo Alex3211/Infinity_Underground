@@ -210,7 +210,7 @@ namespace InfinityUnderground.EntitiesUI
                 if (_animateFlame)
                 {
                     FlipSpriteSheet(_destinationRectangleFlame, _sourceRectangleFlame, spriteBatch);
-                    //_songAttack.Play();
+                    _songAttack.Play();
                 }
 
                 spriteBatch.Draw(SpriteSheet, _destinationRectangle, _sourceRectangle, Color.White);
@@ -231,6 +231,10 @@ namespace InfinityUnderground.EntitiesUI
         /// </summary>
         public void Unload(ContentManager content)
         {
+            SpriteSheet.Dispose();
+            _flame.Dispose();
+            _songAttack.Dispose();
+            content.Unload();
         }
 
         /// <summary>

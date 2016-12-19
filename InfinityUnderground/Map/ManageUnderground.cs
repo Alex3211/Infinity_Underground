@@ -11,13 +11,31 @@ namespace InfinityUnderground.Map
     {
         Dictionary<Vector2, MapLoader> _undergroundMapLevel;
         Game1 _context;
+        MiniMap _miniMap;
 
         public ManageUnderground(Game1 context)
         {
             _context = context;
             _context.ManageUnderGroundGame = this;
             _undergroundMapLevel = new Dictionary<Vector2, MapLoader>();
+            _miniMap = new MiniMap(this);
         }
+
+        /// <summary>
+        /// Gets the mini map.
+        /// </summary>
+        /// <value>
+        /// The mini map.
+        /// </value>
+        public MiniMap MiniMap { get { return _miniMap; } }
+
+        /// <summary>
+        /// Gets the context.
+        /// </summary>
+        /// <value>
+        /// The context.
+        /// </value>
+        public Game1 Context { get { return _context; } }
 
         /// <summary>
         /// Gets or sets the list of room level underground.
@@ -35,10 +53,12 @@ namespace InfinityUnderground.Map
             if (!_undergroundMapLevel.ContainsKey(position))
             {
                 _undergroundMapLevel.Add(position, map);
+                _miniMap.AddRoom(position);
+                _context.DrawMiniMap = true;
             }
         }
 
-
+        
 
 
 
