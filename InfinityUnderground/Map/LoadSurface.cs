@@ -49,6 +49,7 @@ namespace InfinityUnderground.Map
         /// </summary>
         public void Unload(ContentManager content)
         {
+            content.Unload();
         }
 
 

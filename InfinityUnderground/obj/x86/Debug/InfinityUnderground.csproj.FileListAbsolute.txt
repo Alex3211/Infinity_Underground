@@ -29,7 +29,6 @@ C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Se
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\SecretRoom\2.xnb
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\SecretRoom\3.xnb
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\SecretRoom\4.xnb
-C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Surface\Map.xnb
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\TrapRoom\1.xnb
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\TrapRoom\2.xnb
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\TrapRoom\3.xnb
@@ -52,3 +51,5 @@ C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Ef
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Effect\lightning.xnb
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Effect\ThunderFlame.xnb
 C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Song\Dragon\DreathIce.xnb
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Surface\Map.tmx
+C:\Dev\Projet\Kepler-22_B\InfinityUnderground\bin\DesktopGL\x86\Debug\Content\Surface\Map.xnb

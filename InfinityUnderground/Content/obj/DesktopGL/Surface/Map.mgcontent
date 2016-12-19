@@ -3,7 +3,7 @@
   <SourceFile>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/Surface/Map.tmx</SourceFile>
   <SourceTime>2016-12-08T11:18:46.1649022+01:00</SourceTime>
   <DestFile>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/bin/DesktopGL/Surface/Map.xnb</DestFile>
-  <DestTime>2016-12-15T10:22:58.7224444+01:00</DestTime>
+  <DestTime>2016-12-18T12:26:41.8777598+01:00</DestTime>
   <Importer>TiledMapImporter</Importer>
   <ImporterTime>2016-11-20T22:57:32.5281901+01:00</ImporterTime>
   <Processor>TiledMapProcessor</Processor>

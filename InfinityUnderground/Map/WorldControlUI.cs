@@ -9,7 +9,7 @@ using InfinityUnderground;
 
 namespace InfinityUnderground.Map
 {
-    public class WorldControlUI : IEntity
+    public class WorldControlUI
     {
 
         Game1 _context;
@@ -29,25 +29,6 @@ namespace InfinityUnderground.Map
             r = new Random();
             _context = context;
             _stateSecretDoor = false;
-        }
-
-
-        /// <summary>
-        /// Loads the content.
-        /// </summary>
-        /// <param name="content">The content.</param>
-        public void LoadContent(ContentManager content)
-        {
-
-        }
-
-        /// <summary>
-        /// Unloads this instance.
-        /// </summary>
-        /// <param name="content"></param>
-        public void Unload(ContentManager content)
-        {
-
         }
 
         /// <summary>
@@ -71,13 +52,13 @@ namespace InfinityUnderground.Map
         {
             if (_context.WorldAPI.Level.GetRooms.SwitchLevel())
             {
-                //if (!_context.WorldAPI.IsSurface)
-                //{
-                    _context.GetGameState = Game1.GameState.UNDERGROUND;
-                    _context.LoadGameState = true;
-                    _context.ManageUnderGroundGame.ListOfRoomLevelUnderground.Clear();
-                    _context.WorldAPI.PlayerIsSurfaceOrNot();
-                //}
+                
+                _context.GetGameState = Game1.GameState.UNDERGROUND;
+                _context.LoadGameState = true;
+                _context.ManageUnderGroundGame.ListOfRoomLevelUnderground.Clear();
+                _context.ManageUnderGroundGame.MiniMap.ListOfRoom.Clear();
+                _context.WorldAPI.PlayerIsSurfaceOrNot();
+                
             }
         }
 
@@ -144,16 +125,8 @@ namespace InfinityUnderground.Map
         public void OpenSecretRoom()
         {
             _stateSecretDoor = !_stateSecretDoor;
-            _context.MapLoad.GetMap.GetLayer<TiledTileLayer>("SecretDoor").IsVisible = !_context.MapLoad.GetMap.GetLayer<TiledTileLayer>("SecretDoor").IsVisible;
-        }
-
-        /// <summary>
-        /// Draws the specified sprite dragonch.
-        /// </summary>
-        /// <param name="spriteBatch">The sprite dragonch.</param>
-        /// <exception cref="NotImplementedException"></exception>
-        public void Draw(SpriteBatch spriteBatch)
-        {
+            TiledTileLayer _layer = _context.MapLoad.GetMap.GetLayer<TiledTileLayer>("SecretDoor");
+            _layer.IsVisible = !_layer.IsVisible;
         }
         
     }
