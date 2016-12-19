@@ -135,7 +135,6 @@ namespace InfinityUnderground
 
             _player = new Player(21, 13, this);
             _manageUnderground = new ManageUnderground(this);
-            _worldControl = new WorldControlUI(this);
         }
 
         /// <summary>
@@ -217,7 +216,6 @@ namespace InfinityUnderground
                 entity.Update(gameTime);
             }
 
-            _worldControl.Update(gameTime);
 
         }
 
@@ -266,6 +264,7 @@ namespace InfinityUnderground
                             Entities.Add(new LoadUnderground(this));
                             Entities.Add(new MapLoader(this));
                             Entities.Add(new CreateMonster(this));
+                            Entities.Add(new WorldControlUI(this));
                         }
                         else
                         {
@@ -278,6 +277,7 @@ namespace InfinityUnderground
                     case GameState.SURFACE:
                         Entities.Add(new LoadSurface(this));
                         Entities.Add(new MapLoader(this));
+                        Entities.Add(new WorldControlUI(this));
                         break;
                 }
                 

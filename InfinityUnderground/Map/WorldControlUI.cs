@@ -15,7 +15,7 @@ using System.Threading;
 
 namespace InfinityUnderground.Map
 {
-    public class WorldControlUI
+    public class WorldControlUI : IEntity
     {
 
         Game1 _context;
