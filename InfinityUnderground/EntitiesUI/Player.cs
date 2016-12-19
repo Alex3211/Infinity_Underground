@@ -245,7 +245,7 @@ namespace InfinityUnderground.EntitiesUI
             ZoomPlayer(gameTime);
             PlayerSpeed();
 
-            if (_player.CanMove && _player.IsMoving)
+            if (_player.CanMove && _player.IsMoving && !Context.WorldControl.GetStateEnigm)
             {
                 switch (GetTheDirectionOfThePlayer())
                 {

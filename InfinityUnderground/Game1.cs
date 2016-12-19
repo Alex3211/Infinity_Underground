@@ -90,6 +90,10 @@ namespace InfinityUnderground
         /// </value>
         internal MapLoader MapLoad { get { return _mapLoad; } set { _mapLoad = value; } }
 
+
+
+        internal WorldControlUI WorldControl { get { return _worldControl; } set { _worldControl = value; } }
+
         /// <summary>
         /// Gets the player.
         /// </summary>

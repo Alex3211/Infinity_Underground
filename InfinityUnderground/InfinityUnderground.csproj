@@ -58,6 +58,7 @@
     <Compile Include="Map\WorldControlUI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserInterface\KeyboardHandler.cs" />
     <Compile Include="UserInterface\LifePointMonster.cs" />
     <Compile Include="UserInterface\LifePointPlayer.cs" />
   </ItemGroup>
@@ -75,6 +76,7 @@
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
