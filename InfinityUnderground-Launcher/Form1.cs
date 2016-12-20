@@ -18,9 +18,7 @@ namespace Kepler_Launcher
             InitializeComponent();
 
             data = new Data("test-doc");
-            data.GetAttributeName = "age";
             dataTab = data.GetDataInTab("test-doc");
-
         }
 
         private void btn_website_Click(object sender, EventArgs e)
@@ -30,7 +28,9 @@ namespace Kepler_Launcher
 
         private void btn_loadSave_Click(object sender, EventArgs e)
         {
-            data.ReplaceAttributeInTab("test-doc",1, "4");
+            //data.AddDataInDocument("test-doc", "test2", "test3");
+            //data.AddDataInDocumentWidthThreeAttribute("test-doc", "FirstAttName", "SecondAttName", "FirstAttValue", "secondAttValue", "AttValue", "value");
+            data.ReplaceAttributeInTab("test-doc",1, "9");
             foreach (XmlNode userNodee in dataTab)
             {
                 listBox1.Items.Add(userNodee.InnerXml+" "+userNodee.Attributes["age"].Value);

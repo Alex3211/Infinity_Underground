@@ -34,7 +34,7 @@ namespace InfinityUnderground.UserInterface
         public void SetRectangle(int lifepoint)
         {
 
-            /*if (lifepoint <= (_maxLifepoint / 5))
+            if (lifepoint <= (_maxLifepoint / 5))
             {
                 _colorBar = Color.Red;
             }
@@ -53,9 +53,7 @@ namespace InfinityUnderground.UserInterface
             else
             {
                 _colorBar = Color.Green;
-            }*/
-
-            _colorBar = Color.Green;
+            }
 
             for (int i = 0; i < data.Length; i++)
             {

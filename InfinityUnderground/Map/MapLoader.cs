@@ -92,6 +92,7 @@ namespace InfinityUnderground.Map
         {
             LayerIsVisible(false);
             _getMap.Draw(spriteBatch);
+            if(_context.GetDragon != null) _context.GetDragon.DragonIsDeadDraw(spriteBatch);
             _context.Player.Draw(spriteBatch);
             LayerIsVisible(true);
             _firstLayer.Draw(spriteBatch);

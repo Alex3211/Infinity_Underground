@@ -38,6 +38,7 @@ namespace InfinityUnderground
         bool _loadGameState, _drawMiniMap;
         ManageUnderground _manageUnderground;
         WorldControlUI _worldControl;
+        Dragon _dragon;
 
 
         /// <summary>
@@ -91,6 +92,8 @@ namespace InfinityUnderground
         internal MapLoader MapLoad { get { return _mapLoad; } set { _mapLoad = value; } }
 
 
+
+        internal Dragon GetDragon { get { return _dragon; } set { _dragon = value; } }
 
         internal WorldControlUI WorldControl { get { return _worldControl; } set { _worldControl = value; } }
 

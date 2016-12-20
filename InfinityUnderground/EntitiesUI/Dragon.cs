@@ -30,6 +30,7 @@ namespace InfinityUnderground.EntitiesUI
         public Dragon(int spriteSheetRows, int spriteSheetColumns, Game1 context, CTDragon bat)
         {
             Context = context;
+            Context.GetDragon = this;
 
             _widthBar = 100;
 
@@ -55,6 +56,8 @@ namespace InfinityUnderground.EntitiesUI
             _spriteSheetFlameRows = 7;
             _totalFramesFlame = _spriteSheetFlameColumns/2;
         }
+
+        public CTDragon GetDragonState { get { return _dragon; } }
 
 
         /// <summary>
@@ -201,11 +204,7 @@ namespace InfinityUnderground.EntitiesUI
 
             Rectangle _destinationRectangleFlame = SetPositionFlame( widthFlame, heightFlame);
 
-            if (_dragon.IsDead)
-            {
-                spriteBatch.Draw(SpriteSheet, _destinationRectangle, _sourceRectangle, Color.Black);
-            }
-            else
+            if(!_dragon.IsDead)
             {
                 if (_animateFlame)
                 {
@@ -217,6 +216,19 @@ namespace InfinityUnderground.EntitiesUI
                 spriteBatch.Draw(SpriteSheet, _destinationRectangle, _sourceRectangle, Color.White);
             }
         }
+
+        public bool DragonIsDeadDraw(SpriteBatch spriteBatch)
+        {
+            if (_dragon.IsDead)
+            {
+                Rectangle _sourceRectangle = new Rectangle(Width * Column, Height * _direction, Width, Height);
+                Rectangle _destinationRectangle = new Rectangle(_dragon.PositionX, _dragon.PositionY, Width, Height);
+                spriteBatch.Draw(SpriteSheet, _destinationRectangle, _sourceRectangle, Color.Black);
+                return true;
+            }
+            return false;
+        }
+
 
         /// <summary>
         /// Sets the health bar.

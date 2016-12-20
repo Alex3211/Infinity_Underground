@@ -33,7 +33,7 @@ namespace Kepler_22_B.API.Data
             _userNodes = _xmlDocument.SelectNodes("//users/user");
             _contentElement = "users";
             _element = "user";
-            _nameAttribute = "attribute";
+            _nameAttribute = "age";
         }
 
         /// <summary>
@@ -106,6 +106,33 @@ namespace Kepler_22_B.API.Data
         }
 
         /// <summary>
+        /// Adds the data in document with 3 attributes.
+        /// </summary>
+        /// <param name="NameOfDocument">The name of document.</param>
+        /// <param name="Attribute">The attribute.</param>
+        /// <param name="AttributeValue">The attribute value.</param>
+        /// <param name="Value">The value.</param>
+        /// <returns></returns>
+        public bool AddDataInDocumentWidthThreeAttribute(string NameOfDocument, string FirstAttributeName, string SecondAttributName, string FirstAttributeValue, string SecondAttributeValue, string AttributeValue, string Value)
+        {
+            _xmlDocument.Load("./../../../data/" + NameOfDocument + ".xml");
+            _userNode = _xmlDocument.CreateElement(_element);
+            _attribute = _xmlDocument.CreateAttribute(FirstAttributeName);
+            _attribute.Value = FirstAttributeValue;
+            _userNode.Attributes.Append(_attribute);
+            _attribute = _xmlDocument.CreateAttribute(SecondAttributName);
+            _attribute.Value = SecondAttributeValue;
+            _userNode.Attributes.Append(_attribute);
+            _attribute = _xmlDocument.CreateAttribute(_nameAttribute);
+            _attribute.Value = AttributeValue;
+            _userNode.Attributes.Append(_attribute);
+            _userNode.InnerText = Value;
+
+            _xmlDocument.Save("./../../../data/" + NameOfDocument + ".xml");
+            return true;
+        }
+
+        /// <summary>
         /// Deletes the data in document.
         /// </summary>
         /// <param name="NameOfDocument">The name of document.</param>
@@ -129,7 +156,7 @@ namespace Kepler_22_B.API.Data
         /// <returns></returns>
         public XmlNodeList GetDataInTab(string NameOfDocument)
         {
-            _xmlDocument.Load(@"..\..\..\..\..\data\" + NameOfDocument+".xml");
+            _xmlDocument.Load(@"./../../../../../data/" + NameOfDocument+".xml");
             _userNodes = _xmlDocument.SelectNodes("//"+ _contentElement + "/"+_element);
             return _userNodes;
         }
