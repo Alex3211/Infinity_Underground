@@ -8,14 +8,10 @@ namespace InfinityUnderground.Camera
 {
     public class CameraLoader
     {
-
-
-
         Game1 _context;
         Camera2D _getCamera;
         BoxingViewportAdapter _viewportAdapter;
         float _zoom;
-
 
         /// <summary>
         /// Gets or sets the zoom.
@@ -24,7 +20,6 @@ namespace InfinityUnderground.Camera
         /// The zoom.
         /// </value>
         internal float Zoom { get { return _zoom; } }
-
 
         /// <summary>
         /// Gets the get camera.

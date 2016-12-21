@@ -27,6 +27,7 @@ namespace InfinityUnderground.EntitiesUI
             _random = new Random();
             _listOfMob = new List<Spritesheet>();
             _context = context;
+            _context.GetCreateMonster = this;
         }
 
 
@@ -109,7 +110,17 @@ namespace InfinityUnderground.EntitiesUI
         {
             foreach(Dragon monster in _listOfMob)
             {
-                monster.Draw(spritebatch);
+                if (!monster.GetDragonState.IsDead)
+                    monster.Draw(spritebatch);
+            }
+        }
+
+        public void DrawDead(SpriteBatch spriteBatch)
+        {
+            foreach (Dragon monster in _listOfMob)
+            {
+                if (monster.GetDragonState.IsDead)
+                monster.DragonIsDeadDraw(spriteBatch);
             }
         }
 

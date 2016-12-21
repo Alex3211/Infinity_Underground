@@ -47,6 +47,7 @@ namespace InfinityUnderground.Map
                 if (e != null && e.Name == "UpOne") _firstLayer = e;
                 if (e != null && e.Name == "UpTwo") _secondLayer = e;
             }
+            
             _getLayerCollide.IsVisible = false;
         }
 
@@ -92,7 +93,7 @@ namespace InfinityUnderground.Map
         {
             LayerIsVisible(false);
             _getMap.Draw(spriteBatch);
-            if(_context.GetDragon != null) _context.GetDragon.DragonIsDeadDraw(spriteBatch);
+            if(_context.GetCreateMonster != null) _context.GetCreateMonster.DrawDead(spriteBatch);
             _context.Player.Draw(spriteBatch);
             LayerIsVisible(true);
             _firstLayer.Draw(spriteBatch);

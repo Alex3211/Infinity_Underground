@@ -18,7 +18,7 @@ namespace InfinityUnderground.API.Characteres
         public CTPlayer(World context)
         {
             GetCharacterType.GetArmor = 1.0;
-            GetCharacterType.GetCriticalChance = 2.0;
+            GetCharacterType.GetCriticalChance = 50.0;
             GetCharacterType.GetCriticalDamage = 10;
             GetCharacterType.GetSpeedAttack = 0.4;
             GetCharacterType.LifePoint = 1000;

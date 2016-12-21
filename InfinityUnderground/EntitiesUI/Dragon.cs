@@ -78,7 +78,7 @@ namespace InfinityUnderground.EntitiesUI
         {
             _timeSinceLastAttack += gameTime.ElapsedGameTime.Milliseconds;
 
-            if (!_isMoving)
+            if (!_isMoving && !_dragon.IsDead)
             {
                 _dragonAttack = _dragon.DragonAttack((Direction)_direction, ref _timeSinceLastAttack);
                 if (_dragonAttack) _animateFlame = true;
@@ -244,10 +244,10 @@ namespace InfinityUnderground.EntitiesUI
         /// </summary>
         public void Unload(ContentManager content)
         {
-            if (SpriteSheet != null) SpriteSheet.Dispose();
-            if (_flame != null)  _flame.Dispose();
-            if (_songAttack != null)  _songAttack.Dispose();
-            content.Unload();
+            //if (SpriteSheet != null) SpriteSheet.Dispose();
+            //if (_flame != null)  _flame.Dispose();
+            //if (_songAttack != null)  _songAttack.Dispose();
+            //content.Unload();
         }
 
         /// <summary>
@@ -281,20 +281,19 @@ namespace InfinityUnderground.EntitiesUI
             {
 
                 case IDActionDragon.WalkTop:
-                    return new Rectangle(_dragon.PositionX + (int)(_dragon.GetCharacterType.Range*0.2), _dragon.PositionY - (int)(_dragon.GetCharacterType.Range*0.6), widthFlame, heightFlame);
+                    return new Rectangle(_dragon.PositionX + (int)(_dragon.GetCharacterType.Range * 0.4), _dragon.PositionY - (int)(_dragon.GetCharacterType.Range * 1.1), widthFlame, heightFlame);
 
 
                 case IDActionDragon.WalkLeft:
-                    return new Rectangle(_dragon.PositionX - (int)(_dragon.GetCharacterType.Range * 0.7), _dragon.PositionY + (int)(_dragon.GetCharacterType.Range * 0.4), widthFlame, heightFlame);
+                    return new Rectangle(_dragon.PositionX - (int)(_dragon.GetCharacterType.Range * 1.3), _dragon.PositionY + (int)(_dragon.GetCharacterType.Range * 0.7), widthFlame, heightFlame);
 
 
                 case IDActionDragon.WalkBottom:
-                    return new Rectangle(_dragon.PositionX + (int)(_dragon.GetCharacterType.Range*0.25), _dragon.PositionY + (int)(_dragon.GetCharacterType.Range * 1.2), widthFlame, heightFlame);
-                    
+                    return new Rectangle(_dragon.PositionX + (int)(_dragon.GetCharacterType.Range * 0.25), _dragon.PositionY + (int)(_dragon.GetCharacterType.Range * 1.2), widthFlame, heightFlame);
+
 
                 case IDActionDragon.WalkRight:
-                    return new Rectangle(_dragon.PositionX + (int)(_dragon.GetCharacterType.Range * 1.2), _dragon.PositionY + (int)(_dragon.GetCharacterType.Range * 0.3), widthFlame, heightFlame);
-                    
+                    return new Rectangle(_dragon.PositionX + (int)(_dragon.GetCharacterType.Range * 2.3), _dragon.PositionY + (int)(_dragon.GetCharacterType.Range * 0.5), widthFlame, heightFlame);
 
             }
             return new Rectangle(_dragon.PositionX, _dragon.PositionY, widthFlame, heightFlame);

@@ -39,6 +39,7 @@ namespace InfinityUnderground
         ManageUnderground _manageUnderground;
         WorldControlUI _worldControl;
         Dragon _dragon;
+        CreateMonster _createMonster;
 
 
         /// <summary>
@@ -94,6 +95,7 @@ namespace InfinityUnderground
 
 
         internal Dragon GetDragon { get { return _dragon; } set { _dragon = value; } }
+        internal CreateMonster GetCreateMonster { get { return _createMonster; } set { _createMonster = value; } }
 
         internal WorldControlUI WorldControl { get { return _worldControl; } set { _worldControl = value; } }
 
@@ -174,10 +176,7 @@ namespace InfinityUnderground
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
 
-            foreach (var entity in _entities)
-            {
-                entity.LoadContent(Content);
-            }
+
 
             if (MapLoad != null && GetGameState == GameState.UNDERGROUND && !_manageUnderground.ListOfRoomLevelUnderground.ContainsKey(WorldAPI.Level.GetRooms.PosCurrentRoom)) ManageUnderGroundGame.AddRoomToTheList(WorldAPI.Level.GetRooms.PosCurrentRoom, MapLoad);
 
@@ -189,10 +188,7 @@ namespace InfinityUnderground
         /// </summary>
         protected override void UnloadContent()
         {
-            //foreach (var entity in _entities)
-            //{
-            //    entity.Unload(Content);
-            //}
+
             // TODO: Unload any non ContentManager content here
             //Dispose();
         }
@@ -250,7 +246,10 @@ namespace InfinityUnderground
         {
             if (_loadGameState)
             {
-                UnloadContent();
+                foreach (var entity in _entities)
+                {
+                    entity.Unload(Content);
+                }
                 Entities.Clear();
                 MapLoad = null;
 
@@ -278,8 +277,11 @@ namespace InfinityUnderground
                         Entities.Add(new WorldControlUI(this));
                         break;
                 }
-                
-                LoadContent();
+
+                foreach (var entity in _entities)
+                {
+                    entity.LoadContent(Content);
+                }
                 CameraLoader.GetCamera.LookAt(new Vector2(WorldAPI.Players[0].PositionX, WorldAPI.Players[0].PositionY));
                 _loadGameState = false;
             }
