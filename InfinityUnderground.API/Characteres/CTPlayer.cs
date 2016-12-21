@@ -44,7 +44,7 @@ namespace InfinityUnderground.API.Characteres
         {
         }
 
-        
+
         /// <summary>
         /// Gets or sets the sprint.
         /// </summary>
@@ -53,7 +53,6 @@ namespace InfinityUnderground.API.Characteres
         /// </value>
         public int Sprint { get { return _sprint; } set { _sprint = value; } }
 
-        
         /// <summary>
         /// Gets or sets a value indicating whether this instance can move.
         /// </summary>

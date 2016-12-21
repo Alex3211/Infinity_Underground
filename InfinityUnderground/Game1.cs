@@ -222,16 +222,9 @@ namespace InfinityUnderground
             GraphicsDevice.Clear(new Color(39, 33, 41));
             spriteBatch.Begin(transformMatrix: _cameraLoader.GetMatrix);
 
-
             foreach (var entity in _entities)
             {
                 entity.Draw(spriteBatch);
-            }
-
-            if (_gameState == GameState.UNDERGROUND)
-            {
-                _manageUnderground.MiniMap.Draw(spriteBatch, MapLoad.GetMap.WidthInPixels, MapLoad.GetMap.HeightInPixels);
-                _drawMiniMap = false;
             }
 
             spriteBatch.End();
@@ -269,12 +262,13 @@ namespace InfinityUnderground
                         }
                         Entities.Add(new WorldControlUI(this));
                         _manageUnderground.MiniMap.ChangeRoom = true;
+                        if (MapLoad != null && GetGameState == GameState.UNDERGROUND && !_manageUnderground.ListOfRoomLevelUnderground.ContainsKey(WorldAPI.Level.GetRooms.PosCurrentRoom)) ManageUnderGroundGame.AddRoomToTheList(WorldAPI.Level.GetRooms.PosCurrentRoom, MapLoad);
                         break;
 
                     case GameState.SURFACE:
                         Entities.Add(new LoadSurface(this));
-                        Entities.Add(new MapLoader(this));
                         Entities.Add(new WorldControlUI(this));
+                        Entities.Add(new MapLoader(this));
                         break;
                 }
 

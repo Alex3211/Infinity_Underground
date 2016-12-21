@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.Maps.Tiled;
 using System.Collections.Generic;
+using static InfinityUnderground.Game1;
 
 namespace InfinityUnderground.Map
 {
@@ -98,6 +99,11 @@ namespace InfinityUnderground.Map
             LayerIsVisible(true);
             _firstLayer.Draw(spriteBatch);
             _secondLayer.Draw(spriteBatch);
+            if (_context.GetGameState == GameState.UNDERGROUND)
+            {
+                _context.ManageUnderGroundGame.MiniMap.Draw(spriteBatch, this.GetMap.WidthInPixels, this.GetMap.HeightInPixels);
+                _context.DrawMiniMap = false;
+            }
         }
 
         /// <summary>
