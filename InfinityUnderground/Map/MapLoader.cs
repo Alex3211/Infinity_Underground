@@ -1,5 +1,6 @@
 ﻿using InfinityUnderground;
 using InfinityUnderground.API.Characteres;
+using InfinityUnderground.API.Map;
 using InfinityUnderground.EntitiesUI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -16,7 +17,7 @@ namespace InfinityUnderground.Map
     {
         Game1 _context;
         TiledMap _getMap;
-        TiledTileLayer _getLayerCollide, _getLayerDoorCollide, _firstLayer, _secondLayer;
+        TiledTileLayer _getLayerCollide, _getLayerDoorCollide, _firstLayer, _secondLayer, _LeftDoor, _RightDoor, _TopDoor, _BottomDoor;
         int _idTileCollide;
 
 
@@ -47,8 +48,15 @@ namespace InfinityUnderground.Map
                 if (e != null && e.Name == "SecretCollide") _getLayerDoorCollide = e;
                 if (e != null && e.Name == "UpOne") _firstLayer = e;
                 if (e != null && e.Name == "UpTwo") _secondLayer = e;
+                if (e != null && e.Name == "RightDoorBlock") _RightDoor = e;
+                if (e != null && e.Name == "BottomDoorBlock") _BottomDoor = e;
+                if (e != null && e.Name == "LeftDoorBlock") _LeftDoor = e;
+                if (e != null && e.Name == "TopDoorBlock") _TopDoor = e;
             }
-            
+            if(_TopDoor != null && !_context.WorldAPI.Level.GetRooms.IsBeginRoom && !_context.WorldAPI.Level.GetRooms.IsFinalRoom) _TopDoor.IsVisible = true;
+            if(_BottomDoor != null && !_context.WorldAPI.Level.GetRooms.IsBeginRoom && !_context.WorldAPI.Level.GetRooms.IsFinalRoom) _BottomDoor.IsVisible = true;
+            if(_RightDoor != null && !_context.WorldAPI.Level.GetRooms.IsBeginRoom && !_context.WorldAPI.Level.GetRooms.IsFinalRoom) _RightDoor.IsVisible = true;
+            if(_LeftDoor != null && !_context.WorldAPI.Level.GetRooms.IsBeginRoom && !_context.WorldAPI.Level.GetRooms.IsFinalRoom) _LeftDoor.IsVisible = true;
             _getLayerCollide.IsVisible = false;
         }
 
@@ -92,17 +100,49 @@ namespace InfinityUnderground.Map
         /// <param name="spriteBatch">The sprite dragonch.</param>
         public void Draw(SpriteBatch spriteBatch)
         {
+
             LayerIsVisible(false);
             _getMap.Draw(spriteBatch);
-            if(_context.GetCreateMonster != null) _context.GetCreateMonster.DrawDead(spriteBatch);
+            if (_context.GetCreateMonster != null) _context.GetCreateMonster.DrawDead(spriteBatch);
             _context.Player.Draw(spriteBatch);
             LayerIsVisible(true);
             _firstLayer.Draw(spriteBatch);
             _secondLayer.Draw(spriteBatch);
-            if (_context.GetGameState == GameState.UNDERGROUND)
+            if (!_context.WorldAPI.IsSurface && !_context.WorldAPI.Level.GetRooms.IsBeginRoom && !_context.WorldAPI.Level.GetRooms.IsFinalRoom) DrawDoorOrNot();
+            //if (_context.GetGameState == GameState.UNDERGROUND)
+            //{
+            //    _context.ManageUnderGroundGame.MiniMap.Draw(spriteBatch, this.GetMap.WidthInPixels, this.GetMap.HeightInPixels);
+            //    _context.DrawMiniMap = false;
+            //}
+        }
+
+        public void DrawDoorOrNot()
+        {
+
+            if (!_context.WorldAPI.IsSurface && !_context.WorldAPI.Level.GetRooms.IsBeginRoom && !_context.WorldAPI.Level.GetRooms.IsFinalRoom)
             {
-                _context.ManageUnderGroundGame.MiniMap.Draw(spriteBatch, this.GetMap.WidthInPixels, this.GetMap.HeightInPixels);
-                _context.DrawMiniMap = false;
+                List<DoorDirection> _list = _context.WorldAPI.Level.GetRooms.DoorIsDrawable();
+                foreach (DoorDirection door in _list)
+                {
+                    switch (door)
+                    {
+                        case DoorDirection.Top:
+                            _TopDoor.IsVisible = false;
+                            break;
+                        case DoorDirection.Bottom:
+                            _BottomDoor.IsVisible = false;
+                            break;
+                        case DoorDirection.Right:
+                            _RightDoor.IsVisible = false;
+                            break;
+                        case DoorDirection.Left:
+                            _LeftDoor.IsVisible = false;
+                            break;
+                    }
+                }
+
+
+
             }
         }
 
@@ -123,16 +163,25 @@ namespace InfinityUnderground.Map
         /// </value>
         public int IdTileCollide { get { return _idTileCollide; } set { _idTileCollide = value; } }
 
+        public TiledTileLayer GetRightDoor { get { return _RightDoor; } set { _RightDoor = value; } }
+        public TiledTileLayer GetBottomDoor { get { return _BottomDoor; } set { _BottomDoor = value; } }
+        public TiledTileLayer GetLeftDoor { get { return _LeftDoor; } set { _LeftDoor = value; } }
+        public TiledTileLayer GetTopDoor { get { return _TopDoor; } set { _TopDoor = value; } }
+
         /// <summary>
         /// Unloads this instance.
         /// </summary>
         public void Unload(ContentManager content)
         {
-            if (_getLayerCollide != null) _getMap.Dispose();
-            if (_getMap != null) _getLayerCollide.Dispose();
+            if (_getMap != null) _getMap.Dispose();
+            if (_getLayerCollide != null) _getLayerCollide.Dispose();
             if (_getLayerDoorCollide != null) _getLayerDoorCollide.Dispose();
             if (_firstLayer != null) _firstLayer.Dispose();
             if (_secondLayer != null) _secondLayer.Dispose();
+            if (_RightDoor != null) _RightDoor.Dispose();
+            if (_BottomDoor != null) _BottomDoor.Dispose();
+            if (_LeftDoor != null) _LeftDoor.Dispose();
+            if (_TopDoor != null) _TopDoor.Dispose();
         }
 
 

@@ -155,6 +155,25 @@ namespace InfinityUnderground.API.Map
             return null;
         }
 
+
+        public List<DoorDirection> DoorIsDrawable()
+        {
+            List<DoorDirection> _doorsDirection = new List<DoorDirection>();
+            Door _currentDoor = null;
+            if (!(_firstDoor == null))
+            {
+                _currentDoor = _firstDoor;
+            }
+
+            while (_currentDoor != null)
+            {
+                if (_currentDoor.DoorDirection == DoorDirection.Top || _currentDoor.DoorDirection == DoorDirection.Left || _currentDoor.DoorDirection == DoorDirection.Bottom || _currentDoor.DoorDirection == DoorDirection.Right)
+                    _doorsDirection.Add(_currentDoor.DoorDirection); 
+                _currentDoor = _currentDoor.NextDoor;
+            }
+            return _doorsDirection;
+        }
+
         /// <summary>
         /// Ifs the is begin room.
         /// </summary>
@@ -266,7 +285,6 @@ namespace InfinityUnderground.API.Map
 
                 if (_isFinalRoom)
                     AddDoor(new Vector2(30, 11), new Vector2(30, 11), DoorDirection.Center);
-                
 
                 if (_posCurrentRoom.Y > 0)
                     AddDoor(new Vector2(29, 2), new Vector2(32, 3), DoorDirection.Top);

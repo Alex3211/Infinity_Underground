@@ -12,6 +12,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using InfinityUnderground.UserInterface;
 using System.Threading;
+using InfinityUnderground.API.Map;
 
 namespace InfinityUnderground.Map
 {
@@ -137,14 +138,18 @@ namespace InfinityUnderground.Map
         {
             if (_context.WorldAPI.Level.GetRooms.SwitchRoom())
             {
-                _context.MapLoad.GetMap.Dispose();
+
+
+                    _context.MapLoad.GetMap.Dispose();
                 if (IsSecretRoom && _stateSecretDoor)
                 {
                     OpenSecretRoom();
                     _stateEnigm = false;
                 }
                 _context.LoadGameState = true;
-                _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX+350, _context.WorldAPI.Players[0].PositionY));
+                List<DoorDirection> _list = _context.WorldAPI.Level.GetRooms.DoorIsDrawable();
+            
+                _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX + 350, _context.WorldAPI.Players[0].PositionY));
             }
         }
 
