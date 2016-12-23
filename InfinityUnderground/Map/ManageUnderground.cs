@@ -8,9 +8,53 @@ using System.Threading.Tasks;
 
 namespace InfinityUnderground.Map
 {
+
+    public class SaveMap
+    {
+        readonly Vector2 _position;
+        readonly string _typeOfRoom;
+        readonly string _numberOfRoom;
+
+        public SaveMap(Vector2 pos, string typeOfRoom, string numberOfRoom)
+        {
+            _position = pos;
+            _typeOfRoom = typeOfRoom;
+            _numberOfRoom = numberOfRoom;
+        }
+
+        /// <summary>
+        /// Gets or sets the position.
+        /// </summary>
+        /// <value>
+        /// The position.
+        /// </value>
+        internal Vector2 Position { get{ return _position; } }
+
+        /// <summary>
+        /// Gets the type of room.
+        /// </summary>
+        /// <value>
+        /// The type of room.
+        /// </value>
+        internal string TypeOfRoom { get{ return _typeOfRoom; } }
+
+        /// <summary>
+        /// Gets the number of room.
+        /// </summary>
+        /// <value>
+        /// The number of room.
+        /// </value>
+        internal string NumberOfRoom { get{ return _numberOfRoom; } }
+
+    }
+
+
     public class ManageUnderground
     {
         Dictionary<Vector2, MapLoader> _undergroundMapLevel;
+
+        List<SaveMap> _mapOfUnderground;
+
         Game1 _context;
         MiniMap _miniMap;
         Data _saveMap;
@@ -20,13 +64,9 @@ namespace InfinityUnderground.Map
         {
             _context = context;
             _context.ManageUnderGroundGame = this;
-            _undergroundMapLevel = new Dictionary<Vector2, MapLoader>();
 
-            _guid = Guid.NewGuid().ToString();
-
-            //_saveMap = new Data(_guid, "Underground");
-            //_saveMap = new Data(_guid);
-
+            _mapOfUnderground = new List<SaveMap>();
+            
             _miniMap = new MiniMap(this);
         }
 
@@ -52,28 +92,17 @@ namespace InfinityUnderground.Map
         /// <value>
         /// The list of room level underground.
         /// </value>
-        public Dictionary<Vector2, MapLoader> ListOfRoomLevelUnderground { get { return _undergroundMapLevel; }  set { _undergroundMapLevel = value; } }
+        public List<SaveMap> ListOfRoomLevelUnderground { get { return _mapOfUnderground; } set { _mapOfUnderground = value; } }
 
         /// <summary>
         /// Adds the room to the list.
         /// </summary>
-        public void AddRoomToTheList(Vector2 position, MapLoader map)
+        public void AddRoomToTheList()
         {
-            if (!_undergroundMapLevel.ContainsKey(position))
-            {
+            _mapOfUnderground.Add(new SaveMap(_context.WorldAPI.Level.GetRooms.PosCurrentRoom, _context.WorldAPI.Level.GetRooms.TypeOfRoom.NameOfMap, _context.WorldAPI.Level.GetRooms.NBRandom.ToString()));
 
-                //_saveMap.GetContentElementName = "room";
-                //_saveMap.CreateDataDocument(_guid);
-
-
-                    
-
-
-
-                _undergroundMapLevel.Add(position, map);
-                _miniMap.AddRoom(position);
-                _context.DrawMiniMap = true;
-            }
+            _miniMap.AddRoom(_context.WorldAPI.Level.GetRooms.PosCurrentRoom);
+            _context.DrawMiniMap = true;
         }
 
         

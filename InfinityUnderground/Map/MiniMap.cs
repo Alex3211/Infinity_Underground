@@ -41,7 +41,7 @@ namespace InfinityUnderground.Map
     public class MiniMap
     {
         int _widthRoom, _heightRoom;
-        Texture2D _room;
+        Texture2D _roomIn, _roomOut, _actualRoom, _room;
         ManageUnderground _context;
         Color[] _data;
         List<RoomInMiniMap> _listOfRoom;
@@ -105,21 +105,49 @@ namespace InfinityUnderground.Map
             _heightRoom = heightRoom / 200;
             _widthRoom = widthRoom / 200;
 
+            if (_room != null) _room.Dispose();
+            if (_roomIn != null) _roomIn.Dispose();
+            if (_roomOut != null) _roomOut.Dispose();
+            if (_actualRoom != null) _actualRoom.Dispose();
+
+
+            _roomIn = new Texture2D(_context.Context.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+            _roomIn.SetData(new Color[] { Color.Green });
+
+            _roomOut = new Texture2D(_context.Context.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+            _roomOut.SetData(new Color[] { Color.PaleVioletRed });
+
+            _actualRoom = new Texture2D(_context.Context.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+            _actualRoom.SetData(new Color[] { Color.White });
+
+            _room = new Texture2D(_context.Context.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+            _room.SetData(new Color[] { Color.Gray });
+
 
             foreach (RoomInMiniMap room in _listOfRoom)
             {
-                if (_room != null) _room.Dispose();
-                _room = new Texture2D(_context.Context.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
-                SetColor(room);
-                spriteBatch.Draw(_room, new Rectangle((int)(_context.Context.CameraLoader.GetCamera.Position.X + (room.PosInPixel.X) + 800), (int)(_context.Context.CameraLoader.GetCamera.Position.Y + (room.PosInPixel.Y) + 5), _widthRoom, _heightRoom), Color.White);
+                if (room.RoomPos == new Vector2(0,0))
+                {
+                    spriteBatch.Draw(_roomIn, new Rectangle((int)(_context.Context.CameraLoader.GetCamera.Position.X + (room.PosInPixel.X) + 800), (int)(_context.Context.CameraLoader.GetCamera.Position.Y + (room.PosInPixel.Y) + 5), _widthRoom, _heightRoom), Color.White);
+                }
+                else if(room.RoomPos == _context.Context.WorldAPI.Level.GetRooms.RoomOut)
+                {
+                    spriteBatch.Draw(_roomOut, new Rectangle((int)(_context.Context.CameraLoader.GetCamera.Position.X + (room.PosInPixel.X) + 800), (int)(_context.Context.CameraLoader.GetCamera.Position.Y + (room.PosInPixel.Y) + 5), _widthRoom, _heightRoom), Color.White);
+                }
+                else if (room.RoomPos == _context.Context.WorldAPI.Level.GetRooms.PosCurrentRoom)
+                {
+                    spriteBatch.Draw(_actualRoom, new Rectangle((int)(_context.Context.CameraLoader.GetCamera.Position.X + (room.PosInPixel.X) + 800), (int)(_context.Context.CameraLoader.GetCamera.Position.Y + (room.PosInPixel.Y) + 5), _widthRoom, _heightRoom), Color.White);
+                }
+                else
+                {
+                    spriteBatch.Draw(_room, new Rectangle((int)(_context.Context.CameraLoader.GetCamera.Position.X + (room.PosInPixel.X) + 800), (int)(_context.Context.CameraLoader.GetCamera.Position.Y + (room.PosInPixel.Y) + 5), _widthRoom, _heightRoom), Color.White);
+                }
             }
 
 
 
 
-
-
-
+            
         }    
 
     }

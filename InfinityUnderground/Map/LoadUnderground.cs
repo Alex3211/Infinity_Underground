@@ -24,6 +24,18 @@ namespace InfinityUnderground.Map
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="LoadUnderground"/> class.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        public LoadUnderground(Game1 context, string typeOfRoom, string nbStyleRoom)
+        {
+            _context = context;
+            _context.WorldAPI.Level.GetRooms.SetRandomNumber();
+            _nameOfPath = typeOfRoom + "/" + nbStyleRoom;
+        }
+
+
+        /// <summary>
         /// Loads the content.
         /// </summary>
         /// <param name="content">The content.</param>

@@ -8,6 +8,7 @@ using InfinityUnderground.EntitiesUI;
 using InfinityUnderground.Camera;
 using InfinityUnderground.Map;
 using InfinityUnderground;
+using System.Linq;
 
 namespace InfinityUnderground
 {
@@ -177,9 +178,6 @@ namespace InfinityUnderground
 
 
 
-
-            //if (MapLoad != null && GetGameState == GameState.UNDERGROUND && !_manageUnderground.ListOfRoomLevelUnderground.ContainsKey(WorldAPI.Level.GetRooms.PosCurrentRoom)) ManageUnderGroundGame.AddRoomToTheList(WorldAPI.Level.GetRooms.PosCurrentRoom, MapLoad);
-
         }
 
         /// <summary>
@@ -251,20 +249,26 @@ namespace InfinityUnderground
                 switch (_gameState)
                 {
                     case GameState.UNDERGROUND:
-                        if (!ManageUnderGroundGame.ListOfRoomLevelUnderground.ContainsKey(WorldAPI.Level.GetRooms.PosCurrentRoom))
+                        var rooms = from room in ManageUnderGroundGame.ListOfRoomLevelUnderground where room.Position == WorldAPI.Level.GetRooms.PosCurrentRoom select room;
+                        if (rooms.Count() == 0)
                         {
                             Entities.Add(new LoadUnderground(this));
-                            Entities.Add(new MapLoader(this));
-                            Entities.Add(new CreateMonster(this));
+                            ManageUnderGroundGame.AddRoomToTheList();
                         }
                         else
                         {
-                            Entities.Add(ManageUnderGroundGame.ListOfRoomLevelUnderground[WorldAPI.Level.GetRooms.PosCurrentRoom]);
-                            MapLoad = ManageUnderGroundGame.ListOfRoomLevelUnderground[WorldAPI.Level.GetRooms.PosCurrentRoom];
+                            foreach (SaveMap room in rooms)
+                            {
+                                Entities.Add(new LoadUnderground(this, room.TypeOfRoom, room.NumberOfRoom));
+                                break;
+                            }
                         }
+                        Entities.Add(new MapLoader(this));
+                        Entities.Add(new CreateMonster(this));
                         Entities.Add(new WorldControlUI(this));
+
                         _manageUnderground.MiniMap.ChangeRoom = true;
-                        if (MapLoad != null && GetGameState == GameState.UNDERGROUND && !_manageUnderground.ListOfRoomLevelUnderground.ContainsKey(WorldAPI.Level.GetRooms.PosCurrentRoom)) ManageUnderGroundGame.AddRoomToTheList(WorldAPI.Level.GetRooms.PosCurrentRoom, MapLoad);
+
                         break;
 
                     case GameState.SURFACE:
