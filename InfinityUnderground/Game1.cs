@@ -178,7 +178,7 @@ namespace InfinityUnderground
 
 
 
-            if (MapLoad != null && GetGameState == GameState.UNDERGROUND && !_manageUnderground.ListOfRoomLevelUnderground.ContainsKey(WorldAPI.Level.GetRooms.PosCurrentRoom)) ManageUnderGroundGame.AddRoomToTheList(WorldAPI.Level.GetRooms.PosCurrentRoom, MapLoad);
+            //if (MapLoad != null && GetGameState == GameState.UNDERGROUND && !_manageUnderground.ListOfRoomLevelUnderground.ContainsKey(WorldAPI.Level.GetRooms.PosCurrentRoom)) ManageUnderGroundGame.AddRoomToTheList(WorldAPI.Level.GetRooms.PosCurrentRoom, MapLoad);
 
         }
 
@@ -239,10 +239,12 @@ namespace InfinityUnderground
         {
             if (_loadGameState)
             {
+
                 foreach (var entity in _entities)
                 {
                     entity.Unload(Content);
                 }
+
                 Entities.Clear();
                 MapLoad = null;
 
@@ -276,6 +278,7 @@ namespace InfinityUnderground
                 {
                     entity.LoadContent(Content);
                 }
+
                 CameraLoader.GetCamera.LookAt(new Vector2(WorldAPI.Players[0].PositionX, WorldAPI.Players[0].PositionY));
                 _loadGameState = false;
             }

@@ -80,21 +80,18 @@ namespace InfinityUnderground.Map
         /// <summary>
         /// Sets the color.
         /// </summary>
-        public void SetColor(RoomInMiniMap room, ref Texture2D roomRectangle)
+        public void SetColor(RoomInMiniMap room)
         {
-            _color = new Color(102, 102, 102);
 
             if (_context.Context.WorldAPI.Level.GetRooms.PosCurrentRoom == room.RoomPos)
             {
-                _color = new Color(255, 255, 255);
+                _room.SetData(new Color[] { Color.White });
             }
-
-            for (int i = 0; i < _data.Length; i++)
+            else
             {
-                _data[i] = _color;
+                _room.SetData(new Color[] { Color.Gray });
             }
 
-            roomRectangle.SetData(_data);
         }
 
         /// <summary>
@@ -108,32 +105,22 @@ namespace InfinityUnderground.Map
             _heightRoom = heightRoom / 200;
             _widthRoom = widthRoom / 200;
 
-            if (_changeRoom)
+
+            foreach (RoomInMiniMap room in _listOfRoom)
             {
-
-                _data = new Color[_widthRoom * _heightRoom];
-
-                foreach (RoomInMiniMap room in _listOfRoom)
-                {
-                    _room = new Texture2D(_context.Context.GraphicsDevice, _widthRoom, _heightRoom);
-
-                    SetColor(room, ref _room);
-                    spriteBatch.Draw(_room, new Vector2(_context.Context.CameraLoader.GetCamera.Position.X + (room.PosInPixel.X) + 800, _context.Context.CameraLoader.GetCamera.Position.Y + (room.PosInPixel.Y) + 5), Color.White);
-                }
-
-            }
-            else
-            {
-                foreach(RoomInMiniMap room in _listOfRoom)
-                {
-                    spriteBatch.Draw(_room, new Vector2(_context.Context.CameraLoader.GetCamera.Position.X + (room.PosInPixel.X) + 800, _context.Context.CameraLoader.GetCamera.Position.Y + (room.PosInPixel.Y) + 5), Color.White);
-                }
+                if (_room != null) _room.Dispose();
+                _room = new Texture2D(_context.Context.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+                SetColor(room);
+                spriteBatch.Draw(_room, new Rectangle((int)(_context.Context.CameraLoader.GetCamera.Position.X + (room.PosInPixel.X) + 800), (int)(_context.Context.CameraLoader.GetCamera.Position.Y + (room.PosInPixel.Y) + 5), _widthRoom, _heightRoom), Color.White);
             }
 
 
-        }
 
-        
+
+
+
+
+        }    
 
     }
 }

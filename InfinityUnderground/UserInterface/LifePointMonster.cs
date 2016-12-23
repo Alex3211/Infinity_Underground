@@ -36,31 +36,25 @@ namespace InfinityUnderground.UserInterface
 
             if (lifepoint <= (_maxLifepoint / 5))
             {
-                _colorBar = Color.Red;
+                _healthBar.SetData(new Color[] { Color.Red });
             }
             else if (lifepoint <= (_maxLifepoint / 3))
             {
-                _colorBar = Color.OrangeRed;
+                _healthBar.SetData(new Color[] { Color.OrangeRed });
             }
             else if (lifepoint <= (_maxLifepoint / 2))
             {
-                _colorBar = Color.Orange;
+                _healthBar.SetData(new Color[] { Color.Orange });
             }
             else if (lifepoint <= (_maxLifepoint / 1.5))
             {
-                _colorBar = Color.GreenYellow;
+                _healthBar.SetData(new Color[] { Color.GreenYellow });
             }
             else
             {
-                _colorBar = Color.Green;
+                _healthBar.SetData(new Color[] { Color.Green });
             }
 
-            for (int i = 0; i < data.Length; i++)
-            {
-                data[i] = _colorBar;
-            }
-
-            _healthBar.SetData(data);
         }
 
         /// <summary>
@@ -87,11 +81,11 @@ namespace InfinityUnderground.UserInterface
 
             SetMaxLifePoint(lifepoint);
 
-            if(_healthBar != null) _healthBar.Dispose();
-            _healthBar = new Texture2D(graphicsDevice, _width, _height);
+            if (_healthBar != null) _healthBar.Dispose();
+            _healthBar = new Texture2D(graphicsDevice, 1, 1, false, SurfaceFormat.Color);
 
             SetRectangle(lifepoint);
-            spriteBatch.Draw(_healthBar, new Vector2(posX, posY), Color.White);
+            spriteBatch.Draw(_healthBar, new Rectangle(posX, posY, width, height), Color.White);
         }
 
 
