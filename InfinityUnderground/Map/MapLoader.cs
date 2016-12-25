@@ -16,14 +16,6 @@ namespace InfinityUnderground.Map
     {
         Game1 _context;
         TiledMap _getMap;
-        TiledTileLayer _getLayerCollide;
-        TiledTileLayer _secondLayer;
-        TiledTileLayer _getLayerDoorCollide;
-        TiledTileLayer _firstLayer;
-        TiledTileLayer _ground3;
-        TiledTileLayer _ground2;
-        TiledTileLayer _ground1;
-        TiledTileLayer _ground;
 
         Dictionary<string, TiledTileLayer> _groundLayer;
         Dictionary<string, TiledTileLayer> _upLayer;

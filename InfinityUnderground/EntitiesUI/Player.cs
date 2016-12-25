@@ -21,7 +21,6 @@ namespace InfinityUnderground.EntitiesUI
         Action _actualAction, _lastAction;
         bool _playerAttack, _isAttacking;
         LifePointMonster _healthBar;
-        int _playerSpeed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Player"/> class.
@@ -100,11 +99,11 @@ namespace InfinityUnderground.EntitiesUI
         {
             if (_state.IsKeyDown(Keys.PageUp))
             {
-                Context.CameraLoader.GetCamera.ZoomIn(Context.CameraLoader.Zoom);
+                Context.GetCamera.ZoomIn(Context.Zoom);
             }
             if (_state.IsKeyDown(Keys.PageDown))
             {
-                Context.CameraLoader.GetCamera.ZoomOut(Context.CameraLoader.Zoom);
+                Context.GetCamera.ZoomOut(Context.Zoom);
             }
         }
 
@@ -294,23 +293,23 @@ namespace InfinityUnderground.EntitiesUI
                 switch (GetTheDirectionOfThePlayer())
                 {
                     case (int)Direction.Up:
-                        if (Context.WorldAPI.IsSurface && Context.CameraLoader.GetCamera.Position.Y > 10 && Context.CameraLoader.GetCamera.Position.Y < Context.MapLoad.GetMap.HeightInPixels && Context.Player.CTPlayer.PositionY < Context.MapLoad.GetMap.HeightInPixels - (Context.Graphics.PreferredBackBufferHeight / 2 - (Context.Player.Height / 2))) Context.CameraLoader.GetCamera.Move(new Vector2(0, -_player.GetCharacterType.MoveSpeed));
-                        else if (!Context.WorldAPI.IsSurface) { Context.CameraLoader.GetCamera.Move(new Vector2(0, -_player.GetCharacterType.MoveSpeed)); }
+                        if (Context.WorldAPI.IsSurface && Context.GetCamera.Position.Y > 10 && Context.GetCamera.Position.Y < Context.MapLoad.GetMap.HeightInPixels && Context.Player.CTPlayer.PositionY < Context.MapLoad.GetMap.HeightInPixels - (Context.Graphics.PreferredBackBufferHeight / 2 - (Context.Player.Height / 2))) Context.GetCamera.Move(new Vector2(0, -_player.GetCharacterType.MoveSpeed));
+                        else if (!Context.WorldAPI.IsSurface) { Context.GetCamera.Move(new Vector2(0, -_player.GetCharacterType.MoveSpeed)); }
                         return _player.Deplacement((int)Direction.Up);
 
                     case (int)Direction.Bottom:
-                        if (Context.WorldAPI.IsSurface && Context.CameraLoader.GetCamera.Position.Y < Context.MapLoad.GetMap.HeightInPixels - 550 && Context.Player.CTPlayer.PositionY > (Context.Graphics.PreferredBackBufferHeight / 2 - (Context.Player.Height / 2))) Context.CameraLoader.GetCamera.Move(new Vector2(0, +_player.GetCharacterType.MoveSpeed));
-                        else if(!Context.WorldAPI.IsSurface) { Context.CameraLoader.GetCamera.Move(new Vector2(0, +_player.GetCharacterType.MoveSpeed)); }
+                        if (Context.WorldAPI.IsSurface && Context.GetCamera.Position.Y < Context.MapLoad.GetMap.HeightInPixels - 550 && Context.Player.CTPlayer.PositionY > (Context.Graphics.PreferredBackBufferHeight / 2 - (Context.Player.Height / 2))) Context.GetCamera.Move(new Vector2(0, +_player.GetCharacterType.MoveSpeed));
+                        else if(!Context.WorldAPI.IsSurface) { Context.GetCamera.Move(new Vector2(0, +_player.GetCharacterType.MoveSpeed)); }
                         return _player.Deplacement((int)Direction.Bottom);
 
                     case (int)Direction.Left:
-                        if (Context.WorldAPI.IsSurface && Context.CameraLoader.GetCamera.Position.X > 10 && Context.CameraLoader.GetCamera.Position.X < Context.MapLoad.GetMap.WidthInPixels && Context.Player.CTPlayer.PositionX < Context.MapLoad.GetMap.WidthInPixels - (Context.Graphics.PreferredBackBufferWidth / 2 - (Context.Player.Width / 2))) Context.CameraLoader.GetCamera.Move(new Vector2(-_player.GetCharacterType.MoveSpeed, 0));
-                        else if (!Context.WorldAPI.IsSurface) { Context.CameraLoader.GetCamera.Move(new Vector2(-_player.GetCharacterType.MoveSpeed, 0)); }
+                        if (Context.WorldAPI.IsSurface && Context.GetCamera.Position.X > 10 && Context.GetCamera.Position.X < Context.MapLoad.GetMap.WidthInPixels && Context.Player.CTPlayer.PositionX < Context.MapLoad.GetMap.WidthInPixels - (Context.Graphics.PreferredBackBufferWidth / 2 - (Context.Player.Width / 2))) Context.GetCamera.Move(new Vector2(-_player.GetCharacterType.MoveSpeed, 0));
+                        else if (!Context.WorldAPI.IsSurface) { Context.GetCamera.Move(new Vector2(-_player.GetCharacterType.MoveSpeed, 0)); }
                         return _player.Deplacement((int)Direction.Left);
 
                     case (int)Direction.Right:
-                        if (Context.WorldAPI.IsSurface && Context.CameraLoader.GetCamera.Position.X < Context.MapLoad.GetMap.WidthInPixels - 960 && Context.Player.CTPlayer.PositionX > (Context.Graphics.PreferredBackBufferWidth / 2 - (Context.Player.Width / 2))) Context.CameraLoader.GetCamera.Move(new Vector2(+_player.GetCharacterType.MoveSpeed, 0));
-                        else if (!Context.WorldAPI.IsSurface ) { Context.CameraLoader.GetCamera.Move(new Vector2(+_player.GetCharacterType.MoveSpeed, 0)); }
+                        if (Context.WorldAPI.IsSurface && Context.GetCamera.Position.X < Context.MapLoad.GetMap.WidthInPixels - 960 && Context.Player.CTPlayer.PositionX > (Context.Graphics.PreferredBackBufferWidth / 2 - (Context.Player.Width / 2))) Context.GetCamera.Move(new Vector2(+_player.GetCharacterType.MoveSpeed, 0));
+                        else if (!Context.WorldAPI.IsSurface ) { Context.GetCamera.Move(new Vector2(+_player.GetCharacterType.MoveSpeed, 0)); }
                         return _player.Deplacement((int)Direction.Right);
                 }
             }
@@ -362,12 +361,12 @@ namespace InfinityUnderground.EntitiesUI
                 CurrentFrame = 0;
             }
 
-            _healthBar.Draw(spriteBatch, (int)(Context.CameraLoader.GetCamera.Position.X + 20), (int)(Context.CameraLoader.GetCamera.Position.Y + 20), _player.GetCharacterType.LifePoint, Context.GraphicsDevice, SetHealthBar(), 10);
-
             Rectangle _sourceRectangle = new Rectangle(Width * Column, Height * (int)_actualAction.IDActionPlayer, Width, Height);
             Rectangle _destinationRectangle = new Rectangle(_player.PositionX, _player.PositionY, Width, Height);
 
             spriteBatch.Draw(SpriteSheet, _destinationRectangle, _sourceRectangle, Color.White);
+
+            _healthBar.Draw(spriteBatch, (int)(Context.GetCamera.Position.X + 20), (int)(Context.GetCamera.Position.Y + 20), _player.GetCharacterType.LifePoint, Context.GraphicsDevice, SetHealthBar(), 10);
         }
 
 

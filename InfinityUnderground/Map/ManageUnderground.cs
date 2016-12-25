@@ -51,14 +51,10 @@ namespace InfinityUnderground.Map
 
     public class ManageUnderground
     {
-        Dictionary<Vector2, MapLoader> _undergroundMapLevel;
-
         List<SaveMap> _mapOfUnderground;
 
         Game1 _context;
         MiniMap _miniMap;
-        Data _saveMap;
-        string _guid;
 
         public ManageUnderground(Game1 context)
         {

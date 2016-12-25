@@ -43,9 +43,7 @@ namespace InfinityUnderground.Map
         int _widthRoom, _heightRoom;
         Texture2D _roomIn, _roomOut, _actualRoom, _room;
         ManageUnderground _context;
-        Color[] _data;
         List<RoomInMiniMap> _listOfRoom;
-        Color _color;
         bool _changeRoom;
 
 
@@ -128,19 +126,19 @@ namespace InfinityUnderground.Map
             {
                 if (room.RoomPos == new Vector2(0,0))
                 {
-                    spriteBatch.Draw(_roomIn, new Rectangle((int)(_context.Context.CameraLoader.GetCamera.Position.X + (room.PosInPixel.X) + 800), (int)(_context.Context.CameraLoader.GetCamera.Position.Y + (room.PosInPixel.Y) + 5), _widthRoom, _heightRoom), Color.White);
+                    spriteBatch.Draw(_roomIn, new Rectangle((int)(_context.Context.GetCamera.Position.X + (room.PosInPixel.X) + 800), (int)(_context.Context.GetCamera.Position.Y + (room.PosInPixel.Y) + 5), _widthRoom, _heightRoom), Color.White);
                 }
                 else if(room.RoomPos == _context.Context.WorldAPI.Level.GetRooms.RoomOut)
                 {
-                    spriteBatch.Draw(_roomOut, new Rectangle((int)(_context.Context.CameraLoader.GetCamera.Position.X + (room.PosInPixel.X) + 800), (int)(_context.Context.CameraLoader.GetCamera.Position.Y + (room.PosInPixel.Y) + 5), _widthRoom, _heightRoom), Color.White);
+                    spriteBatch.Draw(_roomOut, new Rectangle((int)(_context.Context.GetCamera.Position.X + (room.PosInPixel.X) + 800), (int)(_context.Context.GetCamera.Position.Y + (room.PosInPixel.Y) + 5), _widthRoom, _heightRoom), Color.White);
                 }
                 else if (room.RoomPos == _context.Context.WorldAPI.Level.GetRooms.PosCurrentRoom)
                 {
-                    spriteBatch.Draw(_actualRoom, new Rectangle((int)(_context.Context.CameraLoader.GetCamera.Position.X + (room.PosInPixel.X) + 800), (int)(_context.Context.CameraLoader.GetCamera.Position.Y + (room.PosInPixel.Y) + 5), _widthRoom, _heightRoom), Color.White);
+                    spriteBatch.Draw(_actualRoom, new Rectangle((int)(_context.Context.GetCamera.Position.X + (room.PosInPixel.X) + 800), (int)(_context.Context.GetCamera.Position.Y + (room.PosInPixel.Y) + 5), _widthRoom, _heightRoom), Color.White);
                 }
                 else
                 {
-                    spriteBatch.Draw(_room, new Rectangle((int)(_context.Context.CameraLoader.GetCamera.Position.X + (room.PosInPixel.X) + 800), (int)(_context.Context.CameraLoader.GetCamera.Position.Y + (room.PosInPixel.Y) + 5), _widthRoom, _heightRoom), Color.White);
+                    spriteBatch.Draw(_room, new Rectangle((int)(_context.Context.GetCamera.Position.X + (room.PosInPixel.X) + 800), (int)(_context.Context.GetCamera.Position.Y + (room.PosInPixel.Y) + 5), _widthRoom, _heightRoom), Color.White);
                 }
             }
 

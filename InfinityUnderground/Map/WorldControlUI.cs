@@ -123,7 +123,7 @@ namespace InfinityUnderground.Map
             {
                 _context.GetGameState = Game1.GameState.SURFACE;
                 _context.LoadGameState = true;
-                _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX+250, _context.WorldAPI.Players[0].PositionY));
+                _context.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX+250, _context.WorldAPI.Players[0].PositionY));
                 _context.WorldAPI.PlayerIsSurfaceOrNot();
                 return true;
             }
@@ -144,7 +144,7 @@ namespace InfinityUnderground.Map
                     _stateEnigm = false;
                 }
                 _context.LoadGameState = true;
-                _context.CameraLoader.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX+350, _context.WorldAPI.Players[0].PositionY));
+                _context.GetCamera.LookAt(new Vector2(_context.WorldAPI.Players[0].PositionX+350, _context.WorldAPI.Players[0].PositionY));
             }
         }
 
@@ -246,11 +246,11 @@ namespace InfinityUnderground.Map
         {
             if(_stateEnigm)
             {
-                DrawRectangle(new Rectangle((int)_context.CameraLoader.GetCamera.Position.X, (int)_context.CameraLoader.GetCamera.Position.Y, _context.Graphics.PreferredBackBufferWidth, _context.Graphics.PreferredBackBufferHeight), Color.Chocolate, spriteBatch);
-                spriteBatch.DrawString(_font, DoAnEnigm(), new Vector2((int)_context.CameraLoader.GetCamera.Position.X, (int)_context.CameraLoader.GetCamera.Position.Y), Color.White);
-                spriteBatch.DrawString(_font, _enigmResponse, new Vector2((int)_context.CameraLoader.GetCamera.Position.X, (int)_context.CameraLoader.GetCamera.Position.Y+50), Color.White);
+                DrawRectangle(new Rectangle((int)_context.GetCamera.Position.X, (int)_context.GetCamera.Position.Y, _context.Graphics.PreferredBackBufferWidth, _context.Graphics.PreferredBackBufferHeight), Color.Chocolate, spriteBatch);
+                spriteBatch.DrawString(_font, DoAnEnigm(), new Vector2((int)_context.GetCamera.Position.X, (int)_context.GetCamera.Position.Y), Color.White);
+                spriteBatch.DrawString(_font, _enigmResponse, new Vector2((int)_context.GetCamera.Position.X, (int)_context.GetCamera.Position.Y+50), Color.White);
             }
-            if (_statusEnigm != string.Empty && LastActiveText + IntervalBetweenText > _gametime.TotalGameTime) spriteBatch.DrawString(_font, _statusEnigm, new Vector2((int)_context.CameraLoader.GetCamera.Position.X + _context.Graphics.PreferredBackBufferWidth / 2 - (_statusEnigm.Length*2), (int)_context.CameraLoader.GetCamera.Position.Y + _context.Graphics.PreferredBackBufferHeight - 50), Color.White);
+            if (_statusEnigm != string.Empty && LastActiveText + IntervalBetweenText > _gametime.TotalGameTime) spriteBatch.DrawString(_font, _statusEnigm, new Vector2((int)_context.GetCamera.Position.X + _context.Graphics.PreferredBackBufferWidth / 2 - (_statusEnigm.Length*2), (int)_context.GetCamera.Position.Y + _context.Graphics.PreferredBackBufferHeight - 50), Color.White);
         }
     }
 }

@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System;
 using InfinityUnderground.API;
 using InfinityUnderground.EntitiesUI;
-using InfinityUnderground.Camera;
 using InfinityUnderground.Map;
 using InfinityUnderground;
 using System.Linq;
+using MonoGame.Extended;
+using MonoGame.Extended.ViewportAdapters;
 
 namespace InfinityUnderground
 {
@@ -29,10 +30,12 @@ namespace InfinityUnderground
         const int WindowWidth = 960;
         const int WindowHeight = 540;
 
-        //CreateMonster _monster;
+        Camera2D _camera;
+        BoxingViewportAdapter _viewportAdapter;
+        float _zoom;
+
         World _world;
         Player _player;
-        CameraLoader _cameraLoader;
         MapLoader _mapLoad;
         List<IEntity> _entities;
         GameState _gameState;
@@ -41,6 +44,31 @@ namespace InfinityUnderground
         WorldControlUI _worldControl;
         Dragon _dragon;
         CreateMonster _createMonster;
+
+
+        /// <summary>
+        /// Gets or sets the zoom.
+        /// </summary>
+        /// <value>
+        /// The zoom.
+        /// </value>
+        internal float Zoom { get { return _zoom; } }
+
+        /// <summary>
+        /// Gets the get camera.
+        /// </summary>
+        /// <value>
+        /// The get camera.
+        /// </value>
+        public Camera2D GetCamera { get { return _camera; } }
+
+        /// <summary>
+        /// Gets the get matrix.
+        /// </summary>
+        /// <value>
+        /// The get matrix.
+        /// </value>
+        public Matrix GetMatrix { get { return _camera.GetViewMatrix(); } }
 
 
         /// <summary>
@@ -76,14 +104,6 @@ namespace InfinityUnderground
         /// The entities.
         /// </value>
         public List<IEntity> Entities { get { return _entities; } }
-
-        /// <summary>
-        /// Gets the camera loader.
-        /// </summary>
-        /// <value>
-        /// The camera loader.
-        /// </value>
-        public CameraLoader CameraLoader { get { return _cameraLoader; } set { _cameraLoader = value; } }
 
         /// <summary>
         /// Gets the map load.
@@ -149,7 +169,6 @@ namespace InfinityUnderground
             graphics.PreferredBackBufferHeight = WindowHeight;
             graphics.PreferredBackBufferWidth = WindowWidth;
 
-            _cameraLoader = new CameraLoader(this);
             _world = new World();
 
             _entities = new List<IEntity>();
@@ -158,6 +177,8 @@ namespace InfinityUnderground
 
             _player = new Player(21, 13, this);
             _manageUnderground = new ManageUnderground(this);
+
+            _zoom = 0.1f;
         }
 
         /// <summary>
@@ -178,8 +199,9 @@ namespace InfinityUnderground
         {
 
             base.Initialize();
-            _cameraLoader.ViewportAdapterCamera(WindowWidth, WindowHeight);
-
+            _viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, WindowWidth, WindowHeight);
+            _camera = new Camera2D(_viewportAdapter);
+            _camera.LookAt(new Vector2(Player.CTPlayer.PositionX + 30, Player.CTPlayer.PositionY + 40));
         }
 
         /// <summary>
@@ -235,7 +257,7 @@ namespace InfinityUnderground
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(new Color(39, 33, 41));
-            spriteBatch.Begin(transformMatrix: _cameraLoader.GetMatrix);
+            spriteBatch.Begin(transformMatrix: GetMatrix);
 
             foreach (var entity in _entities)
             {
@@ -300,7 +322,7 @@ namespace InfinityUnderground
                     entity.LoadContent(Content);
                 }
 
-                CameraLoader.GetCamera.LookAt(new Vector2(WorldAPI.Players[0].PositionX, WorldAPI.Players[0].PositionY));
+                GetCamera.LookAt(new Vector2(WorldAPI.Players[0].PositionX, WorldAPI.Players[0].PositionY));
                 _loadGameState = false;
             }
         }
