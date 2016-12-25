@@ -24,18 +24,18 @@ namespace InfinityUnderground.Map
         SpriteFont _font;
         Data _dataXml;
         bool _enigmState = false;
-        private readonly TimeSpan IntervalBetweenF1Menu;
-        private readonly TimeSpan IntervalBetweenText;
-        private TimeSpan LastActiveF1Menu;
-        private TimeSpan LastActiveText;
-        private bool _stateSecretDoor = false;
+        readonly TimeSpan IntervalBetweenF1Menu;
+        readonly TimeSpan IntervalBetweenText;
+        TimeSpan LastActiveF1Menu;
+        TimeSpan LastActiveText;
+        bool _stateSecretDoor = false;
         KeyboardHandler _handler;
         XmlNodeList tab;
         bool _stateEnigm;
         string _enigmResponse;
         int _enigmRandom;
-        private string _statusEnigm = string.Empty;
-        private GameTime _gametime;
+        string _statusEnigm = string.Empty;
+        GameTime _gametime;
 
         public bool GetStateEnigm { get { return _stateEnigm; } }
 
@@ -205,8 +205,7 @@ namespace InfinityUnderground.Map
         public void OpenSecretRoom()
         {
             _stateSecretDoor = !_stateSecretDoor;
-            TiledTileLayer _layer = _context.MapLoad.GetMap.GetLayer<TiledTileLayer>("SecretDoor");
-            _layer.IsVisible = !_layer.IsVisible;
+            _context.MapLoad.GetLayerSecretDoor.IsVisible = !_context.MapLoad.GetLayerSecretDoor.IsVisible;
         }
 
 

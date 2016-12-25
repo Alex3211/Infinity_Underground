@@ -194,24 +194,55 @@ namespace InfinityUnderground.EntitiesUI
         /// <returns></returns>
         bool BlockThePlayer(int direction)
         {
-            if (Context.MapLoad.GetMap.GetLayer<TiledTileLayer>("SecretDoor") != null && Context.MapLoad.GetMap.GetLayer<TiledTileLayer>("SecretDoor").IsVisible == false) Context.MapLoad.GetLayerDoorCollide = Context.MapLoad.GetLayerCollide;
-            else if (Context.MapLoad.GetMap.GetLayer<TiledTileLayer>("SecretDoor") != null) Context.MapLoad.GetLayerDoorCollide = Context.MapLoad.GetMap.GetLayer<TiledTileLayer>("SecretCollide");
-            else Context.MapLoad.GetLayerDoorCollide = Context.MapLoad.GetLayerCollide;
-            int _tileWidth = Context.MapLoad.GetLayerCollide.TileWidth;
-
-            switch (GetTheDirectionOfThePlayer())
+            if (Context.MapLoad.GetMap.GetLayer<TiledTileLayer>("SecretDoor") != null && Context.MapLoad.GetMap.GetLayer<TiledTileLayer>("SecretDoor").IsVisible == false)
             {
-                case (int)Direction.Up:
-                    return (_player.PositionY >= 0 && (Context.MapLoad.GetLayerCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)_tileWidth) + 1, (int)Math.Round((decimal)_player.PositionY / (decimal)_tileWidth)).Id != Context.MapLoad.IdTileCollide) && (Context.MapLoad.GetLayerDoorCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)_tileWidth) + 1, (int)Math.Round((decimal)_player.PositionY / (decimal)_tileWidth)).Id != Context.MapLoad.IdTileCollide));
-                case (int)Direction.Left:
-                    return (_player.PositionX >= 0 && (Context.MapLoad.GetLayerCollide.GetTile((int)Math.Round((decimal)_player.PositionX / _tileWidth), (int)Math.Round((decimal)_player.PositionY / _tileWidth) + 1).Id != Context.MapLoad.IdTileCollide) && (Context.MapLoad.GetLayerDoorCollide.GetTile((int)Math.Round((decimal)_player.PositionX / _tileWidth), (int)Math.Round((decimal)_player.PositionY / _tileWidth) + 1).Id != Context.MapLoad.IdTileCollide));
+                Context.MapLoad.GetLayerDoorCollide = Context.MapLoad.GetLayerCollide;
+            }
+            else if (Context.MapLoad.GetMap.GetLayer<TiledTileLayer>("SecretDoor") != null)
+            {
+                Context.MapLoad.GetLayerDoorCollide = Context.MapLoad.GetMap.GetLayer<TiledTileLayer>("SecretCollide");
+            }
+            else
+            {
+                Context.MapLoad.GetLayerDoorCollide = Context.MapLoad.GetLayerCollide;
+            }
 
-                case (int)Direction.Bottom:
-                    return ((_player.PositionY <= (Context.MapLoad.GetMap.HeightInPixels - 50)) && (Context.MapLoad.GetLayerCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)_tileWidth) + 1, ((int)Math.Floor(_player.PositionY / (decimal)_tileWidth)) + 2).Id != Context.MapLoad.IdTileCollide) && (Context.MapLoad.GetLayerDoorCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)_tileWidth) + 1, ((int)Math.Floor(_player.PositionY / (decimal)_tileWidth)) + 2).Id != Context.MapLoad.IdTileCollide));
+            int _tileWidth = Context.MapLoad.GetLayerCollide.TileWidth;
+            if (Context.GetGameState == Game1.GameState.UNDERGROUND && Context.WorldAPI.Level.GetRooms.TypeOfRoom.NameOfMap == "SecretRoom")
+            {
+                switch (GetTheDirectionOfThePlayer())
+                {
 
-                case (int)Direction.Right:
-                    return ((_player.PositionX <= (Context.MapLoad.GetMap.WidthInPixels)) && (Context.MapLoad.GetLayerCollide.GetTile(((int)Math.Round((decimal)_player.PositionX / _tileWidth)) + 1, ((int)Math.Round((decimal)_player.PositionY / _tileWidth)) + 1).Id != Context.MapLoad.IdTileCollide) && (Context.MapLoad.GetLayerDoorCollide.GetTile(((int)Math.Round((decimal)_player.PositionX / _tileWidth)) + 1, ((int)Math.Round((decimal)_player.PositionY / _tileWidth)) + 1).Id != Context.MapLoad.IdTileCollide));
+                    case (int)Direction.Up:
+                        return (_player.PositionY >= 0 && (Context.MapLoad.GetLayerCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)_tileWidth) + 1, (int)Math.Round((decimal)_player.PositionY / (decimal)_tileWidth)).Id != Context.MapLoad.IdTileCollide) && (Context.MapLoad.GetLayerDoorCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)_tileWidth) + 1, (int)Math.Round((decimal)_player.PositionY / (decimal)_tileWidth)).Id != Context.MapLoad.IdTileCollide));
+                    case (int)Direction.Left:
+                        return (_player.PositionX >= 0 && (Context.MapLoad.GetLayerCollide.GetTile((int)Math.Round((decimal)_player.PositionX / _tileWidth), (int)Math.Round((decimal)_player.PositionY / _tileWidth) + 1).Id != Context.MapLoad.IdTileCollide) && (Context.MapLoad.GetLayerDoorCollide.GetTile((int)Math.Round((decimal)_player.PositionX / _tileWidth), (int)Math.Round((decimal)_player.PositionY / _tileWidth) + 1).Id != Context.MapLoad.IdTileCollide));
 
+                    case (int)Direction.Bottom:
+                        return ((_player.PositionY <= (Context.MapLoad.GetMap.HeightInPixels - 50)) && (Context.MapLoad.GetLayerCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)_tileWidth) + 1, ((int)Math.Floor(_player.PositionY / (decimal)_tileWidth)) + 2).Id != Context.MapLoad.IdTileCollide) && (Context.MapLoad.GetLayerDoorCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)_tileWidth) + 1, ((int)Math.Floor(_player.PositionY / (decimal)_tileWidth)) + 2).Id != Context.MapLoad.IdTileCollide));
+
+                    case (int)Direction.Right:
+                        return ((_player.PositionX <= (Context.MapLoad.GetMap.WidthInPixels)) && (Context.MapLoad.GetLayerCollide.GetTile(((int)Math.Round((decimal)_player.PositionX / _tileWidth)) + 1, ((int)Math.Round((decimal)_player.PositionY / _tileWidth)) + 1).Id != Context.MapLoad.IdTileCollide) && (Context.MapLoad.GetLayerDoorCollide.GetTile(((int)Math.Round((decimal)_player.PositionX / _tileWidth)) + 1, ((int)Math.Round((decimal)_player.PositionY / _tileWidth)) + 1).Id != Context.MapLoad.IdTileCollide));
+
+                }
+            }
+            else
+            {
+                switch (GetTheDirectionOfThePlayer())
+                {
+
+                    case (int)Direction.Up:
+                        return (_player.PositionY >= 0 && (Context.MapLoad.GetLayerCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)_tileWidth) + 1, (int)Math.Round((decimal)_player.PositionY / (decimal)_tileWidth)).Id != Context.MapLoad.IdTileCollide));
+                    case (int)Direction.Left:
+                        return (_player.PositionX >= 0 && (Context.MapLoad.GetLayerCollide.GetTile((int)Math.Round((decimal)_player.PositionX / _tileWidth), (int)Math.Round((decimal)_player.PositionY / _tileWidth) + 1).Id != Context.MapLoad.IdTileCollide));
+
+                    case (int)Direction.Bottom:
+                        return ((_player.PositionY <= (Context.MapLoad.GetMap.HeightInPixels - 50)) && (Context.MapLoad.GetLayerCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)_tileWidth) + 1, ((int)Math.Floor(_player.PositionY / (decimal)_tileWidth)) + 2).Id != Context.MapLoad.IdTileCollide));
+
+                    case (int)Direction.Right:
+                        return ((_player.PositionX <= (Context.MapLoad.GetMap.WidthInPixels)) && (Context.MapLoad.GetLayerCollide.GetTile(((int)Math.Round((decimal)_player.PositionX / _tileWidth)) + 1, ((int)Math.Round((decimal)_player.PositionY / _tileWidth)) + 1).Id != Context.MapLoad.IdTileCollide));
+
+                }
             }
             return true;
         }

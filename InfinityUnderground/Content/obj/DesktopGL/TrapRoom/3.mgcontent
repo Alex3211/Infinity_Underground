@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/TrapRoom/3.tmx</SourceFile>
-  <SourceTime>2016-12-08T11:18:46.1934709+01:00</SourceTime>
+  <SourceTime>2016-12-25T13:47:52.6426999+01:00</SourceTime>
   <DestFile>C:/Dev/Projet/Kepler-22_B/InfinityUnderground/Content/bin/DesktopGL/TrapRoom/3.xnb</DestFile>
-  <DestTime>2016-12-21T17:38:46.4448109+01:00</DestTime>
+  <DestTime>2016-12-25T14:20:56.7042864+01:00</DestTime>
   <Importer>TiledMapImporter</Importer>
   <ImporterTime>2016-04-08T11:54:30+02:00</ImporterTime>
   <Processor>TiledMapProcessor</Processor>

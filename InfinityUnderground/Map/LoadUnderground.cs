@@ -54,7 +54,6 @@ namespace InfinityUnderground.Map
                 _context.MapLoad.GetMap = _context.Content.Load<TiledMap>(_nameOfPath);
             }
 
-            _context.MapLoad.GetLayerCollide = _context.MapLoad.GetMap.GetLayer<TiledTileLayer>("Collide");
             _context.MapLoad.IdTileCollide = 3143;
         }
 

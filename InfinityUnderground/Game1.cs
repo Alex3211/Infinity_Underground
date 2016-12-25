@@ -93,11 +93,28 @@ namespace InfinityUnderground
         /// </value>
         internal MapLoader MapLoad { get { return _mapLoad; } set { _mapLoad = value; } }
 
-
-
+        /// <summary>
+        /// Gets or sets the get dragon.
+        /// </summary>
+        /// <value>
+        /// The get dragon.
+        /// </value>
         internal Dragon GetDragon { get { return _dragon; } set { _dragon = value; } }
+
+        /// <summary>
+        /// Gets or sets the get create monster.
+        /// </summary>
+        /// <value>
+        /// The get create monster.
+        /// </value>
         internal CreateMonster GetCreateMonster { get { return _createMonster; } set { _createMonster = value; } }
 
+        /// <summary>
+        /// Gets or sets the world control.
+        /// </summary>
+        /// <value>
+        /// The world control.
+        /// </value>
         internal WorldControlUI WorldControl { get { return _worldControl; } set { _worldControl = value; } }
 
         /// <summary>
