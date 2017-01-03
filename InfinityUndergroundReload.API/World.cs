@@ -165,6 +165,7 @@ namespace InfinityUndergroundReload.API
                     if (_maxLevel < _currentLevel) _maxLevel = _currentLevel;
                     _currentLevel = 0;
                     _player.Position = new Vector2(10 * _tileSize, 21 * _tileSize);
+                    //_level = null;
                     break;
 
                 case DoorDirection.Center:

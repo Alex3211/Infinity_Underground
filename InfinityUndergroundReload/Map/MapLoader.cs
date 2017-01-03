@@ -28,8 +28,6 @@ namespace InfinityUndergroundReload.Map
             _groundLayer = new Dictionary<string, TiledTileLayer>();
             _upLayer = new Dictionary<string, TiledTileLayer>();
             _collideLayer = new Dictionary<string, TiledTileLayer>();
-
-
         }
 
         /// <summary>
@@ -219,11 +217,12 @@ namespace InfinityUndergroundReload.Map
             _tileSize = _getMap.TileHeight;
             _heightInPixels = _getMap.HeightInPixels;
             _widthInPixel = _getMap.WidthInPixels;
+
             if (_getMap != null) _getMap = null;
 
             foreach(TiledTileLayer layer in _collideLayer.Values)
             {
-                layer.IsVisible = true;
+                layer.IsVisible = false;
             }
 
         }
@@ -303,20 +302,6 @@ namespace InfinityUndergroundReload.Map
 
             _context.Player.Unload();
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     }

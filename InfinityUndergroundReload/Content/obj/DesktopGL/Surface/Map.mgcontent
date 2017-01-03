@@ -3,7 +3,7 @@
   <SourceFile>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/Surface/Map.tmx</SourceFile>
   <SourceTime>2016-12-25T13:19:15.7492884+01:00</SourceTime>
   <DestFile>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/bin/DesktopGL/Surface/Map.xnb</DestFile>
-  <DestTime>2016-12-28T17:59:05.2172932+01:00</DestTime>
+  <DestTime>2017-01-02T23:09:39.7493626+01:00</DestTime>
   <Importer>TiledMapImporter</Importer>
   <ImporterTime>2016-04-08T11:54:30+02:00</ImporterTime>
   <Processor>TiledMapProcessor</Processor>
