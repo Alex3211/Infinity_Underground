@@ -13,13 +13,6 @@ namespace InfinityUndergroundReload.API
         int _tileSize;
         Door _firstDoor;
 
-
-        enum GameState
-        {
-            Surface,
-            Underground
-        }
-
         public World()
         {
             _player = new CPlayer();
@@ -164,12 +157,11 @@ namespace InfinityUndergroundReload.API
                 case DoorDirection.Up:
                     if (_maxLevel < _currentLevel) _maxLevel = _currentLevel;
                     _currentLevel = 0;
-                    _player.Position = new Vector2(10 * _tileSize, 21 * _tileSize);
-                    //_level = null;
+                    _player.Position = new Vector2(10 * _tileSize, 22 * _tileSize);
                     break;
 
                 case DoorDirection.Center:
-                    _player.Position = new Vector2(31 * _tileSize, 12 * _tileSize);
+                    _player.Position = new Vector2(31 * _tileSize, 14 * _tileSize);
                     if (_currentLevel == 0)
                     {
                         _currentLevel = _maxLevel;

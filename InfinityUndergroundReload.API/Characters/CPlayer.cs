@@ -13,6 +13,7 @@ namespace InfinityUndergroundReload.API.Characters
             :base()
         {
             CharacterType.MoveSpeed = 2;
+            CharacterType.LifePoint = 1000;
         }
 
     }

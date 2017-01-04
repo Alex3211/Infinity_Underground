@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.ViewportAdapters;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace InfinityUndergroundReload
 {
@@ -102,20 +103,6 @@ namespace InfinityUndergroundReload
             }
         }
 
-        /// <summary>
-        /// Gets or sets the graphics.
-        /// </summary>
-        /// <value>
-        /// The graphics.
-        /// </value>
-        public GraphicsDeviceManager Graphics
-        {
-            get
-            {
-                return graphics;
-            }
-        }
-
 
         public InfinityUnderground()
         {
@@ -130,7 +117,7 @@ namespace InfinityUndergroundReload
             _worldAPI = new World();
             _map = new MapLoader(this);
             _player = new SPlayer(this, 21, 13);
-
+            
             _worldAPI.CreateDoor();
         }
 
@@ -157,10 +144,11 @@ namespace InfinityUndergroundReload
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteBatch = new SpriteBatch(graphics.GraphicsDevice);
 
             _map.LoadContent(Content);
 
+            base.LoadContent();
             // TODO: use this.Content to load your game content here
         }
 
@@ -196,7 +184,10 @@ namespace InfinityUndergroundReload
             {
                 _worldAPI.ActionWithDoor(_door);
                 UnloadContent();
+                
+                Thread.Sleep(500);
                 LoadContent();
+                Thread.Sleep(500);
                 _camera.LookAt(_player.PlayerAPI.Position);
             }
 

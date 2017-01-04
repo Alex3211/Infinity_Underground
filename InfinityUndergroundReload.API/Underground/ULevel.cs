@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace InfinityUndergroundReload.API.Underground
 {
 
-    class RoomInLevel
+    public class RoomInLevel
     {
         readonly Vector2 _position;
         readonly string _typeOfRoom;
@@ -27,7 +27,7 @@ namespace InfinityUndergroundReload.API.Underground
         /// <value>
         /// The position.
         /// </value>
-        internal Vector2 Position
+        public Vector2 Position
         {
             get
             {
@@ -95,6 +95,26 @@ namespace InfinityUndergroundReload.API.Underground
 
         }
 
+        /// <summary>
+        /// Gets the rooms in level.
+        /// </summary>
+        /// <value>
+        /// The rooms in level.
+        /// </value>
+        public List<RoomInLevel> RoomsInLevel
+        {
+            get
+            {
+                return _saveRoom;
+            }
+        }
+
+        /// <summary>
+        /// Gets the get room.
+        /// </summary>
+        /// <value>
+        /// The get room.
+        /// </value>
         public URoom GetRoom
         {
             get

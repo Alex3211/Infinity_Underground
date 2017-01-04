@@ -20,6 +20,7 @@ namespace InfinityUndergroundReload.Map
         Dictionary<string, TiledTileLayer> _upLayer;
         Dictionary<string, TiledTileLayer> _collideLayer;
 
+        MiniMap _miniMap;
 
         public MapLoader(InfinityUnderground context)
         {
@@ -28,6 +29,22 @@ namespace InfinityUndergroundReload.Map
             _groundLayer = new Dictionary<string, TiledTileLayer>();
             _upLayer = new Dictionary<string, TiledTileLayer>();
             _collideLayer = new Dictionary<string, TiledTileLayer>();
+
+            _miniMap = new MiniMap(this);
+        }
+
+        /// <summary>
+        /// Gets the context.
+        /// </summary>
+        /// <value>
+        /// The context.
+        /// </value>
+        public InfinityUnderground Context
+        {
+            get
+            {
+                return _context;
+            }
         }
 
         /// <summary>
@@ -243,6 +260,11 @@ namespace InfinityUndergroundReload.Map
         public void Draw(SpriteBatch spriteBatch)
         {
             DrawLayer(true, spriteBatch);
+
+            if (_context.WorldAPI.CurrentLevel != 0)
+            {
+                _miniMap.Draw(spriteBatch, _widthInPixel, _heightInPixels);
+            }
 
             _context.Player.Draw(spriteBatch);
 
