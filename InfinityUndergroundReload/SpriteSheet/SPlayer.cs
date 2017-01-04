@@ -17,6 +17,7 @@ namespace InfinityUndergroundReload.SpriteSheet
         KeyboardState _state;
         CPlayer _player;
         int _lastMoveSpeed;
+        int _widthHealthBar;
         bool _isAttacking;
         bool _sprint;
         List<ActionSpriteSheet> _playerAction;
@@ -24,6 +25,7 @@ namespace InfinityUndergroundReload.SpriteSheet
         ActionSpriteSheet _lastAction;
         IEnumerable<ActionSpriteSheet> _action;
         Vector2 _lastPosition;
+        LifePoint _healthBar;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SPlayer"/> class.
@@ -43,8 +45,6 @@ namespace InfinityUndergroundReload.SpriteSheet
             TotalFrames = SpriteSheetRows * SpriteSheetColumns;
 
             _lastMoveSpeed = _player.CharacterType.MoveSpeed;
-
-
 
             _playerAction = new List<ActionSpriteSheet>();
 
@@ -68,6 +68,8 @@ namespace InfinityUndergroundReload.SpriteSheet
             }
             _lastAction = _actualAction;
 
+            _widthHealthBar = 100;
+            _healthBar = new LifePoint(_widthHealthBar, 25);
         }
 
         /// <summary>
@@ -103,6 +105,8 @@ namespace InfinityUndergroundReload.SpriteSheet
         /// <param name="gameTime">The game time.</param>
         public void Update(GameTime gameTime)
         {
+            _actualAction = PlayerAction(_state);
+
             TimeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds; 
             if (TimeSinceLastFrame > MillisecondsPerFrame) 
             { 
@@ -147,7 +151,8 @@ namespace InfinityUndergroundReload.SpriteSheet
             Rectangle _destinationRectangle = new Rectangle(_player.PositionX, _player.PositionY, Width, Height); 
  
             spriteBatch.Draw(Spritesheet, _destinationRectangle, _sourceRectangle, Color.White);
-            _actualAction = PlayerAction(_state);
+
+            _healthBar.Draw(spriteBatch, (int)(Context.Camera.Position.X + 20), (int)(Context.Camera.Position.Y + 20), _player.CharacterType.LifePoint, Context.GraphicsDevice, (_widthHealthBar * _player.CharacterType.LifePoint / 500), 10);
         }
 
         /// <summary>
