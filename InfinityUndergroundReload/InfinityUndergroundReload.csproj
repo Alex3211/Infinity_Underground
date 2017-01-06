@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="InfinityUnderground.cs" />
     <Compile Include="Interface\IEntity.cs" />
+    <Compile Include="Interface\KeyboardHandler.cs" />
     <Compile Include="LifePoint.cs" />
     <Compile Include="Map\MapLoader.cs" />
     <Compile Include="Map\MiniMap.cs" />
@@ -59,6 +60,7 @@
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />

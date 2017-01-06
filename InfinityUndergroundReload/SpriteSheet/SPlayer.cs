@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended.Maps.Tiled;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -189,7 +190,7 @@ namespace InfinityUndergroundReload.SpriteSheet
 
             if (state.IsKeyDown(Keys.Z) || state.IsKeyDown(Keys.Up))
             {
-                if (_player.PositionY >= 0 && (Context.Map.LayerCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)Context.Map.TileSize) + 1, (int)Math.Round((decimal)_player.PositionY / (decimal)Context.Map.TileSize)).Id != Context.Map.IdTileCollide)/* && (Context.Map.LayerDoorCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)_tileWidth) + 1, (int)Math.Round((decimal)_player.PositionY / (decimal)_tileWidth)).Id != Context.MapLoad.IdTileCollide)*/)
+                if (_player.PositionY >= 0 && (Context.Map.LayerCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)Context.Map.TileSize) + 1, (int)Math.Round((decimal)_player.PositionY / (decimal)Context.Map.TileSize)).Id != Context.Map.IdTileCollide) && (Context.Map.LayerDoorCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)Context.Map.TileSize) + 1, (int)Math.Round((decimal)_player.PositionY / (decimal)Context.Map.TileSize)).Id != Context.Map.IdTileCollide)/* && (Context.Map.LayerDoorCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)_tileWidth) + 1, (int)Math.Round((decimal)_player.PositionY / (decimal)_tileWidth)).Id != Context.MapLoad.IdTileCollide)*/)
                 {
                     _player.ChangePosition(CDirection.Top);
                     Context.Camera.Move(new Vector2(0, -_player.CharacterType.MoveSpeed));
@@ -198,7 +199,7 @@ namespace InfinityUndergroundReload.SpriteSheet
             }
             else if (state.IsKeyDown(Keys.S) || state.IsKeyDown(Keys.Down))
             {
-                if ((_player.PositionY <= (Context.Map.HeightInPixels - 50)) && (Context.Map.LayerCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)Context.Map.TileSize) + 1, ((int)Math.Floor(_player.PositionY / (decimal)Context.Map.TileSize)) + 2).Id != Context.Map.IdTileCollide)/* && (Context.MapLoad.GetLayerDoorCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)_tileWidth) + 1, ((int)Math.Floor(_player.PositionY / (decimal)_tileWidth)) + 2).Id != Context.MapLoad.IdTileCollide)*/)
+                if ((_player.PositionY <= (Context.Map.HeightInPixels - 50)) && (Context.Map.LayerCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)Context.Map.TileSize) + 1, ((int)Math.Floor(_player.PositionY / (decimal)Context.Map.TileSize)) + 2).Id != Context.Map.IdTileCollide) && (Context.Map.LayerDoorCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)Context.Map.TileSize) + 1, ((int)Math.Floor(_player.PositionY / (decimal)Context.Map.TileSize)) + 2).Id != Context.Map.IdTileCollide)/* && (Context.MapLoad.GetLayerDoorCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)_tileWidth) + 1, ((int)Math.Floor(_player.PositionY / (decimal)_tileWidth)) + 2).Id != Context.MapLoad.IdTileCollide)*/)
                 {
                     _player.ChangePosition(CDirection.Bottom);
                     Context.Camera.Move(new Vector2(0, +_player.CharacterType.MoveSpeed));
@@ -207,7 +208,7 @@ namespace InfinityUndergroundReload.SpriteSheet
             }
             else if (state.IsKeyDown(Keys.Q) || state.IsKeyDown(Keys.Left))
             {
-                if (_player.PositionX >= 0 && (Context.Map.LayerCollide.GetTile((int)Math.Round((decimal)_player.PositionX / Context.Map.TileSize), (int)Math.Round((decimal)_player.PositionY / Context.Map.TileSize) + 1).Id != Context.Map.IdTileCollide)/* && (Context.MapLoad.GetLayerDoorCollide.GetTile((int)Math.Round((decimal)_player.PositionX / _tileWidth), (int)Math.Round((decimal)_player.PositionY / _tileWidth) + 1).Id != Context.MapLoad.IdTileCollide)*/)
+                if (_player.PositionX >= 0 && (Context.Map.LayerCollide.GetTile((int)Math.Round((decimal)_player.PositionX / Context.Map.TileSize), (int)Math.Round((decimal)_player.PositionY / Context.Map.TileSize) + 1).Id != Context.Map.IdTileCollide) && (Context.Map.LayerDoorCollide.GetTile((int)Math.Round((decimal)_player.PositionX / Context.Map.TileSize), (int)Math.Round((decimal)_player.PositionY / Context.Map.TileSize) + 1).Id != Context.Map.IdTileCollide) /* && (Context.MapLoad.GetLayerDoorCollide.GetTile((int)Math.Round((decimal)_player.PositionX / _tileWidth), (int)Math.Round((decimal)_player.PositionY / _tileWidth) + 1).Id != Context.MapLoad.IdTileCollide)*/)
                 {
                     _player.ChangePosition(CDirection.Left);
                     Context.Camera.Move(new Vector2(-_player.CharacterType.MoveSpeed, 0));
@@ -216,7 +217,7 @@ namespace InfinityUndergroundReload.SpriteSheet
             }
             else if (state.IsKeyDown(Keys.D) || state.IsKeyDown(Keys.Right))
             {
-                if ((_player.PositionX <= (Context.Map.WidthInPixels)) && (Context.Map.LayerCollide.GetTile(((int)Math.Round((decimal)_player.PositionX / Context.Map.TileSize)) + 1, ((int)Math.Round((decimal)_player.PositionY / Context.Map.TileSize)) + 1).Id != Context.Map.IdTileCollide)/* && (Context.Map.LayerDoorCollide.GetTile(((int)Math.Round((decimal)_player.PositionX / _tileWidth)) + 1, ((int)Math.Round((decimal)_player.PositionY / _tileWidth)) + 1).Id != Context.MapLoad.IdTileCollide)*/)
+                if ((_player.PositionX <= (Context.Map.WidthInPixels)) && (Context.Map.LayerCollide.GetTile(((int)Math.Round((decimal)_player.PositionX / Context.Map.TileSize)) + 1, ((int)Math.Round((decimal)_player.PositionY / Context.Map.TileSize)) + 1).Id != Context.Map.IdTileCollide) && (Context.Map.LayerDoorCollide.GetTile(((int)Math.Round((decimal)_player.PositionX / Context.Map.TileSize)) + 1, ((int)Math.Round((decimal)_player.PositionY / Context.Map.TileSize)) + 1).Id != Context.Map.IdTileCollide)/* && (Context.Map.LayerDoorCollide.GetTile(((int)Math.Round((decimal)_player.PositionX / _tileWidth)) + 1, ((int)Math.Round((decimal)_player.PositionY / _tileWidth)) + 1).Id != Context.MapLoad.IdTileCollide)*/)
                 {
                     _player.ChangePosition(CDirection.Right);
                     Context.Camera.Move(new Vector2(+_player.CharacterType.MoveSpeed, 0));

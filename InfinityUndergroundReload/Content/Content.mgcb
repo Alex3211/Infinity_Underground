@@ -237,3 +237,9 @@
 /processor:TiledMapProcessor
 /build:TrapRoom/4.tmx
 
+#begin debug.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:debug.spritefont
+

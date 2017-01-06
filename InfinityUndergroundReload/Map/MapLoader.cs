@@ -1,9 +1,13 @@
 ﻿using InfinityUndergroundReload.Interface;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Maps.Tiled;
+using System;
 using System.Collections.Generic;
+using System.Xml;
+using InfinityUnderground.UserInterface;
 
 namespace InfinityUndergroundReload.Map
 {
@@ -22,15 +26,38 @@ namespace InfinityUndergroundReload.Map
 
         MiniMap _miniMap;
 
+        Random r;
+        bool _IsSecretRoom = false;
+        SpriteFont _font;
+        bool _enigmState = false;
+        private readonly TimeSpan IntervalBetweenF1Menu;
+        private readonly TimeSpan IntervalBetweenText;
+        private TimeSpan LastActiveF1Menu;
+        private TimeSpan LastActiveText;
+        private bool _stateSecretDoor = false;
+        KeyboardHandler _handler;
+        XmlNodeList tab;
+        bool _stateEnigm;
+        string _enigmResponse;
+        int _enigmRandom;
+        private string _statusEnigm = string.Empty;
+        private GameTime _gametime;
+
         public MapLoader(InfinityUnderground context)
         {
             _context = context;
-
+            _IsSecretRoom = false;
             _groundLayer = new Dictionary<string, TiledTileLayer>();
             _upLayer = new Dictionary<string, TiledTileLayer>();
             _collideLayer = new Dictionary<string, TiledTileLayer>();
 
             _miniMap = new MiniMap(this);
+
+            _enigmResponse = string.Empty;
+            IntervalBetweenF1Menu = TimeSpan.FromMilliseconds(1000);
+            IntervalBetweenText = TimeSpan.FromMilliseconds(4500);
+            r = new Random();
+            _handler = new KeyboardHandler(context);
         }
 
         /// <summary>
@@ -118,6 +145,29 @@ namespace InfinityUndergroundReload.Map
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether [get state secret door].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [get state secret door]; otherwise, <c>false</c>.
+        /// </value>
+        public bool GetStateSecretDoor { get { return _stateSecretDoor; } set { _stateSecretDoor = value; } }
+
+
+        /// <summary>
+        /// Gets or sets a value indicating whether [get state secret door].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [get state secret door]; otherwise, <c>false</c>.
+        /// </value>
+        public bool GetStateOfEnigm { get { return _enigmState; } set { _enigmState = value; } }
+
+        /// <summary>
+        /// Determines the actual room is a secret room.
+        /// </summary>
+        /// <param name="room">The room.</param>
+        public bool IsSecretRoom { get { return _IsSecretRoom; } set { _IsSecretRoom = value; } }
+
+        /// <summary>
         /// Gets or sets the layer collide.
         /// </summary>
         /// <value>
@@ -131,6 +181,23 @@ namespace InfinityUndergroundReload.Map
             }
         }
 
+        /// <summary>
+        /// Gets or sets the layer collide.
+        /// </summary>
+        /// <value>
+        /// The layer collide.
+        /// </value>
+        public TiledTileLayer LayerDoorCollide
+        {
+            get
+            {
+                if(_context.WorldAPI.CurrentLevel != 0 && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom" && !_stateSecretDoor)
+                    return _collideLayer["SecretCollide"];
+                else
+                    return LayerCollide;
+            }
+        }
+
 
         /// <summary>
         /// Loads the content.
@@ -138,6 +205,7 @@ namespace InfinityUndergroundReload.Map
         /// <param name="content">The content.</param>
         public void LoadContent(ContentManager content)
         {
+            _font = _context.Content.Load<SpriteFont>("debug");
             _context.Player.LoadContent(content);
             if (_context.WorldAPI.CurrentLevel == 0)
             {
@@ -225,12 +293,11 @@ namespace InfinityUndergroundReload.Map
                             break;
 
                         case "SecretDoor":
-                            _upLayer.Add("SecretDoor", e);
+                            _groundLayer.Add("SecretDoor", e);
                             break;
                     }
                 }
             }
-
             _tileSize = _getMap.TileHeight;
             _heightInPixels = _getMap.HeightInPixels;
             _widthInPixel = _getMap.WidthInPixels;
@@ -250,7 +317,75 @@ namespace InfinityUndergroundReload.Map
         /// <param name="gameTime">The game time.</param>
         public void Update(GameTime gameTime)
         {
+            _gametime = gameTime;
+            if (_context.WorldAPI.CurrentLevel != 0 && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom")
+            {
+                _IsSecretRoom = true;
+            }
 
+            if (Keyboard.GetState().IsKeyDown(Keys.F1) && LastActiveF1Menu + IntervalBetweenF1Menu < gameTime.TotalGameTime && _context.WorldAPI.CurrentLevel != 0 && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom" && !_stateEnigm)
+            {
+                _enigmRandom = r.Next(0, 2);
+                _stateEnigm = true;
+
+                LastActiveF1Menu = gameTime.TotalGameTime;
+            }
+            if (_stateEnigm)
+            {
+                _handler.GetKeys();
+                _enigmResponse = _handler.GetString;
+                if (_stateEnigm && Keyboard.GetState().IsKeyDown(Keys.Enter))
+                {
+                    if (_handler.GetString == "1")
+                    {
+                        OpenSecretRoom();
+                        _handler.GetString = "";
+                        _statusEnigm = "Quelque chose semble s'ouvrir";
+                    }
+                    else
+                    {
+                        _handler.GetString = "";
+                        _statusEnigm = "Loupé !";
+                    }
+                    _stateEnigm = false;
+                    _enigmResponse = "";
+                    LastActiveText = gameTime.TotalGameTime;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Opens the secret room.
+        /// </summary>
+        public void OpenSecretRoom()
+        {
+            _stateSecretDoor = !_stateSecretDoor;
+            TiledTileLayer _layer = _groundLayer["SecretDoor"];
+            _layer.IsVisible = !_layer.IsVisible;
+        }
+
+        /// <summary>
+        /// Does an enigm.
+        /// </summary>
+        /// <returns></returns>
+        public string DoAnEnigm()
+        {
+            string toto = "Question : 1 + 1 / Réponse : 1 ";
+            return toto;
+        }
+
+        /// <summary>
+        /// Draws the rectangle for enigms.
+        /// </summary>
+        /// <param name="coords">The coords.</param>
+        /// <param name="color">The color.</param>
+        /// <param name="spriteBatch">The sprite batch.</param>
+        private void DrawRectangle(Rectangle coords, Color color, SpriteBatch spriteBatch)
+        {
+
+            var rect = new Texture2D(_context.GraphicsDevice, 1, 1);
+            rect.SetData(new[] { color });
+            spriteBatch.Draw(rect, coords, color);
         }
 
         /// <summary>
@@ -270,6 +405,13 @@ namespace InfinityUndergroundReload.Map
 
             DrawLayer(false, spriteBatch);
 
+            if (_stateEnigm)
+            {
+                DrawRectangle(new Rectangle((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y, _context.GraphicsDevice.Viewport.Width, _context.GraphicsDevice.Viewport.Height), Color.Chocolate, spriteBatch);
+                spriteBatch.DrawString(_font, DoAnEnigm(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y), Color.White);
+                spriteBatch.DrawString(_font, _enigmResponse, new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y + 50), Color.White);
+            }
+            if (_statusEnigm != string.Empty && LastActiveText + IntervalBetweenText > _gametime.TotalGameTime) spriteBatch.DrawString(_font, _statusEnigm, new Vector2((int)_context.Camera.Position.X + _context.GraphicsDevice.Viewport.Width/ 2 - (_statusEnigm.Length * 2), (int)_context.Camera.Position.Y + _context.GraphicsDevice.Viewport.Height - 50), Color.White);
         }
 
         /// <summary>
