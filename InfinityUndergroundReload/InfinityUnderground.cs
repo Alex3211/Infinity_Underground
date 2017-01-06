@@ -32,6 +32,11 @@ namespace InfinityUndergroundReload
         Door _door;
         //List<IEntity> _entities;
 
+        public int GetWindowsHeight { get { return WindowHeight; } }
+        public int GetWindowWidth { get { return WindowWidth; } }
+
+
+
         /// <summary>
         /// Gets the zoom.
         /// </summary>
