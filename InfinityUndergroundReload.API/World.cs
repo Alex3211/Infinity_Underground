@@ -1,6 +1,7 @@
 ﻿using InfinityUndergroundReload.API.Characters;
 using InfinityUndergroundReload.API.Underground;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace InfinityUndergroundReload.API
 {
@@ -143,6 +144,24 @@ namespace InfinityUndergroundReload.API
                 _currentDoor = _currentDoor.NextDoor;
             }
             return null;
+        }
+
+        public List<DoorDirection> DoorIsDrawable()
+        {
+            List<DoorDirection> _doorsDirection = new List<DoorDirection>();
+            Door _currentDoor = null;
+            if (!(_firstDoor == null))
+            {
+                _currentDoor = _firstDoor;
+            }
+
+            while (_currentDoor != null)
+            {
+                if (_currentDoor.DoorDirection == DoorDirection.Top || _currentDoor.DoorDirection == DoorDirection.Left || _currentDoor.DoorDirection == DoorDirection.Bottom || _currentDoor.DoorDirection == DoorDirection.Right)
+                    _doorsDirection.Add(_currentDoor.DoorDirection);
+                _currentDoor = _currentDoor.NextDoor;
+            }
+            return _doorsDirection;
         }
 
         /// <summary>

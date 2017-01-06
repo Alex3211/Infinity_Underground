@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Xml;
 using InfinityUnderground.UserInterface;
+using InfinityUndergroundReload.API;
 
 namespace InfinityUndergroundReload.Map
 {
@@ -301,6 +302,13 @@ namespace InfinityUndergroundReload.Map
             _tileSize = _getMap.TileHeight;
             _heightInPixels = _getMap.HeightInPixels;
             _widthInPixel = _getMap.WidthInPixels;
+            if (_context.WorldAPI.CurrentLevel != 0 && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap != "RoomIn" && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap != "RoomOut")
+            {
+                if (_groundLayer["TopDoorBlock"] != null) _groundLayer["TopDoorBlock"].IsVisible = true;
+                if (_groundLayer["BottomDoorBlock"] != null) _groundLayer["BottomDoorBlock"].IsVisible = true;
+                if (_groundLayer["RightDoorBlock"] != null) _groundLayer["RightDoorBlock"].IsVisible = true;
+                if (_groundLayer["LeftDoorBlock"] != null) _groundLayer["LeftDoorBlock"].IsVisible = true;
+            }
 
             if (_getMap != null) _getMap = null;
 
@@ -350,6 +358,33 @@ namespace InfinityUndergroundReload.Map
                     _stateEnigm = false;
                     _enigmResponse = "";
                     LastActiveText = gameTime.TotalGameTime;
+                }
+            }
+        }
+
+        public void DrawDoorOrNot()
+        {
+
+            if (_context.WorldAPI.CurrentLevel != 0 && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap != "RoomIn" && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap != "RoomOut")
+            {
+                List<DoorDirection> _list = _context.WorldAPI.DoorIsDrawable();
+                foreach (DoorDirection door in _list)
+                {
+                    switch (door)
+                    {
+                        case DoorDirection.Top:
+                            _groundLayer["TopDoorBlock"].IsVisible = false;
+                            break;
+                        case DoorDirection.Bottom:
+                            _groundLayer["BottomDoorBlock"].IsVisible = false;
+                            break;
+                        case DoorDirection.Right:
+                            _groundLayer["RightDoorBlock"].IsVisible = false;
+                            break;
+                        case DoorDirection.Left:
+                            _groundLayer["LeftDoorBlock"].IsVisible = false;
+                            break;
+                    }
                 }
             }
         }
@@ -404,7 +439,7 @@ namespace InfinityUndergroundReload.Map
             _context.Player.Draw(spriteBatch);
 
             DrawLayer(false, spriteBatch);
-
+            DrawDoorOrNot();
             if (_stateEnigm)
             {
                 DrawRectangle(new Rectangle((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y, _context.GraphicsDevice.Viewport.Width, _context.GraphicsDevice.Viewport.Height), Color.Chocolate, spriteBatch);
