@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/RoomIn/1.tmx</SourceFile>
-  <SourceTime>2017-01-03T19:30:22.1358097+01:00</SourceTime>
-  <DestFile>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/bin/DesktopGL/RoomIn/1.xnb</DestFile>
-  <DestTime>2017-01-03T19:30:43.719977+01:00</DestTime>
+  <SourceFile>D:/S3 PI/S3PI/actual/Kepler-22_B/InfinityUndergroundReload/Content/RoomIn/1.tmx</SourceFile>
+  <SourceTime>2017-01-04T09:12:52.0112044+01:00</SourceTime>
+  <DestFile>D:/S3 PI/S3PI/actual/Kepler-22_B/InfinityUndergroundReload/Content/bin/DesktopGL/RoomIn/1.xnb</DestFile>
+  <DestTime>2017-01-04T09:21:34.3568762+01:00</DestTime>
   <Importer>TiledMapImporter</Importer>
   <ImporterTime>2016-04-08T11:54:30+02:00</ImporterTime>
   <Processor>TiledMapProcessor</Processor>

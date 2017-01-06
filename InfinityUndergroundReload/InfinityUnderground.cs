@@ -188,6 +188,7 @@ namespace InfinityUndergroundReload
                 Thread.Sleep(500);
                 LoadContent();
                 Thread.Sleep(500);
+                if(WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom") Map.GetStateSecretDoor = false;
                 _camera.LookAt(_player.PlayerAPI.Position);
             }
 
