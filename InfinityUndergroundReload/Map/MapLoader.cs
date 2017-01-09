@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Xml;
 using InfinityUnderground.UserInterface;
 using InfinityUndergroundReload.API;
+using System.Threading;
 
 namespace InfinityUndergroundReload.Map
 {
@@ -43,6 +44,7 @@ namespace InfinityUndergroundReload.Map
         int _enigmRandom;
         private string _statusEnigm = string.Empty;
         private GameTime _gametime;
+        bool _stateTransition;
 
         public MapLoader(InfinityUnderground context)
         {
@@ -60,6 +62,8 @@ namespace InfinityUndergroundReload.Map
             r = new Random();
             _handler = new KeyboardHandler(context);
         }
+
+        public bool GetStateTransition { get { return _stateTransition; } set { _stateTransition = value; } }
 
         /// <summary>
         /// Gets the context.
@@ -160,7 +164,7 @@ namespace InfinityUndergroundReload.Map
         /// <value>
         ///   <c>true</c> if [get state secret door]; otherwise, <c>false</c>.
         /// </value>
-        public bool GetStateOfEnigm { get { return _enigmState; } set { _enigmState = value; } }
+        public bool GetStateOfEnigm { get { return _stateEnigm; } set { _stateEnigm = value; } }
 
         /// <summary>
         /// Determines the actual room is a secret room.
@@ -362,9 +366,11 @@ namespace InfinityUndergroundReload.Map
             }
         }
 
+        /// <summary>
+        /// Define if the door have to be draw.
+        /// </summary>
         public void DrawDoorOrNot()
         {
-
             if (_context.WorldAPI.CurrentLevel != 0 && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap != "RoomIn" && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap != "RoomOut")
             {
                 List<DoorDirection> _list = _context.WorldAPI.DoorIsDrawable();
@@ -405,8 +411,8 @@ namespace InfinityUndergroundReload.Map
         /// <returns></returns>
         public string DoAnEnigm()
         {
-            string toto = "Question : 1 + 1 / Réponse : 1 ";
-            return toto;
+            string enigm = "Question : 1 + 1 / Réponse : 1 ";
+            return enigm;
         }
 
         /// <summary>
@@ -429,17 +435,16 @@ namespace InfinityUndergroundReload.Map
         /// <param name="spriteBatch">The sprite Batch.</param>
         public void Draw(SpriteBatch spriteBatch)
         {
-            DrawLayer(true, spriteBatch);
 
+            DrawLayer(true, spriteBatch);
             if (_context.WorldAPI.CurrentLevel != 0)
             {
                 _miniMap.Draw(spriteBatch, _widthInPixel, _heightInPixels);
             }
-
             _context.Player.Draw(spriteBatch);
-
             DrawLayer(false, spriteBatch);
             DrawDoorOrNot();
+
             if (_stateEnigm)
             {
                 DrawRectangle(new Rectangle((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y, _context.GraphicsDevice.Viewport.Width, _context.GraphicsDevice.Viewport.Height), Color.Chocolate, spriteBatch);
@@ -447,6 +452,36 @@ namespace InfinityUndergroundReload.Map
                 spriteBatch.DrawString(_font, _enigmResponse, new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y + 50), Color.White);
             }
             if (_statusEnigm != string.Empty && LastActiveText + IntervalBetweenText > _gametime.TotalGameTime) spriteBatch.DrawString(_font, _statusEnigm, new Vector2((int)_context.Camera.Position.X + _context.GraphicsDevice.Viewport.Width/ 2 - (_statusEnigm.Length * 2), (int)_context.Camera.Position.Y + _context.GraphicsDevice.Viewport.Height - 50), Color.White);
+            if (_stateTransition)
+            {
+                MonitorTransitionOn(spriteBatch);
+                MonitorTransitionOff(spriteBatch);
+            }
+        }
+
+        /// <summary>
+        /// Enable monitor transition. Disable must follow this.
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        public void MonitorTransitionOn(SpriteBatch spriteBatch)
+        {
+            Thread.Sleep(250);
+            DrawRectangle(new Rectangle((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y, _context.GraphicsDevice.Viewport.Width, _context.GraphicsDevice.Viewport.Height), new Color(0, 0, 0, 128), spriteBatch);
+            Thread.Sleep(250);
+            DrawRectangle(new Rectangle((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y, _context.GraphicsDevice.Viewport.Width, _context.GraphicsDevice.Viewport.Height), new Color(0, 0, 0, 255), spriteBatch);
+        }
+
+        /// <summary>
+        /// Disable monitor transition.
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        public void MonitorTransitionOff(SpriteBatch spriteBatch)
+        {
+            Thread.Sleep(250);
+            DrawRectangle(new Rectangle((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y, _context.GraphicsDevice.Viewport.Width, _context.GraphicsDevice.Viewport.Height), new Color(0, 0, 0, 255), spriteBatch);
+            Thread.Sleep(250);
+            DrawRectangle(new Rectangle((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y, _context.GraphicsDevice.Viewport.Width, _context.GraphicsDevice.Viewport.Height), new Color(0, 0, 0, 128), spriteBatch);
+            _stateTransition = false;
         }
 
         /// <summary>

@@ -32,6 +32,8 @@ namespace InfinityUndergroundReload
         Door _door;
         //List<IEntity> _entities;
 
+        
+
         public int GetWindowsHeight { get { return WindowHeight; } }
         public int GetWindowWidth { get { return WindowWidth; } }
 
@@ -182,22 +184,21 @@ namespace InfinityUndergroundReload
             // TODO: Add your update logic here
 
             _map.Update(gameTime);
-            _player.Update(gameTime);
-
-            _door = _worldAPI.PlayerTakeDoor();
-            if (_door != null)
+            if (!Map.GetStateOfEnigm && !Map.GetStateTransition)
             {
-                _worldAPI.ActionWithDoor(_door);
-                UnloadContent();
-                
-                Thread.Sleep(500);
-                LoadContent();
-                Thread.Sleep(500);
-                if(WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom") Map.GetStateSecretDoor = false;
-                List<DoorDirection> _list = WorldAPI.DoorIsDrawable();
-                _camera.LookAt(_player.PlayerAPI.Position);
+                _player.Update(gameTime);
+                _door = _worldAPI.PlayerTakeDoor();
+                if (_door != null)
+                {
+                    _worldAPI.ActionWithDoor(_door);
+                    UnloadContent();
+                    Map.GetStateTransition = true;
+                    LoadContent();
+                    if (WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom") Map.GetStateSecretDoor = false;
+                    List<DoorDirection> _list = WorldAPI.DoorIsDrawable();
+                    _camera.LookAt(_player.PlayerAPI.Position);
+                }
             }
-
             base.Update(gameTime);
         }
 

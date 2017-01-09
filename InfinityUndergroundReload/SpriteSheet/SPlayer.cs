@@ -106,7 +106,9 @@ namespace InfinityUndergroundReload.SpriteSheet
         /// <param name="gameTime">The game time.</param>
         public void Update(GameTime gameTime)
         {
+            _state = Keyboard.GetState();
             _actualAction = PlayerAction(_state);
+
 
             TimeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds; 
             if (TimeSinceLastFrame > MillisecondsPerFrame) 
@@ -129,7 +131,6 @@ namespace InfinityUndergroundReload.SpriteSheet
         /// <param name="spriteBatch">The sprite batch.</param>
         public void Draw(SpriteBatch spriteBatch)
         {
-           _state = Keyboard.GetState(); 
 
             if ((_player.Position == _lastPosition) && !_isAttacking)
             {
@@ -163,9 +164,11 @@ namespace InfinityUndergroundReload.SpriteSheet
         /// <returns>return the action</returns>
         ActionSpriteSheet PlayerAction(KeyboardState state)
         {
-            _action = null;
+            
 
-            if (_state.IsKeyDown(Keys.PageUp))
+             _action = null;
+
+            if (_state.IsKeyDown(Keys.PageUp)) 
             {
                 Context.Camera.ZoomIn(Context.Zoom);
             }

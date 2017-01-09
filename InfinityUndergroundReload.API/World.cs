@@ -86,19 +86,14 @@ namespace InfinityUndergroundReload.API
             {
                 if (_level.PositionCurrentRoom == new Vector2(0,0))
                     AddDoor(new Vector2(29, 8), new Vector2(31, 9), DoorDirection.Up);
-
                 if (_level.PositionCurrentRoom == _level.RoomOutPosition)
                     AddDoor(new Vector2(29, 11), new Vector2(32, 13), DoorDirection.Center);
-
                 if (_level.PositionCurrentRoom.Y > 0)
                     AddDoor(new Vector2(29, 2), new Vector2(32, 3), DoorDirection.Top);
-
                 if (_level.PositionCurrentRoom.X > 0)
                     AddDoor(new Vector2(0, 11), new Vector2(1, 13), DoorDirection.Left);
-
                 if (_level.PositionCurrentRoom.Y <= (_level.RoomOutPosition.Y * 2))
                     AddDoor(new Vector2(30, 28), new Vector2(32, 28), DoorDirection.Bottom);
-
                 if (_level.PositionCurrentRoom.X <= (_level.RoomOutPosition.X * 2))
                     AddDoor(new Vector2(61, 11), new Vector2(61, 13), DoorDirection.Right);
             }
@@ -154,7 +149,6 @@ namespace InfinityUndergroundReload.API
             {
                 _currentDoor = _firstDoor;
             }
-
             while (_currentDoor != null)
             {
                 if (_currentDoor.DoorDirection == DoorDirection.Top || _currentDoor.DoorDirection == DoorDirection.Left || _currentDoor.DoorDirection == DoorDirection.Bottom || _currentDoor.DoorDirection == DoorDirection.Right)
@@ -172,7 +166,6 @@ namespace InfinityUndergroundReload.API
         {
             switch(doorSelected.DoorDirection)
             {
-
                 case DoorDirection.Up:
                     if (_maxLevel < _currentLevel) _maxLevel = _currentLevel;
                     _currentLevel = 0;

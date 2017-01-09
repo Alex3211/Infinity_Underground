@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>D:/S3 PI/S3PI/actual/Kepler-22_B/InfinityUndergroundReload/Content/Ressources/obj_misk_atlas.png</SourceFile>
-  <SourceTime>2017-01-03T09:36:00.9120872+01:00</SourceTime>
+  <SourceTime>2017-01-09T10:01:25.2132598+01:00</SourceTime>
   <DestFile>D:/S3 PI/S3PI/actual/Kepler-22_B/InfinityUndergroundReload/Content/bin/DesktopGL/Ressources/obj_misk_atlas.xnb</DestFile>
-  <DestTime>2017-01-04T09:21:33.907504+01:00</DestTime>
+  <DestTime>2017-01-09T10:04:15.5936318+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

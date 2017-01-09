@@ -19,3 +19,24 @@ C:\Dev\Projet\InfinityUndergroundReload\InfinityUndergroundReload\InfinityUnderg
 C:\Dev\Projet\InfinityUndergroundReload\InfinityUndergroundReload\InfinityUndergroundReload.API\bin\Debug\SharpDX.MediaFoundation.xml
 C:\Dev\Projet\InfinityUndergroundReload\InfinityUndergroundReload\InfinityUndergroundReload.API\obj\Debug\InfinityUndergroundReload.API.dll
 C:\Dev\Projet\InfinityUndergroundReload\InfinityUndergroundReload\InfinityUndergroundReload.API\obj\Debug\InfinityUndergroundReload.API.pdb
+D:\S3 PI\S3PI\actual\Kepler-22_B\InfinityUndergroundReload.API\bin\Debug\InfinityUndergroundReload.API.dll
+D:\S3 PI\S3PI\actual\Kepler-22_B\InfinityUndergroundReload.API\bin\Debug\InfinityUndergroundReload.API.pdb
+D:\S3 PI\S3PI\actual\Kepler-22_B\InfinityUndergroundReload.API\bin\Debug\MonoGame.Framework.dll
+D:\S3 PI\S3PI\actual\Kepler-22_B\InfinityUndergroundReload.API\bin\Debug\SharpDX.XAudio2.dll
+D:\S3 PI\S3PI\actual\Kepler-22_B\InfinityUndergroundReload.API\bin\Debug\SharpDX.dll
+D:\S3 PI\S3PI\actual\Kepler-22_B\InfinityUndergroundReload.API\bin\Debug\SharpDX.DXGI.dll
+D:\S3 PI\S3PI\actual\Kepler-22_B\InfinityUndergroundReload.API\bin\Debug\SharpDX.Direct3D11.dll
+D:\S3 PI\S3PI\actual\Kepler-22_B\InfinityUndergroundReload.API\bin\Debug\SharpDX.Direct2D1.dll
+D:\S3 PI\S3PI\actual\Kepler-22_B\InfinityUndergroundReload.API\bin\Debug\SharpDX.XInput.dll
+D:\S3 PI\S3PI\actual\Kepler-22_B\InfinityUndergroundReload.API\bin\Debug\SharpDX.MediaFoundation.dll
+D:\S3 PI\S3PI\actual\Kepler-22_B\InfinityUndergroundReload.API\bin\Debug\MonoGame.Framework.xml
+D:\S3 PI\S3PI\actual\Kepler-22_B\InfinityUndergroundReload.API\bin\Debug\SharpDX.XAudio2.xml
+D:\S3 PI\S3PI\actual\Kepler-22_B\InfinityUndergroundReload.API\bin\Debug\SharpDX.xml
+D:\S3 PI\S3PI\actual\Kepler-22_B\InfinityUndergroundReload.API\bin\Debug\SharpDX.DXGI.xml
+D:\S3 PI\S3PI\actual\Kepler-22_B\InfinityUndergroundReload.API\bin\Debug\SharpDX.Direct3D11.xml
+D:\S3 PI\S3PI\actual\Kepler-22_B\InfinityUndergroundReload.API\bin\Debug\SharpDX.Direct2D1.xml
+D:\S3 PI\S3PI\actual\Kepler-22_B\InfinityUndergroundReload.API\bin\Debug\SharpDX.XInput.xml
+D:\S3 PI\S3PI\actual\Kepler-22_B\InfinityUndergroundReload.API\bin\Debug\SharpDX.MediaFoundation.xml
+D:\S3 PI\S3PI\actual\Kepler-22_B\InfinityUndergroundReload.API\obj\Debug\InfinityUndergroundReload.API.csprojResolveAssemblyReference.cache
+D:\S3 PI\S3PI\actual\Kepler-22_B\InfinityUndergroundReload.API\obj\Debug\InfinityUndergroundReload.API.dll
+D:\S3 PI\S3PI\actual\Kepler-22_B\InfinityUndergroundReload.API\obj\Debug\InfinityUndergroundReload.API.pdb
