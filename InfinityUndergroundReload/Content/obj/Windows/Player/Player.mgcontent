@@ -3,7 +3,7 @@
   <SourceFile>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/Player/Player.png</SourceFile>
   <SourceTime>2016-12-08T11:18:46.0409681+01:00</SourceTime>
   <DestFile>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/bin/Windows/Player/Player.xnb</DestFile>
-  <DestTime>2017-01-03T19:51:22.4467681+01:00</DestTime>
+  <DestTime>2017-01-09T23:05:41.3150204+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
@@ -34,7 +34,7 @@
   </Parameters>
   <Parameters>
     <Key>TextureFormat</Key>
-    <Value>Color</Value>
+    <Value>Color16Bit</Value>
   </Parameters>
   <Dependencies />
   <BuildAsset />

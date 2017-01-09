@@ -46,9 +46,12 @@
     <Compile Include="Characters\CCharacter.cs" />
     <Compile Include="Characters\CCharacterType.cs" />
     <Compile Include="Characters\CDirection.cs" />
+    <Compile Include="Characters\CDragon.cs" />
+    <Compile Include="Characters\CNPC.cs" />
     <Compile Include="Characters\CPlayer.cs" />
     <Compile Include="Door.cs" />
     <Compile Include="DoorDirection.cs" />
+    <Compile Include="Fights.cs" />
     <Compile Include="Underground\URoomOut.cs" />
     <Compile Include="Underground\URoomIn.cs" />
     <Compile Include="Underground\UBossRoom.cs" />

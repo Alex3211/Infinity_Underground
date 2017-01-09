@@ -1,17 +1,22 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using InfinityUndergroundReload.API.Characters;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended.Maps.Tiled;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InfinityUndergroundReload.SpriteSheet
+namespace InfinityUndergroundReload.CharactersUI
 {
     public abstract class SpriteSheet
     {
-
+        Texture2D _flame;
         Texture2D _spriteSheet;
         InfinityUnderground _context;
+        CNPC _monster;
         int _timeSinceLastFrame;
         int _currentFrame;
         int _width;
@@ -21,6 +26,8 @@ namespace InfinityUndergroundReload.SpriteSheet
         int _spriteSheetRows;
         int _spriteSheetColumns;
         int _totalFrames;
+        Vector2 _fightsPosition;
+        string _typeOfMonster;
 
 
         /// <summary>
@@ -30,6 +37,25 @@ namespace InfinityUndergroundReload.SpriteSheet
         {
             _timeSinceLastFrame = 0;
             _millisecondsPerFrame = 80;
+        }
+
+        /// <summary>
+        /// Gets or sets the type of monster.
+        /// </summary>
+        /// <value>
+        /// The type of monster.
+        /// </value>
+        public string TypeOfMonster
+        {
+            get
+            {
+                return _typeOfMonster;
+            }
+
+            set
+            {
+                _typeOfMonster = value;
+            }
 
         }
 
@@ -49,6 +75,25 @@ namespace InfinityUndergroundReload.SpriteSheet
             set
             {
                 _spriteSheet = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the monster.
+        /// </summary>
+        /// <value>
+        /// The monster.
+        /// </value>
+        public CNPC Monster
+        {
+            get
+            {
+                return _monster;
+            }
+
+            set
+            {
+                _monster = value;
             }
         }
 
@@ -243,6 +288,103 @@ namespace InfinityUndergroundReload.SpriteSheet
             }
         }
 
+        /// <summary>
+        /// Gets or sets the flame.
+        /// </summary>
+        /// <value>
+        /// The flame.
+        /// </value>
+        public Texture2D Flame
+        {
+            get
+            {
+                return _flame;
+            }
+
+            set
+            {
+                _flame = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the fights position.
+        /// </summary>
+        /// <value>
+        /// The fights position.
+        /// </value>
+        public Vector2 FightsPosition
+        {
+            get
+            {
+                return _fightsPosition;
+            }
+
+            set
+            {
+                _fightsPosition = value;
+            }
+        }
+
+
+        /// <summary>
+        /// Unloads the specified content.
+        /// </summary>
+        /// <param name="content">The content.</param>
+        public void Unload(ContentManager content)
+        {
+            if (Spritesheet != null) Spritesheet.Dispose();
+        }
+
+        public virtual void Update(GameTime gameTime)
+        {
+            TimeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
+            if (TimeSinceLastFrame > MillisecondsPerFrame)
+            {
+                TimeSinceLastFrame -= MillisecondsPerFrame;
+
+                CurrentFrame++;
+
+                TimeSinceLastFrame = 0;
+                if (CurrentFrame == TotalFrames)
+                {
+                    CurrentFrame = 0;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sets the position.
+        /// </summary>
+        public void SetPosition()
+        {
+            bool validatePosition = true;
+            Vector2 _positionMonster;
+
+            do
+            {
+                _positionMonster = new Vector2(_context.Random.Next(100, Context.Map.WidthInPixels - 200), _context.Random.Next(100, Context.Map.HeightInPixels - 200));
+
+                validatePosition = true;
+                foreach (TiledTileLayer layer in Context.Map.CollideLayers.Values)
+                {
+                    for (int x = -2; x <= 2; x++)
+                    {
+                        for (int y = -2; y <= 2; y++)
+                        {
+                            if ((((int)_positionMonster.X) / Context.Map.TileSize) + x > 10 && (((int)_positionMonster.Y) / Context.Map.TileSize) + y > 10 && layer.GetTile((((int)_positionMonster.X) / Context.Map.TileSize) + x, (((int)_positionMonster.Y + y) / Context.Map.TileSize) + y).Id != 0/* && layer.GetTile(((int)_positionMonster.X + x) / Context.Map.TileSize, ((int)_positionMonster.Y + y) / Context.Map.TileSize).Id == Context.Map.IdTileCollide*/)
+                            {
+                                validatePosition = false;
+                            }
+                        }
+                    }
+                }
+
+            } while ((!validatePosition));
+
+            Monster.Position = _positionMonster;
+
+        }
 
     }
 }

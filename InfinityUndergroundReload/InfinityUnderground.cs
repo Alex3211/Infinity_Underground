@@ -1,14 +1,18 @@
 ﻿using InfinityUndergroundReload.API;
 using InfinityUndergroundReload.Interface;
 using InfinityUndergroundReload.Map;
-using InfinityUndergroundReload.SpriteSheet;
+using InfinityUndergroundReload.CharactersUI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.ViewportAdapters;
+using System;
 using System.Collections.Generic;
 using System.Threading;
+using InfinityUndergroundReload.API.Characters;
+using Microsoft.Xna.Framework.Content;
+using MonoGame.Extended.Maps.Tiled;
 
 namespace InfinityUndergroundReload
 {
@@ -30,12 +34,38 @@ namespace InfinityUndergroundReload
         SPlayer _player;
         MapLoader _map;
         Door _door;
-        //List<IEntity> _entities;
+        Random _random;
+        List<SpriteSheet> _listOfMonster;
+        KeyboardState _keyboard;
+        FightsUI _fights;
 
-        public int GetWindowsHeight { get { return WindowHeight; } }
-        public int GetWindowWidth { get { return WindowWidth; } }
+        /// <summary>
+        /// Gets the height of the get windows.
+        /// </summary>
+        /// <value>
+        /// The height of the get windows.
+        /// </value>
+        public int GetWindowsHeight
+        {
+            get
+            {
+                return WindowHeight;
+            }
+        }
 
-
+        /// <summary>
+        /// Gets the width of the get window.
+        /// </summary>
+        /// <value>
+        /// The width of the get window.
+        /// </value>
+        public int GetWindowWidth
+        {
+            get
+            {
+                return WindowWidth;
+            }
+        }
 
         /// <summary>
         /// Gets the zoom.
@@ -51,6 +81,16 @@ namespace InfinityUndergroundReload
             }
         }
 
+        /// <summary>
+        /// Get the list of Monster.
+        /// </summary>
+        public List<SpriteSheet> ListOfMonsterUI
+        {
+            get
+            {
+                return _listOfMonster;
+            }
+        }
 
         /// <summary>
         /// Gets the world API.
@@ -108,20 +148,42 @@ namespace InfinityUndergroundReload
             }
         }
 
+        /// <summary>
+        /// Gets the random.
+        /// </summary>
+        /// <value>
+        /// The random.
+        /// </value>
+        public Random Random
+        {
+            get
+            {
+                return _random;
+            }
+        }
+
+        public FightsUI Fight
+        {
+            get
+            {
+                return _fights;
+            }
+        }
 
         public InfinityUnderground()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
             _zoom = 0.1f;
 
             graphics.PreferredBackBufferHeight = WindowHeight;
             graphics.PreferredBackBufferWidth = WindowWidth;
 
+            _random = new Random();
             _worldAPI = new World();
             _map = new MapLoader(this);
             _player = new SPlayer(this, 21, 13);
+            _listOfMonster = new List<SpriteSheet>();
             
             _worldAPI.CreateDoor();
         }
@@ -148,10 +210,21 @@ namespace InfinityUndergroundReload
         /// </summary>
         protected override void LoadContent()
         {
+            //Content = new ContentManager(Content.ServiceProvider, "Content");
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(graphics.GraphicsDevice);
 
             _map.LoadContent(Content);
+
+
+            if (ListOfMonsterUI.Count != 0)
+            {
+                foreach (SDragon monster in ListOfMonsterUI)
+                {
+                    monster.LoadContent(Content);
+                }
+            }
+
 
             base.LoadContent();
             // TODO: use this.Content to load your game content here
@@ -166,6 +239,16 @@ namespace InfinityUndergroundReload
             // TODO: Unload any non ContentManager content here
             _map.Unload(Content);
             spriteBatch.Dispose();
+
+            //if (Dragon != null) Dragon.Dispose();
+            //if (Flame != null) Flame.Dispose();
+
+            foreach (SpriteSheet monster in _listOfMonster)
+            {
+                monster.Unload(Content);
+            }
+
+            _listOfMonster.Clear();
             Content.Unload();
         }
 
@@ -178,25 +261,23 @@ namespace InfinityUndergroundReload
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
+            _keyboard = Keyboard.GetState();
             // TODO: Add your update logic here
+            
 
             _map.Update(gameTime);
             _player.Update(gameTime);
 
-            _door = _worldAPI.PlayerTakeDoor();
-            if (_door != null)
+            ActionWithDoorUI();
+            //CreateFights();
+
+            foreach (SpriteSheet monster in ListOfMonsterUI)
             {
-                _worldAPI.ActionWithDoor(_door);
-                UnloadContent();
-                
-                Thread.Sleep(500);
-                LoadContent();
-                Thread.Sleep(500);
-                if(WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom") Map.GetStateSecretDoor = false;
-                List<DoorDirection> _list = WorldAPI.DoorIsDrawable();
-                _camera.LookAt(_player.PlayerAPI.Position);
+                monster.Update(gameTime);
             }
+            
+
+
 
             base.Update(gameTime);
         }
@@ -208,7 +289,7 @@ namespace InfinityUndergroundReload
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(new Color(39, 33, 41));
-
+            
             // TODO: Add your drawing code here
 
             spriteBatch.Begin(transformMatrix: _camera.GetViewMatrix());
@@ -219,5 +300,108 @@ namespace InfinityUndergroundReload
 
             base.Draw(gameTime);
         }
+
+
+
+        /// <summary>
+        /// Actions the with door UI.
+        /// </summary>
+        public void ActionWithDoorUI()
+        {
+            bool _fightsOn = false;
+            bool _fightsOff = false;
+            SpriteSheet _monsterFight = null;
+
+            if (_keyboard.IsKeyDown(Keys.Enter) && _fights != null)
+            {
+                _fightsOff = true;
+            }
+
+            foreach (SpriteSheet monster in ListOfMonsterUI)
+            {
+                if (_keyboard.IsKeyDown(Keys.E) && Player.PlayerAPI.Position.X >= ((int)monster.Monster.Position.X - monster.Monster.CharacterType.HitBox) && Player.PlayerAPI.Position.Y <= ((int)monster.Monster.Position.Y + monster.Monster.CharacterType.HitBox) && Player.PlayerAPI.Position.X <= ((int)monster.Monster.Position.X + monster.Monster.CharacterType.HitBox) && Player.PlayerAPI.Position.Y <= ((int)monster.Monster.Position.Y + monster.Monster.CharacterType.HitBox) && _fights == null)
+                {
+                    _fightsOn = true;
+                    _monsterFight = monster;
+                }
+            }
+
+            _door = _worldAPI.PlayerTakeDoor();
+            if (_door != null || _fightsOn || _fightsOff)
+            {
+                _listOfMonster.Clear();
+
+                if (_fightsOff)
+                {
+                    WorldAPI.ExitFights();
+                    _fights = null;
+                    _camera.LookAt(_player.PlayerAPI.Position);
+                    _camera.ZoomIn(0.5f);
+                }
+                if (!_fightsOn && _door != null)
+                {
+                    _worldAPI.ActionWithDoor(_door);
+                    _camera.LookAt(_player.PlayerAPI.Position);
+                }
+                else if (_fightsOn)
+                {
+                    _fights = new FightsUI(this, _monsterFight.Monster);
+                    _camera.LookAt(new Vector2(960, 540));
+                    _camera.ZoomOut(0.5f);
+                }
+
+                
+
+                UnloadContent();
+                Thread.Sleep(500);
+                if (!_fightsOn && WorldAPI.CurrentLevel != 0 && (WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap != "RoomIn" && WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap != "RoomOut")) CreateMonster();
+                else if (_fightsOn)
+                {
+                    switch (_monsterFight.Monster.TypeOfMonster)
+                    {
+                        case "Dragon":
+                            _listOfMonster.Add(new SDragon(4, 4, this, (CDragon)_monsterFight.Monster));
+                            break;
+                    }
+                }
+
+                LoadContent();
+                Thread.Sleep(500);
+                if (!_fightsOn && !_fightsOff)
+                {
+                    foreach (SpriteSheet monster in ListOfMonsterUI)
+                    {
+                        monster.SetPosition();
+                    }
+
+                    if (WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom")
+                    {
+                        Map.GetStateSecretDoor = false;
+                    }
+                }
+                _fightsOn = false;
+            }
+
+        }
+
+        /// <summary>
+        /// Creates the monster.
+        /// </summary>
+        void CreateMonster()
+        {
+
+            foreach (CNPC monster in WorldAPI.ListOfMonster)
+            {
+
+                switch (monster.TypeOfMonster)
+                {
+                    case "Dragon":
+                        _listOfMonster.Add(new SDragon(4, 4, this, (CDragon)monster));
+                        break;
+                }
+            }
+        }
+
     }
+
 }

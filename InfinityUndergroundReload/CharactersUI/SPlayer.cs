@@ -11,8 +11,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InfinityUndergroundReload.SpriteSheet
+namespace InfinityUndergroundReload.CharactersUI
 {
+    public enum RowActionOnSpriteSheetPlayer
+    {
+        WalkTop = 8,
+        WalkLeft = 9,
+        WalkBottom = 10,
+        WalkRight = 11,
+        AttackTop = 12,
+        AttackLeft = 13,
+        AttackBottom = 14,
+        AttackRight = 15,
+        TakeDamageTop = 0,
+        TakeDamageLeft = 1,
+        TakeDamageBottom = 2,
+        TakeDamageRight = 3
+    }
+
     public class SPlayer : SpriteSheet
     {
         KeyboardState _state;
@@ -104,23 +120,19 @@ namespace InfinityUndergroundReload.SpriteSheet
         /// Updates the specified game time.
         /// </summary>
         /// <param name="gameTime">The game time.</param>
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            _actualAction = PlayerAction(_state);
+            if (Context.Fight == null)
+                _actualAction = PlayerAction(_state);
+            else
+            {
+                _action = from action in _playerAction where action.RowAction == (int)RowActionOnSpriteSheetPlayer.WalkRight select action;
+                foreach (ActionSpriteSheet action in _action)
+                    _actualAction = action;
+            }
+            
 
-            TimeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds; 
-            if (TimeSinceLastFrame > MillisecondsPerFrame) 
-            { 
-                TimeSinceLastFrame -= MillisecondsPerFrame; 
- 
-                CurrentFrame++; 
- 
-                TimeSinceLastFrame = 0; 
-                if (CurrentFrame == TotalFrames) 
-                { 
-                    CurrentFrame = 0; 
-                } 
-            } 
+            base.Update(gameTime);
         }
 
         /// <summary>
@@ -129,7 +141,9 @@ namespace InfinityUndergroundReload.SpriteSheet
         /// <param name="spriteBatch">The sprite batch.</param>
         public void Draw(SpriteBatch spriteBatch)
         {
-           _state = Keyboard.GetState(); 
+            Rectangle _destinationRectangle;
+            _state = Keyboard.GetState(); 
+            
 
             if ((_player.Position == _lastPosition) && !_isAttacking)
             {
@@ -149,11 +163,19 @@ namespace InfinityUndergroundReload.SpriteSheet
             
 
             Rectangle _sourceRectangle = new Rectangle(Width * Column, Height * _actualAction.RowAction, Width, Height); 
-            Rectangle _destinationRectangle = new Rectangle(_player.PositionX, _player.PositionY, Width, Height); 
- 
+            if ( Context.Fight != null)
+            {
+                _destinationRectangle = new Rectangle(_player.PositionX, _player.PositionY, Width * 3, Height * 3);
+                _healthBar.Draw(spriteBatch, (int)(Context.Camera.Position.X - 400), (int)(Context.Camera.Position.Y + 450), _player.CharacterType.LifePoint, Context.GraphicsDevice, (_widthHealthBar * _player.CharacterType.LifePoint / 500), 10);
+            }
+            else
+            {
+                _destinationRectangle = new Rectangle(_player.PositionX, _player.PositionY, Width, Height);
+                _healthBar.Draw(spriteBatch, (int)(Context.Camera.Position.X + 20), (int)(Context.Camera.Position.Y + 20), _player.CharacterType.LifePoint, Context.GraphicsDevice, (_widthHealthBar * _player.CharacterType.LifePoint / 500), 10);
+            }
+
             spriteBatch.Draw(Spritesheet, _destinationRectangle, _sourceRectangle, Color.White);
 
-            _healthBar.Draw(spriteBatch, (int)(Context.Camera.Position.X + 20), (int)(Context.Camera.Position.Y + 20), _player.CharacterType.LifePoint, Context.GraphicsDevice, (_widthHealthBar * _player.CharacterType.LifePoint / 500), 10);
         }
 
         /// <summary>
@@ -264,14 +286,6 @@ namespace InfinityUndergroundReload.SpriteSheet
             }
 
             return _lastAction;
-        }
-
-        /// <summary>
-        /// Unloads this instance.
-        /// </summary>
-        public void Unload()
-        {
-            Spritesheet.Dispose();
         }
 
     }

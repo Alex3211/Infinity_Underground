@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="FightsUI.cs" />
     <Compile Include="InfinityUnderground.cs" />
     <Compile Include="Interface\IEntity.cs" />
     <Compile Include="Interface\KeyboardHandler.cs" />
@@ -46,10 +47,10 @@
     <Compile Include="Map\MiniMap.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpriteSheet\ActionSpriteSheet.cs" />
-    <Compile Include="SpriteSheet\RowActionOnSpriteSheetPlayer.cs" />
-    <Compile Include="SpriteSheet\SPlayer.cs" />
-    <Compile Include="SpriteSheet\SpriteSheet.cs" />
+    <Compile Include="CharactersUI\ActionSpriteSheet.cs" />
+    <Compile Include="CharactersUI\SDragon.cs" />
+    <Compile Include="CharactersUI\SPlayer.cs" />
+    <Compile Include="CharactersUI\SpriteSheet.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Extended, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

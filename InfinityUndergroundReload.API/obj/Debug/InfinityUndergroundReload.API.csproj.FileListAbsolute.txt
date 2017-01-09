@@ -1,4 +1,3 @@
-C:\Dev\Projet\InfinityUndergroundReload\InfinityUndergroundReload\InfinityUndergroundReload.API\obj\Debug\InfinityUndergroundReload.API.csprojResolveAssemblyReference.cache
 C:\Dev\Projet\InfinityUndergroundReload\InfinityUndergroundReload\InfinityUndergroundReload.API\bin\Debug\InfinityUndergroundReload.API.dll
 C:\Dev\Projet\InfinityUndergroundReload\InfinityUndergroundReload\InfinityUndergroundReload.API\bin\Debug\InfinityUndergroundReload.API.pdb
 C:\Dev\Projet\InfinityUndergroundReload\InfinityUndergroundReload\InfinityUndergroundReload.API\bin\Debug\MonoGame.Framework.dll
