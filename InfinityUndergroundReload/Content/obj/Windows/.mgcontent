@@ -4,37 +4,38 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/Player/Player.png</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/Surface/Map.tmx</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/Ressources/Artis_dock.png</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/Ressources/base_out_atlas.png</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/Ressources/build_atlas.png</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/Ressources/caves.png</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/Ressources/forest_tiles.png</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/Ressources/obj_misk_atlas.png</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/Ressources/terrain_atlas.png</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/Ressources/tileset_stone_v4_p1.png</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/BossRoom/1.tmx</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/BossRoom/2.tmx</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/BossRoom/3.tmx</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/BossRoom/4.tmx</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/LabyrintheRoom/1.tmx</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/LabyrintheRoom/2.tmx</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/LabyrintheRoom/3.tmx</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/LabyrintheRoom/4.tmx</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/MonsterRoom/1.tmx</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/MonsterRoom/2.tmx</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/MonsterRoom/3.tmx</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/MonsterRoom/4.tmx</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/RoomIn/1.tmx</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/RoomOut/1.tmx</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/SecretRoom/1.tmx</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/SecretRoom/2.tmx</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/SecretRoom/3.tmx</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/SecretRoom/4.tmx</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/TrapRoom/1.tmx</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/TrapRoom/2.tmx</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/TrapRoom/3.tmx</File>
-    <File>C:/Dev/Projet/InfinityUndergroundReload/InfinityUndergroundReload/InfinityUndergroundReload/Content/TrapRoom/4.tmx</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/Player/Player.png</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/Surface/Map.tmx</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/Ressources/Artis_dock.png</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/Ressources/base_out_atlas.png</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/Ressources/build_atlas.png</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/Ressources/caves.png</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/Ressources/forest_tiles.png</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/Ressources/obj_misk_atlas.png</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/Ressources/terrain_atlas.png</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/Ressources/tileset_stone_v4_p1.png</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/BossRoom/1.tmx</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/BossRoom/2.tmx</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/BossRoom/3.tmx</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/BossRoom/4.tmx</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/LabyrintheRoom/1.tmx</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/LabyrintheRoom/2.tmx</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/LabyrintheRoom/3.tmx</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/LabyrintheRoom/4.tmx</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/MonsterRoom/1.tmx</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/MonsterRoom/2.tmx</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/MonsterRoom/3.tmx</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/MonsterRoom/4.tmx</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/RoomIn/1.tmx</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/RoomOut/1.tmx</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/SecretRoom/1.tmx</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/SecretRoom/2.tmx</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/SecretRoom/3.tmx</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/SecretRoom/4.tmx</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/TrapRoom/1.tmx</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/TrapRoom/2.tmx</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/TrapRoom/3.tmx</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/TrapRoom/4.tmx</File>
+    <File>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/debug.spritefont</File>
   </SourceFiles>
 </SourceFileCollection>
