@@ -452,11 +452,7 @@ namespace InfinityUndergroundReload.Map
                 spriteBatch.DrawString(_font, _enigmResponse, new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y + 50), Color.White);
             }
             if (_statusEnigm != string.Empty && LastActiveText + IntervalBetweenText > _gametime.TotalGameTime) spriteBatch.DrawString(_font, _statusEnigm, new Vector2((int)_context.Camera.Position.X + _context.GraphicsDevice.Viewport.Width/ 2 - (_statusEnigm.Length * 2), (int)_context.Camera.Position.Y + _context.GraphicsDevice.Viewport.Height - 50), Color.White);
-            if (_stateTransition)
-            {
-                MonitorTransitionOn(spriteBatch);
-                MonitorTransitionOff(spriteBatch);
-            }
+
         }
 
         /// <summary>

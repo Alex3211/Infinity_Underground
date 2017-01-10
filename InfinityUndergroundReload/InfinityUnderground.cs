@@ -184,7 +184,7 @@ namespace InfinityUndergroundReload
             // TODO: Add your update logic here
 
             _map.Update(gameTime);
-            if (!Map.GetStateOfEnigm && !Map.GetStateTransition)
+            if (!Map.GetStateOfEnigm)
             {
                 _player.Update(gameTime);
                 _door = _worldAPI.PlayerTakeDoor();
@@ -195,7 +195,6 @@ namespace InfinityUndergroundReload
                     Map.GetStateTransition = true;
                     LoadContent();
                     if (WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom") Map.GetStateSecretDoor = false;
-                    List<DoorDirection> _list = WorldAPI.DoorIsDrawable();
                     _camera.LookAt(_player.PlayerAPI.Position);
                 }
             }
@@ -215,7 +214,11 @@ namespace InfinityUndergroundReload
             spriteBatch.Begin(transformMatrix: _camera.GetViewMatrix());
 
             _map.Draw(spriteBatch);
-
+            if (Map.GetStateTransition)
+            {
+                Map.MonitorTransitionOn(spriteBatch);
+                Map.MonitorTransitionOff(spriteBatch);
+            }
             spriteBatch.End();
 
             base.Draw(gameTime);
