@@ -9,7 +9,7 @@ namespace InfinityUndergroundReload.Interface
 {
     public class DataSave
     {
-        const string fileName = "Character.save";
+        const string fileName = "../../../../../save/Character.save";
         InfinityUnderground _context;
 
         /// <summary>
@@ -37,6 +37,7 @@ namespace InfinityUndergroundReload.Interface
                 writer.Write(ATTACKSPEED);
                 writer.Write(ARMOR);
                 writer.Write(RANGE);
+                writer.Write(LIFEPOINT);
             }
         }
 
@@ -48,6 +49,7 @@ namespace InfinityUndergroundReload.Interface
             ATTACKSPEED = _context.WorldAPI.Player.CharacterType.AttackSpeed.ToString();
             ARMOR = _context.WorldAPI.Player.CharacterType.Armor.ToString();
             RANGE = _context.WorldAPI.Player.CharacterType.Range.ToString();
+            LIFEPOINT = _context.WorldAPI.Player.CharacterType.LifePoint.ToString();
         }
 
         /// <summary>
@@ -65,8 +67,9 @@ namespace InfinityUndergroundReload.Interface
                     ATTACKSPEED = reader.ReadString().ToString();
                     ARMOR = reader.ReadString().ToString();
                     RANGE = reader.ReadString().ToString();
+                    LIFEPOINT = reader.ReadString().ToString();
                 }
-                
+
             }
         }
 
@@ -81,6 +84,7 @@ namespace InfinityUndergroundReload.Interface
             _context.WorldAPI.Player.CharacterType.AttackSpeed = Convert.ToDouble(ATTACKSPEED);
             _context.WorldAPI.Player.CharacterType.Armor = Convert.ToDouble(ARMOR);
             _context.WorldAPI.Player.CharacterType.Range = Convert.ToInt32(RANGE);
+            _context.WorldAPI.Player.CharacterType.LifePoint = Convert.ToInt32(LIFEPOINT);
         }
 
 
@@ -136,6 +140,14 @@ namespace InfinityUndergroundReload.Interface
         /// The range.
         /// </value>
         public string RANGE { get; set; }
+
+        /// <summary>
+        /// Gets or sets the lifepoint.
+        /// </summary>
+        /// <value>
+        /// The lifepoint.
+        /// </value>
+        public string LIFEPOINT { get; set; }
 
 
     }
