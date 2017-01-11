@@ -50,6 +50,24 @@ namespace InfinityUndergroundReload.API
         }
 
         /// <summary>
+        /// Gets the current level.
+        /// </summary>
+        /// <value>
+        /// The current level.
+        /// </value>
+        public int GetMaxLevel
+        {
+            get
+            {
+                return _maxLevel;
+            }
+            set
+            {
+                _maxLevel = value;
+            }
+        }
+
+        /// <summary>
         /// Gets the get level.
         /// </summary>
         /// <value>

@@ -30,9 +30,10 @@ namespace InfinityUndergroundReload
         SPlayer _player;
         MapLoader _map;
         Door _door;
+        DataSave _dataSave;
         //List<IEntity> _entities;
 
-        
+
 
         public int GetWindowsHeight { get { return WindowHeight; } }
         public int GetWindowWidth { get { return WindowWidth; } }
@@ -126,6 +127,12 @@ namespace InfinityUndergroundReload
             _player = new SPlayer(this, 21, 13);
             
             _worldAPI.CreateDoor();
+            _dataSave = new DataSave(this);
+            if (_dataSave.IsExistSave)
+            {
+                _dataSave.LoadValuesFromTheFile();
+                _dataSave.SetValuesInThePlayer();
+            }
         }
 
         /// <summary>
@@ -179,8 +186,11 @@ namespace InfinityUndergroundReload
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                _dataSave.LoadValuesInTheClass();
+                _dataSave.WriteValuesInTheFile();
                 Exit();
-
+            }
             // TODO: Add your update logic here
 
             _map.Update(gameTime);

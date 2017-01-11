@@ -411,7 +411,7 @@ namespace InfinityUndergroundReload.Map
         /// <returns></returns>
         public string DoAnEnigm()
         {
-            string enigm = "Question : 1 + 1 / Réponse : 1 ";
+            string enigm = "Niveau : "+_context.WorldAPI.GetMaxLevel +" / Question : (1 + 1)* 0 + 1 / Réponse : 1 ";
             return enigm;
         }
 

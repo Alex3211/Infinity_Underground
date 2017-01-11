@@ -19,6 +19,8 @@ namespace InfinityUndergroundReload.API.Characters
         double _criticalChance;
         double _attackSpeed;
         double _armor;
+        
+
 
         public CCharacterType(CCharacter context)
         {
