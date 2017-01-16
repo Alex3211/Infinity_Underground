@@ -187,7 +187,7 @@ namespace InfinityUndergroundReload
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
-                _dataSave.LoadValuesInTheClass();
+                _dataSave.LoadValuesOfThePlayerInTheClass();
                 _dataSave.WriteValuesInTheFile();
                 Exit();
             }

@@ -31,14 +31,12 @@ namespace InfinityUndergroundReload.Map
         Random r;
         bool _IsSecretRoom = false;
         SpriteFont _font;
-        bool _enigmState = false;
         private readonly TimeSpan IntervalBetweenF1Menu;
         private readonly TimeSpan IntervalBetweenText;
         private TimeSpan LastActiveF1Menu;
         private TimeSpan LastActiveText;
         private bool _stateSecretDoor = false;
         KeyboardHandler _handler;
-        XmlNodeList tab;
         bool _stateEnigm;
         string _enigmResponse;
         int _enigmRandom;

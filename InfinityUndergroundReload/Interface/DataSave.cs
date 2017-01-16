@@ -21,8 +21,68 @@ namespace InfinityUndergroundReload.Interface
             _context = Context;
             if (File.Exists(fileName)) IsExistSave = true;
             else IsExistSave = false;
-        
         }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether if is exist save.
+        /// </summary>
+        public bool IsExistSave { get; set; }
+
+        /// <summary>
+        /// Gets or sets the level.
+        /// </summary>
+        /// <value>
+        /// The level.
+        /// </value>
+        private string LEVEL { get; set; }
+
+        /// <summary>
+        /// Gets or sets the damage.
+        /// </summary>
+        /// <value>
+        /// The damage.
+        /// </value>
+        private string DAMAGE { get; set; }
+
+        /// <summary>
+        /// Gets or sets the criticalchance.
+        /// </summary>
+        /// <value>
+        /// The criticalchance.
+        /// </value>
+        private string CRITICALCHANCE { get; set; }
+
+        /// <summary>
+        /// Gets or sets the attackspeed.
+        /// </summary>
+        /// <value>
+        /// The attackspeed.
+        /// </value>
+        private string ATTACKSPEED { get; set; }
+
+        /// <summary>
+        /// Gets or sets the armor.
+        /// </summary>
+        /// <value>
+        /// The armor.
+        /// </value>
+        private string ARMOR { get; set; }
+
+        /// <summary>
+        /// Gets or sets the range.
+        /// </summary>
+        /// <value>
+        /// The range.
+        /// </value>
+        private string RANGE { get; set; }
+
+        /// <summary>
+        /// Gets or sets the lifepoint.
+        /// </summary>
+        /// <value>
+        /// The lifepoint.
+        /// </value>
+        private string LIFEPOINT { get; set; }
 
         /// <summary>
         /// Writes the values.
@@ -41,7 +101,7 @@ namespace InfinityUndergroundReload.Interface
             }
         }
 
-        public void LoadValuesInTheClass()
+        public void LoadValuesOfThePlayerInTheClass()
         {
             LEVEL = _context.WorldAPI.GetMaxLevel.ToString();
             DAMAGE = _context.WorldAPI.Player.CharacterType.Damage.ToString();
@@ -58,7 +118,6 @@ namespace InfinityUndergroundReload.Interface
         public void LoadValuesFromTheFile()
         {
             if (File.Exists(fileName))
-            {
                 using (BinaryReader reader = new BinaryReader(File.Open(fileName, FileMode.Open)))
                 {
                     LEVEL = reader.ReadString().ToString();
@@ -69,8 +128,6 @@ namespace InfinityUndergroundReload.Interface
                     RANGE = reader.ReadString().ToString();
                     LIFEPOINT = reader.ReadString().ToString();
                 }
-
-            }
         }
 
         /// <summary>
@@ -86,71 +143,5 @@ namespace InfinityUndergroundReload.Interface
             _context.WorldAPI.Player.CharacterType.Range = Convert.ToInt32(RANGE);
             _context.WorldAPI.Player.CharacterType.LifePoint = Convert.ToInt32(LIFEPOINT);
         }
-
-
-        /// <summary>
-        /// Gets or sets a value indicating whether if is exist save.
-        /// </summary>
-        public bool IsExistSave { get; set; }
-
-        /// <summary>
-        /// Gets or sets the level.
-        /// </summary>
-        /// <value>
-        /// The level.
-        /// </value>
-        public string LEVEL { get; set; }
-
-        /// <summary>
-        /// Gets or sets the damage.
-        /// </summary>
-        /// <value>
-        /// The damage.
-        /// </value>
-        public string DAMAGE { get; set; }
-
-        /// <summary>
-        /// Gets or sets the criticalchance.
-        /// </summary>
-        /// <value>
-        /// The criticalchance.
-        /// </value>
-        public string CRITICALCHANCE { get; set; }
-
-        /// <summary>
-        /// Gets or sets the attackspeed.
-        /// </summary>
-        /// <value>
-        /// The attackspeed.
-        /// </value>
-        public string ATTACKSPEED { get; set; }
-
-        /// <summary>
-        /// Gets or sets the armor.
-        /// </summary>
-        /// <value>
-        /// The armor.
-        /// </value>
-        public string ARMOR { get; set; }
-
-        /// <summary>
-        /// Gets or sets the range.
-        /// </summary>
-        /// <value>
-        /// The range.
-        /// </value>
-        public string RANGE { get; set; }
-
-        /// <summary>
-        /// Gets or sets the lifepoint.
-        /// </summary>
-        /// <value>
-        /// The lifepoint.
-        /// </value>
-        public string LIFEPOINT { get; set; }
-
-
     }
-
-
 }
