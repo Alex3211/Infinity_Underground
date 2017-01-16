@@ -189,6 +189,8 @@ namespace InfinityUndergroundReload
             {
                 _dataSave.LoadValuesOfThePlayerInTheClass();
                 _dataSave.WriteValuesInTheFile();
+                //System.Environment.FailFast("Exit !");
+                //Program.ShouldRestart = true;
                 Exit();
             }
             // TODO: Add your update logic here

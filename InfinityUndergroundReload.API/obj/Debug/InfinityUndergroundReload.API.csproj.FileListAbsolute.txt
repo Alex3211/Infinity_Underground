@@ -58,6 +58,5 @@ D:\S3 PI\S3PI\GitKraken\Kepler-22_B\InfinityUndergroundReload.API\bin\Debug\Shar
 D:\S3 PI\S3PI\GitKraken\Kepler-22_B\InfinityUndergroundReload.API\bin\Debug\SharpDX.Direct2D1.xml
 D:\S3 PI\S3PI\GitKraken\Kepler-22_B\InfinityUndergroundReload.API\bin\Debug\SharpDX.XInput.xml
 D:\S3 PI\S3PI\GitKraken\Kepler-22_B\InfinityUndergroundReload.API\bin\Debug\SharpDX.MediaFoundation.xml
-D:\S3 PI\S3PI\GitKraken\Kepler-22_B\InfinityUndergroundReload.API\obj\Debug\InfinityUndergroundReload.API.csprojResolveAssemblyReference.cache
 D:\S3 PI\S3PI\GitKraken\Kepler-22_B\InfinityUndergroundReload.API\obj\Debug\InfinityUndergroundReload.API.dll
 D:\S3 PI\S3PI\GitKraken\Kepler-22_B\InfinityUndergroundReload.API\obj\Debug\InfinityUndergroundReload.API.pdb
