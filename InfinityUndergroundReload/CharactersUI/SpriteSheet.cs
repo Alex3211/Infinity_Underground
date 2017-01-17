@@ -26,9 +26,13 @@ namespace InfinityUndergroundReload.CharactersUI
         int _spriteSheetRows;
         int _spriteSheetColumns;
         int _totalFrames;
+        int _currentRow;
         Vector2 _fightsPosition;
         string _typeOfMonster;
-
+        bool _isSpell;
+        string _nameSpell;
+        bool _spellReapeat;
+        bool _spellHitPlayer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SpriteSheet"/> class.
@@ -37,6 +41,77 @@ namespace InfinityUndergroundReload.CharactersUI
         {
             _timeSinceLastFrame = 0;
             _millisecondsPerFrame = 80;
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether [spell hit player].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [spell hit player]; otherwise, <c>false</c>.
+        /// </value>
+        public bool SpellHitPlayer
+        {
+            get
+            {
+                return _spellHitPlayer;
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether [spell reapeat].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [spell reapeat]; otherwise, <c>false</c>.
+        /// </value>
+        public bool SpellReapeat
+        {
+            get
+            {
+                return _spellReapeat;
+            }
+
+            set
+            {
+                _spellReapeat = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the name spell.
+        /// </summary>
+        /// <value>
+        /// The name spell.
+        /// </value>
+        public string NameSpell
+        {
+            get
+            {
+                return _nameSpell;
+            }
+
+            set
+            {
+                _nameSpell = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is spell.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is spell; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsSpell
+        {
+            get
+            {
+                return _isSpell;
+            }
+
+            set
+            {
+                _isSpell = value;
+            }
         }
 
         /// <summary>
@@ -57,6 +132,25 @@ namespace InfinityUndergroundReload.CharactersUI
                 _typeOfMonster = value;
             }
 
+        }
+
+        /// <summary>
+        /// Gets or sets the current row.
+        /// </summary>
+        /// <value>
+        /// The current row.
+        /// </value>
+        public int CurrentRow
+        {
+            get
+            {
+                return _currentRow;
+            }
+
+            set
+            {
+                _currentRow = value;
+            }
         }
 
         /// <summary>
@@ -331,7 +425,7 @@ namespace InfinityUndergroundReload.CharactersUI
         /// Unloads the specified content.
         /// </summary>
         /// <param name="content">The content.</param>
-        public void Unload(ContentManager content)
+        public virtual void Unload(ContentManager content)
         {
             if (Spritesheet != null) Spritesheet.Dispose();
         }
@@ -346,10 +440,23 @@ namespace InfinityUndergroundReload.CharactersUI
                 CurrentFrame++;
 
                 TimeSinceLastFrame = 0;
-                if (CurrentFrame == TotalFrames)
+                if (CurrentFrame == TotalFrames/2 && !IsSpell)
                 {
                     CurrentFrame = 0;
                 }
+                else if (CurrentFrame == TotalFrames/2 && IsSpell)
+                {
+                    CurrentFrame = 0;
+                    if (++CurrentRow >= SpriteSheetRows && !SpellReapeat)
+                    {
+                        CurrentRow = 0;
+                    }
+                    
+                }
+            }
+            if (Monster != null && Monster.CharacterType.LifePoint <= 0)
+            {
+                Monster.IsDead = true;
             }
         }
 
@@ -363,7 +470,7 @@ namespace InfinityUndergroundReload.CharactersUI
 
             do
             {
-                _positionMonster = new Vector2(_context.Random.Next(100, Context.Map.WidthInPixels - 200), _context.Random.Next(100, Context.Map.HeightInPixels - 200));
+                _positionMonster = new Vector2(_context.WorldAPI.Random.Next(100, Context.Map.WidthInPixels - 200), _context.WorldAPI.Random.Next(100, Context.Map.HeightInPixels - 200));
 
                 validatePosition = true;
                 foreach (TiledTileLayer layer in Context.Map.CollideLayers.Values)
@@ -385,6 +492,18 @@ namespace InfinityUndergroundReload.CharactersUI
             Monster.Position = _positionMonster;
 
         }
+
+
+        public virtual void Draw(SpriteBatch spriteBatch)
+        {
+
+        }
+
+        public virtual void LoadContent(ContentManager content)
+        {
+
+        }
+
 
     }
 }

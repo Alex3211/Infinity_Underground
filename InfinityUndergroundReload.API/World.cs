@@ -16,7 +16,7 @@ namespace InfinityUndergroundReload.API
         Door _firstDoor;
         Random _random;
         List<CNPC> _listOfMonster;
-        Fights _fights;
+        //Fights _fights;
         Vector2 _lastPositionOfThePlayer;
         Vector2 _newPositionOfThePlayer;
 
@@ -100,6 +100,19 @@ namespace InfinityUndergroundReload.API
         }
 
         /// <summary>
+        /// Gets the random.
+        /// </summary>
+        /// <value>
+        /// The random.
+        /// </value>
+        public Random Random
+        {
+            get
+            {
+                return _random;
+            }
+        }
+        /// <summary>
         /// Creates the door.
         /// </summary>
         public void CreateDoor()
@@ -171,6 +184,13 @@ namespace InfinityUndergroundReload.API
 
                 _currentDoor = _currentDoor.NextDoor;
             }
+
+            if (_player.IsDead)
+            {
+                _currentDoor = new Door(new Vector2(0,0), new Vector2(0, 0), DoorDirection.Center);
+                return _currentDoor;
+            }
+
             return null;
         }
 
@@ -198,6 +218,7 @@ namespace InfinityUndergroundReload.API
         /// <param name="doorSelected">The door selected.</param>
         public void ActionWithDoor(Door doorSelected)
         {
+
             switch(doorSelected.DoorDirection)
             {
 
@@ -208,14 +229,22 @@ namespace InfinityUndergroundReload.API
                     break;
 
                 case DoorDirection.Center:
-                    _player.Position = new Vector2(31 * _tileSize, 14 * _tileSize);
-                    if (_currentLevel == 0)
+                    _player.Position = new Vector2(31 * _tileSize, 18 * _tileSize);
+                    if (!_player.IsDead)
                     {
-                        _currentLevel = _maxLevel;
+                        if (_currentLevel == 0)
+                        {
+                            _currentLevel = _maxLevel;
+                        }
+                        else
+                        {
+                            _currentLevel++;
+                        }
                     }
                     else
                     {
-                        _currentLevel++;
+                        _player.IsDead = false;
+                        _player.CharacterType.LifePoint = _player.CharacterType.MaxLifePoint;
                     }
                     _level = new ULevel(this, _currentLevel);
                     _level.CreateRoom();
@@ -241,7 +270,7 @@ namespace InfinityUndergroundReload.API
                     break;
 
                 case DoorDirection.Bottom:
-                    _player.PositionY = 4 * _tileSize;
+                    _player.PositionY = 2 * _tileSize;
                     _level.PositionCurrentRoomY++;
                     _level.CreateRoom();
                     break;
@@ -252,7 +281,9 @@ namespace InfinityUndergroundReload.API
             if (CurrentLevel != 0) CreateMonster();
         }
 
-
+        /// <summary>
+        /// Creates the monster.
+        /// </summary>
         void CreateMonster()
         {
             _listOfMonster.Clear();

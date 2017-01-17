@@ -10,8 +10,7 @@ namespace InfinityUndergroundReload.API.Characters
     {
         bool _isBoss;
         string _typeOfMonster;
-        //CTIDMonster _idMonster;
-        List<CAttacks> _listOfAttacks;
+        List<string> _listOfAttacks;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CTNPC"/> class.
@@ -21,14 +20,14 @@ namespace InfinityUndergroundReload.API.Characters
         public CNPC(int x, int y)
             : base(x, y)
         {
-            _listOfAttacks = new List<CAttacks>();
+            _listOfAttacks = new List<string>();
         }
 
         public CNPC(int x, int y, string typeOfMonster)
             : base(x, y)
         {
             _typeOfMonster = typeOfMonster;
-            _listOfAttacks = new List<CAttacks>();
+            _listOfAttacks = new List<string>();
         }
 
         /// <summary>
@@ -51,13 +50,13 @@ namespace InfinityUndergroundReload.API.Characters
         /// <value>
         /// The list of attack.
         /// </value>
-        //public List<CAttacks> ListOfAttack
-        //{
-        //    get
-        //    {
-        //        return _listOfAttacks;
-        //    }
-        //}
+        public List<string> ListOfAttack
+        {
+            get
+            {
+                return _listOfAttacks;
+            }
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is boss.

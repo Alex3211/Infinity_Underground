@@ -10,20 +10,38 @@ namespace InfinityUndergroundReload.API.Characters
     {
         int _moveSpeed;
         int _lifepoint;
+        int _maxLifePoint;
         int _damage;
         int _criticalDamage;
         int _range;
         int _hitbox;
         CCharacter _context;
-        CAttacks _attacks;
         double _criticalChance;
         double _attackSpeed;
         double _armor;
 
         public CCharacterType(CCharacter context)
         {
-            _attacks = new CAttacks();
             _context = context;
+        }
+
+        /// <summary>
+        /// Gets the maximum life point.
+        /// </summary>
+        /// <value>
+        /// The maximum life point.
+        /// </value>
+        public int MaxLifePoint
+        {
+            get
+            {
+                return _maxLifePoint;
+            }
+
+            set
+            {
+                _maxLifePoint = value;
+            }
         }
 
         /// <summary>

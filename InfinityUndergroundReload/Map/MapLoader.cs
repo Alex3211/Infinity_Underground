@@ -1,5 +1,4 @@
-﻿using InfinityUndergroundReload.Interface;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,7 +13,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace InfinityUndergroundReload.Map
 {
-    public class MapLoader : IEntity
+    public class MapLoader
     {
         int _idTileCollide;
         int _tileSize;
@@ -30,7 +29,6 @@ namespace InfinityUndergroundReload.Map
 
         MiniMap _miniMap;
 
-        Random r;
         //bool _IsSecretRoom = false;
         SpriteFont _font;
         bool _enigmState = false;
@@ -60,7 +58,6 @@ namespace InfinityUndergroundReload.Map
             _enigmResponse = string.Empty;
             IntervalBetweenF1Menu = TimeSpan.FromMilliseconds(1000);
             IntervalBetweenText = TimeSpan.FromMilliseconds(4500);
-            r = new Random();
             _handler = new KeyboardHandler(context);
         }
 
@@ -241,10 +238,11 @@ namespace InfinityUndergroundReload.Map
             _font = _context.Content.Load<SpriteFont>("debug");
             _context.Player.LoadContent(content);
 
-            if (_context.Fight != null)
+            if (_context.LoadOrUnloadFights == FightsState.InFights)
             {
                 _getMap = content.Load<TiledMap>(@"RoomFights\1");
-                _fightMusics = content.Load<Song>(@"Song\PokemonBattle");
+                _fightMusics = content.Load<Song>(@"Song\BossMusic");
+                MediaPlayer.Volume = 0.2f;
                 MediaPlayer.Play(_fightMusics);
                 MediaPlayer.IsRepeating = true;
             }
@@ -372,14 +370,11 @@ namespace InfinityUndergroundReload.Map
         public void Update(GameTime gameTime)
         {
             _gametime = gameTime;
-            //if (_context.WorldAPI.CurrentLevel != 0 && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom")
-            //{
-            //    _IsSecretRoom = true;
-            //}
+
 
             if (Keyboard.GetState().IsKeyDown(Keys.F1) && LastActiveF1Menu + IntervalBetweenF1Menu < gameTime.TotalGameTime && _context.WorldAPI.CurrentLevel != 0 && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom" && !_stateEnigm)
             {
-                _enigmRandom = r.Next(0, 2);
+                _enigmRandom = _context.WorldAPI.Random.Next(0, 2);
                 _stateEnigm = true;
 
                 LastActiveF1Menu = gameTime.TotalGameTime;
@@ -481,23 +476,41 @@ namespace InfinityUndergroundReload.Map
         {
             DrawLayer(true, spriteBatch);
 
-            if (_context.WorldAPI.CurrentLevel != 0 && _context.Fight == null)
+            if (_context.WorldAPI.CurrentLevel != 0 && _context.Fights == null)
             {
                 _miniMap.Draw(spriteBatch, _widthInPixel, _heightInPixels);
             }
 
-            _context.Player.Draw(spriteBatch);
+
             if (_context.ListOfMonsterUI.Count != 0)
             {
                 foreach (SDragon monster in _context.ListOfMonsterUI)
                 {
-                    monster.Draw(spriteBatch);
+                    if (monster.Monster.IsDead)
+                    {
+                        monster.Draw(spriteBatch);
+                    }
                 }
             }
 
+            _context.Player.Draw(spriteBatch);
+
+
+            if (_context.ListOfMonsterUI.Count != 0)
+            {
+                foreach (SDragon monster in _context.ListOfMonsterUI)
+                {
+                    if (!monster.Monster.IsDead)
+                    {
+                        monster.Draw(spriteBatch);
+                    }
+                }
+            }
+
+
             DrawLayer(false, spriteBatch);
 
-            if (_context.Fight == null)
+            if (_context.Fights == null)
             {
                 DrawDoorOrNot();
                 if (_stateEnigm)
@@ -559,6 +572,8 @@ namespace InfinityUndergroundReload.Map
             _upLayer.Clear();
             _groundLayer.Clear();
 
+            if (_fightMusics != null) _fightMusics.Dispose();
+
             if (_backgroundFight != null)
             {
                 _backgroundFight.Dispose();
@@ -566,6 +581,8 @@ namespace InfinityUndergroundReload.Map
             }
 
             if (_getMap != null) _getMap.Dispose();
+
+            if (_font != null) _font = null; 
 
             _context.Player.Unload(content);
         }

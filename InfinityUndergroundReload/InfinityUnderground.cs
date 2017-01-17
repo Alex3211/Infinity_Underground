@@ -1,5 +1,4 @@
 ﻿using InfinityUndergroundReload.API;
-using InfinityUndergroundReload.Interface;
 using InfinityUndergroundReload.Map;
 using InfinityUndergroundReload.CharactersUI;
 using Microsoft.Xna.Framework;
@@ -34,10 +33,25 @@ namespace InfinityUndergroundReload
         SPlayer _player;
         MapLoader _map;
         Door _door;
-        Random _random;
         List<SpriteSheet> _listOfMonster;
         KeyboardState _keyboard;
         FightsUI _fights;
+        int _timeForTakeNextDoor;
+        int _timeMaxForTakeNextDoor;
+
+        FightsState _fightState;
+
+        /// <summary>
+        /// Gets the game time.
+        /// </summary>
+        /// <value>
+        /// The game time.
+        /// </value>
+        public GameTime GetGameTime
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         /// Gets the height of the get windows.
@@ -148,25 +162,24 @@ namespace InfinityUndergroundReload
             }
         }
 
-        /// <summary>
-        /// Gets the random.
-        /// </summary>
-        /// <value>
-        /// The random.
-        /// </value>
-        public Random Random
-        {
-            get
-            {
-                return _random;
-            }
-        }
-
-        public FightsUI Fight
+        public FightsUI Fights
         {
             get
             {
                 return _fights;
+            }
+        }
+
+        public FightsState LoadOrUnloadFights
+        {
+            get
+            {
+                return _fightState;
+            }
+
+            set
+            {
+                _fightState = value;
             }
         }
 
@@ -179,13 +192,16 @@ namespace InfinityUndergroundReload
             graphics.PreferredBackBufferHeight = WindowHeight;
             graphics.PreferredBackBufferWidth = WindowWidth;
 
-            _random = new Random();
             _worldAPI = new World();
             _map = new MapLoader(this);
             _player = new SPlayer(this, 21, 13);
             _listOfMonster = new List<SpriteSheet>();
+            _fights = new FightsUI(this);
             
             _worldAPI.CreateDoor();
+            _fightState = FightsState.Close;
+            _timeMaxForTakeNextDoor = 1000;
+            _timeForTakeNextDoor = 0;
         }
 
         /// <summary>
@@ -225,6 +241,8 @@ namespace InfinityUndergroundReload
                 }
             }
 
+            if (LoadOrUnloadFights == FightsState.Enter || LoadOrUnloadFights == FightsState.InFights) _fights.LoadContent(Content);
+
 
             base.LoadContent();
             // TODO: use this.Content to load your game content here
@@ -240,13 +258,12 @@ namespace InfinityUndergroundReload
             _map.Unload(Content);
             spriteBatch.Dispose();
 
-            //if (Dragon != null) Dragon.Dispose();
-            //if (Flame != null) Flame.Dispose();
-
             foreach (SpriteSheet monster in _listOfMonster)
             {
                 monster.Unload(Content);
             }
+
+            _fights.Unload(Content);
 
             _listOfMonster.Clear();
             Content.Unload();
@@ -263,21 +280,18 @@ namespace InfinityUndergroundReload
                 Exit();
             _keyboard = Keyboard.GetState();
             // TODO: Add your update logic here
-            
+            GetGameTime = gameTime; 
 
             _map.Update(gameTime);
             _player.Update(gameTime);
 
-            ActionWithDoorUI();
-            //CreateFights();
+            ActionChangeEnvironment(gameTime);
+            _fights.Update(gameTime);
 
             foreach (SpriteSheet monster in ListOfMonsterUI)
             {
                 monster.Update(gameTime);
             }
-            
-
-
 
             base.Update(gameTime);
         }
@@ -296,6 +310,8 @@ namespace InfinityUndergroundReload
 
             _map.Draw(spriteBatch);
 
+            _fights.Draw(spriteBatch);
+
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -306,69 +322,70 @@ namespace InfinityUndergroundReload
         /// <summary>
         /// Actions the with door UI.
         /// </summary>
-        public void ActionWithDoorUI()
+        public void ActionChangeEnvironment(GameTime gameTime)
         {
-            bool _fightsOn = false;
-            bool _fightsOff = false;
-            SpriteSheet _monsterFight = null;
+            _timeForTakeNextDoor += gameTime.ElapsedGameTime.Milliseconds;
 
-            if (_keyboard.IsKeyDown(Keys.Enter) && _fights != null)
-            {
-                _fightsOff = true;
-            }
-
-            foreach (SpriteSheet monster in ListOfMonsterUI)
-            {
-                if (_keyboard.IsKeyDown(Keys.E) && Player.PlayerAPI.Position.X >= ((int)monster.Monster.Position.X - monster.Monster.CharacterType.HitBox) && Player.PlayerAPI.Position.Y <= ((int)monster.Monster.Position.Y + monster.Monster.CharacterType.HitBox) && Player.PlayerAPI.Position.X <= ((int)monster.Monster.Position.X + monster.Monster.CharacterType.HitBox) && Player.PlayerAPI.Position.Y <= ((int)monster.Monster.Position.Y + monster.Monster.CharacterType.HitBox) && _fights == null)
-                {
-                    _fightsOn = true;
-                    _monsterFight = monster;
-                }
-            }
 
             _door = _worldAPI.PlayerTakeDoor();
-            if (_door != null || _fightsOn || _fightsOff)
+
+            if ((_door != null || LoadOrUnloadFights != FightsState.Close) && LoadOrUnloadFights != FightsState.InFights && _timeForTakeNextDoor >= _timeMaxForTakeNextDoor)
             {
-                _listOfMonster.Clear();
+                _timeForTakeNextDoor = 0;
+                switch(LoadOrUnloadFights)
+                {
+                    case FightsState.Close:
+                        _worldAPI.ActionWithDoor(_door);
+                        _camera.LookAt(_player.PlayerAPI.Position);
+                        break;
 
-                if (_fightsOff)
-                {
-                    WorldAPI.ExitFights();
-                    _fights = null;
-                    _camera.LookAt(_player.PlayerAPI.Position);
-                    _camera.ZoomIn(0.5f);
-                }
-                if (!_fightsOn && _door != null)
-                {
-                    _worldAPI.ActionWithDoor(_door);
-                    _camera.LookAt(_player.PlayerAPI.Position);
-                }
-                else if (_fightsOn)
-                {
-                    _fights = new FightsUI(this, _monsterFight.Monster);
-                    _camera.LookAt(new Vector2(960, 540));
-                    _camera.ZoomOut(0.5f);
+                    case FightsState.Enter:
+                        _camera.LookAt(new Vector2(960, 500));
+                        _camera.ZoomOut(0.5f);
+                        LoadOrUnloadFights = FightsState.InFights;
+                        break;
+
+                    case FightsState.Exit:
+                        WorldAPI.ExitFights();
+                        _camera.LookAt(_player.PlayerAPI.Position);
+                        _camera.ZoomIn(0.5f);
+                        break;
                 }
 
-                
+
 
                 UnloadContent();
                 Thread.Sleep(500);
-                if (!_fightsOn && WorldAPI.CurrentLevel != 0 && (WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap != "RoomIn" && WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap != "RoomOut")) CreateMonster();
-                else if (_fightsOn)
+                _listOfMonster.Clear();
+
+
+                switch(LoadOrUnloadFights)
                 {
-                    switch (_monsterFight.Monster.TypeOfMonster)
-                    {
-                        case "Dragon":
-                            _listOfMonster.Add(new SDragon(4, 4, this, (CDragon)_monsterFight.Monster));
-                            break;
-                    }
+                    case FightsState.InFights:
+                        switch (_fights.MonsterFights.Monster.TypeOfMonster)
+                        {
+                            case "Dragon":
+                                _listOfMonster.Add(new SDragon(4, 4, this, (CDragon)_fights.MonsterFights.Monster));
+                                break;
+                        }
+                        break;
+
+                    default:
+                        if (WorldAPI.CurrentLevel != 0 && (WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap != "RoomIn" && WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap != "RoomOut"))
+                        {
+                            CreateMonster();
+                        }
+                        break;
                 }
 
                 LoadContent();
                 Thread.Sleep(500);
-                if (!_fightsOn && !_fightsOff)
+
+
+
+                if (LoadOrUnloadFights == FightsState.Close)
                 {
+                    
                     foreach (SpriteSheet monster in ListOfMonsterUI)
                     {
                         monster.SetPosition();
@@ -379,7 +396,13 @@ namespace InfinityUndergroundReload
                         Map.GetStateSecretDoor = false;
                     }
                 }
-                _fightsOn = false;
+                else if (LoadOrUnloadFights == FightsState.Exit)
+                {
+                    LoadOrUnloadFights = FightsState.Close;
+                }
+
+
+
             }
 
         }

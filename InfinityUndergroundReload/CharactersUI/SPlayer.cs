@@ -1,4 +1,5 @@
 ﻿using InfinityUndergroundReload.API.Characters;
+using InfinityUndergroundReload.Spell;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -37,12 +38,19 @@ namespace InfinityUndergroundReload.CharactersUI
         int _widthHealthBar;
         bool _isAttacking;
         bool _sprint;
+        int _lastLifePoint;
         List<ActionSpriteSheet> _playerAction;
         ActionSpriteSheet _actualAction;
         ActionSpriteSheet _lastAction;
         IEnumerable<ActionSpriteSheet> _action;
         Vector2 _lastPosition;
         LifePoint _healthBar;
+        SpeedBarFights _speedBar;
+        int _redHit;
+        bool _takeHit;
+        int i;
+        List<SpriteSheet> _spells;
+        Shield _shield;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SPlayer"/> class.
@@ -87,6 +95,24 @@ namespace InfinityUndergroundReload.CharactersUI
 
             _widthHealthBar = 100;
             _healthBar = new LifePoint(_widthHealthBar, 25);
+            _speedBar = new SpeedBarFights(_widthHealthBar, 25);
+            _spells = new List<SpriteSheet>();
+
+            _redHit = 300;
+
+            foreach (string spell in _player.ListOfAttack)
+            {
+                switch (spell)
+                {
+                    case "RedSlash":
+                        _spells.Add(new RedSlash(this));
+                        break;
+
+
+                }
+            }
+
+            _shield = new Shield(this);
         }
 
         /// <summary>
@@ -108,12 +134,31 @@ namespace InfinityUndergroundReload.CharactersUI
         /// Loads the content.
         /// </summary>
         /// <param name="content">The content.</param>
-        public void LoadContent(ContentManager content)
+        public new void LoadContent(ContentManager content)
         {
             Spritesheet = content.Load<Texture2D>("Player/Player");
 
+            if (Context.LoadOrUnloadFights == FightsState.InFights)
+            {
+                foreach (SpriteSheet s in _spells)
+                {
+                    s.LoadContent(content);
+                }
+                _shield.LoadContent(content);
+            }
+
             Width = Spritesheet.Width / SpriteSheetColumns;
             Height = Spritesheet.Height / SpriteSheetRows;
+        }
+
+        public override void Unload(ContentManager content)
+        {
+            base.Unload(content);
+            foreach (SpriteSheet s in _spells)
+            {
+                s.Unload(content);
+            }
+            if (_shield != null) _shield.Unload(content);
         }
 
         /// <summary>
@@ -122,7 +167,7 @@ namespace InfinityUndergroundReload.CharactersUI
         /// <param name="gameTime">The game time.</param>
         public override void Update(GameTime gameTime)
         {
-            if (Context.Fight == null)
+            if (Context.LoadOrUnloadFights == FightsState.Close)
                 _actualAction = PlayerAction(_state);
             else
             {
@@ -131,6 +176,11 @@ namespace InfinityUndergroundReload.CharactersUI
                     _actualAction = action;
             }
             
+            if (PlayerAPI.CharacterType.LifePoint <= 0)
+            {
+                PlayerAPI.IsDead = true;
+            }
+
 
             base.Update(gameTime);
         }
@@ -139,7 +189,7 @@ namespace InfinityUndergroundReload.CharactersUI
         /// Draws the specified sprite batch.
         /// </summary>
         /// <param name="spriteBatch">The sprite batch.</param>
-        public void Draw(SpriteBatch spriteBatch)
+        public new void Draw(SpriteBatch spriteBatch)
         {
             Rectangle _destinationRectangle;
             _state = Keyboard.GetState(); 
@@ -163,10 +213,28 @@ namespace InfinityUndergroundReload.CharactersUI
             
 
             Rectangle _sourceRectangle = new Rectangle(Width * Column, Height * _actualAction.RowAction, Width, Height); 
-            if ( Context.Fight != null)
+            if (Context.LoadOrUnloadFights != FightsState.Close)
             {
+
+                if ((Context.Fights.Turn == API.CharacterTurn.Player || Context.Fights.Turn == API.CharacterTurn.NoOne) && Context.Fights.CurrentAttack != null)
+                {
+                    foreach (SpriteSheet s in _spells)
+                    {
+                        if (s.NameSpell == Context.Fights.CurrentAttack.Name)
+                        {
+                            s.Draw(spriteBatch);
+                        }
+                    }
+                }
+
                 _destinationRectangle = new Rectangle(_player.PositionX, _player.PositionY, Width * 3, Height * 3);
+                _speedBar.Draw(spriteBatch, (int)(Context.Camera.Position.X - 400), (int)(Context.Camera.Position.Y + 470), _player.CharacterType.LifePoint, Context.GraphicsDevice, (_widthHealthBar * (int)Context.Fights.TheFights.PlayerTurnsLoading / 50), 10);
                 _healthBar.Draw(spriteBatch, (int)(Context.Camera.Position.X - 400), (int)(Context.Camera.Position.Y + 450), _player.CharacterType.LifePoint, Context.GraphicsDevice, (_widthHealthBar * _player.CharacterType.LifePoint / 500), 10);
+
+                if (_player.Shield)
+                {
+                    _shield.Draw(spriteBatch);
+                }
             }
             else
             {
@@ -174,8 +242,25 @@ namespace InfinityUndergroundReload.CharactersUI
                 _healthBar.Draw(spriteBatch, (int)(Context.Camera.Position.X + 20), (int)(Context.Camera.Position.Y + 20), _player.CharacterType.LifePoint, Context.GraphicsDevice, (_widthHealthBar * _player.CharacterType.LifePoint / 500), 10);
             }
 
-            spriteBatch.Draw(Spritesheet, _destinationRectangle, _sourceRectangle, Color.White);
+            if (_lastLifePoint > PlayerAPI.CharacterType.LifePoint || _takeHit)
+            {
+                _takeHit = true;
 
+                i++;
+                if (i > _redHit)
+                {
+                    _takeHit = false;
+                    i = 0;
+                }
+
+                spriteBatch.Draw(Spritesheet, _destinationRectangle, _sourceRectangle, Color.Red);
+            }
+            else
+            {
+                spriteBatch.Draw(Spritesheet, _destinationRectangle, _sourceRectangle, Color.White);
+            }
+
+            _lastLifePoint = PlayerAPI.CharacterType.LifePoint;
         }
 
         /// <summary>
@@ -287,6 +372,8 @@ namespace InfinityUndergroundReload.CharactersUI
 
             return _lastAction;
         }
+
+
 
     }
 }
