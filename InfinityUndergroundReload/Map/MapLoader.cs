@@ -376,6 +376,8 @@ namespace InfinityUndergroundReload.Map
             _gametime = gameTime;
 
 
+
+
             if (Keyboard.GetState().IsKeyDown(Keys.F1) && LastActiveF1Menu + IntervalBetweenF1Menu < gameTime.TotalGameTime && _context.WorldAPI.CurrentLevel != 0 && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom" && !_stateEnigm)
             {
                 _enigmRandom = _context.WorldAPI.Random.Next(0, 2);
@@ -513,7 +515,7 @@ namespace InfinityUndergroundReload.Map
 
 
             DrawLayer(false, spriteBatch);
-            DrawDoorOrNot();
+            if(Context.LoadOrUnloadFights == FightsState.Close) DrawDoorOrNot();
 
             if (_stateEnigm)
             {

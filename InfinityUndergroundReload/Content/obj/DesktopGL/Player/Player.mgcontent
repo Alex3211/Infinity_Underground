@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Dev/Projet/Kepler-22_B_Git/InfinityUndergroundReload/Content/Player/Player.png</SourceFile>
-  <SourceTime>2016-12-08T11:18:46.0409681+01:00</SourceTime>
-  <DestFile>C:/Dev/Projet/Kepler-22_B_Git/InfinityUndergroundReload/Content/bin/DesktopGL/Player/Player.xnb</DestFile>
-  <DestTime>2017-01-17T09:22:26.7103507+01:00</DestTime>
+  <SourceFile>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/Player/Player.png</SourceFile>
+  <SourceTime>2017-01-09T10:01:25.2012513+01:00</SourceTime>
+  <DestFile>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/bin/DesktopGL/Player/Player.xnb</DestFile>
+  <DestTime>2017-01-17T10:04:51.160816+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
