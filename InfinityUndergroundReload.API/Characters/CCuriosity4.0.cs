@@ -14,7 +14,7 @@ namespace InfinityUndergroundReload.API.Characters
             CharacterType.Armor = 1.0;
             CharacterType.CriticalChance = 1.0;
             CharacterType.CriticalDamage = 10;
-            CharacterType.AttackSpeed = 3.0;
+            CharacterType.AttackSpeed = 1.0;
             CharacterType.LifePoint = 100;
             CharacterType.MoveSpeed = 1;
             CharacterType.Damage = 100;
