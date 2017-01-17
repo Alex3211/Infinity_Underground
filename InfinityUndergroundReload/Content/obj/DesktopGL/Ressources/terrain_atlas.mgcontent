@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Dev/Projet/Kepler-22_B_Git/InfinityUndergroundReload/Content/Ressources/terrain_atlas.png</SourceFile>
-  <SourceTime>2016-11-27T21:26:12.4031698+01:00</SourceTime>
-  <DestFile>C:/Dev/Projet/Kepler-22_B_Git/InfinityUndergroundReload/Content/bin/DesktopGL/Ressources/terrain_atlas.xnb</DestFile>
-  <DestTime>2017-01-17T11:30:22.677865+01:00</DestTime>
+  <SourceFile>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/Ressources/terrain_atlas.png</SourceFile>
+  <SourceTime>2017-01-09T10:01:25.2172611+01:00</SourceTime>
+  <DestFile>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/bin/DesktopGL/Ressources/terrain_atlas.xnb</DestFile>
+  <DestTime>2017-01-17T11:35:09.1836738+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

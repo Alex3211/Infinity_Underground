@@ -20,19 +20,14 @@ namespace InfinityUndergroundReload.Map
         int _tileSize;
         int _heightInPixels;
         int _widthInPixel;
-
         InfinityUnderground _context;
         TiledMap _getMap;
         Dictionary<string, TiledTileLayer> _groundLayer;
         Dictionary<string, TiledTileLayer> _upLayer;
         Dictionary<string, TiledTileLayer> _collideLayer;
         Texture2D _backgroundFight;
-
         MiniMap _miniMap;
-
-        //bool _IsSecretRoom = false;
         SpriteFont _font;
-
         private readonly TimeSpan IntervalBetweenF1Menu;
         private readonly TimeSpan IntervalBetweenText;
         private TimeSpan LastActiveF1Menu;
@@ -47,7 +42,10 @@ namespace InfinityUndergroundReload.Map
         bool _stateTransition;
         Song _fightMusics;
         bool _enigmState;
-
+        bool _statState;
+        private readonly TimeSpan IntervalBetweenStats;
+        private TimeSpan LastStatsActive;
+        private SpriteFont _smallFont;
 
         public MapLoader(InfinityUnderground context)
         {
@@ -60,6 +58,7 @@ namespace InfinityUndergroundReload.Map
 
             _enigmResponse = string.Empty;
             IntervalBetweenF1Menu = TimeSpan.FromMilliseconds(1000);
+            IntervalBetweenStats = TimeSpan.FromMilliseconds(1000);
             IntervalBetweenText = TimeSpan.FromMilliseconds(4500);
             _handler = new KeyboardHandler(context);
         }
@@ -240,8 +239,8 @@ namespace InfinityUndergroundReload.Map
         public void LoadContent(ContentManager content)
         {
             _font = _context.Content.Load<SpriteFont>("debug");
+            _smallFont = _context.Content.Load<SpriteFont>("fights");
             _context.Player.LoadContent(content);
-
             if (_context.LoadOrUnloadFights == FightsState.InFights)
             {
                 _getMap = content.Load<TiledMap>(@"RoomFights\1");
@@ -270,79 +269,60 @@ namespace InfinityUndergroundReload.Map
                         case "Collide":
                             _collideLayer.Add("Collide", e);
                             break;
-
                         case "SecretCollide":
                             _collideLayer.Add("SecretCollide", e);
                             break;
-
                         case "UpOne":
                             _upLayer.Add("UpOne", e);
                             break;
-
                         case "UpTwo":
                             _upLayer.Add("UpTwo", e);
                             break;
-
                         case "Ground +3":
                             _groundLayer.Add("Ground +3", e);
                             break;
-
                         case "Ground +2":
                             _groundLayer.Add("Ground +2", e);
                             break;
-
                         case "Ground +1":
                             _groundLayer.Add("Ground +1", e);
                             break;
-
                         case "Ground":
                             _groundLayer.Add("Ground", e);
                             break;
-
                         case "Door":
                             _groundLayer.Add("Door", e);
                             break;
-
                         case "RightDoorBlock":
                             _groundLayer.Add("RightDoorBlock", e);
                             break;
-
                         case "LeftDoorBlock":
                             _groundLayer.Add("LeftDoorBlock", e);
                             break;
-
                         case "TopDoorBlock":
                             _groundLayer.Add("TopDoorBlock", e);
                             break;
-
                         case "BottomDoorBlock":
                             _groundLayer.Add("BottomDoorBlock", e);
                             break;
-
                         case "Wall":
                             _groundLayer.Add("Wall", e);
                             break;
-
                         case "Wall +1":
                             _groundLayer.Add("Wall +1", e);
                             break;
-
                         case "Wall +2":
                             _groundLayer.Add("Wall +2", e);
                             break;
-
                         case "Decor":
                             _upLayer.Add("Decor", e);
                             break;
-
                         case "SecretDoor":
                             _groundLayer.Add("SecretDoor", e);
                             break;
-
                         case "Font":
                             _groundLayer.Add("Font", e);
                             break;
-
                         case "GroundFights":
                             _upLayer.Add("GroundFights", e);
                             break;
@@ -352,19 +332,15 @@ namespace InfinityUndergroundReload.Map
             _tileSize = _getMap.TileHeight;
             _heightInPixels = _getMap.HeightInPixels;
             _widthInPixel = _getMap.WidthInPixels;
-
             foreach (TiledTileLayer layer in _groundLayer.Values)
             {
                 layer.IsVisible = true;
             }
-
             if (_getMap != null) _getMap = null;
-
             foreach (TiledTileLayer layer in _collideLayer.Values)
             {
                 layer.IsVisible = false;
             }
-            
         }
 
         /// <summary>
@@ -374,17 +350,18 @@ namespace InfinityUndergroundReload.Map
         public void Update(GameTime gameTime)
         {
             _gametime = gameTime;
-
-
-
-
             if (Keyboard.GetState().IsKeyDown(Keys.F1) && LastActiveF1Menu + IntervalBetweenF1Menu < gameTime.TotalGameTime && _context.WorldAPI.CurrentLevel != 0 && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom" && !_stateEnigm)
             {
                 _enigmRandom = _context.WorldAPI.Random.Next(0, 2);
                 _stateEnigm = true;
-
                 LastActiveF1Menu = gameTime.TotalGameTime;
             }
+            if(Keyboard.GetState().IsKeyDown(Keys.F2) && LastStatsActive + IntervalBetweenStats < gameTime.TotalGameTime)
+            {
+                _statState = !_statState;
+                LastStatsActive = gameTime.TotalGameTime;
+            }
+
             if (_stateEnigm)
             {
                 _handler.GetKeys();
@@ -468,7 +445,6 @@ namespace InfinityUndergroundReload.Map
         /// <param name="spriteBatch">The sprite batch.</param>
         private void DrawRectangle(Rectangle coords, Color color, SpriteBatch spriteBatch)
         {
-
             var rect = new Texture2D(_context.GraphicsDevice, 1, 1);
             rect.SetData(new[] { color });
             spriteBatch.Draw(rect, coords, color);
@@ -516,6 +492,17 @@ namespace InfinityUndergroundReload.Map
 
             DrawLayer(false, spriteBatch);
             if(Context.LoadOrUnloadFights == FightsState.Close) DrawDoorOrNot();
+            if (_statState)
+            {
+                DrawRectangle(new Rectangle((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y, 175, _context.GraphicsDevice.Viewport.Height),Color.Black,spriteBatch);
+                spriteBatch.DrawString(_smallFont, "Vie : " + _context.Player.PlayerAPI.CharacterType.LifePoint.ToString()+"/" + _context.Player.PlayerAPI.CharacterType.MaxLifePoint.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y), Color.White);
+                spriteBatch.DrawString(_smallFont, "Armure : " + _context.Player.PlayerAPI.CharacterType.Armor.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y+30), Color.White);
+                spriteBatch.DrawString(_smallFont, "Vitesse d'attaque : " + _context.Player.PlayerAPI.CharacterType.AttackSpeed.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y+60), Color.White);
+                spriteBatch.DrawString(_smallFont, "Chance de critique : " + _context.Player.PlayerAPI.CharacterType.CriticalChance.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y+90), Color.White);
+                spriteBatch.DrawString(_smallFont, "Dégats de critique : " + _context.Player.PlayerAPI.CharacterType.CriticalDamage.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y+120), Color.White);
+                spriteBatch.DrawString(_smallFont, "Dommages : " + _context.Player.PlayerAPI.CharacterType.Damage.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y+150), Color.White);
+            }
+
 
             if (_stateEnigm)
             {
