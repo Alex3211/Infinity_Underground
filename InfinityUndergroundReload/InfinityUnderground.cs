@@ -37,7 +37,6 @@ namespace InfinityUndergroundReload
         DataSave _dataSave;
         //List<IEntity> _entities;
         List<SpriteSheet> _listOfMonster;
-        KeyboardState _keyboard;
         FightsUI _fights;
         int _timeForTakeNextDoor;
         int _timeMaxForTakeNextDoor;
@@ -244,7 +243,7 @@ namespace InfinityUndergroundReload
 
             if (ListOfMonsterUI.Count != 0)
             {
-                foreach (SDragon monster in ListOfMonsterUI)
+                foreach (SpriteSheet monster in ListOfMonsterUI)
                 {
                     monster.LoadContent(Content);
                 }
@@ -384,6 +383,10 @@ namespace InfinityUndergroundReload
                             case "Dragon":
                                 _listOfMonster.Add(new SDragon(4, 4, this, (CDragon)_fights.MonsterFights.Monster));
                                 break;
+
+                            case "Curiosity4":
+                                _listOfMonster.Add(new SCuriosity4(4, 3, this, (CCuriosity4)_fights.MonsterFights.Monster));
+                                break;
                         }
                         break;
 
@@ -437,6 +440,10 @@ namespace InfinityUndergroundReload
                 {
                     case "Dragon":
                         _listOfMonster.Add(new SDragon(4, 4, this, (CDragon)monster));
+                        break;
+
+                    case "Curiosity4":
+                        _listOfMonster.Add(new SCuriosity4(4, 3, this, (CCuriosity4)monster));
                         break;
                 }
             }

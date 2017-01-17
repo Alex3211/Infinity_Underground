@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CharactersUI\SCuriosity4.cs" />
     <Compile Include="FightsUI.cs" />
     <Compile Include="InfinityUnderground.cs" />
     <Compile Include="Interface\DataSave.cs" />

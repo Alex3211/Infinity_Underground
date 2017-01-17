@@ -11,8 +11,7 @@ using InfinityUndergroundReload.Spell;
 
 namespace InfinityUndergroundReload.CharactersUI
 {
-
-    enum IDActionDragon
+    enum IDActionCuriosity
     {
         WalkBottom,
         WalkLeft,
@@ -20,7 +19,8 @@ namespace InfinityUndergroundReload.CharactersUI
         WalkTop
     }
 
-    class SDragon : SpriteSheet
+
+    class SCuriosity4 : SpriteSheet
     {
         List<ActionSpriteSheet> _action;
         int _widthBar;
@@ -40,13 +40,13 @@ namespace InfinityUndergroundReload.CharactersUI
         /// <param name="spriteSheetColumns">The sprite sheet columns.</param>
         /// <param name="context">The context.</param>
         /// <param name="bat">The bat.</param>
-        public SDragon(int spriteSheetRows, int spriteSheetColumns, InfinityUnderground context, CDragon dragon)
+        public SCuriosity4(int spriteSheetRows, int spriteSheetColumns, InfinityUnderground context, CCuriosity4 curiosity)
         {
             Context = context;
 
             _widthBar = 100;
 
-            Monster = dragon;
+            Monster = curiosity;
 
             SpriteSheetColumns = spriteSheetColumns;
             SpriteSheetRows = spriteSheetRows;
@@ -56,17 +56,17 @@ namespace InfinityUndergroundReload.CharactersUI
             _action = new List<ActionSpriteSheet>();
 
 
-            _action.Add(new ActionSpriteSheet((int)IDActionDragon.WalkTop, 4));
-            _action.Add(new ActionSpriteSheet((int)IDActionDragon.WalkRight, 4));
-            _action.Add(new ActionSpriteSheet((int)IDActionDragon.WalkBottom, 4));
-            _action.Add(new ActionSpriteSheet((int)IDActionDragon.WalkLeft, 4));
+            _action.Add(new ActionSpriteSheet((int)IDActionCuriosity.WalkTop, 4));
+            _action.Add(new ActionSpriteSheet((int)IDActionCuriosity.WalkRight, 4));
+            _action.Add(new ActionSpriteSheet((int)IDActionCuriosity.WalkBottom, 4));
+            _action.Add(new ActionSpriteSheet((int)IDActionCuriosity.WalkLeft, 4));
 
             _healthBar = new LifePoint(_widthBar, 5);
             _speedBar = new SpeedBarFights(_widthBar, 5);
 
             TypeOfMonster = Monster.TypeOfMonster;
 
-            var _actionD = from action in _action where action.RowAction == (int)IDActionDragon.WalkBottom select action;
+            var _actionD = from action in _action where action.RowAction == (int)IDActionCuriosity.WalkBottom select action;
             foreach (ActionSpriteSheet action in _actionD)
             {
                 _direction = action.RowAction;
@@ -99,7 +99,7 @@ namespace InfinityUndergroundReload.CharactersUI
         /// </summary>
         public override void LoadContent(ContentManager content)
         {
-            Spritesheet = content.Load<Texture2D>("Dragon/Dragon");
+            Spritesheet = content.Load<Texture2D>("Curiosity/Curiosity4");
 
             if (Context.LoadOrUnloadFights == FightsState.InFights)
             {
@@ -177,7 +177,7 @@ namespace InfinityUndergroundReload.CharactersUI
 
                 if (Context.Fights.Turn == API.CharacterTurn.Monster && Context.Fights.CurrentAttack != null)
                 {
-                    foreach(SpriteSheet s in _spells)
+                    foreach (SpriteSheet s in _spells)
                     {
                         if (s.NameSpell == Context.Fights.CurrentAttack.Name)
                         {

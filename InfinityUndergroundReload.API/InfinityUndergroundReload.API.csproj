@@ -45,6 +45,7 @@
     <Compile Include="Characters\CAttacks.cs" />
     <Compile Include="Characters\CCharacter.cs" />
     <Compile Include="Characters\CCharacterType.cs" />
+    <Compile Include="Characters\CCuriosity4.0.cs" />
     <Compile Include="Characters\CDirection.cs" />
     <Compile Include="Characters\CDragon.cs" />
     <Compile Include="Characters\CNPC.cs" />

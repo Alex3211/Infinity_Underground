@@ -189,7 +189,7 @@ namespace InfinityUndergroundReload.CharactersUI
         /// Draws the specified sprite batch.
         /// </summary>
         /// <param name="spriteBatch">The sprite batch.</param>
-        public new void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             Rectangle _destinationRectangle;
             _state = Keyboard.GetState(); 

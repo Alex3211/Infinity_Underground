@@ -300,10 +300,14 @@ namespace InfinityUndergroundReload.API
             _listOfMonster.Clear();
             for (int i = 0; i < GetLevel.GetRoom.RoomCharateristcs.NbOfNPC; i++)
             {
-                switch(_random.Next(0,1))
+                switch(_random.Next(0,2))
                 {
                     case 0:
                         _listOfMonster.Add(new CDragon(this));
+                        break;
+
+                    case 1:
+                        _listOfMonster.Add(new CCuriosity4(this));
                         break;
                 }
             }

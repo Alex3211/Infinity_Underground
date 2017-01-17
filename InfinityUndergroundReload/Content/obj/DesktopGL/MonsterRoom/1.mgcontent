@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Dev/Projet/Kepler-22_B_Git/InfinityUndergroundReload/Content/MonsterRoom/1.tmx</SourceFile>
+  <SourceFile>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/MonsterRoom/1.tmx</SourceFile>
   <SourceTime>2016-12-25T13:47:52.6426999+01:00</SourceTime>
-  <DestFile>C:/Dev/Projet/Kepler-22_B_Git/InfinityUndergroundReload/Content/bin/DesktopGL/MonsterRoom/1.xnb</DestFile>
-  <DestTime>2017-01-17T09:22:28.6624067+01:00</DestTime>
+  <DestFile>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/bin/DesktopGL/MonsterRoom/1.xnb</DestFile>
+  <DestTime>2017-01-17T10:00:47.85096+01:00</DestTime>
   <Importer>TiledMapImporter</Importer>
   <ImporterTime>2016-04-08T11:54:30+02:00</ImporterTime>
   <Processor>TiledMapProcessor</Processor>

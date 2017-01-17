@@ -488,7 +488,7 @@ namespace InfinityUndergroundReload.Map
 
             if (_context.ListOfMonsterUI.Count != 0)
             {
-                foreach (SDragon monster in _context.ListOfMonsterUI)
+                foreach (SpriteSheet monster in _context.ListOfMonsterUI)
                 {
                     if (monster.Monster.IsDead)
                     {
@@ -502,7 +502,7 @@ namespace InfinityUndergroundReload.Map
 
             if (_context.ListOfMonsterUI.Count != 0)
             {
-                foreach (SDragon monster in _context.ListOfMonsterUI)
+                foreach (SpriteSheet monster in _context.ListOfMonsterUI)
                 {
                     if (!monster.Monster.IsDead)
                     {
@@ -513,7 +513,7 @@ namespace InfinityUndergroundReload.Map
 
 
             DrawLayer(false, spriteBatch);
-            DrawDoorOrNot();
+            if (_context.LoadOrUnloadFights == FightsState.Close) DrawDoorOrNot();
 
             if (_stateEnigm)
             {

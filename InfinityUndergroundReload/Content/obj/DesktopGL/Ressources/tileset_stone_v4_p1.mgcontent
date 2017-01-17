@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Dev/Projet/Kepler-22_B_Git/InfinityUndergroundReload/Content/Ressources/tileset_stone_v4_p1.png</SourceFile>
+  <SourceFile>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Ressources/tileset_stone_v4_p1.png</SourceFile>
   <SourceTime>2016-11-27T21:26:12.4392395+01:00</SourceTime>
-  <DestFile>C:/Dev/Projet/Kepler-22_B_Git/InfinityUndergroundReload/Content/bin/DesktopGL/Ressources/tileset_stone_v4_p1.xnb</DestFile>
-  <DestTime>2017-01-17T09:22:28.3208836+01:00</DestTime>
+  <DestFile>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/bin/DesktopGL/Ressources/tileset_stone_v4_p1.xnb</DestFile>
+  <DestTime>2017-01-17T10:00:47.5622684+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
