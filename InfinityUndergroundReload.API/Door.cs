@@ -85,6 +85,11 @@ namespace InfinityUndergroundReload.API
             {
                 return _doorDirection;
             }
+
+            set
+            {
+                _doorDirection = value;
+            }
         }
 
     }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using InfinityUndergroundReload.API.Characters;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +14,29 @@ namespace InfinityUndergroundReload.API.Underground
         readonly Vector2 _position;
         readonly string _typeOfRoom;
         readonly string _numberOfRoom;
+        readonly List<CNPC> _monster;
 
-        public RoomInLevel(Vector2 pos, string typeOfRoom, string numberOfRoom)
+
+        public RoomInLevel(Vector2 pos, string typeOfRoom, string numberOfRoom, List<CNPC> monster)
         {
             _position = pos;
             _typeOfRoom = typeOfRoom;
             _numberOfRoom = numberOfRoom;
+            _monster = monster;
+        }
+
+        /// <summary>
+        /// Gets the monster.
+        /// </summary>
+        /// <value>
+        /// The monster.
+        /// </value>
+        public List<CNPC> Monster
+        {
+            get
+            {
+                return _monster;
+            }
         }
 
         /// <summary>
@@ -202,6 +220,7 @@ namespace InfinityUndergroundReload.API.Underground
                 foreach(RoomInLevel room in rooms)
                 {
                     _room = new URoom(this, room.TypeOfRoom, room.NumberOfRoom);
+                    _context.ListOfMonster = room.Monster;
                 }
             }
             else
@@ -219,7 +238,7 @@ namespace InfinityUndergroundReload.API.Underground
                     _room = new URoom(this);
                 }
 
-                _saveRoom.Add(new RoomInLevel(_posCurrentRoom, _room.RoomCharateristcs.NameOfMap, _room.RoomCharateristcs.NumberOfStyleRoom.ToString()));
+                _saveRoom.Add(new RoomInLevel(_posCurrentRoom, _room.RoomCharateristcs.NameOfMap, _room.RoomCharateristcs.NumberOfStyleRoom.ToString(), _context.ListOfMonster));
             }
         }
 

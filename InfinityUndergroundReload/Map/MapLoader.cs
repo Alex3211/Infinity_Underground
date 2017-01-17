@@ -1,5 +1,4 @@
-﻿using InfinityUndergroundReload.Interface;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -9,11 +8,16 @@ using System.Collections.Generic;
 using System.Xml;
 using InfinityUnderground.UserInterface;
 using InfinityUndergroundReload.API;
+<<<<<<< HEAD
 using System.Threading;
+=======
+using InfinityUndergroundReload.CharactersUI;
+using Microsoft.Xna.Framework.Media;
+>>>>>>> Feature-CreateFigths
 
 namespace InfinityUndergroundReload.Map
 {
-    public class MapLoader : IEntity
+    public class MapLoader
     {
         int _idTileCollide;
         int _tileSize;
@@ -25,12 +29,13 @@ namespace InfinityUndergroundReload.Map
         Dictionary<string, TiledTileLayer> _groundLayer;
         Dictionary<string, TiledTileLayer> _upLayer;
         Dictionary<string, TiledTileLayer> _collideLayer;
+        Texture2D _backgroundFight;
 
         MiniMap _miniMap;
 
-        Random r;
-        bool _IsSecretRoom = false;
+        //bool _IsSecretRoom = false;
         SpriteFont _font;
+<<<<<<< HEAD
         private readonly TimeSpan IntervalBetweenF1Menu;
         private readonly TimeSpan IntervalBetweenText;
         private TimeSpan LastActiveF1Menu;
@@ -43,11 +48,26 @@ namespace InfinityUndergroundReload.Map
         private string _statusEnigm = string.Empty;
         private GameTime _gametime;
         bool _stateTransition;
+=======
+        bool _enigmState = false;
+        readonly TimeSpan IntervalBetweenF1Menu;
+        readonly TimeSpan IntervalBetweenText;
+        TimeSpan LastActiveF1Menu;
+        TimeSpan LastActiveText;
+        bool _stateSecretDoor = false;
+        KeyboardHandler _handler;
+        //XmlNodeList tab;
+        bool _stateEnigm;
+        string _enigmResponse;
+        int _enigmRandom;
+        string _statusEnigm = string.Empty;
+        GameTime _gametime;
+        Song _fightMusics;
+>>>>>>> Feature-CreateFigths
 
         public MapLoader(InfinityUnderground context)
         {
             _context = context;
-            _IsSecretRoom = false;
             _groundLayer = new Dictionary<string, TiledTileLayer>();
             _upLayer = new Dictionary<string, TiledTileLayer>();
             _collideLayer = new Dictionary<string, TiledTileLayer>();
@@ -57,11 +77,24 @@ namespace InfinityUndergroundReload.Map
             _enigmResponse = string.Empty;
             IntervalBetweenF1Menu = TimeSpan.FromMilliseconds(1000);
             IntervalBetweenText = TimeSpan.FromMilliseconds(4500);
-            r = new Random();
             _handler = new KeyboardHandler(context);
         }
 
         public bool GetStateTransition { get { return _stateTransition; } set { _stateTransition = value; } }
+
+        /// <summary>
+        /// Gets the collide layers.
+        /// </summary>
+        /// <value>
+        /// The collide layers.
+        /// </value>
+        public Dictionary<string, TiledTileLayer> CollideLayers
+        {
+            get
+            {
+                return _collideLayer;
+            }
+        }
 
         /// <summary>
         /// Gets the context.
@@ -153,7 +186,18 @@ namespace InfinityUndergroundReload.Map
         /// <value>
         ///   <c>true</c> if [get state secret door]; otherwise, <c>false</c>.
         /// </value>
-        public bool GetStateSecretDoor { get { return _stateSecretDoor; } set { _stateSecretDoor = value; } }
+        public bool GetStateSecretDoor
+        {
+            get
+            {
+                return _stateSecretDoor;
+            }
+
+            set
+            {
+                _stateSecretDoor = value;
+            }
+        }
 
 
         /// <summary>
@@ -162,13 +206,22 @@ namespace InfinityUndergroundReload.Map
         /// <value>
         ///   <c>true</c> if [get state secret door]; otherwise, <c>false</c>.
         /// </value>
+<<<<<<< HEAD
         public bool GetStateOfEnigm { get { return _stateEnigm; } set { _stateEnigm = value; } }
+=======
+        public bool GetStateOfEnigm
+        {
+            get
+            {
+                return _enigmState;
+            }
+>>>>>>> Feature-CreateFigths
 
-        /// <summary>
-        /// Determines the actual room is a secret room.
-        /// </summary>
-        /// <param name="room">The room.</param>
-        public bool IsSecretRoom { get { return _IsSecretRoom; } set { _IsSecretRoom = value; } }
+            set
+            {
+                _enigmState = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the layer collide.
@@ -201,7 +254,6 @@ namespace InfinityUndergroundReload.Map
             }
         }
 
-
         /// <summary>
         /// Loads the content.
         /// </summary>
@@ -210,7 +262,16 @@ namespace InfinityUndergroundReload.Map
         {
             _font = _context.Content.Load<SpriteFont>("debug");
             _context.Player.LoadContent(content);
-            if (_context.WorldAPI.CurrentLevel == 0)
+
+            if (_context.LoadOrUnloadFights == FightsState.InFights)
+            {
+                _getMap = content.Load<TiledMap>(@"RoomFights\1");
+                _fightMusics = content.Load<Song>(@"Song\BossMusic");
+                MediaPlayer.Volume = 0.2f;
+                MediaPlayer.Play(_fightMusics);
+                MediaPlayer.IsRepeating = true;
+            }
+            else if (_context.WorldAPI.CurrentLevel == 0)
             {
                 _getMap = content.Load<TiledMap>(@"Surface\Map");
                 _idTileCollide = 645;
@@ -298,27 +359,33 @@ namespace InfinityUndergroundReload.Map
                         case "SecretDoor":
                             _groundLayer.Add("SecretDoor", e);
                             break;
+
+                        case "Font":
+                            _groundLayer.Add("Font", e);
+                            break;
+
+                        case "GroundFights":
+                            _upLayer.Add("GroundFights", e);
+                            break;
                     }
                 }
             }
             _tileSize = _getMap.TileHeight;
             _heightInPixels = _getMap.HeightInPixels;
             _widthInPixel = _getMap.WidthInPixels;
-            if (_context.WorldAPI.CurrentLevel != 0 && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap != "RoomIn" && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap != "RoomOut")
+
+            foreach (TiledTileLayer layer in _groundLayer.Values)
             {
-                if (_groundLayer["TopDoorBlock"] != null) _groundLayer["TopDoorBlock"].IsVisible = true;
-                if (_groundLayer["BottomDoorBlock"] != null) _groundLayer["BottomDoorBlock"].IsVisible = true;
-                if (_groundLayer["RightDoorBlock"] != null) _groundLayer["RightDoorBlock"].IsVisible = true;
-                if (_groundLayer["LeftDoorBlock"] != null) _groundLayer["LeftDoorBlock"].IsVisible = true;
+                layer.IsVisible = true;
             }
 
             if (_getMap != null) _getMap = null;
 
-            foreach(TiledTileLayer layer in _collideLayer.Values)
+            foreach (TiledTileLayer layer in _collideLayer.Values)
             {
                 layer.IsVisible = false;
             }
-
+            
         }
 
         /// <summary>
@@ -328,14 +395,11 @@ namespace InfinityUndergroundReload.Map
         public void Update(GameTime gameTime)
         {
             _gametime = gameTime;
-            if (_context.WorldAPI.CurrentLevel != 0 && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom")
-            {
-                _IsSecretRoom = true;
-            }
+
 
             if (Keyboard.GetState().IsKeyDown(Keys.F1) && LastActiveF1Menu + IntervalBetweenF1Menu < gameTime.TotalGameTime && _context.WorldAPI.CurrentLevel != 0 && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom" && !_stateEnigm)
             {
-                _enigmRandom = r.Next(0, 2);
+                _enigmRandom = _context.WorldAPI.Random.Next(0, 2);
                 _stateEnigm = true;
 
                 LastActiveF1Menu = gameTime.TotalGameTime;
@@ -365,7 +429,11 @@ namespace InfinityUndergroundReload.Map
         }
 
         /// <summary>
+<<<<<<< HEAD
         /// Define if the door have to be draw.
+=======
+        /// Draws the door or not.
+>>>>>>> Feature-CreateFigths
         /// </summary>
         public void DrawDoorOrNot()
         {
@@ -390,6 +458,7 @@ namespace InfinityUndergroundReload.Map
                             break;
                     }
                 }
+                _list.Clear();
             }
         }
 
@@ -434,6 +503,7 @@ namespace InfinityUndergroundReload.Map
         public void Draw(SpriteBatch spriteBatch)
         {
 
+<<<<<<< HEAD
             DrawLayer(true, spriteBatch);
             if (_context.WorldAPI.CurrentLevel != 0)
             {
@@ -477,6 +547,54 @@ namespace InfinityUndergroundReload.Map
             Thread.Sleep(250);
             DrawRectangle(new Rectangle((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y, _context.GraphicsDevice.Viewport.Width, _context.GraphicsDevice.Viewport.Height), new Color(0, 0, 0, 128), spriteBatch);
             _stateTransition = false;
+=======
+            if (_context.WorldAPI.CurrentLevel != 0 && _context.Fights == null)
+            {
+                _miniMap.Draw(spriteBatch, _widthInPixel, _heightInPixels);
+            }
+
+
+            if (_context.ListOfMonsterUI.Count != 0)
+            {
+                foreach (SDragon monster in _context.ListOfMonsterUI)
+                {
+                    if (monster.Monster.IsDead)
+                    {
+                        monster.Draw(spriteBatch);
+                    }
+                }
+            }
+
+            _context.Player.Draw(spriteBatch);
+
+
+            if (_context.ListOfMonsterUI.Count != 0)
+            {
+                foreach (SDragon monster in _context.ListOfMonsterUI)
+                {
+                    if (!monster.Monster.IsDead)
+                    {
+                        monster.Draw(spriteBatch);
+                    }
+                }
+            }
+
+
+            DrawLayer(false, spriteBatch);
+
+            if (_context.Fights == null)
+            {
+                DrawDoorOrNot();
+                if (_stateEnigm)
+                {
+                    DrawRectangle(new Rectangle((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y, _context.GraphicsDevice.Viewport.Width, _context.GraphicsDevice.Viewport.Height), Color.Chocolate, spriteBatch);
+                    spriteBatch.DrawString(_font, DoAnEnigm(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y), Color.White);
+                    spriteBatch.DrawString(_font, _enigmResponse, new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y + 50), Color.White);
+                }
+                if (_statusEnigm != string.Empty && LastActiveText + IntervalBetweenText > _gametime.TotalGameTime)
+                    spriteBatch.DrawString(_font, _statusEnigm, new Vector2((int)_context.Camera.Position.X + _context.GraphicsDevice.Viewport.Width / 2 - (_statusEnigm.Length * 2), (int)_context.Camera.Position.Y + _context.GraphicsDevice.Viewport.Height - 50), Color.White);
+            }
+>>>>>>> Feature-CreateFigths
         }
 
         /// <summary>
@@ -527,9 +645,19 @@ namespace InfinityUndergroundReload.Map
             _upLayer.Clear();
             _groundLayer.Clear();
 
+            if (_fightMusics != null) _fightMusics.Dispose();
+
+            if (_backgroundFight != null)
+            {
+                _backgroundFight.Dispose();
+                _backgroundFight = null;
+            }
+
             if (_getMap != null) _getMap.Dispose();
 
-            _context.Player.Unload();
+            if (_font != null) _font = null; 
+
+            _context.Player.Unload(content);
         }
 
 
