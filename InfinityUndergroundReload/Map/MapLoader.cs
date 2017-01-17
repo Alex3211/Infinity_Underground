@@ -8,12 +8,9 @@ using System.Collections.Generic;
 using System.Xml;
 using InfinityUnderground.UserInterface;
 using InfinityUndergroundReload.API;
-<<<<<<< HEAD
 using System.Threading;
-=======
 using InfinityUndergroundReload.CharactersUI;
 using Microsoft.Xna.Framework.Media;
->>>>>>> Feature-CreateFigths
 
 namespace InfinityUndergroundReload.Map
 {
@@ -35,7 +32,7 @@ namespace InfinityUndergroundReload.Map
 
         //bool _IsSecretRoom = false;
         SpriteFont _font;
-<<<<<<< HEAD
+
         private readonly TimeSpan IntervalBetweenF1Menu;
         private readonly TimeSpan IntervalBetweenText;
         private TimeSpan LastActiveF1Menu;
@@ -48,22 +45,9 @@ namespace InfinityUndergroundReload.Map
         private string _statusEnigm = string.Empty;
         private GameTime _gametime;
         bool _stateTransition;
-=======
-        bool _enigmState = false;
-        readonly TimeSpan IntervalBetweenF1Menu;
-        readonly TimeSpan IntervalBetweenText;
-        TimeSpan LastActiveF1Menu;
-        TimeSpan LastActiveText;
-        bool _stateSecretDoor = false;
-        KeyboardHandler _handler;
-        //XmlNodeList tab;
-        bool _stateEnigm;
-        string _enigmResponse;
-        int _enigmRandom;
-        string _statusEnigm = string.Empty;
-        GameTime _gametime;
         Song _fightMusics;
->>>>>>> Feature-CreateFigths
+        bool _enigmState;
+
 
         public MapLoader(InfinityUnderground context)
         {
@@ -206,17 +190,12 @@ namespace InfinityUndergroundReload.Map
         /// <value>
         ///   <c>true</c> if [get state secret door]; otherwise, <c>false</c>.
         /// </value>
-<<<<<<< HEAD
-        public bool GetStateOfEnigm { get { return _stateEnigm; } set { _stateEnigm = value; } }
-=======
         public bool GetStateOfEnigm
         {
             get
             {
                 return _enigmState;
             }
->>>>>>> Feature-CreateFigths
-
             set
             {
                 _enigmState = value;
@@ -429,11 +408,8 @@ namespace InfinityUndergroundReload.Map
         }
 
         /// <summary>
-<<<<<<< HEAD
         /// Define if the door have to be draw.
-=======
         /// Draws the door or not.
->>>>>>> Feature-CreateFigths
         /// </summary>
         public void DrawDoorOrNot()
         {
@@ -503,13 +479,39 @@ namespace InfinityUndergroundReload.Map
         public void Draw(SpriteBatch spriteBatch)
         {
 
-<<<<<<< HEAD
             DrawLayer(true, spriteBatch);
-            if (_context.WorldAPI.CurrentLevel != 0)
+            if (_context.WorldAPI.CurrentLevel != 0 && _context.Fights == null)
             {
                 _miniMap.Draw(spriteBatch, _widthInPixel, _heightInPixels);
             }
+
+
+            if (_context.ListOfMonsterUI.Count != 0)
+            {
+                foreach (SDragon monster in _context.ListOfMonsterUI)
+                {
+                    if (monster.Monster.IsDead)
+                    {
+                        monster.Draw(spriteBatch);
+                    }
+                }
+            }
+
             _context.Player.Draw(spriteBatch);
+
+
+            if (_context.ListOfMonsterUI.Count != 0)
+            {
+                foreach (SDragon monster in _context.ListOfMonsterUI)
+                {
+                    if (!monster.Monster.IsDead)
+                    {
+                        monster.Draw(spriteBatch);
+                    }
+                }
+            }
+
+
             DrawLayer(false, spriteBatch);
             DrawDoorOrNot();
 
@@ -547,54 +549,9 @@ namespace InfinityUndergroundReload.Map
             Thread.Sleep(250);
             DrawRectangle(new Rectangle((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y, _context.GraphicsDevice.Viewport.Width, _context.GraphicsDevice.Viewport.Height), new Color(0, 0, 0, 128), spriteBatch);
             _stateTransition = false;
-=======
-            if (_context.WorldAPI.CurrentLevel != 0 && _context.Fights == null)
-            {
-                _miniMap.Draw(spriteBatch, _widthInPixel, _heightInPixels);
-            }
 
 
-            if (_context.ListOfMonsterUI.Count != 0)
-            {
-                foreach (SDragon monster in _context.ListOfMonsterUI)
-                {
-                    if (monster.Monster.IsDead)
-                    {
-                        monster.Draw(spriteBatch);
-                    }
-                }
-            }
 
-            _context.Player.Draw(spriteBatch);
-
-
-            if (_context.ListOfMonsterUI.Count != 0)
-            {
-                foreach (SDragon monster in _context.ListOfMonsterUI)
-                {
-                    if (!monster.Monster.IsDead)
-                    {
-                        monster.Draw(spriteBatch);
-                    }
-                }
-            }
-
-
-            DrawLayer(false, spriteBatch);
-
-            if (_context.Fights == null)
-            {
-                DrawDoorOrNot();
-                if (_stateEnigm)
-                {
-                    DrawRectangle(new Rectangle((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y, _context.GraphicsDevice.Viewport.Width, _context.GraphicsDevice.Viewport.Height), Color.Chocolate, spriteBatch);
-                    spriteBatch.DrawString(_font, DoAnEnigm(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y), Color.White);
-                    spriteBatch.DrawString(_font, _enigmResponse, new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y + 50), Color.White);
-                }
-                if (_statusEnigm != string.Empty && LastActiveText + IntervalBetweenText > _gametime.TotalGameTime)
-                    spriteBatch.DrawString(_font, _statusEnigm, new Vector2((int)_context.Camera.Position.X + _context.GraphicsDevice.Viewport.Width / 2 - (_statusEnigm.Length * 2), (int)_context.Camera.Position.Y + _context.GraphicsDevice.Viewport.Height - 50), Color.White);
-            }
->>>>>>> Feature-CreateFigths
         }
 
         /// <summary>

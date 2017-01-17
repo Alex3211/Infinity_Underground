@@ -12,6 +12,7 @@ using System.Threading;
 using InfinityUndergroundReload.API.Characters;
 using Microsoft.Xna.Framework.Content;
 using MonoGame.Extended.Maps.Tiled;
+using InfinityUndergroundReload.Interface;
 
 namespace InfinityUndergroundReload
 {
@@ -42,10 +43,6 @@ namespace InfinityUndergroundReload
         int _timeMaxForTakeNextDoor;
 
         FightsState _fightState;
-
-
-        public int GetWindowsHeight { get { return WindowHeight; } }
-        public int GetWindowWidth { get { return WindowWidth; } }
 
         /// <summary>
         /// Gets the game time.
@@ -292,32 +289,20 @@ namespace InfinityUndergroundReload
             {
                 _dataSave.LoadValuesOfThePlayerInTheClass();
                 _dataSave.WriteValuesInTheFile();
-                //System.Environment.FailFast("Exit !");
-                //Program.ShouldRestart = true;
                 Exit();
             }
             // TODO: Add your update logic here
-            GetGameTime = gameTime; 
+            GetGameTime = gameTime;
 
-            _map.Update(gameTime);
             _player.Update(gameTime);
+            _map.Update(gameTime);
 
             ActionChangeEnvironment(gameTime);
             _fights.Update(gameTime);
 
             foreach (SpriteSheet monster in ListOfMonsterUI)
             {
-                _player.Update(gameTime);
-                _door = _worldAPI.PlayerTakeDoor();
-                if (_door != null)
-                {
-                    _worldAPI.ActionWithDoor(_door);
-                    UnloadContent();
-                    Map.GetStateTransition = true;
-                    LoadContent();
-                    if (WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom") Map.GetStateSecretDoor = false;
-                    _camera.LookAt(_player.PlayerAPI.Position);
-                }
+                monster.Update(gameTime);
             }
             base.Update(gameTime);
         }
@@ -335,6 +320,7 @@ namespace InfinityUndergroundReload
             spriteBatch.Begin(transformMatrix: _camera.GetViewMatrix());
 
             _map.Draw(spriteBatch);
+
             if (Map.GetStateTransition)
             {
                 Map.MonitorTransitionOn(spriteBatch);
