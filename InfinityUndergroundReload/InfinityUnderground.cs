@@ -30,6 +30,8 @@ namespace InfinityUndergroundReload
         Camera2D _camera;
         BoxingViewportAdapter _viewportAdapter;
 
+        private readonly TimeSpan IntervalBetweenF11Menu;
+        private TimeSpan LastActiveF11Menu;
         World _worldAPI;
         SPlayer _player;
         MapLoader _map;
@@ -194,6 +196,8 @@ namespace InfinityUndergroundReload
             graphics.PreferredBackBufferHeight = WindowHeight;
             graphics.PreferredBackBufferWidth = WindowWidth;
 
+            IntervalBetweenF11Menu = TimeSpan.FromMilliseconds(1000);
+            
             _worldAPI = new World();
             _map = new MapLoader(this);
             _player = new SPlayer(this, 21, 13);
@@ -284,6 +288,23 @@ namespace InfinityUndergroundReload
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+
+            if (Keyboard.GetState().IsKeyDown(Keys.F11) && LastActiveF11Menu + IntervalBetweenF11Menu < gameTime.TotalGameTime)
+            {
+                if (!graphics.IsFullScreen)
+                {
+                    graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+                    graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+                    graphics.IsFullScreen = !graphics.IsFullScreen;
+                } else { 
+                    graphics.PreferredBackBufferWidth = 960;
+                    graphics.PreferredBackBufferHeight = 540;
+                    graphics.IsFullScreen = !graphics.IsFullScreen;
+                }
+                graphics.ApplyChanges();
+                LastActiveF11Menu = gameTime.TotalGameTime;
+            }
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 _dataSave.LoadValuesOfThePlayerInTheClass();
