@@ -462,7 +462,7 @@ namespace InfinityUndergroundReload.Map
         {
 
             DrawLayer(true, spriteBatch);
-            if (_context.WorldAPI.CurrentLevel != 0 && _context.Fights == null)
+            if (_context.WorldAPI.CurrentLevel != 0 && _context.LoadOrUnloadFights == FightsState.Close)
             {
                 _miniMap.Draw(spriteBatch, _widthInPixel, _heightInPixels);
             }
@@ -497,26 +497,26 @@ namespace InfinityUndergroundReload.Map
             DrawLayer(false, spriteBatch);
             if(Context.LoadOrUnloadFights == FightsState.Close) DrawDoorOrNot();
             
-            if (_statState)
+            if (_statState && _context.LoadOrUnloadFights == FightsState.Close)
             {
                 DrawRectangle(new Rectangle((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y, 175, _context.GraphicsDevice.Viewport.Height),Color.Black,spriteBatch);
-                spriteBatch.DrawString(_smallFont, "Niveau : " + _context.WorldAPI.GetMaxLevel.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y+150), Color.White);
-                spriteBatch.DrawString(_smallFont, "Vie : " + _context.Player.PlayerAPI.CharacterType.LifePoint.ToString()+"/" + _context.Player.PlayerAPI.CharacterType.MaxLifePoint.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y), Color.White);
-                spriteBatch.DrawString(_smallFont, "Armure : " + _context.Player.PlayerAPI.CharacterType.Armor.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y+30), Color.White);
-                spriteBatch.DrawString(_smallFont, "Vitesse d'attaque : " + _context.Player.PlayerAPI.CharacterType.AttackSpeed.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y+60), Color.White);
-                spriteBatch.DrawString(_smallFont, "Chance de critique : " + _context.Player.PlayerAPI.CharacterType.CriticalChance.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y+90), Color.White);
-                spriteBatch.DrawString(_smallFont, "Dégats de critique : " + _context.Player.PlayerAPI.CharacterType.CriticalDamage.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y+120), Color.White);
-                spriteBatch.DrawString(_smallFont, "Dommages : " + _context.Player.PlayerAPI.CharacterType.Damage.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y+150), Color.White);
+                spriteBatch.DrawString(_smallFont, "Niveau : " + _context.WorldAPI.GetMaxLevel.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y), Color.White);
+                spriteBatch.DrawString(_smallFont, "Vie : " + _context.Player.PlayerAPI.CharacterType.LifePoint.ToString()+"/" + _context.Player.PlayerAPI.CharacterType.MaxLifePoint.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y+30), Color.White);
+                spriteBatch.DrawString(_smallFont, "Armure : " + _context.Player.PlayerAPI.CharacterType.Armor.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y+60), Color.White);
+                spriteBatch.DrawString(_smallFont, "Vitesse d'attaque : " + _context.Player.PlayerAPI.CharacterType.AttackSpeed.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y+90), Color.White);
+                spriteBatch.DrawString(_smallFont, "Chance de critique : " + _context.Player.PlayerAPI.CharacterType.CriticalChance.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y+120), Color.White);
+                spriteBatch.DrawString(_smallFont, "Dégats de critique : " + _context.Player.PlayerAPI.CharacterType.CriticalDamage.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y+150), Color.White);
+                spriteBatch.DrawString(_smallFont, "Dommages : " + _context.Player.PlayerAPI.CharacterType.Damage.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y+180), Color.White);
             }
 
-            if (_stateEnigm)
+            if (_stateEnigm && _context.LoadOrUnloadFights == FightsState.Close)
             {
                 var Enigm = DoAnEnigm();
                 DrawRectangle(new Rectangle((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y, _context.GraphicsDevice.Viewport.Width, _context.GraphicsDevice.Viewport.Height), Color.Black, spriteBatch);
                 spriteBatch.DrawString(_font, Enigm, new Vector2((int)_context.Camera.Position.X + _context.GraphicsDevice.Viewport.Width / 2 - (Enigm.Length *7), (int)_context.Camera.Position.Y), Color.White);
                 spriteBatch.DrawString(_font, _enigmResponse, new Vector2((int)_context.Camera.Position.X +250, (int)_context.Camera.Position.Y + 200), Color.White);
             }
-            if (_statusEnigm != string.Empty && LastActiveText + IntervalBetweenText > _gametime.TotalGameTime) spriteBatch.DrawString(_font, _statusEnigm, new Vector2((int)_context.Camera.Position.X + _context.GraphicsDevice.Viewport.Width/ 2 - (_statusEnigm.Length * 2), (int)_context.Camera.Position.Y + _context.GraphicsDevice.Viewport.Height - 50), Color.White);
+            if (_statusEnigm != string.Empty && LastActiveText + IntervalBetweenText > _gametime.TotalGameTime ) spriteBatch.DrawString(_font, _statusEnigm, new Vector2((int)_context.Camera.Position.X + _context.GraphicsDevice.Viewport.Width/ 2 - (_statusEnigm.Length * 2), (int)_context.Camera.Position.Y + _context.GraphicsDevice.Viewport.Height - 50), Color.White);
 
         }
 
