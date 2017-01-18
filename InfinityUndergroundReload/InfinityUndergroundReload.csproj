@@ -55,6 +55,7 @@
     <Compile Include="RectangleSelectAttack.cs" />
     <Compile Include="SpeedBarFights.cs" />
     <Compile Include="Spell\BirthOfASun.cs" />
+    <Compile Include="Spell\Explosion.cs" />
     <Compile Include="Spell\RedSlash.cs" />
     <Compile Include="Spell\Shield.cs" />
     <Compile Include="Spell\ThrowDarkMatter.cs" />
@@ -87,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Compile Include="Spell\Curiosity2.0.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

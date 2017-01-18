@@ -21,7 +21,7 @@ namespace InfinityUndergroundReload.API.Characters
             CharacterType.Range = 100;
             CharacterType.HitBox = 60;
             IsBoss = false;
-            ListOfAttack.Add(CAttacks.ThrowDarkMatter().Name);
+            ListOfAttack.Add(CAttacks.Curiosity2().Name);
         }
 
         /// <summary>

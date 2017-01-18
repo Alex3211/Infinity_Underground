@@ -137,6 +137,7 @@ namespace InfinityUndergroundReload.API.Characters
 
         public static CAttacks RedSlash() => new CAttacks("RedSlash", 0, 1, 1, 0);
 
+        public static CAttacks Curiosity2() => new CAttacks("Curiosity2", 0, 1, 1, 0);
     }
 
 

@@ -482,7 +482,7 @@ namespace InfinityUndergroundReload.Map
         {
 
             DrawLayer(true, spriteBatch);
-            if (_context.WorldAPI.CurrentLevel != 0 && _context.Fights == null)
+            if (_context.WorldAPI.CurrentLevel != 0 && _context.LoadOrUnloadFights == FightsState.Close)
             {
                 _miniMap.Draw(spriteBatch, _widthInPixel, _heightInPixels);
             }

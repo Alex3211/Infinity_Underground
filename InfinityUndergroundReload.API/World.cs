@@ -255,8 +255,8 @@ namespace InfinityUndergroundReload.API
                     else
                     {
                         _player.IsDead = false;
-                        _player.CharacterType.LifePoint = _player.CharacterType.MaxLifePoint;
                     }
+                    _player.CharacterType.LifePoint = _player.CharacterType.MaxLifePoint;
                     _level = new ULevel(this, _currentLevel);
                     _level.CreateRoom();
                     

@@ -189,12 +189,24 @@ namespace InfinityUndergroundReload.API
         {
             if (turn == CharacterTurn.Monster)
             {
+                
                 switch(_context.Random.Next(0, _monster.ListOfAttack.Count()))
                 {
                     case 0:
-                        _tempAttack = CAttacks.ThrowDarkMatter();
-                        _playerAttacks.Add(_tempAttack);
-                        return _tempAttack;
+                        switch(_monster.TypeOfMonster)
+                        {
+                            case "Dragon":
+                                _tempAttack = CAttacks.ThrowDarkMatter();
+                                _playerAttacks.Add(_tempAttack);
+                                return _tempAttack;
+
+                            case "Curiosity4":
+                                _tempAttack = CAttacks.Curiosity2();
+                                _playerAttacks.Add(_tempAttack);
+                                return _tempAttack;
+                        }
+                        break;
+                        
                 }
             }
             else if (turn == CharacterTurn.Player)

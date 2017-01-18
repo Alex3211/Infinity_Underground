@@ -30,6 +30,7 @@ namespace InfinityUndergroundReload.CharactersUI
         Vector2 _lastPosition;
         List<SpriteSheet> _spells;
         int _lastLifePoint;
+        CAttacks _lastAttack;
         //SoundEffect _dragonRoar;
 
 
@@ -82,8 +83,8 @@ namespace InfinityUndergroundReload.CharactersUI
                 {
                     switch (spell)
                     {
-                        case "ThrowDarkMatter":
-                            _spells.Add(new ThrowDarkMatter(this, Context.Player));
+                        case "Curiosity2":
+                            _spells.Add(new Curiosity2(this, Context.Player));
                             break;
                     }
                 }
@@ -122,9 +123,21 @@ namespace InfinityUndergroundReload.CharactersUI
         /// <param name="gameTime">The game time.</param>
         public override void Update(GameTime gameTime)
         {
-            foreach (SpriteSheet s in _spells)
+            if (Context.LoadOrUnloadFights == FightsState.InFights)
             {
-                s.Update(gameTime);
+
+
+                if (Context.Fights.Turn == API.CharacterTurn.Monster && Context.Fights.CurrentAttack != null)
+                {
+
+                    foreach (SpriteSheet s in _spells)
+                    {
+                        if (s.NameSpell == Context.Fights.CurrentAttack.Name)
+                        {
+                            s.Update(gameTime);
+                        }
+                    }
+                }
             }
             base.Update(gameTime);
         }
@@ -174,23 +187,37 @@ namespace InfinityUndergroundReload.CharactersUI
 
             if (Context.LoadOrUnloadFights == FightsState.InFights)
             {
+                
 
                 if (Context.Fights.Turn == API.CharacterTurn.Monster && Context.Fights.CurrentAttack != null)
                 {
+                    
                     foreach (SpriteSheet s in _spells)
                     {
+                        if (_lastAttack != Context.Fights.CurrentAttack)
+                        {
+                            s.ResetPosition = true;
+                        }
+
                         if (s.NameSpell == Context.Fights.CurrentAttack.Name)
                         {
                             s.Draw(spriteBatch);
                         }
+
+                        if (s.ResetPosition)
+                        {
+                            s.ResetPosition = false;
+                        }
                     }
                 }
+
+                _lastAttack = Context.Fights.CurrentAttack;
 
 
 
                 _speedBar.Draw(spriteBatch, (int)FightsPosition.X, (int)FightsPosition.Y - 20, Monster.CharacterType.LifePoint, Context.GraphicsDevice, (_widthBar * (int)Context.Fights.TheFights.MonsterTurnsLoading / 20), 10);
                 _healthBar.Draw(spriteBatch, (int)FightsPosition.X, (int)FightsPosition.Y - 40, Monster.CharacterType.LifePoint, Context.GraphicsDevice, (_widthBar * Monster.CharacterType.LifePoint / 20), 20);
-                _destinationRectangle = new Rectangle((int)FightsPosition.X, (int)FightsPosition.Y, Width * 6, Height * 6);
+                _destinationRectangle = new Rectangle((int)FightsPosition.X, (int)FightsPosition.Y, Width * 8, Height * 8);
             }
             else
             {
