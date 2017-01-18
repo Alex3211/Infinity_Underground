@@ -4,6 +4,7 @@ using System.Xml.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.Xna.Framework;
+using System.Xml;
 
 namespace InfinityUndergroundReload.Interface
 {
@@ -11,6 +12,8 @@ namespace InfinityUndergroundReload.Interface
     {
         const string fileName = "../../../save/Character.save";
         InfinityUnderground _context;
+        private XmlDocument _XmlDocument;
+        private XmlNodeList _userNodes;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DataSave"/> class.
@@ -87,7 +90,7 @@ namespace InfinityUndergroundReload.Interface
         /// <summary>
         /// Writes the values.
         /// </summary>
-        public void WriteValuesInTheFile()
+        public void WriteValuesInTheFileSave()
         {
             using (BinaryWriter writer = new BinaryWriter(File.Open(fileName, FileMode.Create)))
             {
@@ -101,7 +104,7 @@ namespace InfinityUndergroundReload.Interface
             }
         }
 
-        public void LoadValuesOfThePlayerInTheClass()
+        public void LoadValuesOfThePlayerInThisClass()
         {
             LEVEL = _context.WorldAPI.GetMaxLevel.ToString();
             DAMAGE = _context.WorldAPI.Player.CharacterType.Damage.ToString();
@@ -115,7 +118,7 @@ namespace InfinityUndergroundReload.Interface
         /// <summary>
         /// Displays the values.
         /// </summary>
-        public void LoadValuesFromTheFile()
+        public void LoadValuesFromTheFileSave()
         {
             if (File.Exists(fileName))
                 using (BinaryReader reader = new BinaryReader(File.Open(fileName, FileMode.Open)))
@@ -143,5 +146,19 @@ namespace InfinityUndergroundReload.Interface
             _context.WorldAPI.Player.CharacterType.Range = Convert.ToInt32(RANGE);
             _context.WorldAPI.Player.CharacterType.LifePoint = Convert.ToInt32(LIFEPOINT);
         }
+
+        /// <summary>
+        /// Loads the enigm value from the file.
+        /// </summary>
+        /// <param name="NameOfDocument">The name of document.</param>
+        /// <returns></returns>
+        public XmlNodeList LoadEnigmFromTheFile(string NameOfDocument)
+        {
+            _XmlDocument = new XmlDocument();
+            _XmlDocument.Load("../../../save/" + NameOfDocument + ".xml");
+            _userNodes = _XmlDocument.SelectNodes("//users/user");
+            return _userNodes;
+        }
+
     }
 }

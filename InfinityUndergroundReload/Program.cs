@@ -16,15 +16,7 @@ namespace InfinityUndergroundReload
         static void Main()
         {
             using (var game = new InfinityUnderground())
-                game.Run();
-
-            //    Program.ShouldRestart = true;
-
-            //    InfinityUnderground game = new InfinityUnderground();
-            //    game.Run();
-            //if (!Program.ShouldRestart)  game.SuppressDraw(); game.Dispose(); game.Exit(); 
-
-
+                game.Run(); 
         }
     }
 }

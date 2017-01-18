@@ -11,6 +11,7 @@ using InfinityUndergroundReload.API;
 using System.Threading;
 using InfinityUndergroundReload.CharactersUI;
 using Microsoft.Xna.Framework.Media;
+using InfinityUndergroundReload.Interface;
 
 namespace InfinityUndergroundReload.Map
 {
@@ -43,9 +44,11 @@ namespace InfinityUndergroundReload.Map
         Song _fightMusics;
         bool _enigmState;
         bool _statState;
+        XmlNodeList tab;
         private readonly TimeSpan IntervalBetweenStats;
         private TimeSpan LastStatsActive;
         private SpriteFont _smallFont;
+        private DataSave _dataXml;
 
         public MapLoader(InfinityUnderground context)
         {
@@ -53,9 +56,9 @@ namespace InfinityUndergroundReload.Map
             _groundLayer = new Dictionary<string, TiledTileLayer>();
             _upLayer = new Dictionary<string, TiledTileLayer>();
             _collideLayer = new Dictionary<string, TiledTileLayer>();
-
             _miniMap = new MiniMap(this);
-
+            _enigmResponse = string.Empty;
+            _dataXml = new DataSave(_context);
             _enigmResponse = string.Empty;
             IntervalBetweenF1Menu = TimeSpan.FromMilliseconds(1000);
             IntervalBetweenStats = TimeSpan.FromMilliseconds(1000);
@@ -368,7 +371,7 @@ namespace InfinityUndergroundReload.Map
                 _enigmResponse = _handler.GetString;
                 if (_stateEnigm && Keyboard.GetState().IsKeyDown(Keys.Enter))
                 {
-                    if (_handler.GetString == "1")
+                    if (_handler.GetString == tab.Item(_enigmRandom).Attributes["reponse"].Value)
                     {
                         OpenSecretRoom();
                         _handler.GetString = "";
@@ -433,7 +436,8 @@ namespace InfinityUndergroundReload.Map
         /// <returns></returns>
         public string DoAnEnigm()
         {
-            string enigm = "Niveau : "+_context.WorldAPI.GetMaxLevel +" / Question : (1 + 1)* 0 + 1 / Réponse : 1 ";
+            tab = _dataXml.LoadEnigmFromTheFile("enigm");
+            string enigm = "Question : "+ tab.Item(_enigmRandom).FirstChild.Value + " Réponse : "+ tab.Item(_enigmRandom).Attributes["reponse"].Value;
             return enigm;
         }
 
@@ -492,9 +496,11 @@ namespace InfinityUndergroundReload.Map
 
             DrawLayer(false, spriteBatch);
             if(Context.LoadOrUnloadFights == FightsState.Close) DrawDoorOrNot();
+            
             if (_statState)
             {
                 DrawRectangle(new Rectangle((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y, 175, _context.GraphicsDevice.Viewport.Height),Color.Black,spriteBatch);
+                spriteBatch.DrawString(_smallFont, "Niveau : " + _context.WorldAPI.GetMaxLevel.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y+150), Color.White);
                 spriteBatch.DrawString(_smallFont, "Vie : " + _context.Player.PlayerAPI.CharacterType.LifePoint.ToString()+"/" + _context.Player.PlayerAPI.CharacterType.MaxLifePoint.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y), Color.White);
                 spriteBatch.DrawString(_smallFont, "Armure : " + _context.Player.PlayerAPI.CharacterType.Armor.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y+30), Color.White);
                 spriteBatch.DrawString(_smallFont, "Vitesse d'attaque : " + _context.Player.PlayerAPI.CharacterType.AttackSpeed.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y+60), Color.White);
@@ -502,7 +508,6 @@ namespace InfinityUndergroundReload.Map
                 spriteBatch.DrawString(_smallFont, "Dégats de critique : " + _context.Player.PlayerAPI.CharacterType.CriticalDamage.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y+120), Color.White);
                 spriteBatch.DrawString(_smallFont, "Dommages : " + _context.Player.PlayerAPI.CharacterType.Damage.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y+150), Color.White);
             }
-
 
             if (_stateEnigm)
             {
