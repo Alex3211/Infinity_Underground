@@ -25,7 +25,7 @@ namespace InfinityUndergroundReload
         const int WindowHeight = 540;
         float _zoom;
 
-        GraphicsDeviceManager graphics;
+        public GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Camera2D _camera;
         BoxingViewportAdapter _viewportAdapter;
