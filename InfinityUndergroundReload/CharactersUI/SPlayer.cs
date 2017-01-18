@@ -193,6 +193,7 @@ namespace InfinityUndergroundReload.CharactersUI
         {
             Rectangle _destinationRectangle;
             _state = Keyboard.GetState(); 
+
             
 
             if ((_player.Position == _lastPosition) && !_isAttacking)

@@ -208,7 +208,7 @@ namespace InfinityUndergroundReload
             _dataSave = new DataSave(this);
             if (_dataSave.IsExistSave)
             {
-                _dataSave.LoadValuesFromTheFile();
+                _dataSave.LoadValuesFromTheFileSave();
                 _dataSave.SetValuesInThePlayer();
             }
             _fightState = FightsState.Close;
@@ -307,8 +307,8 @@ namespace InfinityUndergroundReload
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
-                _dataSave.LoadValuesOfThePlayerInTheClass();
-                _dataSave.WriteValuesInTheFile();
+                _dataSave.LoadValuesOfThePlayerInThisClass();
+                _dataSave.WriteValuesInTheFileSave();
                 Exit();
             }
             // TODO: Add your update logic here
@@ -362,8 +362,6 @@ namespace InfinityUndergroundReload
         public void ActionChangeEnvironment(GameTime gameTime)
         {
             _timeForTakeNextDoor += gameTime.ElapsedGameTime.Milliseconds;
-
-
             _door = _worldAPI.PlayerTakeDoor();
 
             if ((_door != null || LoadOrUnloadFights != FightsState.Close) && LoadOrUnloadFights != FightsState.InFights && _timeForTakeNextDoor >= _timeMaxForTakeNextDoor)
