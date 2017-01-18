@@ -27,7 +27,6 @@ namespace InfinityUndergroundReload.API
             _listOfMonster = new List<CNPC>();
             _maxLevel = 1;
             _tileSize = 32;
-
         }
 
         /// <summary>

@@ -30,6 +30,9 @@ namespace InfinityUndergroundReload.CharactersUI
         Vector2 _lastPosition;
         List<SpriteSheet> _spells;
         int _lastLifePoint;
+        bool _takeHit;
+        int i;
+        int _redHit;
         //SoundEffect _dragonRoar;
 
 
@@ -42,6 +45,8 @@ namespace InfinityUndergroundReload.CharactersUI
         /// <param name="bat">The bat.</param>
         public SDragon(int spriteSheetRows, int spriteSheetColumns, InfinityUnderground context, CDragon dragon)
         {
+            _redHit = 300;
+
             Context = context;
 
             _widthBar = 100;
@@ -197,8 +202,18 @@ namespace InfinityUndergroundReload.CharactersUI
                 _destinationRectangle = new Rectangle(Monster.PositionX, Monster.PositionY, Width, Height);
             }
 
-            if (_lastLifePoint != Monster.CharacterType.LifePoint)
+            if (_lastLifePoint != Monster.CharacterType.LifePoint || _takeHit)
             {
+
+                _takeHit = true;
+
+                i++;
+                if (i > _redHit)
+                {
+                    _takeHit = false;
+                    i = 0;
+                }
+
                 spriteBatch.Draw(Spritesheet, _destinationRectangle, _sourceRectangle, Color.Red);
             }
             else if (Monster.IsDead)

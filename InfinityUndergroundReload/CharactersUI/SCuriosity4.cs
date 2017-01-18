@@ -31,6 +31,9 @@ namespace InfinityUndergroundReload.CharactersUI
         List<SpriteSheet> _spells;
         int _lastLifePoint;
         CAttacks _lastAttack;
+        bool _takeHit;
+        int i;
+        int _redHit;
         //SoundEffect _dragonRoar;
 
 
@@ -43,6 +46,8 @@ namespace InfinityUndergroundReload.CharactersUI
         /// <param name="bat">The bat.</param>
         public SCuriosity4(int spriteSheetRows, int spriteSheetColumns, InfinityUnderground context, CCuriosity4 curiosity)
         {
+            _redHit = 300;
+
             Context = context;
 
             _widthBar = 100;
@@ -73,7 +78,7 @@ namespace InfinityUndergroundReload.CharactersUI
                 _direction = action.RowAction;
             }
 
-            FightsPosition = new Vector2(1300, 250);
+            FightsPosition = new Vector2(1300, 300);
 
             _spells = new List<SpriteSheet>();
 
@@ -217,15 +222,27 @@ namespace InfinityUndergroundReload.CharactersUI
 
                 _speedBar.Draw(spriteBatch, (int)FightsPosition.X, (int)FightsPosition.Y - 20, Monster.CharacterType.LifePoint, Context.GraphicsDevice, (_widthBar * (int)Context.Fights.TheFights.MonsterTurnsLoading / 20), 10);
                 _healthBar.Draw(spriteBatch, (int)FightsPosition.X, (int)FightsPosition.Y - 40, Monster.CharacterType.LifePoint, Context.GraphicsDevice, (_widthBar * Monster.CharacterType.LifePoint / 20), 20);
-                _destinationRectangle = new Rectangle((int)FightsPosition.X, (int)FightsPosition.Y, Width * 8, Height * 8);
+                _destinationRectangle = new Rectangle((int)FightsPosition.X, (int)FightsPosition.Y, Width * 6, Height * 6);
             }
             else
             {
                 _destinationRectangle = new Rectangle(Monster.PositionX, Monster.PositionY, Width, Height);
             }
 
-            if (_lastLifePoint != Monster.CharacterType.LifePoint)
+            if (_lastLifePoint != Monster.CharacterType.LifePoint || _takeHit)
             {
+                _takeHit = true;
+
+                i++;
+                if (i > _redHit)
+                {
+                    _takeHit = false;
+                    i = 0;
+                }
+                
+
+
+
                 spriteBatch.Draw(Spritesheet, _destinationRectangle, _sourceRectangle, Color.Red);
             }
             else if (Monster.IsDead)
