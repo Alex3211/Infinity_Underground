@@ -55,7 +55,25 @@ namespace InfinityUndergroundReload
             _speedBar = new Texture2D(graphicsDevice, 1, 1, false, SurfaceFormat.Color);
 
             _speedBar.SetData(new Color[] { Color.Blue });
-            spriteBatch.Draw(_speedBar, new Rectangle(posX, posY, width, height), Color.White);
+            spriteBatch.Draw(_speedBar, new Rectangle(posX, posY, width * 2, height), Color.White);
+        }
+
+        /// <summary>
+        /// Draws the specified game time.
+        /// </summary>
+        /// <param name="gameTime">The game time.</param>
+        public void Draw(SpriteBatch spriteBatch, int posX, int posY, int lifepoint, GraphicsDevice graphicsDevice, int width, int height, bool isMonster)
+        {
+            _width = width;
+            _height = height;
+
+            SetMaxLifePoint(lifepoint);
+
+            if (_speedBar != null) _speedBar.Dispose();
+            _speedBar = new Texture2D(graphicsDevice, 1, 1, false, SurfaceFormat.Color);
+
+            _speedBar.SetData(new Color[] { Color.Blue });
+            spriteBatch.Draw(_speedBar, new Rectangle(posX, posY, width * 4, height), Color.White);
         }
     }
 }

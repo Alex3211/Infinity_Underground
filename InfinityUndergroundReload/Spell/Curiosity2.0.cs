@@ -30,6 +30,7 @@ namespace InfinityUndergroundReload.Spell
             _player = player;
             _spellPositionX = _monster.Monster.PositionX;
             _explosion = new Explosion(_player);
+            SpellReapeat = true;
         }
 
         public override void LoadContent(ContentManager content)
@@ -75,7 +76,7 @@ namespace InfinityUndergroundReload.Spell
                 spriteBatch.Draw(Spritesheet, destinationRectangle, sourceRectangle, Color.White);
                 _explosion.ResetPosition = true;
             }
-            else if (_spellPositionX <= _player.PlayerAPI.PositionX + 20)
+            else if (_spellPositionX <= _player.PlayerAPI.PositionX + 50)
             {
                 _explosion.Draw(spriteBatch);
             }

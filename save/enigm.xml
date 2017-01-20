@@ -1,6 +1,0 @@
-<xml>
-<users> 
-  <user reponse="1">1 + 1 * 0</user> 
-  <user reponse="0">1 + 1 - 1 - 1</user> 
-</users>
-</xml>

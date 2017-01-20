@@ -34,6 +34,7 @@ namespace InfinityUndergroundReload.CharactersUI
         bool _spellReapeat;
         bool _spellHitPlayer;
         bool _resetPosition;
+        int _turn;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SpriteSheet"/> class.
@@ -44,7 +45,31 @@ namespace InfinityUndergroundReload.CharactersUI
             _millisecondsPerFrame = 80;
         }
 
-        //
+        /// <summary>
+        /// Gets the turn.
+        /// </summary>
+        /// <value>
+        /// The turn.
+        /// </value>
+        public int Turn
+        {
+            get
+            {
+                return _turn;
+            }
+
+            set
+            {
+                _turn = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether {CC2D43FA-BBC4-448A-9D0B-7B57ADF2655C}[reset position].
+        /// </summary>
+        /// <value>
+        /// {D255958A-8513-4226-94B9-080D98F904A1}  <c>true</c> if [reset position]; otherwise, <c>false</c>.
+        /// </value>
         public bool ResetPosition
         {
             get
@@ -463,7 +488,7 @@ namespace InfinityUndergroundReload.CharactersUI
                 {
                     CurrentFrame = 0;
                     
-                    if (CurrentRow + 1 >= SpriteSheetRows && !SpellReapeat)
+                    if (CurrentRow + 1 >= SpriteSheetRows && SpellReapeat)
                     {
                         CurrentRow = 0;
                     }

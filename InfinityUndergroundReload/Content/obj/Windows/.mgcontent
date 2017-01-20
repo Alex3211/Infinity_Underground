@@ -4,6 +4,7 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Curiosity/black-hole.png</File>
     <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Player/Player.png</File>
     <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Surface/Map.tmx</File>
     <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Ressources/Artis_dock.png</File>
@@ -54,5 +55,8 @@
     <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Curiosity/Curiosity2.png</File>
     <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Curiosity/Curiosity4.png</File>
     <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Effect/explosion.png</File>
+    <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Angel/Angel.png</File>
+    <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Curiosity/white-hole.png</File>
+    <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Curiosity/worm-hole.png</File>
   </SourceFiles>
 </SourceFileCollection>

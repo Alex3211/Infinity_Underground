@@ -37,7 +37,15 @@ namespace InfinityUndergroundReload.API.Characters
         {
             get
             {
-                return _maxLifePoint;
+                if (_lifepoint > _maxLifePoint)
+                {
+                    _maxLifePoint = _lifepoint;
+                    return _maxLifePoint;
+                }
+                else
+                {
+                    return _maxLifePoint;
+                }
             }
 
             set

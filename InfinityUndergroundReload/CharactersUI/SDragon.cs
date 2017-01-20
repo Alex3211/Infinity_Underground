@@ -193,8 +193,8 @@ namespace InfinityUndergroundReload.CharactersUI
 
 
 
-                _speedBar.Draw(spriteBatch, (int)FightsPosition.X, (int)FightsPosition.Y - 20, Monster.CharacterType.LifePoint, Context.GraphicsDevice, (_widthBar * (int)Context.Fights.TheFights.MonsterTurnsLoading / 20), 10);
-                _healthBar.Draw(spriteBatch, (int)FightsPosition.X, (int)FightsPosition.Y - 40, Monster.CharacterType.LifePoint, Context.GraphicsDevice, (_widthBar * Monster.CharacterType.LifePoint / 20), 20);
+                _speedBar.Draw(spriteBatch, (int)FightsPosition.X, (int)FightsPosition.Y - 20, Monster.CharacterType.LifePoint, Context.GraphicsDevice, (int)Context.Fights.TheFights.MonsterTurnsLoading, 10, true);
+                _healthBar.Draw(spriteBatch, (int)FightsPosition.X, (int)FightsPosition.Y - 40, Monster.CharacterType.LifePoint, Context.GraphicsDevice, Monster.CharacterType.MaxLifePoint, 10, true);
                 _destinationRectangle = new Rectangle((int)FightsPosition.X, (int)FightsPosition.Y, Width * 6, Height * 6);
             }
             else

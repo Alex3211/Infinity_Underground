@@ -23,14 +23,14 @@ namespace InfinityUndergroundReload.API.Characters
         /// <param name="turnsDamage">The turns damage.</param>
         /// <param name="turnsDuringDamage">The turns during damage.</param>
         /// <param name="spellReload">The spell reload.</param>
-        public CAttacks(string name, int turnsLoading, int turnsDamage, int turnsDuringDamage, int spellReload)
+        public CAttacks(string name, int turnsLoading, int turnsDamage, int turnsDuringDamage, int spellReload, int damage)
         {
             _name = name;
             _turnsDamage = turnsDamage;
             _turnsDuringDamage = turnsDuringDamage;
             _turnsLoading = turnsLoading;
             _spellReload = spellReload;
-            _damage = 100;
+            _damage = damage;
         }
 
         /// <summary>
@@ -97,20 +97,6 @@ namespace InfinityUndergroundReload.API.Characters
         }
 
         /// <summary>
-        /// Gets the turns damage.
-        /// </summary>
-        /// <value>
-        /// The turns damage.
-        /// </value>
-        public int TurnsDamage
-        {
-            get
-            {
-                return _damage;
-            }
-        }
-
-        /// <summary>
         /// Gets the turns during damage.
         /// </summary>
         /// <value>
@@ -129,15 +115,15 @@ namespace InfinityUndergroundReload.API.Characters
             }
         }
 
-        public static CAttacks CreateBirthOfASun() => new CAttacks("BirthOfASun", 3, 4, 5, 5);
+        public static CAttacks CreateBirthOfASun() => new CAttacks("BirthOfASun", 3, 4, 5, 5, 200);
 
-        public static CAttacks ThrowDarkMatter() => new CAttacks("ThrowDarkMatter", 0, 1, 1, 0);
+        public static CAttacks ThrowDarkMatter() => new CAttacks("ThrowDarkMatter", 0, 1, 1, 0, 50);
 
-        public static CAttacks DarkHole() => new CAttacks("ThrowDarkMatter", 2, 2, 3, 5);
+        public static CAttacks DarkHole() => new CAttacks("DarkHole", 0, 0, 3, 5, 200);
 
-        public static CAttacks RedSlash() => new CAttacks("RedSlash", 0, 1, 1, 0);
+        public static CAttacks RedSlash() => new CAttacks("RedSlash", 0, 1, 1, 0, 50);
 
-        public static CAttacks Curiosity2() => new CAttacks("Curiosity2", 0, 1, 1, 0);
+        public static CAttacks Curiosity2() => new CAttacks("Curiosity2", 0, 1, 1, 0, 50);
     }
 
 

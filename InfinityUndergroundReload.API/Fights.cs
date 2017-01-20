@@ -89,7 +89,7 @@ namespace InfinityUndergroundReload.API
                             {
                                 if (!_context.Player.Shield)
                                 {
-                                    GiveDamage(_monster, _context.Player);
+                                    GiveDamage(_monster, _context.Player, attack);
                                 }
                                 else
                                 {
@@ -98,7 +98,7 @@ namespace InfinityUndergroundReload.API
                             }
                             else
                             {
-                                GiveDamage(_context.Player, _monster);
+                                GiveDamage(_context.Player, _monster, attack);
                             }
                             
                             attack.TurnsDuringDamage--;
@@ -108,6 +108,7 @@ namespace InfinityUndergroundReload.API
                 if (attack.TurnsDuringDamage == 0)
                 {
                     _monsterAttacks.Remove(attack);
+                    _playerAttacks.Remove(attack);
                 }
                 
 
@@ -155,7 +156,7 @@ namespace InfinityUndergroundReload.API
         public CAttacks GetAttack(CharacterTurn turn, int attackPlayer)
         {
 
-            foreach (CAttacks attack in _monsterAttacks)
+            foreach (CAttacks attack in _playerAttacks)
             {
                 if (attack.TurnsLoading != 0)
                 {
@@ -197,12 +198,37 @@ namespace InfinityUndergroundReload.API
                         {
                             case "Dragon":
                                 _tempAttack = CAttacks.ThrowDarkMatter();
-                                _playerAttacks.Add(_tempAttack);
+                                _monsterAttacks.Add(_tempAttack);
                                 return _tempAttack;
 
                             case "Curiosity4":
                                 _tempAttack = CAttacks.Curiosity2();
+                                _monsterAttacks.Add(_tempAttack);
+                                return _tempAttack;
+
+                            case "Angel":
+                                _tempAttack = CAttacks.Curiosity2();
                                 _playerAttacks.Add(_tempAttack);
+                                return _tempAttack;
+                        }
+                        break;
+
+                    case 1:
+                        switch (_monster.TypeOfMonster)
+                        {
+                            case "Dragon":
+                                _tempAttack = CAttacks.ThrowDarkMatter();
+                                _monsterAttacks.Add(_tempAttack);
+                                return _tempAttack;
+
+                            case "Curiosity4":
+                                _tempAttack = CAttacks.DarkHole();
+                                _monsterAttacks.Add(_tempAttack);
+                                return _tempAttack;
+
+                            case "Angel":
+                                _tempAttack = CAttacks.Curiosity2();
+                                _monsterAttacks.Add(_tempAttack);
                                 return _tempAttack;
                         }
                         break;
@@ -230,15 +256,15 @@ namespace InfinityUndergroundReload.API
         /// <param name="damageSender"></param>
         /// <param name="armorReceiver"></param>
         /// <returns></returns>
-        public void GiveDamage(CCharacter sender, CCharacter receiver)
+        public void GiveDamage(CCharacter sender, CCharacter receiver, CAttacks attack)
         {
             if (IsCritical(sender.CharacterType.CriticalChance))
             {
-                receiver.CharacterType.LifePoint -= CriticalDamage(sender.CharacterType.Damage, sender.CharacterType.CriticalDamage);
+                receiver.CharacterType.LifePoint -= CriticalDamage(sender.CharacterType.Damage, sender.CharacterType.CriticalDamage) + attack.Damage;
             }
             else
             {
-                receiver.CharacterType.LifePoint -= sender.CharacterType.Damage;
+                receiver.CharacterType.LifePoint -= sender.CharacterType.Damage + attack.Damage;
             }
         }
 
@@ -291,24 +317,17 @@ namespace InfinityUndergroundReload.API
         /// <returns></returns>
         public CharacterTurn ChoiceTurn()
         {
-            if (_monsterTurnLoading >= 100)
-            {
-                _monsterTurnLoading = 0;
-            }
-            else if (_playerTurnLoading >= 100)
-            {
-                _playerTurnLoading = 0;
-            }
-
             _monsterTurnLoading += _monster.CharacterType.AttackSpeed;
             _playerTurnLoading += _player.CharacterType.AttackSpeed;
 
             if (_monsterTurnLoading >= 100)
             {
+                _monsterTurnLoading = 0;
                 return CharacterTurn.Monster;
             }
             else if (_playerTurnLoading >= 100)
             {
+                _playerTurnLoading = 0;
                 return CharacterTurn.Player;
             }
             return CharacterTurn.NoOne;

@@ -22,6 +22,7 @@ namespace InfinityUndergroundReload.Spell
             _player = player;
             NameSpell = "RedSlash";
             _reload = 250;
+            SpellReapeat = true;
         }
 
         public override void LoadContent(ContentManager content)
@@ -48,8 +49,8 @@ namespace InfinityUndergroundReload.Spell
 
             spriteBatch.Draw(Spritesheet, destinationRectangle, sourceRectangle, Color.White);
 
-            _position.Y = _position.Y - 2;
-            _position.X = _position.X + 60;
+            _position.Y = _position.Y - 10;
+            _position.X = _position.X + 70;
 
             if (_time >= _reload)
             {

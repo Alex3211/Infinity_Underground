@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CharactersUI\SAngel.cs" />
     <Compile Include="CharactersUI\SCuriosity4.cs" />
     <Compile Include="FightsUI.cs" />
     <Compile Include="InfinityUnderground.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="RectangleSelectAttack.cs" />
     <Compile Include="SpeedBarFights.cs" />
     <Compile Include="Spell\BirthOfASun.cs" />
+    <Compile Include="Spell\DarkHole.cs" />
     <Compile Include="Spell\Explosion.cs" />
     <Compile Include="Spell\RedSlash.cs" />
     <Compile Include="Spell\Shield.cs" />
