@@ -133,6 +133,8 @@ namespace InfinityUndergroundReload
 
                             _currentAttack = _fights.GetAttack(_turn);
 
+
+
                             _fights.GiveDamageWithAttack(_currentAttack, _turn);
 
                             _timeForAnimation = 0;
@@ -187,7 +189,17 @@ namespace InfinityUndergroundReload
 
             foreach (SpriteSheet monster in _context.ListOfMonsterUI)
             {
-                if (_keyboard.IsKeyDown(Keys.E) && _context.Player.PlayerAPI.Position.X >= ((int)monster.Monster.Position.X - monster.Monster.CharacterType.HitBox) && _context.Player.PlayerAPI.Position.Y <= ((int)monster.Monster.Position.Y + monster.Monster.CharacterType.HitBox) && _context.Player.PlayerAPI.Position.X <= ((int)monster.Monster.Position.X + monster.Monster.CharacterType.HitBox) && _context.Player.PlayerAPI.Position.Y <= ((int)monster.Monster.Position.Y + monster.Monster.CharacterType.HitBox) && _context.LoadOrUnloadFights == FightsState.Close && !monster.Monster.IsDead)
+                if (_keyboard.IsKeyDown(Keys.E) 
+                    &&
+                    _context.Player.PlayerAPI.Position.X >= ((int)monster.Monster.Position.X - monster.Monster.CharacterType.HitBox) 
+                    &&
+                    _context.Player.PlayerAPI.Position.Y >= ((int)monster.Monster.Position.Y - monster.Monster.CharacterType.HitBox) 
+                    && 
+                    _context.Player.PlayerAPI.Position.X <= ((int)monster.Monster.Position.X + monster.Monster.CharacterType.HitBox) 
+                    && 
+                    _context.Player.PlayerAPI.Position.Y <= ((int)monster.Monster.Position.Y + monster.Monster.CharacterType.HitBox) 
+                    && 
+                    _context.LoadOrUnloadFights == FightsState.Close && !monster.Monster.IsDead)
                 {
                     _context.LoadOrUnloadFights = FightsState.Enter;
                     _monster = monster;

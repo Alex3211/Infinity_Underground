@@ -22,7 +22,7 @@ namespace InfinityUndergroundReload.Spell
             TotalFrames = SpriteSheetRows * SpriteSheetColumns;
             MillisecondsPerFrame = 100;
             IsSpell = true;
-            SpellReapeat = false;
+            SpellReapeat = true;
             _monster = monster;
             NameSpell = "ThrowDarkMatter";
             _player = player;

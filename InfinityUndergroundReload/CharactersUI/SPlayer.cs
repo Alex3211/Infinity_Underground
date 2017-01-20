@@ -169,6 +169,12 @@ namespace InfinityUndergroundReload.CharactersUI
         {
             if (Context.LoadOrUnloadFights == FightsState.Close)
                 _actualAction = PlayerAction(_state);
+            else if (Context.Fights.CurrentAttack != null && Context.Fights.CurrentAttack.Name == "RedSlash")
+            {
+                _action = from action in _playerAction where action.RowAction == (int)RowActionOnSpriteSheetPlayer.AttackRight select action;
+                foreach (ActionSpriteSheet action in _action)
+                    _actualAction = action;
+            }
             else
             {
                 _action = from action in _playerAction where action.RowAction == (int)RowActionOnSpriteSheetPlayer.WalkRight select action;
@@ -192,11 +198,9 @@ namespace InfinityUndergroundReload.CharactersUI
         public override void Draw(SpriteBatch spriteBatch)
         {
             Rectangle _destinationRectangle;
-            _state = Keyboard.GetState(); 
+            _state = Keyboard.GetState();
 
-            
-
-            if ((_player.Position == _lastPosition) && !_isAttacking)
+            if ((_player.Position == _lastPosition) && !_isAttacking && (Context.Fights.CurrentAttack == null || Context.Fights.CurrentAttack.Name != "RedSlash"))
             {
                 Column = 0;
             } 
@@ -212,6 +216,10 @@ namespace InfinityUndergroundReload.CharactersUI
             }
             _lastPosition = _player.Position;
             
+            if (Column >= _actualAction.Column && Context.Fights.CurrentAttack.Name == "RedSlash")
+            {
+                Column = 0;
+            }
 
             Rectangle _sourceRectangle = new Rectangle(Width * Column, Height * _actualAction.RowAction, Width, Height); 
             if (Context.LoadOrUnloadFights != FightsState.Close)
@@ -229,8 +237,8 @@ namespace InfinityUndergroundReload.CharactersUI
                 }
 
                 _destinationRectangle = new Rectangle(_player.PositionX, _player.PositionY, Width * 3, Height * 3);
-                _speedBar.Draw(spriteBatch, (int)(Context.Camera.Position.X - 400), (int)(Context.Camera.Position.Y + 470), _player.CharacterType.LifePoint, Context.GraphicsDevice, (_widthHealthBar * (int)Context.Fights.TheFights.PlayerTurnsLoading / 50), 10);
-                _healthBar.Draw(spriteBatch, (int)(Context.Camera.Position.X - 400), (int)(Context.Camera.Position.Y + 450), _player.CharacterType.LifePoint, Context.GraphicsDevice, (_widthHealthBar * _player.CharacterType.LifePoint / 500), 10);
+                _speedBar.Draw(spriteBatch, (int)(Context.Camera.Position.X - 400), (int)(Context.Camera.Position.Y + 470), _player.CharacterType.LifePoint, Context.GraphicsDevice, (int)Context.Fights.TheFights.PlayerTurnsLoading, 10);
+                _healthBar.Draw(spriteBatch, (int)(Context.Camera.Position.X - 400), (int)(Context.Camera.Position.Y + 450), _player.CharacterType.LifePoint, Context.GraphicsDevice, Context.WorldAPI.Player.CharacterType.MaxLifePoint, 10);
 
                 if (_player.Shield)
                 {
@@ -240,7 +248,7 @@ namespace InfinityUndergroundReload.CharactersUI
             else
             {
                 _destinationRectangle = new Rectangle(_player.PositionX, _player.PositionY, Width, Height);
-                _healthBar.Draw(spriteBatch, (int)(Context.Camera.Position.X + 20), (int)(Context.Camera.Position.Y + 20), _player.CharacterType.LifePoint, Context.GraphicsDevice, (_widthHealthBar * _player.CharacterType.LifePoint / 500), 10);
+                _healthBar.Draw(spriteBatch, (int)(Context.Camera.Position.X + 20), (int)(Context.Camera.Position.Y + 20), _player.CharacterType.LifePoint, Context.GraphicsDevice, Context.WorldAPI.Player.CharacterType.MaxLifePoint, 10);
             }
 
             if (_lastLifePoint > PlayerAPI.CharacterType.LifePoint || _takeHit)

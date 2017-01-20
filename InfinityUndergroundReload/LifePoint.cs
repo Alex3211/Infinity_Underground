@@ -73,9 +73,11 @@ namespace InfinityUndergroundReload
         /// Draws the specified game time.
         /// </summary>
         /// <param name="gameTime">The game time.</param>
-        public void Draw(SpriteBatch spriteBatch, int posX, int posY, int lifepoint, GraphicsDevice graphicsDevice, int width, int height)
+        public void Draw(SpriteBatch spriteBatch, int posX, int posY, int lifepoint, GraphicsDevice graphicsDevice, int maxLifepoint, int height)
         {
-            _width = width;
+            int pourcent = CalculPourcentLifePoint(maxLifepoint, lifepoint);
+
+            _width = 100;
             _height = height;
 
             SetMaxLifePoint(lifepoint);
@@ -84,8 +86,35 @@ namespace InfinityUndergroundReload
             _healthBar = new Texture2D(graphicsDevice, 1, 1, false, SurfaceFormat.Color);
 
             SetRectangle(lifepoint);
-            spriteBatch.Draw(_healthBar, new Rectangle(posX, posY, width, height), Color.White);
+            spriteBatch.Draw(_healthBar, new Rectangle(posX, posY, pourcent * 2, height), Color.White);
         }
 
+        public int CalculPourcentLifePoint(int maxLifePoint, int actualLifepoint)
+        {
+            return Math.Abs(((_maxLifepoint - actualLifepoint) * 100 / actualLifepoint) - 100);
+        }
+
+        /// <summary>
+        /// Draws the specified game time.
+        /// </summary>
+        /// <param name="gameTime">The game time.</param>
+        public void Draw(SpriteBatch spriteBatch, int posX, int posY, int lifepoint, GraphicsDevice graphicsDevice, int maxLifepoint, int height, bool isMonster)
+        {
+            int pourcent = CalculPourcentLifePoint(maxLifepoint, lifepoint);
+
+            _width = 100;
+            _height = height;
+
+            SetMaxLifePoint(lifepoint);
+
+            if (_healthBar != null) _healthBar.Dispose();
+            _healthBar = new Texture2D(graphicsDevice, 1, 1, false, SurfaceFormat.Color);
+
+            SetRectangle(lifepoint);
+            spriteBatch.Draw(_healthBar, new Rectangle(posX, posY, pourcent * 4, height), Color.White);
+        }
+
+
     }
+
 }

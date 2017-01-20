@@ -22,7 +22,6 @@ namespace InfinityUndergroundReload.Spell
             TotalFrames = SpriteSheetRows * SpriteSheetColumns;
             MillisecondsPerFrame = 20;
             IsSpell = true;
-            SpellReapeat = true;
             NameSpell = "explosion";
             _player = player;
             CurrentRow = 0;

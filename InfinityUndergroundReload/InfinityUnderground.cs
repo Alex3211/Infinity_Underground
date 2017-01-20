@@ -208,7 +208,7 @@ namespace InfinityUndergroundReload
             _dataSave = new DataSave(this);
             if (_dataSave.IsExistSave)
             {
-                _dataSave.LoadValuesFromTheFileSave();
+                _dataSave.LoadValuesFromTheFile();
                 _dataSave.SetValuesInThePlayer();
             }
             _fightState = FightsState.Close;
@@ -307,8 +307,8 @@ namespace InfinityUndergroundReload
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
-                _dataSave.LoadValuesOfThePlayerInThisClass();
-                _dataSave.WriteValuesInTheFileSave();
+                _dataSave.LoadValuesOfThePlayerInTheClass();
+                _dataSave.WriteValuesInTheFile();
                 Exit();
             }
             // TODO: Add your update logic here
@@ -362,6 +362,8 @@ namespace InfinityUndergroundReload
         public void ActionChangeEnvironment(GameTime gameTime)
         {
             _timeForTakeNextDoor += gameTime.ElapsedGameTime.Milliseconds;
+
+
             _door = _worldAPI.PlayerTakeDoor();
 
             if ((_door != null || LoadOrUnloadFights != FightsState.Close) && LoadOrUnloadFights != FightsState.InFights && _timeForTakeNextDoor >= _timeMaxForTakeNextDoor)
@@ -406,6 +408,10 @@ namespace InfinityUndergroundReload
                             case "Curiosity4":
                                 _listOfMonster.Add(new SCuriosity4(4, 3, this, (CCuriosity4)_fights.MonsterFights.Monster));
                                 break;
+
+                            case "Angel":
+                                _listOfMonster.Add(new SAngel(4, 3, this, (CAngel)_fights.MonsterFights.Monster));
+                                break;
                         }
                         break;
 
@@ -424,10 +430,17 @@ namespace InfinityUndergroundReload
 
                 if (LoadOrUnloadFights == FightsState.Close)
                 {
-                    
+
                     foreach (SpriteSheet monster in ListOfMonsterUI)
                     {
-                        monster.SetPosition();
+                        if (_worldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "BossRoom" && _worldAPI.GetLevel.GetRoom.RoomCharateristcs.NumberOfStyleRoom == "1")
+                        {
+                            monster.Monster.Position = new Vector2(500, 500);
+                        }
+                        else
+                        {
+                            monster.SetPosition();
+                        }
                     }
 
                     if (WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom")
@@ -463,6 +476,10 @@ namespace InfinityUndergroundReload
 
                     case "Curiosity4":
                         _listOfMonster.Add(new SCuriosity4(4, 3, this, (CCuriosity4)monster));
+                        break;
+
+                    case "Angel":
+                        _listOfMonster.Add(new SAngel(4, 3, this, (CAngel)monster));
                         break;
                 }
             }

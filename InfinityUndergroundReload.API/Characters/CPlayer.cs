@@ -15,10 +15,10 @@ namespace InfinityUndergroundReload.API.Characters
             :base()
         {
             CharacterType.MoveSpeed = 2;
-            CharacterType.LifePoint = 1000;
-            CharacterType.MaxLifePoint = 1000;
-            CharacterType.CriticalChance = 10;
-            CharacterType.CriticalDamage = 50;
+            CharacterType.LifePoint = 2000;
+            CharacterType.MaxLifePoint = 2000;
+            CharacterType.CriticalChance = 30;
+            CharacterType.CriticalDamage = 20;
             CharacterType.AttackSpeed = 2;
             CharacterType.Damage = 50;
             _listOfAttacks = new List<string>();

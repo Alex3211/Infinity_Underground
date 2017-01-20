@@ -297,17 +297,25 @@ namespace InfinityUndergroundReload.API
         void CreateMonster()
         {
             _listOfMonster.Clear();
-            for (int i = 0; i < GetLevel.GetRoom.RoomCharateristcs.NbOfNPC; i++)
-            {
-                switch(_random.Next(0,2))
-                {
-                    case 0:
-                        _listOfMonster.Add(new CDragon(this));
-                        break;
 
-                    case 1:
-                        _listOfMonster.Add(new CCuriosity4(this));
-                        break;
+            if (GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "BossRoom" && GetLevel.GetRoom.RoomCharateristcs.NumberOfStyleRoom == "1")
+            {
+                _listOfMonster.Add(new CAngel(this));
+            }
+            else
+            {
+                for (int i = 0; i < GetLevel.GetRoom.RoomCharateristcs.NbOfNPC; i++)
+                {
+                    switch (_random.Next(0, 2))
+                    {
+                        case 0:
+                            _listOfMonster.Add(new CDragon(this));
+                            break;
+
+                        case 1:
+                            _listOfMonster.Add(new CCuriosity4(this));
+                            break;
+                    }
                 }
             }
         }

@@ -52,6 +52,11 @@ namespace InfinityUndergroundReload
         /// <param name="gameTime">The game time.</param>
         public void Draw(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice, SelectedAttack attack)
         {
+            if (attack == SelectedAttack.None)
+            {
+                attack = SelectedAttack.First;
+            }
+
             Rectangle _destinationRectangle = new Rectangle(650, 900, 100, 100);
             Rectangle _destinationRectangle2 = new Rectangle(800, 900, 100, 100);
 
