@@ -189,6 +189,7 @@ namespace InfinityUndergroundReload
 
         public InfinityUnderground()
         {
+
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             _zoom = 0.1f;

@@ -44,9 +44,9 @@ namespace InfinityUndergroundLauncher
             }
         }
 
-        private void progressBar_Click(object sender, EventArgs e)
+        private void btn_exit_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
     }
 }
