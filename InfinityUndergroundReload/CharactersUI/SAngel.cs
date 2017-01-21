@@ -46,7 +46,7 @@ namespace InfinityUndergroundReload.CharactersUI
         /// <param name="bat">The bat.</param>
         public SAngel(int spriteSheetRows, int spriteSheetColumns, InfinityUnderground context, CAngel angel)
         {
-            _redHit = 300;
+            _redHit = 120;
 
             Context = context;
 

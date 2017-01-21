@@ -47,6 +47,11 @@ namespace InfinityUndergroundReload.Map
         bool _stateTransition;
         Song _fightMusics;
         bool _enigmState;
+        SpriteFont _smallFont;
+
+        bool _statState;
+        private readonly TimeSpan IntervalBetweenStats;
+        private TimeSpan LastStatsActive;
 
 
         public MapLoader(InfinityUnderground context)
@@ -61,6 +66,7 @@ namespace InfinityUndergroundReload.Map
             _enigmResponse = string.Empty;
             IntervalBetweenF1Menu = TimeSpan.FromMilliseconds(1000);
             IntervalBetweenText = TimeSpan.FromMilliseconds(4500);
+            IntervalBetweenStats = TimeSpan.FromMilliseconds(1000);
             _handler = new KeyboardHandler(context);
         }
 
@@ -241,7 +247,7 @@ namespace InfinityUndergroundReload.Map
         {
             _font = _context.Content.Load<SpriteFont>("debug");
             _context.Player.LoadContent(content);
-
+            _smallFont = content.Load<SpriteFont>("fights");
             if (_context.LoadOrUnloadFights == FightsState.InFights)
             {
                 _getMap = content.Load<TiledMap>(@"RoomFights\1");
@@ -385,6 +391,11 @@ namespace InfinityUndergroundReload.Map
 
                 LastActiveF1Menu = gameTime.TotalGameTime;
             }
+            if (Keyboard.GetState().IsKeyDown(Keys.F2) && LastStatsActive + IntervalBetweenStats < gameTime.TotalGameTime)
+            {
+                _statState = !_statState;
+                LastStatsActive = gameTime.TotalGameTime;
+            }
             if (_stateEnigm)
             {
                 _handler.GetKeys();
@@ -517,24 +528,31 @@ namespace InfinityUndergroundReload.Map
             DrawLayer(false, spriteBatch);
             if(Context.LoadOrUnloadFights == FightsState.Close) DrawDoorOrNot();
 
-            if (_stateEnigm && _context.LoadOrUnloadFights == FightsState.Close && !_context.graphics.IsFullScreen)
+            if (_statState && _context.LoadOrUnloadFights == FightsState.Close)
+            {
+                DrawRectangle(new Rectangle((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y, 175, _context.GraphicsDevice.Viewport.Height), Color.Black, spriteBatch);
+                spriteBatch.DrawString(_smallFont, "Niveau : " + _context.WorldAPI.GetMaxLevel.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y), Color.White);
+                spriteBatch.DrawString(_smallFont, "Vie : " + _context.Player.PlayerAPI.CharacterType.LifePoint.ToString() + "/" + _context.Player.PlayerAPI.CharacterType.MaxLifePoint.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y + 30), Color.White);
+                spriteBatch.DrawString(_smallFont, "Armure : " + _context.Player.PlayerAPI.CharacterType.Armor.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y + 60), Color.White);
+                spriteBatch.DrawString(_smallFont, "Vitesse d'attaque : " + _context.Player.PlayerAPI.CharacterType.AttackSpeed.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y + 90), Color.White);
+                spriteBatch.DrawString(_smallFont, "Chance de critique : " + _context.Player.PlayerAPI.CharacterType.CriticalChance.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y + 120), Color.White);
+                spriteBatch.DrawString(_smallFont, "Dégats de critique : " + _context.Player.PlayerAPI.CharacterType.CriticalDamage.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y + 150), Color.White);
+                spriteBatch.DrawString(_smallFont, "Dommages : " + _context.Player.PlayerAPI.CharacterType.Damage.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y + 180), Color.White);
+
+            }
+
+
+
+
+            if (_stateEnigm && _context.LoadOrUnloadFights == FightsState.Close)
             {
                 var Enigm = DoAnEnigm();
                 DrawRectangle(new Rectangle((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y, _context.GraphicsDevice.Viewport.Width, _context.GraphicsDevice.Viewport.Height), Color.Black, spriteBatch);
                 spriteBatch.DrawString(_font, Enigm, new Vector2((int)_context.Camera.Position.X + _context.GraphicsDevice.Viewport.Width / 2 - (Enigm.Length *7), (int)_context.Camera.Position.Y), Color.White);
                 spriteBatch.DrawString(_font, _enigmResponse, new Vector2((int)_context.Camera.Position.X +250, (int)_context.Camera.Position.Y + 200), Color.White);
             }
-            else if(_stateEnigm && _context.LoadOrUnloadFights == FightsState.Close && _context.graphics.IsFullScreen)
-            {
-                var Enigm = DoAnEnigm();
-                DrawRectangle(new Rectangle((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y, _context.GraphicsDevice.Viewport.Width, _context.GraphicsDevice.Viewport.Height), Color.Black, spriteBatch);
-                spriteBatch.DrawString(_font, Enigm, new Vector2((int)_context.Camera.Position.X+270, (int)_context.Camera.Position.Y), Color.White);
-                spriteBatch.DrawString(_font, _enigmResponse, new Vector2((int)_context.Camera.Position.X + 300, (int)_context.Camera.Position.Y + 200), Color.White);
-            }
-            if (_statusEnigm != string.Empty && LastActiveText + IntervalBetweenText > _gametime.TotalGameTime && !_context.graphics.IsFullScreen)
-                spriteBatch.DrawString(_font, _statusEnigm, new Vector2((int)_context.Camera.Position.X + _context.GraphicsDevice.Viewport.Width / 2 - (_statusEnigm.Length * 2), (int)_context.Camera.Position.Y + _context.GraphicsDevice.Viewport.Height - 50), Color.White);
-            else if (_statusEnigm != string.Empty && LastActiveText + IntervalBetweenText > _gametime.TotalGameTime && _context.graphics.IsFullScreen)
-                spriteBatch.DrawString(_font, _statusEnigm, new Vector2((int)_context.Camera.Position.X + 270, (int)_context.Camera.Position.Y+ 540 - 50), Color.White);
+            if (_statusEnigm != string.Empty && LastActiveText + IntervalBetweenText > _gametime.TotalGameTime) spriteBatch.DrawString(_font, _statusEnigm, new Vector2((int)_context.Camera.Position.X + _context.GraphicsDevice.Viewport.Width / 2 - (_statusEnigm.Length * 2), (int)_context.Camera.Position.Y + _context.GraphicsDevice.Viewport.Height - 50), Color.White);
+
         }
 
         /// <summary>

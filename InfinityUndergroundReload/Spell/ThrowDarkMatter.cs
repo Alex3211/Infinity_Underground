@@ -20,7 +20,7 @@ namespace InfinityUndergroundReload.Spell
             SpriteSheetColumns = 5;
             SpriteSheetRows = 2;
             TotalFrames = SpriteSheetRows * SpriteSheetColumns;
-            MillisecondsPerFrame = 100;
+            MillisecondsPerFrame = 60;
             IsSpell = true;
             SpellReapeat = true;
             _monster = monster;

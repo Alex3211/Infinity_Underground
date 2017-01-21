@@ -72,7 +72,7 @@ namespace InfinityUndergroundReload.Spell
 
             if (_spellPositionX > _player.PlayerAPI.PositionX)
             {
-                _spellPositionX = _spellPositionX - 6;
+                _spellPositionX = _spellPositionX - 12;
                 spriteBatch.Draw(Spritesheet, destinationRectangle, sourceRectangle, Color.White);
                 _explosion.ResetPosition = true;
             }

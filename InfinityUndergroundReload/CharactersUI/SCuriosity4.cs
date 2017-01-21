@@ -46,7 +46,7 @@ namespace InfinityUndergroundReload.CharactersUI
         /// <param name="bat">The bat.</param>
         public SCuriosity4(int spriteSheetRows, int spriteSheetColumns, InfinityUnderground context, CCuriosity4 curiosity)
         {
-            _redHit = 300;
+            _redHit = 120;
 
             Context = context;
 

@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-<<<<<<< HEAD
-  <SourceFile>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/Surface/Map.tmx</SourceFile>
-  <SourceTime>2017-01-11T09:51:00.8105433+01:00</SourceTime>
-  <DestFile>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/bin/DesktopGL/Surface/Map.xnb</DestFile>
-  <DestTime>2017-01-18T10:58:52.2456209+01:00</DestTime>
-=======
   <SourceFile>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Surface/Map.tmx</SourceFile>
   <SourceTime>2017-01-17T09:06:02.5931776+01:00</SourceTime>
   <DestFile>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/bin/DesktopGL/Surface/Map.xnb</DestFile>
   <DestTime>2017-01-17T11:36:00.3685968+01:00</DestTime>
->>>>>>> Feature-CreateUltimateAttackCuriosity4
   <Importer>TiledMapImporter</Importer>
   <ImporterTime>2016-04-08T11:54:30+02:00</ImporterTime>
   <Processor>TiledMapProcessor</Processor>

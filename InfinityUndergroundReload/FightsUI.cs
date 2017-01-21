@@ -44,11 +44,11 @@ namespace InfinityUndergroundReload
         public FightsUI(InfinityUnderground context)
         {
             _context = context;
-            _timeMaxForAnimation = 5000;
+            _timeMaxForAnimation = 2000;
             _turn = CharacterTurn.NoOne;
             _lastTurn = CharacterTurn.NoOne;
             _playerAttack = new RectangleSelectAttack();
-            _timeBeforeLeave = 3000;
+            _timeBeforeLeave = 2000;
         }
 
         public SpriteSheet MonsterFights
@@ -143,21 +143,25 @@ namespace InfinityUndergroundReload
                         {
                             _turn = CharacterTurn.Player;
 
-                            if (_keyboard.IsKeyDown(Keys.Left))
-                            {
-                                _selectedAttack = SelectedAttack.First;
-
-                            }
-                            else if (_keyboard.IsKeyDown(Keys.Right))
+                            if (_keyboard.IsKeyDown(Keys.Right))
                             {
                                 _selectedAttack = SelectedAttack.Second;
                             }
+                            else if (_keyboard.IsKeyDown(Keys.Left))
+                            {
+                                _selectedAttack = SelectedAttack.First;
+                            }
 
 
-                            if (_keyboard.IsKeyDown(Keys.I))
+                           if (_keyboard.IsKeyDown(Keys.I))
                             {
                                 _timeForAnimation = 0;
                                 _turn = CharacterTurn.NoOne;
+
+                                if (_selectedAttack == SelectedAttack.None)
+                                {
+                                    _selectedAttack = SelectedAttack.First;
+                                }
 
                                 switch(_selectedAttack)
                                 {
@@ -211,11 +215,42 @@ namespace InfinityUndergroundReload
 
             if (_context.LoadOrUnloadFights != FightsState.Close && (_keyboard.IsKeyDown(Keys.Enter) || _context.Player.PlayerAPI.CharacterType.LifePoint <= 0 || _monster.Monster.CharacterType.LifePoint <= 0))
             {
+
                 _timeLeave += _context.GetGameTime.ElapsedGameTime.Milliseconds;
                 if (_timeLeave >= _timeBeforeLeave)
                 {
+
                     _context.LoadOrUnloadFights = FightsState.Exit;
                     _timeLeave = 0;
+                    _currentAttack = null;
+
+                    switch (_context.WorldAPI.Random.Next(0, 6))
+                    {
+                        case 0:
+                            _context.Player.PlayerAPI.CharacterType.LifePoint += 20;
+                            _context.Player.PlayerAPI.CharacterType.MaxLifePoint += 20;
+                            break;
+
+                        case 1:
+                            _context.Player.PlayerAPI.CharacterType.Damage += 3;
+                            break;
+
+                        case 2:
+                            _context.Player.PlayerAPI.CharacterType.CriticalChance += 1;
+                            break;
+
+                        case 3:
+                            _context.Player.PlayerAPI.CharacterType.CriticalDamage += 3;
+                            break;
+
+                        case 4:
+                            _context.Player.PlayerAPI.CharacterType.Armor += 0.2;
+                            break;
+
+                        case 5:
+                            _context.Player.PlayerAPI.CharacterType.AttackSpeed += 0.1;
+                            break;
+                    }
                 }
             }
 

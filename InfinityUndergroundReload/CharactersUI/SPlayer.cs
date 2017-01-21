@@ -98,7 +98,7 @@ namespace InfinityUndergroundReload.CharactersUI
             _speedBar = new SpeedBarFights(_widthHealthBar, 25);
             _spells = new List<SpriteSheet>();
 
-            _redHit = 300;
+            _redHit = 120;
 
             foreach (string spell in _player.ListOfAttack)
             {
