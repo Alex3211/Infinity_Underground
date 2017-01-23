@@ -9,7 +9,7 @@ namespace InfinityUndergroundReload.API.Characters
     public class CCuriosity4  :CNPC
     {
         public CCuriosity4(int x, int y, World context)
-            :base(x, y, "Curiosity4")
+            :base(x, y, "Curiosity4", context)
         {
             CharacterType.Armor = 1.0;
             CharacterType.CriticalChance = 30.0;

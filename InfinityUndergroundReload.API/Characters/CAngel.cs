@@ -10,7 +10,7 @@ namespace InfinityUndergroundReload.API.Characters
     {
 
         public CAngel(int x, int y, World context)
-            :base(x, y, "Angel")
+            :base(x, y, "Angel", context)
         {
             CharacterType.Armor = 15.0;
             CharacterType.CriticalChance = 20.0;

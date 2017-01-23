@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 namespace InfinityUndergroundReload.API
 {
+
     public class World
     {
         ULevel _level;
@@ -23,7 +24,7 @@ namespace InfinityUndergroundReload.API
         public World()
         {
             _random = new Random();
-            _player = new CPlayer();
+            _player = new CPlayer(this);
             _listOfMonster = new List<CNPC>();
             _maxLevel = 1;
             _tileSize = 32;
@@ -296,25 +297,27 @@ namespace InfinityUndergroundReload.API
         /// </summary>
         void CreateMonster()
         {
-            _listOfMonster.Clear();
+            if (ListOfMonster.Count == 0)
+            {
 
-            if (GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "BossRoom" && GetLevel.GetRoom.RoomCharateristcs.NumberOfStyleRoom == "1")
-            {
-                _listOfMonster.Add(new CAngel(this));
-            }
-            else
-            {
-                for (int i = 0; i < GetLevel.GetRoom.RoomCharateristcs.NbOfNPC; i++)
+                if (GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "BossRoom" && GetLevel.GetRoom.RoomCharateristcs.NumberOfStyleRoom == "1")
                 {
-                    switch (_random.Next(0, 2))
+                    _listOfMonster.Add(new CAngel(this));
+                }
+                else
+                {
+                    for (int i = 0; i < GetLevel.GetRoom.RoomCharateristcs.NbOfNPC; i++)
                     {
-                        case 0:
-                            _listOfMonster.Add(new CDragon(this));
-                            break;
+                        switch (_random.Next(0, 2))
+                        {
+                            case 0:
+                                _listOfMonster.Add(new CDragon(this));
+                                break;
 
-                        case 1:
-                            _listOfMonster.Add(new CCuriosity4(this));
-                            break;
+                            case 1:
+                                _listOfMonster.Add(new CCuriosity4(this));
+                                break;
+                        }
                     }
                 }
             }

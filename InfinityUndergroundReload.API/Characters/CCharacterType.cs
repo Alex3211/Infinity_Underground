@@ -8,6 +8,7 @@ namespace InfinityUndergroundReload.API.Characters
 {
     public class CCharacterType
     {
+        double _ratio;
         int _moveSpeed;
         int _lifepoint;
         int _maxLifePoint;
@@ -19,7 +20,7 @@ namespace InfinityUndergroundReload.API.Characters
         double _criticalChance;
         double _attackSpeed;
         double _armor;
-        
+
 
 
         public CCharacterType(CCharacter context)
@@ -37,15 +38,21 @@ namespace InfinityUndergroundReload.API.Characters
         {
             get
             {
-                if (_lifepoint > _maxLifePoint)
+                if (!_context.IsPlayer && _context.Context.GetMaxLevel >= 10)
                 {
-                    _maxLifePoint = _lifepoint;
-                    return _maxLifePoint;
+                    _ratio = _context.Context.GetMaxLevel;
                 }
                 else
                 {
-                    return _maxLifePoint;
+                    _ratio = 10;
                 }
+
+                if (_lifepoint > _maxLifePoint)
+                {
+                    _maxLifePoint = _lifepoint;
+                }
+
+                return (int)(_maxLifePoint * (_ratio / 10));
             }
 
             set
@@ -74,10 +81,18 @@ namespace InfinityUndergroundReload.API.Characters
         /// Character Lifepoint.
         /// </summary>
         public int LifePoint
-        { 
+        {
             get
             {
-                return _lifepoint;
+                if (!_context.IsPlayer && _context.Context.GetMaxLevel >= 10)
+                {
+                    _ratio = _context.Context.GetMaxLevel;
+                }
+                else
+                {
+                    _ratio = 10;
+                }
+                return (int)(_lifepoint * (_ratio / 10));
             }
 
             set
@@ -90,10 +105,16 @@ namespace InfinityUndergroundReload.API.Characters
         /// Character Damage.
         /// </summary>
         public int Damage
-        { 
+        {
             get
             {
-                return _damage;
+                if (!_context.IsPlayer && _context.Context.GetMaxLevel >= 10)
+                    _ratio = _context.Context.GetMaxLevel;
+                else
+                {
+                    _ratio = 10;
+                }
+                return (int)(_damage * (_ratio / 10));
             }
 
             set
@@ -109,7 +130,13 @@ namespace InfinityUndergroundReload.API.Characters
         {
             get
             {
-                return _criticalDamage;
+                if (!_context.IsPlayer && _context.Context.GetMaxLevel >= 10)
+                    _ratio = _context.Context.GetMaxLevel;
+                else
+                {
+                    _ratio = 10;
+                }
+                return (int)(_criticalDamage * (_ratio / 10));
             }
 
             set
@@ -159,7 +186,13 @@ namespace InfinityUndergroundReload.API.Characters
         {
             get
             {
-                return _criticalChance;
+                if (!_context.IsPlayer && _context.Context.GetMaxLevel >= 10)
+                    _ratio = _context.Context.GetMaxLevel;
+                else
+                {
+                    _ratio = 10;
+                }
+                return (_criticalChance * (_ratio / 10));
             }
 
             set
@@ -175,7 +208,13 @@ namespace InfinityUndergroundReload.API.Characters
         {
             get
             {
-                return _attackSpeed;
+                if (!_context.IsPlayer && _context.Context.GetMaxLevel >= 10)
+                    _ratio = _context.Context.GetMaxLevel;
+                else
+                {
+                    _ratio = 10;
+                }
+                return (_attackSpeed * (_ratio / 10));
             }
 
             set
@@ -191,7 +230,13 @@ namespace InfinityUndergroundReload.API.Characters
         {
             get
             {
-                return _armor;
+                if (!_context.IsPlayer && _context.Context.GetMaxLevel >= 10)
+                    _ratio = _context.Context.GetMaxLevel;
+                else
+                {
+                    _ratio = 10;
+                }
+                return (_armor * (_ratio / 10));
             }
 
             set
