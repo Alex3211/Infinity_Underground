@@ -207,7 +207,7 @@ namespace InfinityUndergroundReload.API
                                 return _tempAttack;
 
                             case "Angel":
-                                _tempAttack = CAttacks.Curiosity2();
+                                _tempAttack = CAttacks.Meteor();
                                 _playerAttacks.Add(_tempAttack);
                                 return _tempAttack;
                         }
@@ -227,7 +227,7 @@ namespace InfinityUndergroundReload.API
                                 return _tempAttack;
 
                             case "Angel":
-                                _tempAttack = CAttacks.Curiosity2();
+                                _tempAttack = CAttacks.CreateBirthOfASun();
                                 _monsterAttacks.Add(_tempAttack);
                                 return _tempAttack;
                         }

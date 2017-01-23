@@ -4,7 +4,6 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Curiosity/black-hole.png</File>
     <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Player/Player.png</File>
     <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Surface/Map.tmx</File>
     <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Ressources/Artis_dock.png</File>
@@ -57,6 +56,11 @@
     <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Effect/explosion.png</File>
     <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Angel/Angel.png</File>
     <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Curiosity/white-hole.png</File>
+    <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Curiosity/black-hole.png</File>
     <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Curiosity/worm-hole.png</File>
+    <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Effect/meteor.png</File>
+    <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Effect/nuclear-explosion.png</File>
+    <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Effect/Smoke.png</File>
+    <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Effect/fusion.png</File>
   </SourceFiles>
 </SourceFileCollection>

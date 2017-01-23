@@ -53,7 +53,7 @@ namespace InfinityUndergroundReload.Spell
         public override void Unload(ContentManager content)
         {
             if (_wormHole != null) _wormHole.Dispose();
-            if (_whiteHole != null) _wormHole.Dispose();
+            if (_whiteHole != null) _whiteHole.Dispose();
             base.Unload(content);
         }
 

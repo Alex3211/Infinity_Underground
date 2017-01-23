@@ -115,7 +115,7 @@ namespace InfinityUndergroundReload.API.Characters
             }
         }
 
-        public static CAttacks CreateBirthOfASun() => new CAttacks("BirthOfASun", 3, 4, 5, 5, 200);
+        public static CAttacks CreateBirthOfASun() => new CAttacks("BirthOfASun", 0, 0, 3, 5, 200);
 
         public static CAttacks ThrowDarkMatter() => new CAttacks("ThrowDarkMatter", 0, 1, 1, 0, 50);
 
@@ -124,6 +124,8 @@ namespace InfinityUndergroundReload.API.Characters
         public static CAttacks RedSlash() => new CAttacks("RedSlash", 0, 1, 1, 0, 50);
 
         public static CAttacks Curiosity2() => new CAttacks("Curiosity2", 0, 1, 1, 0, 50);
+
+        public static CAttacks Meteor() => new CAttacks("Meteor", 0, 1, 1, 0, 70);
     }
 
 

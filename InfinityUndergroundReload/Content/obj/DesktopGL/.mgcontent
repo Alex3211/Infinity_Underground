@@ -58,5 +58,9 @@
     <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Curiosity/white-hole.png</File>
     <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Curiosity/black-hole.png</File>
     <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Curiosity/worm-hole.png</File>
+    <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Effect/meteor.png</File>
+    <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Effect/nuclear-explosion.png</File>
+    <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Effect/Smoke.png</File>
+    <File>C:/Dev/Projet/IUR/InfinityUndergroundReload/Content/Effect/fusion.png</File>
   </SourceFiles>
 </SourceFileCollection>

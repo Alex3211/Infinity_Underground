@@ -214,8 +214,14 @@ namespace InfinityUndergroundReload.API.Underground
         public void CreateRoom()
         {
             var rooms = from room in _saveRoom where room.Position == _posCurrentRoom select room;
+            if (_context.CurrentLevel == 1 && _posCurrentRoom == new Vector2(1, 0))
+            {
+                _room = new URoom(this, "Boss");
+                _room.RoomCharateristcs.NumberOfStyleRoom = "1";
+                _saveRoom.Add(new RoomInLevel(_posCurrentRoom, _room.RoomCharateristcs.NameOfMap, _room.RoomCharateristcs.NumberOfStyleRoom.ToString(), _context.ListOfMonster));
 
-            if (rooms.Count() != 0)
+            }
+            else if (rooms.Count() != 0)
             {
                 foreach(RoomInLevel room in rooms)
                 {

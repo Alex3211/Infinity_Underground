@@ -76,6 +76,10 @@ namespace InfinityUndergroundReload.API.Underground
                     _roomCharateristics = new URoomOut();
                     break;
 
+                case "Boss":
+                    _roomCharateristics = new UBossRoom();
+                    break;
+
             }
         }
 
