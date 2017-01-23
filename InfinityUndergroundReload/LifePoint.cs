@@ -91,7 +91,11 @@ namespace InfinityUndergroundReload
 
         public int CalculPourcentLifePoint(int maxLifePoint, int actualLifepoint)
         {
-            return Math.Abs(((_maxLifepoint - actualLifepoint) * 100 / actualLifepoint) - 100);
+            if (actualLifepoint == maxLifePoint)
+            {
+                return 100;
+            }
+            return Math.Abs(((_maxLifepoint - actualLifepoint) * 100 / maxLifePoint) - 100);
         }
 
         /// <summary>

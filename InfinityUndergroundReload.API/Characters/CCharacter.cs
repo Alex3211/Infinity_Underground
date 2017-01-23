@@ -10,24 +10,27 @@ namespace InfinityUndergroundReload.API.Characters
     public abstract class CCharacter
     {
         bool _isDead;
+        bool _isPlayer;
         Vector2 _position;
         CCharacterType _characterType;
+        World _context;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CCharacter" /> class.
         /// </summary>
         /// <param name="pos">The position.</param>
-        public CCharacter(Vector2 pos)
+        public CCharacter(Vector2 pos, World context)
         {
             _position = pos;
             _characterType = new CCharacterType(this);
+            _context = context;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CCharacter"/> class.
         /// </summary>
-        public CCharacter()
-            : this(new Vector2(500, 500))
+        public CCharacter(World context)
+            : this(new Vector2(50, 50), context)
         { }
 
         /// <summary>
@@ -35,9 +38,47 @@ namespace InfinityUndergroundReload.API.Characters
         /// </summary>
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>
-        public CCharacter(int x, int y)
-            : this(new Vector2(x, y))
+        public CCharacter(int x, int y, World context)
+            : this(new Vector2(x, y), context)
         { }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is player.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is player; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsPlayer
+        {
+            get
+            {
+                return _isPlayer;
+            }
+
+            set
+            {
+                _isPlayer = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the context.
+        /// </summary>
+        /// <value>
+        /// The context.
+        /// </value>
+        public World Context
+        {
+            get
+            {
+                return _context;
+            }
+
+            set
+            {
+                _context = value;
+            }
+        }
 
         /// <summary>
         /// Gets the position.

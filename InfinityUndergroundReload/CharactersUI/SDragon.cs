@@ -45,7 +45,7 @@ namespace InfinityUndergroundReload.CharactersUI
         /// <param name="bat">The bat.</param>
         public SDragon(int spriteSheetRows, int spriteSheetColumns, InfinityUnderground context, CDragon dragon)
         {
-            _redHit = 300;
+            _redHit = 120;
 
             Context = context;
 

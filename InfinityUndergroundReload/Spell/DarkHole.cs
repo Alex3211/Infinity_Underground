@@ -31,7 +31,7 @@ namespace InfinityUndergroundReload.Spell
             SpriteSheetColumns = 6;
             SpriteSheetRows = 6;
             TotalFrames = SpriteSheetRows * SpriteSheetColumns;
-            MillisecondsPerFrame = 100;
+            MillisecondsPerFrame = 60;
             IsSpell = true;
             SpellReapeat = false;
             _monster = monster;
@@ -53,7 +53,7 @@ namespace InfinityUndergroundReload.Spell
         public override void Unload(ContentManager content)
         {
             if (_wormHole != null) _wormHole.Dispose();
-            if (_whiteHole != null) _wormHole.Dispose();
+            if (_whiteHole != null) _whiteHole.Dispose();
             base.Unload(content);
         }
 

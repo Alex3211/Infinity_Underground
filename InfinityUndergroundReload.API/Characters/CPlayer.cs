@@ -11,8 +11,8 @@ namespace InfinityUndergroundReload.API.Characters
         List<string> _listOfAttacks;
         bool _shield;
 
-        public CPlayer()
-            :base()
+        public CPlayer(World context)
+            :base(context)
         {
             CharacterType.MoveSpeed = 2;
             CharacterType.LifePoint = 2000;
@@ -23,6 +23,7 @@ namespace InfinityUndergroundReload.API.Characters
             CharacterType.Damage = 50;
             _listOfAttacks = new List<string>();
             _listOfAttacks.Add(CAttacks.RedSlash().Name);
+            IsPlayer = true;
         }
 
         /// <summary>

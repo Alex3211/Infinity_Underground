@@ -108,8 +108,15 @@ namespace InfinityUndergroundReload.API.Underground
 
             while (_roomOut == new Vector2(0, 0))
             {
-                _roomOut = new Vector2(_random.Next(1, 2 * currentLevel), _random.Next(1, 2 * currentLevel));
-            } 
+                if (currentLevel == 0)
+                {
+                    _roomOut = new Vector2(_random.Next(1, 2), _random.Next(1, 2));
+                }
+                else
+                {
+                    _roomOut = new Vector2(_random.Next(1, 2 * currentLevel), _random.Next(1, 2 * currentLevel));
+                }
+            }
 
         }
 
@@ -213,9 +220,16 @@ namespace InfinityUndergroundReload.API.Underground
         /// </summary>
         public void CreateRoom()
         {
+            _context.ListOfMonster.Clear();
             var rooms = from room in _saveRoom where room.Position == _posCurrentRoom select room;
+            if (_context.CurrentLevel == 1 && _posCurrentRoom == new Vector2(1, 0))
+            {
+                _room = new URoom(this, "Boss");
+                _room.RoomCharateristcs.NumberOfStyleRoom = "1";
+                _saveRoom.Add(new RoomInLevel(_posCurrentRoom, _room.RoomCharateristcs.NameOfMap, _room.RoomCharateristcs.NumberOfStyleRoom.ToString(), _context.ListOfMonster));
 
-            if (rooms.Count() != 0)
+            }
+            else if (rooms.Count() != 0)
             {
                 foreach(RoomInLevel room in rooms)
                 {

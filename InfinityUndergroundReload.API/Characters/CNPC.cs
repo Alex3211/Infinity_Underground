@@ -17,14 +17,14 @@ namespace InfinityUndergroundReload.API.Characters
         /// </summary>
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>
-        public CNPC(int x, int y)
-            : base(x, y)
+        public CNPC(int x, int y, World context)
+            : base(x, y, context)
         {
             _listOfAttacks = new List<string>();
         }
 
-        public CNPC(int x, int y, string typeOfMonster)
-            : base(x, y)
+        public CNPC(int x, int y, string typeOfMonster, World context)
+            : base(x, y, context)
         {
             _typeOfMonster = typeOfMonster;
             _listOfAttacks = new List<string>();

@@ -58,6 +58,7 @@
     <Compile Include="Spell\BirthOfASun.cs" />
     <Compile Include="Spell\DarkHole.cs" />
     <Compile Include="Spell\Explosion.cs" />
+    <Compile Include="Spell\Meteor.cs" />
     <Compile Include="Spell\RedSlash.cs" />
     <Compile Include="Spell\Shield.cs" />
     <Compile Include="Spell\ThrowDarkMatter.cs" />

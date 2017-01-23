@@ -46,7 +46,7 @@ namespace InfinityUndergroundReload.CharactersUI
         /// <param name="bat">The bat.</param>
         public SAngel(int spriteSheetRows, int spriteSheetColumns, InfinityUnderground context, CAngel angel)
         {
-            _redHit = 300;
+            _redHit = 120;
 
             Context = context;
 
@@ -78,7 +78,7 @@ namespace InfinityUndergroundReload.CharactersUI
                 _direction = action.RowAction;
             }
 
-            FightsPosition = new Vector2(600, 300);
+            FightsPosition = new Vector2(1000, 400);
 
             _spells = new List<SpriteSheet>();
 
@@ -88,8 +88,12 @@ namespace InfinityUndergroundReload.CharactersUI
                 {
                     switch (spell)
                     {
-                        case "Curiosity2":
-                            _spells.Add(new Curiosity2(this, Context.Player));
+                        case "Meteor":
+                            _spells.Add(new Meteor(this, Context.Player));
+                            break;
+
+                        case "BirthOfASun":
+                            _spells.Add(new BirthOfASun(this, Context.Player));
                             break;
                     }
                 }
@@ -130,11 +134,8 @@ namespace InfinityUndergroundReload.CharactersUI
         {
             if (Context.LoadOrUnloadFights == FightsState.InFights)
             {
-
-
                 if (Context.Fights.Turn == API.CharacterTurn.Monster && Context.Fights.CurrentAttack != null)
                 {
-
                     foreach (SpriteSheet s in _spells)
                     {
                         if (s.NameSpell == Context.Fights.CurrentAttack.Name)
@@ -192,20 +193,24 @@ namespace InfinityUndergroundReload.CharactersUI
 
             if (Context.LoadOrUnloadFights == FightsState.InFights)
             {
+                foreach (SpriteSheet s in _spells)
+                {
+                    if (_lastAttack != Context.Fights.CurrentAttack)
+                    {
+                        s.ResetPosition = true;
+                    }
 
+                }
 
                 if (Context.Fights.Turn == API.CharacterTurn.Monster && Context.Fights.CurrentAttack != null)
                 {
 
                     foreach (SpriteSheet s in _spells)
                     {
-                        if (_lastAttack != Context.Fights.CurrentAttack)
-                        {
-                            s.ResetPosition = true;
-                        }
 
                         if (s.NameSpell == Context.Fights.CurrentAttack.Name)
                         {
+                            s.Turn = Context.Fights.CurrentAttack.TurnsDuringDamage;
                             s.Draw(spriteBatch);
                         }
 
@@ -219,14 +224,13 @@ namespace InfinityUndergroundReload.CharactersUI
                 _lastAttack = Context.Fights.CurrentAttack;
 
 
-
-                _speedBar.Draw(spriteBatch, (int)FightsPosition.X, (int)FightsPosition.Y - 20, Monster.CharacterType.LifePoint, Context.GraphicsDevice, (_widthBar * (int)Context.Fights.TheFights.MonsterTurnsLoading / 20), 10);
-                _healthBar.Draw(spriteBatch, (int)FightsPosition.X, (int)FightsPosition.Y - 40, Monster.CharacterType.LifePoint, Context.GraphicsDevice, (_widthBar * Monster.CharacterType.LifePoint / 20), 20);
-                _destinationRectangle = new Rectangle((int)FightsPosition.X, (int)FightsPosition.Y, Width * 8, Height * 8);
+                _speedBar.Draw(spriteBatch, (int)FightsPosition.X + 200, (int)FightsPosition.Y - 20, Monster.CharacterType.LifePoint, Context.GraphicsDevice, (int)Context.Fights.TheFights.MonsterTurnsLoading, 10, true);
+                _healthBar.Draw(spriteBatch, (int)FightsPosition.X + 200, (int)FightsPosition.Y - 40, Monster.CharacterType.LifePoint, Context.GraphicsDevice, Monster.CharacterType.MaxLifePoint, 10, true);
+                _destinationRectangle = new Rectangle((int)FightsPosition.X, (int)FightsPosition.Y, Width * 9, Height * 9);
             }
             else
             {
-                _destinationRectangle = new Rectangle(Monster.PositionX, Monster.PositionY, Width * 3, Height * 3);
+                _destinationRectangle = new Rectangle(Monster.PositionX, Monster.PositionY, Width * 4, Height * 4);
             }
 
             if (_lastLifePoint != Monster.CharacterType.LifePoint || _takeHit)

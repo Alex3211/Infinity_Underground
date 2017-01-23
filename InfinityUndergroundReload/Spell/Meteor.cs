@@ -2,40 +2,35 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InfinityUndergroundReload.Spell
 {
-    class Curiosity2 : SpriteSheet
+    class Meteor : SpriteSheet
     {
         SpriteSheet _monster;
         SPlayer _player;
-        int _spellPositionX;
+        int _spellPositionY;
         SpriteSheet _explosion;
 
 
-        public Curiosity2(SpriteSheet monster, SPlayer player)
+        public Meteor(SpriteSheet monster, SPlayer player)
         {
-            SpriteSheetColumns = 3;
-            SpriteSheetRows = 1;
+            SpriteSheetColumns = 5;
+            SpriteSheetRows = 3;
             TotalFrames = SpriteSheetRows * SpriteSheetColumns;
-            MillisecondsPerFrame = 20;
+            MillisecondsPerFrame = 200;
             IsSpell = true;
             _monster = monster;
-            NameSpell = "Curiosity2";
+            NameSpell = "Meteor";
             _player = player;
-            _spellPositionX = _monster.Monster.PositionX;
-            _explosion = new Explosion(_player);
+            _spellPositionY = _player.PlayerAPI.PositionY - 600;
+            _explosion = new NuclearExplosion(_player);
             SpellReapeat = true;
         }
 
         public override void LoadContent(ContentManager content)
         {
-            Spritesheet = content.Load<Texture2D>("Curiosity/Curiosity2");
+            Spritesheet = content.Load<Texture2D>("Effect/meteor");
             _explosion.LoadContent(content);
         }
 
@@ -46,7 +41,7 @@ namespace InfinityUndergroundReload.Spell
 
         public override void Update(GameTime gameTime)
         {
-            if (_spellPositionX <= _player.PlayerAPI.PositionX)
+            if (_spellPositionY >= _player.PlayerAPI.PositionY)
             {
                 _explosion.Update(gameTime);
             }
@@ -56,9 +51,14 @@ namespace InfinityUndergroundReload.Spell
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            SpriteSheetColumns = 5;
+            SpriteSheetRows = 3;
+
             if (ResetPosition)
             {
-                _spellPositionX = (int)_monster.FightsPosition.X;
+                CurrentRow = 0;
+                CurrentFrame = 0;
+                _spellPositionY = _player.PlayerAPI.PositionY - 600;
             }
 
             Width = Spritesheet.Width / SpriteSheetColumns;
@@ -68,21 +68,22 @@ namespace InfinityUndergroundReload.Spell
 
             Rectangle sourceRectangle = new Rectangle(Width * Column, Height * CurrentRow, Width, Height);
 
-            Rectangle destinationRectangle = new Rectangle(_spellPositionX, _player.PlayerAPI.PositionY + 65, Width*4, Height*4);
+            Rectangle destinationRectangle = new Rectangle(_player.PlayerAPI.PositionX, _spellPositionY - 1000, Width, Height);
 
-            if (_spellPositionX > _player.PlayerAPI.PositionX)
+            if (_spellPositionY < _player.PlayerAPI.PositionY + 800)
             {
-                _spellPositionX = _spellPositionX - 12;
+                _spellPositionY = _spellPositionY + 24;
                 spriteBatch.Draw(Spritesheet, destinationRectangle, sourceRectangle, Color.White);
                 _explosion.ResetPosition = true;
             }
-            else if (_spellPositionX <= _player.PlayerAPI.PositionX + 50)
+            else if (_spellPositionY >= _player.PlayerAPI.PositionY)
             {
                 _explosion.Draw(spriteBatch);
             }
 
 
-            
+
         }
+
     }
 }
