@@ -9,6 +9,7 @@ namespace InfinityUndergroundReload.Interface
 {
     public class DataSave
     {
+        //const string fileName = "../../../../../save/Character.save";
         const string fileName = "../../../save/Character.save";
         InfinityUnderground _context;
 
@@ -84,6 +85,15 @@ namespace InfinityUndergroundReload.Interface
         /// </value>
         private string LIFEPOINT { get; set; }
 
+
+        /// <summary>
+        /// Gets or sets the lifepoint.
+        /// </summary>
+        /// <value>
+        /// The lifepoint.
+        /// </value>
+        private string MAXLIFEPOINT { get; set; }
+
         /// <summary>
         /// Writes the values.
         /// </summary>
@@ -98,6 +108,7 @@ namespace InfinityUndergroundReload.Interface
                 writer.Write(ARMOR);
                 writer.Write(RANGE);
                 writer.Write(LIFEPOINT);
+                writer.Write(MAXLIFEPOINT);
             }
         }
 
@@ -110,6 +121,7 @@ namespace InfinityUndergroundReload.Interface
             ARMOR = _context.WorldAPI.Player.CharacterType.Armor.ToString();
             RANGE = _context.WorldAPI.Player.CharacterType.Range.ToString();
             LIFEPOINT = _context.WorldAPI.Player.CharacterType.LifePoint.ToString();
+            MAXLIFEPOINT = _context.WorldAPI.Player.CharacterType.MaxLifePoint.ToString();
         }
 
         /// <summary>
@@ -127,6 +139,7 @@ namespace InfinityUndergroundReload.Interface
                     ARMOR = reader.ReadString().ToString();
                     RANGE = reader.ReadString().ToString();
                     LIFEPOINT = reader.ReadString().ToString();
+                    MAXLIFEPOINT = reader.ReadString().ToString();
                 }
         }
 
@@ -142,6 +155,7 @@ namespace InfinityUndergroundReload.Interface
             _context.WorldAPI.Player.CharacterType.Armor = Convert.ToDouble(ARMOR);
             _context.WorldAPI.Player.CharacterType.Range = Convert.ToInt32(RANGE);
             _context.WorldAPI.Player.CharacterType.LifePoint = Convert.ToInt32(LIFEPOINT);
+            _context.WorldAPI.Player.CharacterType.MaxLifePoint = Convert.ToInt32(MAXLIFEPOINT);
         }
     }
 }
