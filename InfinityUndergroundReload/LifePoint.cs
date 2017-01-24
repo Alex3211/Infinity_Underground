@@ -13,7 +13,7 @@ namespace InfinityUndergroundReload
         Texture2D _healthBar;
         Color[] data;
         Color _colorBar;
-        int _maxLifepoint, _width, _height;
+        int _width, _height;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LifePointMonster"/> class.
@@ -30,22 +30,22 @@ namespace InfinityUndergroundReload
         /// <summary>
         /// Sets the rectangle.
         /// </summary>
-        public void SetRectangle(int lifepoint)
+        public void SetRectangle(int pourcent)
         {
 
-            if (lifepoint <= (_maxLifepoint / 5))
+            if (pourcent <= 20)
             {
                 _healthBar.SetData(new Color[] { Color.Red });
             }
-            else if (lifepoint <= (_maxLifepoint / 3))
+            else if (pourcent <= 33)
             {
                 _healthBar.SetData(new Color[] { Color.OrangeRed });
             }
-            else if (lifepoint <= (_maxLifepoint / 2))
+            else if (pourcent <= 50)
             {
                 _healthBar.SetData(new Color[] { Color.Orange });
             }
-            else if (lifepoint <= (_maxLifepoint / 1.5))
+            else if (pourcent <= 75)
             {
                 _healthBar.SetData(new Color[] { Color.GreenYellow });
             }
@@ -57,45 +57,40 @@ namespace InfinityUndergroundReload
         }
 
         /// <summary>
-        /// Sets the maximum life point.
-        /// </summary>
-        void SetMaxLifePoint(int lifepoint)
-        {
-            if (lifepoint > _maxLifepoint)
-            {
-                _maxLifepoint = lifepoint;
-            }
-        }
-
-
-
-        /// <summary>
         /// Draws the specified game time.
         /// </summary>
         /// <param name="gameTime">The game time.</param>
         public void Draw(SpriteBatch spriteBatch, int posX, int posY, int lifepoint, GraphicsDevice graphicsDevice, int maxLifepoint, int height)
         {
+            if (lifepoint < 0)
+            {
+                lifepoint = 0;
+            }
             int pourcent = CalculPourcentLifePoint(maxLifepoint, lifepoint);
 
             _width = 100;
             _height = height;
 
-            SetMaxLifePoint(lifepoint);
-
             if (_healthBar != null) _healthBar.Dispose();
             _healthBar = new Texture2D(graphicsDevice, 1, 1, false, SurfaceFormat.Color);
 
-            SetRectangle(lifepoint);
+            SetRectangle(pourcent);
             spriteBatch.Draw(_healthBar, new Rectangle(posX, posY, pourcent * 2, height), Color.White);
         }
 
+        /// <summary>
+        /// Calculs the pourcent life point.
+        /// </summary>
+        /// <param name="maxLifePoint">The maximum life point.</param>
+        /// <param name="actualLifepoint">The actual lifepoint.</param>
+        /// <returns></returns>
         public int CalculPourcentLifePoint(int maxLifePoint, int actualLifepoint)
         {
             if (actualLifepoint == maxLifePoint)
             {
                 return 100;
             }
-            return Math.Abs(((_maxLifepoint - actualLifepoint) * 100 / maxLifePoint) - 100);
+            return Math.Abs(((maxLifePoint - actualLifepoint) * 100 / maxLifePoint) - 100);
         }
 
         /// <summary>
@@ -104,17 +99,20 @@ namespace InfinityUndergroundReload
         /// <param name="gameTime">The game time.</param>
         public void Draw(SpriteBatch spriteBatch, int posX, int posY, int lifepoint, GraphicsDevice graphicsDevice, int maxLifepoint, int height, bool isMonster)
         {
+            if (lifepoint < 0)
+            {
+                lifepoint = 0;
+            }
+
             int pourcent = CalculPourcentLifePoint(maxLifepoint, lifepoint);
 
             _width = 100;
             _height = height;
 
-            SetMaxLifePoint(lifepoint);
-
             if (_healthBar != null) _healthBar.Dispose();
             _healthBar = new Texture2D(graphicsDevice, 1, 1, false, SurfaceFormat.Color);
 
-            SetRectangle(lifepoint);
+            SetRectangle(pourcent);
             spriteBatch.Draw(_healthBar, new Rectangle(posX, posY, pourcent * 4, height), Color.White);
         }
 

@@ -193,6 +193,7 @@ namespace InfinityUndergroundReload
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             _zoom = 0.1f;
+            _dataSave = new DataSave(this);
 
             graphics.PreferredBackBufferHeight = WindowHeight;
             graphics.PreferredBackBufferWidth = WindowWidth;
@@ -202,16 +203,18 @@ namespace InfinityUndergroundReload
             _worldAPI = new World();
             _map = new MapLoader(this);
             _player = new SPlayer(this, 21, 13);
-            _listOfMonster = new List<SpriteSheet>();
-            _fights = new FightsUI(this);
-            
-            _worldAPI.CreateDoor();
-            _dataSave = new DataSave(this);
             if (_dataSave.IsExistSave)
             {
                 _dataSave.LoadValuesFromTheFile();
                 _dataSave.SetValuesInThePlayer();
             }
+
+            _listOfMonster = new List<SpriteSheet>();
+            _fights = new FightsUI(this);
+            
+            _worldAPI.CreateDoor();
+ 
+
             _fightState = FightsState.Close;
             _timeMaxForTakeNextDoor = 1000;
             _timeForTakeNextDoor = 0;
