@@ -26,6 +26,8 @@ namespace InfinityUndergroundReload.Spell
 
         Vector2 _position;
 
+        float _angle;
+
         public DarkHole(SpriteSheet monster, SPlayer player)
         {
             SpriteSheetColumns = 6;
@@ -103,18 +105,19 @@ namespace InfinityUndergroundReload.Spell
 
                     spriteBatch.Draw(Spritesheet, destinationRectangle, sourceRectangle, Color.White);
                     break;
-
+                
                 case 1:
+                    _angle += 0.55f;
+                    Vector2 _origin = new Vector2(_wormHole.Width / 2, _wormHole.Height / 2);
                     _wormHoleWidth = _wormHole.Width / SpriteSheetColumns;
                     _wormHoleHeight = _wormHole.Height / SpriteSheetRows;
 
                     sourceRectangle = new Rectangle(0, 0, _wormHoleWidth, _wormHoleHeight);
 
-                    destinationRectangle = new Rectangle((int)_position.X, (int)_position.Y, _wormHoleWidth * 3, _wormHoleHeight * 3);
+                    destinationRectangle = new Rectangle((int)_position.X + 400, (int)_position.Y + 500, _wormHoleWidth * 3, _wormHoleHeight * 3);
 
 
-                    spriteBatch.Draw(_wormHole, destinationRectangle, sourceRectangle, Color.White);
-
+                    spriteBatch.Draw(_wormHole, destinationRectangle, sourceRectangle, Color.White, _angle, _origin, SpriteEffects.None, 1);
                     break;
 
                 case 0:
