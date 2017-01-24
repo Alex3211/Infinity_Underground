@@ -9,8 +9,8 @@ namespace InfinityUndergroundReload.Interface
 {
     public class DataSave
     {
-        //const string fileName = "../../../../../save/Character.save";
-        const string fileName = "../../../save/Character.save";
+        const string fileName = "../../../../../save/Character.save";
+        //const string fileName = "../../../save/Character.save";
         InfinityUnderground _context;
 
         /// <summary>

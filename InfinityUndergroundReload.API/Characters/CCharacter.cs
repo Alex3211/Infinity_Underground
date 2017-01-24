@@ -30,7 +30,7 @@ namespace InfinityUndergroundReload.API.Characters
         /// Initializes a new instance of the <see cref="CCharacter"/> class.
         /// </summary>
         public CCharacter(World context)
-            : this(new Vector2(50, 50), context)
+            : this(new Vector2(500, 500), context)
         { }
 
         /// <summary>

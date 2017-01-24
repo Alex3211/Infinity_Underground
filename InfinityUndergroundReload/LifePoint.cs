@@ -62,6 +62,10 @@ namespace InfinityUndergroundReload
         /// <param name="gameTime">The game time.</param>
         public void Draw(SpriteBatch spriteBatch, int posX, int posY, int lifepoint, GraphicsDevice graphicsDevice, int maxLifepoint, int height)
         {
+            if (lifepoint < 0)
+            {
+                lifepoint = 0;
+            }
             int pourcent = CalculPourcentLifePoint(maxLifepoint, lifepoint);
 
             _width = 100;
@@ -95,6 +99,11 @@ namespace InfinityUndergroundReload
         /// <param name="gameTime">The game time.</param>
         public void Draw(SpriteBatch spriteBatch, int posX, int posY, int lifepoint, GraphicsDevice graphicsDevice, int maxLifepoint, int height, bool isMonster)
         {
+            if (lifepoint < 0)
+            {
+                lifepoint = 0;
+            }
+
             int pourcent = CalculPourcentLifePoint(maxLifepoint, lifepoint);
 
             _width = 100;

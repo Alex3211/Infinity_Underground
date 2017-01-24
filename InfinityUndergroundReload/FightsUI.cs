@@ -223,33 +223,35 @@ namespace InfinityUndergroundReload
                     _context.LoadOrUnloadFights = FightsState.Exit;
                     _timeLeave = 0;
                     _currentAttack = null;
-
-                    switch (_context.WorldAPI.Random.Next(0, 6))
+                    if (_monster.Monster.CharacterType.LifePoint <= 0)
                     {
-                        case 0:
-                            _context.Player.PlayerAPI.CharacterType.LifePoint += 20;
-                            _context.Player.PlayerAPI.CharacterType.MaxLifePoint += 20;
-                            break;
+                        switch (_context.WorldAPI.Random.Next(0, 6))
+                        {
+                            case 0:
+                                _context.Player.PlayerAPI.CharacterType.LifePoint += 20;
+                                _context.Player.PlayerAPI.CharacterType.MaxLifePoint += 20;
+                                break;
 
-                        case 1:
-                            _context.Player.PlayerAPI.CharacterType.Damage += 3;
-                            break;
+                            case 1:
+                                _context.Player.PlayerAPI.CharacterType.Damage += 3;
+                                break;
 
-                        case 2:
-                            _context.Player.PlayerAPI.CharacterType.CriticalChance += 1;
-                            break;
+                            case 2:
+                                _context.Player.PlayerAPI.CharacterType.CriticalChance += 1;
+                                break;
 
-                        case 3:
-                            _context.Player.PlayerAPI.CharacterType.CriticalDamage += 3;
-                            break;
+                            case 3:
+                                _context.Player.PlayerAPI.CharacterType.CriticalDamage += 3;
+                                break;
 
-                        case 4:
-                            _context.Player.PlayerAPI.CharacterType.Armor += 0.2;
-                            break;
+                            case 4:
+                                _context.Player.PlayerAPI.CharacterType.Armor += 0.2;
+                                break;
 
-                        case 5:
-                            _context.Player.PlayerAPI.CharacterType.AttackSpeed += 0.1;
-                            break;
+                            case 5:
+                                _context.Player.PlayerAPI.CharacterType.AttackSpeed += 0.1;
+                                break;
+                        }
                     }
                 }
             }

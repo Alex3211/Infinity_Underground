@@ -107,7 +107,7 @@ namespace InfinityUndergroundReload.Spell
                     break;
                 
                 case 1:
-                    _angle += 0.55f;
+                    _angle += 55.55f;
                     Vector2 _origin = new Vector2(_wormHole.Width / 2, _wormHole.Height / 2);
                     _wormHoleWidth = _wormHole.Width / SpriteSheetColumns;
                     _wormHoleHeight = _wormHole.Height / SpriteSheetRows;
