@@ -306,6 +306,7 @@ namespace InfinityUndergroundReload.CharactersUI
 
             if (state.IsKeyDown(Keys.Z) || state.IsKeyDown(Keys.Up))
             {
+                if (Context.WorldAPI.CurrentLevel != 0 && Context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "TrapRoom" && Context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NumberOfStyleRoom == "4" && (Context.Map.LayerDoorCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)Context.Map.TileSize) + 1, (int)Math.Round((decimal)_player.PositionY / (decimal)Context.Map.TileSize)).Id == 1163)) Context.Player.PlayerAPI.IsDead = true;
                 if (_player.PositionY >= 0 && (Context.Map.LayerCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)Context.Map.TileSize) + 1, (int)Math.Round((decimal)_player.PositionY / (decimal)Context.Map.TileSize)).Id != Context.Map.IdTileCollide) && (Context.Map.LayerDoorCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)Context.Map.TileSize) + 1, (int)Math.Round((decimal)_player.PositionY / (decimal)Context.Map.TileSize)).Id != Context.Map.IdTileCollide))
                 {
                     _player.ChangePosition(CDirection.Top);
@@ -316,6 +317,7 @@ namespace InfinityUndergroundReload.CharactersUI
             }
             else if (state.IsKeyDown(Keys.S) || state.IsKeyDown(Keys.Down))
             {
+                if (Context.WorldAPI.CurrentLevel != 0 && Context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "TrapRoom" && Context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NumberOfStyleRoom == "4" && (Context.Map.LayerDoorCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)Context.Map.TileSize) + 1, (int)Math.Round((decimal)_player.PositionY / (decimal)Context.Map.TileSize)).Id == 1163)) Context.Player.PlayerAPI.IsDead = true;
                 if ((_player.PositionY <= (Context.Map.HeightInPixels - 50)) && (Context.Map.LayerCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)Context.Map.TileSize) + 1, ((int)Math.Floor(_player.PositionY / (decimal)Context.Map.TileSize)) + 2).Id != Context.Map.IdTileCollide) && (Context.Map.LayerDoorCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)Context.Map.TileSize) + 1, ((int)Math.Floor(_player.PositionY / (decimal)Context.Map.TileSize)) + 2).Id != Context.Map.IdTileCollide))
                 {
                     _player.ChangePosition(CDirection.Bottom);
@@ -326,6 +328,7 @@ namespace InfinityUndergroundReload.CharactersUI
             }
             else if (state.IsKeyDown(Keys.Q) || state.IsKeyDown(Keys.Left))
             {
+                if (Context.WorldAPI.CurrentLevel != 0 && Context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "TrapRoom" && Context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NumberOfStyleRoom == "4" && (Context.Map.LayerDoorCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)Context.Map.TileSize) + 1, (int)Math.Round((decimal)_player.PositionY / (decimal)Context.Map.TileSize)).Id == 1163)) Context.Player.PlayerAPI.IsDead = true;
                 if (_player.PositionX >= 0 && (Context.Map.LayerCollide.GetTile((int)Math.Round((decimal)_player.PositionX / Context.Map.TileSize), (int)Math.Round((decimal)_player.PositionY / Context.Map.TileSize) + 1).Id != Context.Map.IdTileCollide) && (Context.Map.LayerDoorCollide.GetTile((int)Math.Round((decimal)_player.PositionX / Context.Map.TileSize), (int)Math.Round((decimal)_player.PositionY / Context.Map.TileSize) + 1).Id != Context.Map.IdTileCollide))
                 {
                     _player.ChangePosition(CDirection.Left);
@@ -336,6 +339,7 @@ namespace InfinityUndergroundReload.CharactersUI
             }
             else if (state.IsKeyDown(Keys.D) || state.IsKeyDown(Keys.Right))
             {
+                if (Context.WorldAPI.CurrentLevel != 0 && Context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "TrapRoom" && Context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NumberOfStyleRoom == "4" && (Context.Map.LayerDoorCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)Context.Map.TileSize) + 1, (int)Math.Round((decimal)_player.PositionY / (decimal)Context.Map.TileSize)).Id == 1163)) Context.Player.PlayerAPI.IsDead = true;
                 if ((_player.PositionX <= (Context.Map.WidthInPixels)) && (Context.Map.LayerCollide.GetTile(((int)Math.Round((decimal)_player.PositionX / Context.Map.TileSize)) + 1, ((int)Math.Round((decimal)_player.PositionY / Context.Map.TileSize)) + 1).Id != Context.Map.IdTileCollide) && (Context.Map.LayerDoorCollide.GetTile(((int)Math.Round((decimal)_player.PositionX / Context.Map.TileSize)) + 1, ((int)Math.Round((decimal)_player.PositionY / Context.Map.TileSize)) + 1).Id != Context.Map.IdTileCollide))
                 {
                     _player.ChangePosition(CDirection.Right);

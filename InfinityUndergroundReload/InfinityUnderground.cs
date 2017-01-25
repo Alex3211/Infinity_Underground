@@ -423,6 +423,10 @@ namespace InfinityUndergroundReload
                         if (WorldAPI.CurrentLevel != 0 && (WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap != "RoomIn" && WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap != "RoomOut"))
                         {
                             CreateMonster();
+                            if (WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "TrapRoom" && WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NumberOfStyleRoom == "1")
+                            {
+                                CreateMonster();
+                            }
                         }
                         break;
                 }
@@ -434,7 +438,6 @@ namespace InfinityUndergroundReload
 
                 if (LoadOrUnloadFights == FightsState.Close)
                 {
-
                     foreach (SpriteSheet monster in ListOfMonsterUI)
                     {
                         if (_worldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "BossRoom" && _worldAPI.GetLevel.GetRoom.RoomCharateristcs.NumberOfStyleRoom == "1")
@@ -443,7 +446,8 @@ namespace InfinityUndergroundReload
                         }
                         else
                         {
-                            monster.SetPosition();
+
+                                monster.SetPosition();
                         }
                     }
 
@@ -456,9 +460,6 @@ namespace InfinityUndergroundReload
                 {
                     LoadOrUnloadFights = FightsState.Close;
                 }
-
-
-
             }
 
         }
@@ -468,10 +469,9 @@ namespace InfinityUndergroundReload
         /// </summary>
         void CreateMonster()
         {
-
+            if (WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap != "TrapRoom" && WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NumberOfStyleRoom != "2")
             foreach (CNPC monster in WorldAPI.ListOfMonster)
             {
-
                 switch (monster.TypeOfMonster)
                 {
                     case "Dragon":

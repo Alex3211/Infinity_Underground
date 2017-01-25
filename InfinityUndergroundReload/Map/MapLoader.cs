@@ -538,7 +538,11 @@ namespace InfinityUndergroundReload.Map
                 spriteBatch.DrawString(_smallFont, "Chance de critique : " + _context.Player.PlayerAPI.CharacterType.CriticalChance.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y + 120), Color.White);
                 spriteBatch.DrawString(_smallFont, "Dégats de critique : " + _context.Player.PlayerAPI.CharacterType.CriticalDamage.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y + 150), Color.White);
                 spriteBatch.DrawString(_smallFont, "Dommages : " + _context.Player.PlayerAPI.CharacterType.Damage.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y + 180), Color.White);
-
+                if (_context.WorldAPI.CurrentLevel != 0)
+                {
+                    spriteBatch.DrawString(_smallFont, "Type de map : " + _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y + 210), Color.White);
+                    spriteBatch.DrawString(_smallFont, "Type de salle : " + _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NumberOfStyleRoom.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y + 240), Color.White);
+                }
             }
 
 
