@@ -426,6 +426,7 @@ namespace InfinityUndergroundReload
                             if (WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "TrapRoom" && WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NumberOfStyleRoom == "1")
                             {
                                 CreateMonster();
+                                CreateMonster();
                             }
                         }
                         break;
@@ -469,24 +470,25 @@ namespace InfinityUndergroundReload
         /// </summary>
         void CreateMonster()
         {
-            if (WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap != "TrapRoom" && WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NumberOfStyleRoom != "2")
-            foreach (CNPC monster in WorldAPI.ListOfMonster)
-            {
-                switch (monster.TypeOfMonster)
+            if (WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "TrapRoom" && WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NumberOfStyleRoom == "2" && WorldAPI.ListOfMonster.ToArray().Length > 0) WorldAPI.ListOfMonster = new List<CNPC>();
+            else
+                foreach (CNPC monster in WorldAPI.ListOfMonster)
                 {
-                    case "Dragon":
-                        _listOfMonster.Add(new SDragon(4, 4, this, (CDragon)monster));
-                        break;
+                    switch (monster.TypeOfMonster)
+                    {
+                        case "Dragon":
+                            _listOfMonster.Add(new SDragon(4, 4, this, (CDragon)monster));
+                            break;
 
-                    case "Curiosity4":
-                        _listOfMonster.Add(new SCuriosity4(4, 3, this, (CCuriosity4)monster));
-                        break;
+                        case "Curiosity4":
+                            _listOfMonster.Add(new SCuriosity4(4, 3, this, (CCuriosity4)monster));
+                            break;
 
-                    case "Angel":
-                        _listOfMonster.Add(new SAngel(4, 3, this, (CAngel)monster));
-                        break;
+                        case "Angel":
+                            _listOfMonster.Add(new SAngel(4, 3, this, (CAngel)monster));
+                            break;
+                    }
                 }
-            }
         }
 
     }
