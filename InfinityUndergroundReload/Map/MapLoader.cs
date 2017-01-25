@@ -381,7 +381,7 @@ namespace InfinityUndergroundReload.Map
         {
             _gametime = gameTime;
 
-
+            HealThePlayer();
 
 
             if (Keyboard.GetState().IsKeyDown(Keys.F1) && LastActiveF1Menu + IntervalBetweenF1Menu < gameTime.TotalGameTime && _context.WorldAPI.CurrentLevel != 0 && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom" && !_stateEnigm)
@@ -448,6 +448,17 @@ namespace InfinityUndergroundReload.Map
                     }
                 }
                 _list.Clear();
+            }
+        }
+
+        /// <summary>
+        /// Heals the player.
+        /// </summary>
+        public void HealThePlayer()
+        {
+            if (_context.WorldAPI.CurrentLevel != 0 && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom" && _context.WorldAPI.Player.PositionX >= 976 && _context.WorldAPI.Player.PositionX <= 1008 && _context.WorldAPI.Player.PositionY >= 418 && _context.WorldAPI.Player.PositionY <= 450)
+            {
+                _context.Player.PlayerAPI.CharacterType.LifePoint = _context.Player.PlayerAPI.CharacterType.MaxLifePoint;
             }
         }
 
