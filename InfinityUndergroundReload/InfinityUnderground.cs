@@ -423,11 +423,6 @@ namespace InfinityUndergroundReload
                         if (WorldAPI.CurrentLevel != 0 && (WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap != "RoomIn" && WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap != "RoomOut"))
                         {
                             CreateMonster();
-                            if (WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "TrapRoom" && WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NumberOfStyleRoom == "1")
-                            {
-                                CreateMonster();
-                                CreateMonster();
-                            }
                         }
                         break;
                 }
