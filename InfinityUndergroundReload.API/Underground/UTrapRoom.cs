@@ -12,6 +12,10 @@ namespace InfinityUndergroundReload.API.Underground
             :base()
         {
             NameOfMap = "TrapRoom";
+            if (NumberOfStyleRoom == "1")
+            {
+                NbOfNPC *= 2;
+            }
         }
 
     }
