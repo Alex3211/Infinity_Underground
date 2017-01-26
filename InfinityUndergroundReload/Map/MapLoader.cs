@@ -508,12 +508,6 @@ namespace InfinityUndergroundReload.Map
         {
 
             DrawLayer(true, spriteBatch);
-            if (_context.WorldAPI.CurrentLevel != 0 && _context.LoadOrUnloadFights == FightsState.Close)
-            {
-                _miniMap.Draw(spriteBatch, _widthInPixel, _heightInPixels);
-            }
-
-
             if (_context.ListOfMonsterUI.Count != 0)
             {
                 foreach (SpriteSheet monster in _context.ListOfMonsterUI)
@@ -545,7 +539,7 @@ namespace InfinityUndergroundReload.Map
 
             if (_statState && _context.LoadOrUnloadFights == FightsState.Close)
             {
-                DrawRectangle(new Rectangle((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y, 175, _context.GraphicsDevice.Viewport.Height), Color.Black, spriteBatch);
+                DrawRectangle(new Rectangle((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y, 200, _context.GraphicsDevice.Viewport.Height), Color.Black, spriteBatch);
                 spriteBatch.DrawString(_smallFont, "Niveau : " + _context.WorldAPI.GetMaxLevel.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y), Color.White);
                 spriteBatch.DrawString(_smallFont, "Vie : " + _context.Player.PlayerAPI.CharacterType.LifePoint.ToString() + "/" + _context.Player.PlayerAPI.CharacterType.MaxLifePoint.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y + 30), Color.White);
                 spriteBatch.DrawString(_smallFont, "Armure : " + _context.Player.PlayerAPI.CharacterType.Armor.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y + 60), Color.White);
@@ -559,7 +553,10 @@ namespace InfinityUndergroundReload.Map
                     spriteBatch.DrawString(_smallFont, "Type de salle : " + _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NumberOfStyleRoom.ToString(), new Vector2((int)_context.Camera.Position.X, (int)_context.Camera.Position.Y + 240), Color.White);
                 }
             }
-
+            if (_context.WorldAPI.CurrentLevel != 0 && _context.LoadOrUnloadFights == FightsState.Close)
+            {
+                _miniMap.Draw(spriteBatch, _widthInPixel, _heightInPixels);
+            }
 
 
 
