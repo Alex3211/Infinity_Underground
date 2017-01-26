@@ -11,6 +11,7 @@ using InfinityUndergroundReload.API;
 using System.Threading;
 using InfinityUndergroundReload.CharactersUI;
 using Microsoft.Xna.Framework.Media;
+using InfinityUndergroundReload.Interface;
 
 namespace InfinityUndergroundReload.Map
 {
@@ -29,6 +30,7 @@ namespace InfinityUndergroundReload.Map
         Texture2D _backgroundFight;
 
         MiniMap _miniMap;
+        XmlNodeList tab;
 
         //bool _IsSecretRoom = false;
         SpriteFont _font;
@@ -48,7 +50,7 @@ namespace InfinityUndergroundReload.Map
         Song _fightMusics;
         bool _enigmState;
         SpriteFont _smallFont;
-
+        private DataSave _dataXml;
         bool _statState;
         private readonly TimeSpan IntervalBetweenStats;
         private TimeSpan LastStatsActive;
@@ -64,6 +66,7 @@ namespace InfinityUndergroundReload.Map
             _miniMap = new MiniMap(this);
 
             _enigmResponse = string.Empty;
+            _dataXml = new DataSave(_context);
             IntervalBetweenF1Menu = TimeSpan.FromMilliseconds(1000);
             IntervalBetweenText = TimeSpan.FromMilliseconds(4500);
             IntervalBetweenStats = TimeSpan.FromMilliseconds(1000);
@@ -402,7 +405,7 @@ namespace InfinityUndergroundReload.Map
                 _enigmResponse = _handler.GetString;
                 if (_stateEnigm && Keyboard.GetState().IsKeyDown(Keys.Enter))
                 {
-                    if (_handler.GetString == "1")
+                    if (_handler.GetString == tab.Item(_enigmRandom).Attributes["reponse"].Value) 
                     {
                         OpenSecretRoom();
                         _handler.GetString = "";
@@ -478,7 +481,8 @@ namespace InfinityUndergroundReload.Map
         /// <returns></returns>
         public string DoAnEnigm()
         {
-            string enigm = "Niveau : "+_context.WorldAPI.GetMaxLevel +" / Question : (1 + 1)* 0 + 1 / Réponse : 1 ";
+            tab = _dataXml.LoadEnigmFromTheFile("enigm");
+            string enigm = "Question : " + tab.Item(_enigmRandom).FirstChild.Value + " Réponse : " + tab.Item(_enigmRandom).Attributes["reponse"].Value;
             return enigm;
         }
 
