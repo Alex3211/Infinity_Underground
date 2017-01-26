@@ -4,13 +4,14 @@ using System.Xml.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.Xna.Framework;
+using System.Xml;
 
 namespace InfinityUndergroundReload.Interface
 {
     public class DataSave
     {
-        const string fileName = "../../../../../save/Character.save";
-        //const string fileName = "../../../save/Character.save";
+        //const string fileName = "../../../../../save/Character.save";
+        const string fileName = "../../../save/Character.save";
         InfinityUnderground _context;
 
         /// <summary>
@@ -156,6 +157,19 @@ namespace InfinityUndergroundReload.Interface
             _context.WorldAPI.Player.CharacterType.Range = Convert.ToInt32(RANGE);
             _context.WorldAPI.Player.CharacterType.LifePoint = Convert.ToInt32(LIFEPOINT);
             _context.WorldAPI.Player.CharacterType.MaxLifePoint = Convert.ToInt32(MAXLIFEPOINT);
+        }
+
+        /// <summary> 
+        /// Loads the enigm value from the file. 
+        /// </summary> 
+        /// <param name="NameOfDocument">The name of document.</param> 
+        /// <returns></returns> 
+        public XmlNodeList LoadEnigmFromTheFile(string NameOfDocument)
+        {
+            var _XmlDocument = new XmlDocument();
+            _XmlDocument.Load("../../../save/" + NameOfDocument + ".xml");
+            var _userNodes = _XmlDocument.SelectNodes("//users/user");
+            return _userNodes;
         }
     }
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/SecretRoom/2.tmx</SourceFile>
-  <SourceTime>2017-01-09T10:01:25.2202633+01:00</SourceTime>
+  <SourceTime>2017-01-26T09:41:18.6024539+01:00</SourceTime>
   <DestFile>D:/S3 PI/S3PI/GitKraken/Kepler-22_B/InfinityUndergroundReload/Content/bin/DesktopGL/SecretRoom/2.xnb</DestFile>
-  <DestTime>2017-01-25T13:21:55.1730638+01:00</DestTime>
+  <DestTime>2017-01-26T09:53:50.6132893+01:00</DestTime>
   <Importer>TiledMapImporter</Importer>
   <ImporterTime>2016-04-08T11:54:30+02:00</ImporterTime>
   <Processor>TiledMapProcessor</Processor>
