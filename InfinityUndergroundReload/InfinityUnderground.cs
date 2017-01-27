@@ -21,8 +21,8 @@ namespace InfinityUndergroundReload
     /// </summary>
     public class InfinityUnderground : Game
     {
-        const int WindowWidth = 960;
-        const int WindowHeight = 540;
+        const int WindowWidth = 1920;
+        const int WindowHeight = 1080;
         float _zoom;
 
         GraphicsDeviceManager graphics;
@@ -201,8 +201,9 @@ namespace InfinityUndergroundReload
             IntervalBetweenF11Menu = TimeSpan.FromMilliseconds(1000);
             
             _worldAPI = new World();
-            _map = new MapLoader(this);
+
             _player = new SPlayer(this, 21, 13);
+            _map = new MapLoader(this);
             if (_dataSave.IsExistSave)
             {
                 _dataSave.LoadValuesFromTheFile();

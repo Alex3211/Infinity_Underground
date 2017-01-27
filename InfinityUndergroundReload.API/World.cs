@@ -148,7 +148,7 @@ namespace InfinityUndergroundReload.API
                 if (_level.PositionCurrentRoom == _level.RoomOutPosition)
                     AddDoor(new Vector2(29, 11), new Vector2(32, 13), DoorDirection.Center);
                 if (_level.PositionCurrentRoom.Y > 0)
-                    AddDoor(new Vector2(29, 2), new Vector2(32, 3), DoorDirection.Top);
+                    AddDoor(new Vector2(11, 1), new Vector2(50, 2), DoorDirection.Top);
                 if (_level.PositionCurrentRoom.X > 0)
                     AddDoor(new Vector2(0, 11), new Vector2(1, 13), DoorDirection.Left);
                 if (_level.PositionCurrentRoom.Y <= (_level.RoomOutPosition.Y * 2))

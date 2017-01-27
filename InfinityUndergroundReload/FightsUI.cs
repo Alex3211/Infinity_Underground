@@ -40,6 +40,8 @@ namespace InfinityUndergroundReload
         SelectedAttack _selectedAttack;
         int _timeBeforeLeave;
         int _timeLeave;
+        Texture2D _textArea;
+        SpriteFont _fontFights;
 
         public FightsUI(InfinityUnderground context)
         {
@@ -97,6 +99,7 @@ namespace InfinityUndergroundReload
         public void LoadContent(ContentManager content)
         {
             _playerAttack.LoadContent(content);
+            _textArea = content.Load<Texture2D>("UI/TXTArea");
         }
 
 
@@ -271,9 +274,18 @@ namespace InfinityUndergroundReload
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            if (_context.LoadOrUnloadFights != FightsState.Close && _textArea != null)
+            {
+                Rectangle destinationRectangle = new Rectangle(950, 910, _textArea.Width * 5, _textArea.Height * 2);
+
+
+                spriteBatch.Draw(_textArea, destinationRectangle, Color.White);
+
+            }
+
+
             if (_turn == CharacterTurn.Player)
             {
-
                 _playerAttack.Draw(spriteBatch, _context.GraphicsDevice, _selectedAttack);
             }
         }
