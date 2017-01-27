@@ -258,8 +258,8 @@ namespace InfinityUndergroundReload.CharactersUI
                 }
 
                 _destinationRectangle = new Rectangle(_player.PositionX, _player.PositionY, Width * 3, Height * 3);
-                _speedBar.Draw(spriteBatch, (int)(Context.Camera.Position.X - 400), (int)(Context.Camera.Position.Y + 470), _player.CharacterType.LifePoint, Context.GraphicsDevice, (int)Context.Fights.TheFights.PlayerTurnsLoading, 10);
-                _healthBar.Draw(spriteBatch, (int)(Context.Camera.Position.X - 400), (int)(Context.Camera.Position.Y + 450), _player.CharacterType.LifePoint, Context.GraphicsDevice, Context.WorldAPI.Player.CharacterType.MaxLifePoint, 10);
+                _speedBar.Draw(spriteBatch, (int)(PlayerAPI.PositionX + 10), (int)(PlayerAPI.PositionY), _player.CharacterType.LifePoint, Context.GraphicsDevice, (int)Context.Fights.TheFights.PlayerTurnsLoading, 10);
+                _healthBar.Draw(spriteBatch, (int)(PlayerAPI.PositionX + 10), (int)(PlayerAPI.PositionY - 12), _player.CharacterType.LifePoint, Context.GraphicsDevice, Context.WorldAPI.Player.CharacterType.MaxLifePoint, 10);
 
                 if (_player.Shield)
                 {

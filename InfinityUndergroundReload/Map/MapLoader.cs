@@ -523,7 +523,7 @@ namespace InfinityUndergroundReload.Map
             {
                 _informationUnderground.Clear();
                 _informationUnderground.Add("Niveau max : " + _context.WorldAPI.GetMaxLevel.ToString());
-                _informationUnderground.Add("Niveau actuel : " + _context.WorldAPI.GetMaxLevel.ToString());
+                _informationUnderground.Add("Niveau actuel : " + _context.WorldAPI.CurrentLevel.ToString());
                 _informationUnderground.Add("Type de map : " + TypeRoomDraw(_context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap.ToString()));
                 _informationUnderground.Add("Type de salle : " + _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NumberOfStyleRoom.ToString());
             }

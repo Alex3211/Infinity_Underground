@@ -403,14 +403,12 @@ namespace InfinityUndergroundReload
 
                     case FightsState.Enter:
                         _camera.LookAt(new Vector2(960, 500));
-                        _camera.ZoomOut(0.5f);
                         LoadOrUnloadFights = FightsState.InFights;
                         break;
 
                     case FightsState.Exit:
                         WorldAPI.ExitFights();
                         _camera.LookAt(_player.PlayerAPI.Position);
-                        _camera.ZoomIn(0.5f);
                         break;
                 }
 
