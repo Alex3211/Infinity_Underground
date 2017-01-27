@@ -40,8 +40,9 @@ namespace InfinityUndergroundReload
         //List<IEntity> _entities;
         List<SpriteSheet> _listOfMonster;
         FightsUI _fights;
-        int _timeForTakeNextDoor;
-        int _timeMaxForTakeNextDoor;
+        TimeSpan _timeForTakeNextDoor;
+        TimeSpan _timeMaxForTakeNextDoor;
+        bool _playerCantMove;
 
         FightsState _fightState;
 
@@ -56,6 +57,26 @@ namespace InfinityUndergroundReload
             get;
             set;
         }
+
+        /// <summary>
+        /// Gets a value indicating whether [player cant move].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [player cant move]; otherwise, <c>false</c>.
+        /// </value>
+        public bool PlayerCantMove
+        {
+            get
+            {
+                return _playerCantMove;
+            }
+
+            set
+            {
+                _playerCantMove = value;
+            }
+        }
+
 
         /// <summary>
         /// Gets the height of the get windows.
@@ -217,8 +238,7 @@ namespace InfinityUndergroundReload
  
 
             _fightState = FightsState.Close;
-            _timeMaxForTakeNextDoor = 1000;
-            _timeForTakeNextDoor = 0;
+            _timeMaxForTakeNextDoor = TimeSpan.FromMilliseconds(1000);
         }
 
         /// <summary>
@@ -366,14 +386,14 @@ namespace InfinityUndergroundReload
         /// </summary>
         public void ActionChangeEnvironment(GameTime gameTime)
         {
-            _timeForTakeNextDoor += gameTime.ElapsedGameTime.Milliseconds;
-
-
+            
             _door = _worldAPI.PlayerTakeDoor();
 
-            if ((_door != null || LoadOrUnloadFights != FightsState.Close) && LoadOrUnloadFights != FightsState.InFights && _timeForTakeNextDoor >= _timeMaxForTakeNextDoor)
+            if ((_door != null || LoadOrUnloadFights != FightsState.Close) && LoadOrUnloadFights != FightsState.InFights && _timeForTakeNextDoor + _timeMaxForTakeNextDoor < gameTime.TotalGameTime)
             {
-                _timeForTakeNextDoor = 0;
+                _timeForTakeNextDoor = gameTime.TotalGameTime;
+                _playerCantMove = true;
+
                 switch(LoadOrUnloadFights)
                 {
                     case FightsState.Close:

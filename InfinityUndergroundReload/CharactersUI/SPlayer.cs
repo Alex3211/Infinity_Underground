@@ -51,6 +51,8 @@ namespace InfinityUndergroundReload.CharactersUI
         int i;
         List<SpriteSheet> _spells;
         Shield _shield;
+        int _timeForMoveAfterDoor;
+        int _actualTimeForMove;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SPlayer"/> class.
@@ -60,6 +62,8 @@ namespace InfinityUndergroundReload.CharactersUI
         /// <param name="spriteSheetColumns">The sprite sheet columns.</param>
         public SPlayer(InfinityUnderground context, int spriteSheetRows, int spriteSheetColumns)
         {
+            _timeForMoveAfterDoor = 1000;
+
             Context = context;
 
             _player = Context.WorldAPI.Player;
@@ -167,15 +171,24 @@ namespace InfinityUndergroundReload.CharactersUI
         /// <param name="gameTime">The game time.</param>
         public override void Update(GameTime gameTime)
         {
-            if (Context.LoadOrUnloadFights == FightsState.Close)
+            if (Context.PlayerCantMove)
+            {
+                _actualTimeForMove += gameTime.ElapsedGameTime.Milliseconds;
+            }
+
+            if (Context.LoadOrUnloadFights == FightsState.Close && (!Context.PlayerCantMove || _actualTimeForMove >= _timeForMoveAfterDoor))
+            {
                 _actualAction = PlayerAction(_state);
+                Context.PlayerCantMove = false;
+                _actualTimeForMove = 0;
+            }
             else if (Context.Fights.CurrentAttack != null && Context.Fights.CurrentAttack.Name == "RedSlash")
             {
                 _action = from action in _playerAction where action.RowAction == (int)RowActionOnSpriteSheetPlayer.AttackRight select action;
                 foreach (ActionSpriteSheet action in _action)
                     _actualAction = action;
             }
-            else
+            else if (Context.LoadOrUnloadFights != FightsState.Close)
             {
                 _action = from action in _playerAction where action.RowAction == (int)RowActionOnSpriteSheetPlayer.WalkRight select action;
                 foreach (ActionSpriteSheet action in _action)
@@ -198,7 +211,15 @@ namespace InfinityUndergroundReload.CharactersUI
         public override void Draw(SpriteBatch spriteBatch)
         {
             Rectangle _destinationRectangle;
+
+
+
             _state = Keyboard.GetState();
+
+            
+
+
+            
 
             if ((_player.Position == _lastPosition) && !_isAttacking && (Context.Fights.CurrentAttack == null || Context.Fights.CurrentAttack.Name != "RedSlash"))
             {

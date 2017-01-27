@@ -240,7 +240,7 @@ namespace InfinityUndergroundReload.API
                     break;
 
                 case DoorDirection.Center:
-                    _player.Position = new Vector2(31 * _tileSize, 18 * _tileSize);
+                    _player.Position = new Vector2(31 * _tileSize, 12 * _tileSize);
                     if (!_player.IsDead)
                     {
                         if (_currentLevel == 0)
@@ -275,7 +275,7 @@ namespace InfinityUndergroundReload.API
                     break;
 
                 case DoorDirection.Top:
-                    _player.PositionY = 28 * _tileSize;
+                    _player.PositionY = 27 * _tileSize;
                     _level.PositionCurrentRoomY--;
                     _level.CreateRoom();
                     break;
