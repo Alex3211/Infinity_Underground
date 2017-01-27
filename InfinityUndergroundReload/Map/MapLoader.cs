@@ -258,12 +258,9 @@ namespace InfinityUndergroundReload.Map
         /// <param name="content">The content.</param>
         public void LoadContent(ContentManager content)
         {
-            if (_context.LoadOrUnloadFights == FightsState.Close)
-            {
-                _textArea = _context.Content.Load<Texture2D>("UI/PanelTopLeft");
-                _textArea2 = _context.Content.Load<Texture2D>("UI/PanelBottomLeft");
-                _backgroundMinimap = _context.Content.Load<Texture2D>("UI/BackgroundMinimap");
-            }
+            _textArea = _context.Content.Load<Texture2D>("UI/PanelTopLeft");
+            _textArea2 = _context.Content.Load<Texture2D>("UI/PanelBottomLeft");
+            _backgroundMinimap = _context.Content.Load<Texture2D>("UI/BackgroundMinimap");
             _font = _context.Content.Load<SpriteFont>("debug");
             _context.Player.LoadContent(content);
             _smallFont = content.Load<SpriteFont>("fights");
@@ -570,7 +567,7 @@ namespace InfinityUndergroundReload.Map
             DrawLayer(false, spriteBatch);
             if(Context.LoadOrUnloadFights == FightsState.Close) DrawDoorOrNot();
 
-            if (_context.WorldAPI.CurrentLevel != 0)
+            if (_context.WorldAPI.CurrentLevel != 0 && _context.LoadOrUnloadFights == FightsState.Close)
             {
                 Rectangle destinationRectangleMiniMap = new Rectangle((int)_context.Camera.Position.X + 1920 - 300, (int)_context.Camera.Position.Y + 20, _backgroundMinimap.Width * 2, _backgroundMinimap.Height * 2);
 
@@ -726,6 +723,11 @@ namespace InfinityUndergroundReload.Map
             if (_font != null) _font = null; 
 
             _context.Player.Unload(content);
+
+            if (_textArea != null) _textArea.Dispose();
+            if (_textArea2 != null) _textArea2.Dispose();
+            if (_backgroundMinimap != null) _backgroundMinimap.Dispose();
+
         }
 
         public string TypeRoomDraw(string NameInEnglish)

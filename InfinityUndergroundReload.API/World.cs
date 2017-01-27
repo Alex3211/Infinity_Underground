@@ -150,11 +150,11 @@ namespace InfinityUndergroundReload.API
                 if (_level.PositionCurrentRoom.Y > 0)
                     AddDoor(new Vector2(11, 1), new Vector2(50, 2), DoorDirection.Top);
                 if (_level.PositionCurrentRoom.X > 0)
-                    AddDoor(new Vector2(0, 11), new Vector2(1, 13), DoorDirection.Left);
+                    AddDoor(new Vector2(0, 1), new Vector2(1, 20), DoorDirection.Left);
                 if (_level.PositionCurrentRoom.Y <= (_level.RoomOutPosition.Y * 2))
-                    AddDoor(new Vector2(30, 28), new Vector2(32, 28), DoorDirection.Bottom);
+                    AddDoor(new Vector2(10, 28), new Vector2(50, 29), DoorDirection.Bottom);
                 if (_level.PositionCurrentRoom.X <= (_level.RoomOutPosition.X * 2))
-                    AddDoor(new Vector2(61, 11), new Vector2(61, 13), DoorDirection.Right);
+                    AddDoor(new Vector2(61, 1), new Vector2(65, 20), DoorDirection.Right);
             }
         }
 
@@ -281,7 +281,7 @@ namespace InfinityUndergroundReload.API
                     break;
 
                 case DoorDirection.Bottom:
-                    _player.PositionY = 2 * _tileSize;
+                    _player.PositionY = 3 * _tileSize;
                     _level.PositionCurrentRoomY++;
                     _level.CreateRoom();
                     break;
