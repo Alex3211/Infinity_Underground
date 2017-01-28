@@ -135,9 +135,7 @@ namespace InfinityUndergroundReload
                         {
 
                             _currentAttack = _fights.GetAttack(_turn);
-
-
-
+                            
                             _fights.GiveDamageWithAttack(_currentAttack, _turn);
 
                             _timeForAnimation = 0;
@@ -191,7 +189,7 @@ namespace InfinityUndergroundReload
 
             }
 
-
+            
 
 
             foreach (SpriteSheet monster in _context.ListOfMonsterUI)
@@ -280,7 +278,8 @@ namespace InfinityUndergroundReload
 
 
                 spriteBatch.Draw(_textArea, destinationRectangle, Color.White);
-
+                //spriteBatch.DrawString(_fontFights, DrawFights(_currentAttack), 800, 800, Color.Black);
+                
             }
 
 
@@ -288,6 +287,35 @@ namespace InfinityUndergroundReload
             {
                 _playerAttack.Draw(spriteBatch, _context.GraphicsDevice, _selectedAttack);
             }
+        }
+
+        public string DrawFights(CAttacks spell)
+        {
+            switch(spell.Name)
+            {
+                case "":
+                    break;
+                //case "":
+                //    break;
+                //case "":
+                //    break;
+                //case "":
+                //    break;
+                //case "":
+                //    break;
+                //case "":
+                //    break;
+                //case "":
+                //    break;
+                //case "":
+                //    break;
+                //case "":
+                //    break;
+                //case "":
+                //    break;
+            }
+
+            return "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
         }
 
 

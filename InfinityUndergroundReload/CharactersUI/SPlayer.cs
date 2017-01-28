@@ -98,7 +98,7 @@ namespace InfinityUndergroundReload.CharactersUI
             _lastAction = _actualAction;
 
             _widthHealthBar = 100;
-            _healthBar = new LifePoint(_widthHealthBar, 25);
+            _healthBar = new LifePoint(_widthHealthBar, 25, this);
             _speedBar = new SpeedBarFights(_widthHealthBar, 25);
             _spells = new List<SpriteSheet>();
 
@@ -140,6 +140,7 @@ namespace InfinityUndergroundReload.CharactersUI
         /// <param name="content">The content.</param>
         public new void LoadContent(ContentManager content)
         {
+            _healthBar.LoadContent(content);
             Spritesheet = content.Load<Texture2D>("Player/Player");
 
             if (Context.LoadOrUnloadFights == FightsState.InFights)

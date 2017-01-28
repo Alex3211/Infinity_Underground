@@ -13,6 +13,7 @@ using InfinityUndergroundReload.API.Characters;
 using Microsoft.Xna.Framework.Content;
 using MonoGame.Extended.Maps.Tiled;
 using InfinityUndergroundReload.Interface;
+using Microsoft.Xna.Framework.Media;
 
 namespace InfinityUndergroundReload
 {
@@ -43,6 +44,7 @@ namespace InfinityUndergroundReload
         TimeSpan _timeForTakeNextDoor;
         TimeSpan _timeMaxForTakeNextDoor;
         bool _playerCantMove;
+        Song _music;
 
         FightsState _fightState;
 
@@ -263,8 +265,28 @@ namespace InfinityUndergroundReload
         /// </summary>
         protected override void LoadContent()
         {
-            //Content = new ContentManager(Content.ServiceProvider, "Content");
-            // Create a new SpriteBatch, which can be used to draw textures.
+            try
+            {
+                if (LoadOrUnloadFights != FightsState.Close)
+                {
+                    _music = Content.Load<Song>(@"Song\BossMusic");
+                }
+                else if (WorldAPI.CurrentLevel == 0)
+                {
+                    _music = Content.Load<Song>(@"Song\Surface");
+                }
+                else
+                {
+
+                }
+
+                MediaPlayer.Volume = 0.2f;
+                MediaPlayer.Play(_music);
+                MediaPlayer.IsRepeating = true;
+            }
+            catch
+            {}
+
             spriteBatch = new SpriteBatch(graphics.GraphicsDevice);
 
             _map.LoadContent(Content);

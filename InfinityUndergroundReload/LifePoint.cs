@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using InfinityUndergroundReload.CharactersUI;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -14,17 +16,26 @@ namespace InfinityUndergroundReload
         Color[] data;
         Color _colorBar;
         int _width, _height;
+        Texture2D _userInterface;
+        SpriteSheet _context;
+        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LifePointMonster"/> class.
         /// </summary>
         /// <param name="graphicsDevice">The graphics device.</param>
-        public LifePoint(int width, int height)
+        public LifePoint(int width, int height, SpriteSheet context)
         {
+            _context = context;
             _colorBar = Color.AliceBlue;
             _width = width;
             _height = height;
             data = new Color[_width * _height];
+        }
+
+        public void LoadContent(ContentManager content)
+        {
+            _userInterface = content.Load<Texture2D>("UI/Srambad");
         }
 
         /// <summary>
@@ -75,7 +86,19 @@ namespace InfinityUndergroundReload
             _healthBar = new Texture2D(graphicsDevice, 1, 1, false, SurfaceFormat.Color);
 
             SetRectangle(pourcent);
-            spriteBatch.Draw(_healthBar, new Rectangle(posX, posY, pourcent * 2, height), Color.White);
+            if (_context.Context.LoadOrUnloadFights == FightsState.Close)
+            {
+                spriteBatch.Draw(_healthBar, new Rectangle(posX + 30, posY + 69, (int)(pourcent * 1.85), 49), Color.White);
+            }
+            else
+            {
+                spriteBatch.Draw(_healthBar, new Rectangle(posX, posY, pourcent * 2, height), Color.White);
+            }
+
+            if (_context.Context.LoadOrUnloadFights == FightsState.Close)
+            {
+                spriteBatch.Draw(_userInterface, new Rectangle(new Point(posX, posY - 40), new Point(250)), Color.White);
+            }
         }
 
         /// <summary>
@@ -113,7 +136,11 @@ namespace InfinityUndergroundReload
             _healthBar = new Texture2D(graphicsDevice, 1, 1, false, SurfaceFormat.Color);
 
             SetRectangle(pourcent);
-            spriteBatch.Draw(_healthBar, new Rectangle(posX, posY, pourcent * 4, height), Color.White);
+
+            Rectangle destinationRectangle = new Rectangle(posX, posY, pourcent * 4, height);
+
+            spriteBatch.Draw(_healthBar, destinationRectangle, Color.White);
+
         }
 
 

@@ -267,10 +267,7 @@ namespace InfinityUndergroundReload.Map
             if (_context.LoadOrUnloadFights == FightsState.InFights)
             {
                 _getMap = content.Load<TiledMap>(@"RoomFights\1");
-                _fightMusics = content.Load<Song>(@"Song\BossMusic");
-                MediaPlayer.Volume = 0.2f;
-                MediaPlayer.Play(_fightMusics);
-                MediaPlayer.IsRepeating = true;
+
             }
             else if (_context.WorldAPI.CurrentLevel == 0)
             {

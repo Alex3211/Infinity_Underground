@@ -67,7 +67,7 @@ namespace InfinityUndergroundReload.CharactersUI
             _action.Add(new ActionSpriteSheet((int)IDActionCuriosity.WalkBottom, 4));
             _action.Add(new ActionSpriteSheet((int)IDActionCuriosity.WalkLeft, 4));
 
-            _healthBar = new LifePoint(_widthBar, 5);
+            _healthBar = new LifePoint(_widthBar, 5, this);
             _speedBar = new SpeedBarFights(_widthBar, 5);
 
             TypeOfMonster = Monster.TypeOfMonster;
@@ -109,6 +109,7 @@ namespace InfinityUndergroundReload.CharactersUI
         /// </summary>
         public override void LoadContent(ContentManager content)
         {
+            _healthBar.LoadContent(content);
             Spritesheet = content.Load<Texture2D>("Curiosity/Curiosity4");
 
             if (Context.LoadOrUnloadFights == FightsState.InFights)
