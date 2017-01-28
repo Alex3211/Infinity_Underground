@@ -1,12 +1,8 @@
 ﻿using InfinityUndergroundReload.CharactersUI;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InfinityUndergroundReload.Spell
 {
@@ -28,6 +24,12 @@ namespace InfinityUndergroundReload.Spell
 
         float _angle;
 
+
+        SoundEffect _blackSong;
+        SoundEffect _whiteSong;
+        SoundEffect _wormSong;
+
+
         public DarkHole(SpriteSheet monster, SPlayer player)
         {
             SpriteSheetColumns = 6;
@@ -47,11 +49,19 @@ namespace InfinityUndergroundReload.Spell
 
         public override void LoadContent(ContentManager content)
         {
-            Spritesheet = content.Load<Texture2D>("Curiosity/black-hole");
-            _whiteHole = content.Load<Texture2D>("Curiosity/white-hole");
-            _wormHole = content.Load<Texture2D>("Curiosity/worm-hole");
-        }
+            //try
+            //{
+                _blackSong = content.Load<SoundEffect>(@"Song\Vortex");
+                _wormSong = content.Load<SoundEffect>(@"Song\WormHole");
+                _whiteSong = content.Load<SoundEffect>("Song/WhiteHole");
+            //}
+            //catch
+            //{ }
 
+            Spritesheet = content.Load<Texture2D>(@"Curiosity\black-hole");
+            _whiteHole = content.Load<Texture2D>(@"Curiosity\white-hole");
+            _wormHole = content.Load<Texture2D>(@"Curiosity\worm-hole");
+        }
         public override void Unload(ContentManager content)
         {
             if (_wormHole != null) _wormHole.Dispose();
@@ -71,12 +81,19 @@ namespace InfinityUndergroundReload.Spell
                 {
 
                     case 1:
+                        _wormSong.Play();
                         SpriteSheetColumns = 1;
                         SpriteSheetRows = 1;
                         break;
 
                     case 2:
+                        _blackSong.Play();
+                        SpriteSheetColumns = 6;
+                        SpriteSheetRows = 6;
+                        break;
+
                     case 0:
+                        _whiteSong.Play();
                         SpriteSheetColumns = 6;
                         SpriteSheetRows = 6;
                         break;
@@ -131,6 +148,13 @@ namespace InfinityUndergroundReload.Spell
 
 
             _lastTurn = Turn;
+
+
+            if (_monster.Context.Fights.StopSong)
+            {
+                _monster.Context.Fights.StopSong = false;
+            }
+
         }
 
 

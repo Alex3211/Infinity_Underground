@@ -33,7 +33,7 @@ namespace InfinityUndergroundReload.CharactersUI
         bool _takeHit;
         int i;
         int _redHit;
-        //SoundEffect _dragonRoar;
+        SoundEffect _dragonRoar;
 
 
         /// <summary>
@@ -117,8 +117,13 @@ namespace InfinityUndergroundReload.CharactersUI
 
             if (Context.Fights != null)
             {
-                //_dragonRoar = content.Load<SoundEffect>(@"Song\DragonRoar");
-                //_dragonRoar.Play();
+                try
+                {
+                    //_dragonRoar = content.Load<SoundEffect>(@"Song\DragonRoar");
+                    //_dragonRoar.Play();
+                }
+                catch
+                { }
             }
         }
 

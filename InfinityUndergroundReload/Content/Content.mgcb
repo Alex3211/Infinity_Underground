@@ -584,3 +584,33 @@
 /processorParam:Quality=Best
 /build:Song\FightsMusic.mp3
 
+#begin Song/Curiosity2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Song/Curiosity2.wav
+
+#begin Song/WhiteHole.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Song/WhiteHole.mp3
+
+#begin Song/WormHole.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Song/WormHole.mp3
+
+#begin Song/Vortex.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Song/Vortex.mp3
+
+#begin Song/Explosion.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Song/Explosion.mp3
+

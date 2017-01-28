@@ -42,6 +42,7 @@ namespace InfinityUndergroundReload
         int _timeLeave;
         Texture2D _textArea;
         SpriteFont _fontFights;
+        bool _stopSong;
 
         public FightsUI(InfinityUnderground context)
         {
@@ -58,6 +59,25 @@ namespace InfinityUndergroundReload
             get
             {
                 return _monster;
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether [stop song].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [stop song]; otherwise, <c>false</c>.
+        /// </value>
+        public bool StopSong
+        {
+            get
+            {
+                return _stopSong;
+            }
+
+            set
+            {
+                _stopSong = value;
             }
         }
 
@@ -116,7 +136,10 @@ namespace InfinityUndergroundReload
 
                 _timeForAnimation += gameTime.ElapsedGameTime.Milliseconds;
 
-
+                if (_timeForAnimation >= _timeMaxForAnimation - 250)
+                {
+                    _stopSong = true;
+                }
                 if (_timeForAnimation >= _timeMaxForAnimation)
                 {
 

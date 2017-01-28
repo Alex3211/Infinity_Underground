@@ -1,12 +1,8 @@
 ﻿using InfinityUndergroundReload.CharactersUI;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InfinityUndergroundReload.Spell
 {
@@ -16,7 +12,8 @@ namespace InfinityUndergroundReload.Spell
         SPlayer _player;
         int _spellPositionX;
         SpriteSheet _explosion;
-
+        SoundEffect _music;
+        SoundEffectInstance _instanceSound;
 
         public Curiosity2(SpriteSheet monster, SPlayer player)
         {
@@ -35,6 +32,10 @@ namespace InfinityUndergroundReload.Spell
 
         public override void LoadContent(ContentManager content)
         {
+            _music = content.Load<SoundEffect>(@"Song\Curiosity2");
+            _instanceSound = _music.CreateInstance();
+            _instanceSound.IsLooped = true;
+
             Spritesheet = content.Load<Texture2D>("Curiosity/Curiosity2");
             _explosion.LoadContent(content);
         }
@@ -59,6 +60,7 @@ namespace InfinityUndergroundReload.Spell
             if (ResetPosition)
             {
                 _spellPositionX = (int)_monster.FightsPosition.X;
+                _instanceSound.Play();
             }
 
             Width = Spritesheet.Width / SpriteSheetColumns;
@@ -78,6 +80,7 @@ namespace InfinityUndergroundReload.Spell
             }
             else if (_spellPositionX <= _player.PlayerAPI.PositionX + 50)
             {
+                _instanceSound.Stop();
                 _explosion.Draw(spriteBatch);
             }
 

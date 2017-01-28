@@ -1,5 +1,6 @@
 ﻿using InfinityUndergroundReload.CharactersUI;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -13,7 +14,7 @@ namespace InfinityUndergroundReload.Spell
     class Explosion : SpriteSheet
     {
         SPlayer _player;
-
+        SoundEffect _sound;
 
         public Explosion(SPlayer player)
         {
@@ -29,6 +30,7 @@ namespace InfinityUndergroundReload.Spell
 
         public override void LoadContent(ContentManager content)
         {
+            _sound = content.Load<SoundEffect>(@"Song\Explosion");
             Spritesheet = content.Load<Texture2D>("Effect/explosion");
         }
 
@@ -48,6 +50,7 @@ namespace InfinityUndergroundReload.Spell
             {
                 CurrentRow = 0;
                 ResetPosition = false;
+                _sound.Play();
             }
 
             SpriteSheetColumns = 5;
