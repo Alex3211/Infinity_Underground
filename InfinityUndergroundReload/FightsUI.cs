@@ -118,6 +118,7 @@ namespace InfinityUndergroundReload
         /// <param name="content">The content.</param>
         public void LoadContent(ContentManager content)
         {
+            _fontFights = content.Load<SpriteFont>("fights");
             _playerAttack.LoadContent(content);
             _textArea = content.Load<Texture2D>("UI/TXTArea");
         }
@@ -301,7 +302,7 @@ namespace InfinityUndergroundReload
 
 
                 spriteBatch.Draw(_textArea, destinationRectangle, Color.White);
-                //spriteBatch.DrawString(_fontFights, DrawFights(_currentAttack), 800, 800, Color.Black);
+                spriteBatch.DrawString(_fontFights, DrawFights(_currentAttack), new Vector2(1000, 930), Color.Black);
                 
             }
 
@@ -314,32 +315,67 @@ namespace InfinityUndergroundReload
 
         public string DrawFights(CAttacks spell)
         {
-            switch(spell.Name)
+            if (spell != null)
             {
-                case "":
-                    break;
-                //case "":
-                //    break;
-                //case "":
-                //    break;
-                //case "":
-                //    break;
-                //case "":
-                //    break;
-                //case "":
-                //    break;
-                //case "":
-                //    break;
-                //case "":
-                //    break;
-                //case "":
-                //    break;
-                //case "":
-                //    break;
+                switch (spell.Name)
+                {
+                    case "RedSlash":
+                        return "Vous attaquez le monstre !";
+
+                    case "Curiosity2":
+                        return "Curiosity 4.0 à créé un Curiosity 2.0 qui fonce sur vous !";
+
+                    case "DarkHole":
+                        switch(spell.TurnsDuringDamage)
+                        {
+                            case 2:
+                                return "Vous êtes aspiré par un trou noir";
+
+                            case 1:
+                                return "Vous êtes dans un trou de verre";
+
+                            case 0:
+                                return "Vous vous faites expulser par un trou blanc";
+                        }
+                        break;
+
+                    case "ThrowDarkMatter":
+                        return "Vous entrez en contact avec de la matière noire";
+
+
+                    case "BirthOfASun":
+                        switch(spell.TurnsDuringDamage)
+                        {
+                            case 2:
+                                return "Un nuage de metaux se forme";
+
+                            case 1:
+                                return "Les métaux fusionnent !";
+
+                            case 0:
+                                return "L'ange a créé un soleil !";
+
+                        }
+                        break;
+
+                    case "Meteor":
+                        return "Une météorite vous tombe dessus !";
+
+                }
+                return "What ?";
             }
 
-            return "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            if (_context.Player.PlayerAPI.Shield)
+            {
+                return "Vous avez créé un bouclier";
+            }
+            if (_turn == CharacterTurn.Player)
+            {
+                return "Que voulez-vous faire ?";
+            }
+            return "";
         }
+
 
 
     }
