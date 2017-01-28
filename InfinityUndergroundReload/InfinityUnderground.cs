@@ -11,7 +11,6 @@ using System.Collections.Generic;
 using System.Threading;
 using InfinityUndergroundReload.API.Characters;
 using Microsoft.Xna.Framework.Content;
-using MonoGame.Extended.Maps.Tiled;
 using InfinityUndergroundReload.Interface;
 using Microsoft.Xna.Framework.Media;
 
@@ -276,7 +275,7 @@ namespace InfinityUndergroundReload
             {
                 if (LoadOrUnloadFights != FightsState.Close && LoadOrUnloadFights != FightsState.Exit)
                 {
-                    _music = _songContent.Load<Song>(@"Song\BossMusic");
+                    _music = _songContent.Load<Song>(@"Song\FightsMusic");
                 }
                 else if (WorldAPI.CurrentLevel == 0)
                 {

@@ -284,23 +284,11 @@
 /processor:TiledMapProcessor
 /build:RoomFights/1.tmx
 
-#begin Song/PokemonBattle.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Medium
-/build:Song/PokemonBattle.mp3
-
 #begin Song/DragonRoar.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Song/DragonRoar.mp3
-
-#begin Song/BossMusic.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Medium
-/build:Song/BossMusic.mp3
 
 #begin SunTest.png
 /importer:TextureImporter
@@ -589,4 +577,10 @@
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Song/Underground.mp3
+
+#begin Song\FightsMusic.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Song\FightsMusic.mp3
 
