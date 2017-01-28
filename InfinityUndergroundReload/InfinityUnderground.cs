@@ -45,6 +45,9 @@ namespace InfinityUndergroundReload
         TimeSpan _timeMaxForTakeNextDoor;
         bool _playerCantMove;
         Song _music;
+        int _lastLevel;
+        string _lastMusic;
+        ContentManager _songContent;
 
         FightsState _fightState;
 
@@ -215,6 +218,8 @@ namespace InfinityUndergroundReload
 
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            _songContent = new ContentManager(Content.ServiceProvider, Content.RootDirectory);
+
             _zoom = 0.1f;
             _dataSave = new DataSave(this);
 
@@ -241,6 +246,8 @@ namespace InfinityUndergroundReload
 
             _fightState = FightsState.Close;
             _timeMaxForTakeNextDoor = TimeSpan.FromMilliseconds(1000);
+
+            _lastLevel = int.MaxValue;
         }
 
         /// <summary>
@@ -269,20 +276,23 @@ namespace InfinityUndergroundReload
             {
                 if (LoadOrUnloadFights != FightsState.Close)
                 {
-                    _music = Content.Load<Song>(@"Song\BossMusic");
+                    _music = _songContent.Load<Song>(@"Song\BossMusic");
                 }
                 else if (WorldAPI.CurrentLevel == 0)
                 {
-                    _music = Content.Load<Song>(@"Song\Surface");
+                    _music = _songContent.Load<Song>(@"Song\Surface");
                 }
-                else
+                else if (_music == null)
                 {
-
+                    _music = _songContent.Load<Song>(@"Song\Underground");
+                    _lastLevel = WorldAPI.CurrentLevel;
                 }
 
                 MediaPlayer.Volume = 0.2f;
-                MediaPlayer.Play(_music);
+                if (_music.Position.Milliseconds <= 1000)
+                    MediaPlayer.Play(_music);
                 MediaPlayer.IsRepeating = true;
+                _lastMusic = _music.Name;
             }
             catch
             {}
@@ -313,6 +323,14 @@ namespace InfinityUndergroundReload
         /// </summary>
         protected override void UnloadContent()
         {
+
+            if (_lastLevel != WorldAPI.CurrentLevel && _music != null)
+            {
+                MediaPlayer.Stop();
+                _lastLevel = WorldAPI.CurrentLevel;
+                _music.Dispose();
+                _music = null;
+            }
             // TODO: Unload any non ContentManager content here
             _map.Unload(Content);
             spriteBatch.Dispose();
