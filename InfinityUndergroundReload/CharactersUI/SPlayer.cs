@@ -270,7 +270,6 @@ namespace InfinityUndergroundReload.CharactersUI
             else
             {
                 _destinationRectangle = new Rectangle(_player.PositionX, _player.PositionY, Width, Height);
-                _healthBar.Draw(spriteBatch, (int)(Context.Camera.Position.X + 20), (int)(Context.Camera.Position.Y + 20), _player.CharacterType.LifePoint, Context.GraphicsDevice, Context.WorldAPI.Player.CharacterType.MaxLifePoint, 10);
             }
 
             if (_lastLifePoint > PlayerAPI.CharacterType.LifePoint || _takeHit)
@@ -408,7 +407,14 @@ namespace InfinityUndergroundReload.CharactersUI
             return _lastAction;
         }
 
-
+        /// <summary>
+        /// Draws the player heatlth bar.
+        /// </summary>
+        /// <param name="spriteBatch">The sprite batch.</param>
+        public void DrawPlayerHeatlthBar(SpriteBatch spriteBatch)
+        {
+            _healthBar.Draw(spriteBatch, (int)(Context.Camera.Position.X + 20), (int)(Context.Camera.Position.Y + 20), _player.CharacterType.LifePoint, Context.GraphicsDevice, Context.WorldAPI.Player.CharacterType.MaxLifePoint, 10);
+        }
 
     }
 }

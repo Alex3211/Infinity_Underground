@@ -274,7 +274,7 @@ namespace InfinityUndergroundReload
         {
             try
             {
-                if (LoadOrUnloadFights != FightsState.Close)
+                if (LoadOrUnloadFights != FightsState.Close && LoadOrUnloadFights != FightsState.Exit)
                 {
                     _music = _songContent.Load<Song>(@"Song\BossMusic");
                 }
@@ -282,17 +282,19 @@ namespace InfinityUndergroundReload
                 {
                     _music = _songContent.Load<Song>(@"Song\Surface");
                 }
-                else if (_music == null)
+                else if (_music == null || LoadOrUnloadFights == FightsState.Exit)
                 {
                     _music = _songContent.Load<Song>(@"Song\Underground");
-                    _lastLevel = WorldAPI.CurrentLevel;
                 }
 
                 MediaPlayer.Volume = 0.2f;
-                if (_music.Position.Milliseconds <= 1000)
+
+                if ((_music.Position.TotalMilliseconds <= 1000 && WorldAPI.CurrentLevel != 0) || WorldAPI.CurrentLevel == 0 || _lastMusic != _music.Name/*LoadOrUnloadFights == FightsState.Exit*/)
+                {
                     MediaPlayer.Play(_music);
+                    _lastMusic = _music.Name;
+                }
                 MediaPlayer.IsRepeating = true;
-                _lastMusic = _music.Name;
             }
             catch
             {}
@@ -326,11 +328,12 @@ namespace InfinityUndergroundReload
 
             if (_lastLevel != WorldAPI.CurrentLevel && _music != null)
             {
-                MediaPlayer.Stop();
+                //MediaPlayer.Stop();
+                //_music.Dispose();
                 _lastLevel = WorldAPI.CurrentLevel;
-                _music.Dispose();
                 _music = null;
             }
+
             // TODO: Unload any non ContentManager content here
             _map.Unload(Content);
             spriteBatch.Dispose();

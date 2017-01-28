@@ -564,12 +564,16 @@ namespace InfinityUndergroundReload.Map
             DrawLayer(false, spriteBatch);
             if(Context.LoadOrUnloadFights == FightsState.Close) DrawDoorOrNot();
 
-            if (_context.WorldAPI.CurrentLevel != 0 && _context.LoadOrUnloadFights == FightsState.Close)
+            if (_context.LoadOrUnloadFights == FightsState.Close)
             {
-                Rectangle destinationRectangleMiniMap = new Rectangle((int)_context.Camera.Position.X + 1920 - 300, (int)_context.Camera.Position.Y + 20, _backgroundMinimap.Width * 2, _backgroundMinimap.Height * 2);
+                if (_context.WorldAPI.CurrentLevel != 0)
+                {
+                    Rectangle destinationRectangleMiniMap = new Rectangle((int)_context.Camera.Position.X + 1920 - 300, (int)_context.Camera.Position.Y + 20, _backgroundMinimap.Width * 2, _backgroundMinimap.Height * 2);
 
-                spriteBatch.Draw(_backgroundMinimap, destinationRectangleMiniMap, Color.White);
-                spriteBatch.DrawString(_smallFont, "MiniMap", new Vector2((int)_context.Camera.Position.X + 1920 - 270, (int)_context.Camera.Position.Y + 30), Color.White);
+                    spriteBatch.Draw(_backgroundMinimap, destinationRectangleMiniMap, Color.White);
+                    spriteBatch.DrawString(_smallFont, "MiniMap", new Vector2((int)_context.Camera.Position.X + 1920 - 270, (int)_context.Camera.Position.Y + 30), Color.White);
+                }
+                _context.Player.DrawPlayerHeatlthBar(spriteBatch);
             }
 
             if (_statState && _context.LoadOrUnloadFights == FightsState.Close)
