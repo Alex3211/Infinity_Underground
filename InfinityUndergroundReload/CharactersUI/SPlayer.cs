@@ -194,7 +194,7 @@ namespace InfinityUndergroundReload.CharactersUI
                         _shield.PlaySong = true;
                         _songShield = true;
                     }
-                    else
+                    else if (Context.Fights.CurrentAttack != null && Context.Fights.CurrentAttack.Name == "RedSlash")
                     {
                         foreach (SpriteSheet s in _spells)
                         {
