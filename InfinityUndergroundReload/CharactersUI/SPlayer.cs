@@ -53,6 +53,10 @@ namespace InfinityUndergroundReload.CharactersUI
         Shield _shield;
         int _timeForMoveAfterDoor;
         int _actualTimeForMove;
+        TimeSpan _songAttack;
+        TimeSpan _timeNeedSongAttack;
+        bool _songShield;
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SPlayer"/> class.
@@ -62,6 +66,10 @@ namespace InfinityUndergroundReload.CharactersUI
         /// <param name="spriteSheetColumns">The sprite sheet columns.</param>
         public SPlayer(InfinityUnderground context, int spriteSheetRows, int spriteSheetColumns)
         {
+            _songShield = true;
+
+            _timeNeedSongAttack = TimeSpan.FromMilliseconds(2250);
+
             _timeForMoveAfterDoor = 1000;
 
             Context = context;
@@ -172,6 +180,31 @@ namespace InfinityUndergroundReload.CharactersUI
         /// <param name="gameTime">The game time.</param>
         public override void Update(GameTime gameTime)
         {
+            if (!Context.Player.PlayerAPI.Shield)
+            {
+                _songShield = false;
+            }
+
+            if ((Context.Fights.CurrentAttack != null && Context.Fights.CurrentAttack.Name == "RedSlash") || Context.Player.PlayerAPI.Shield)
+            {
+                if (_songAttack + _timeNeedSongAttack < gameTime.TotalGameTime)
+                {
+                    if (Context.Player.PlayerAPI.Shield && !_shield.PlaySong && !_songShield)
+                    {
+                        _shield.PlaySong = true;
+                        _songShield = true;
+                    }
+                    else
+                    {
+                        foreach (SpriteSheet s in _spells)
+                        {
+                            s.PlaySong = true;
+                        }
+                    }
+                    _songAttack = gameTime.TotalGameTime;
+                }
+            }
+
             if (Context.PlayerCantMove)
             {
                 _actualTimeForMove += gameTime.ElapsedGameTime.Milliseconds;

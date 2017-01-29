@@ -1,5 +1,6 @@
 ﻿using InfinityUndergroundReload.CharactersUI;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -13,6 +14,7 @@ namespace InfinityUndergroundReload.Spell
     class Shield : SpriteSheet
     {
         SPlayer _player;
+        SoundEffect _sound;
 
         public Shield(SPlayer player)
         {
@@ -22,6 +24,7 @@ namespace InfinityUndergroundReload.Spell
 
         public override void LoadContent(ContentManager content)
         {
+            _sound = content.Load<SoundEffect>(@"Song\Shield");
             Spritesheet = content.Load<Texture2D>("Effect/Shield");
         }
         public override void Unload(ContentManager content)
@@ -31,7 +34,11 @@ namespace InfinityUndergroundReload.Spell
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-
+            if (PlaySong)
+            {
+                PlaySong = false;
+                _sound.Play();
+            }
             Rectangle sourceRectangle = new Rectangle(0, 0, Spritesheet.Width, Spritesheet.Height);
             Rectangle destinationRectangle = new Rectangle((int)_player.PlayerAPI.Position.X - 30, (int)_player.PlayerAPI.Position.Y - 10, Spritesheet.Width/2, Spritesheet.Height/2);
 

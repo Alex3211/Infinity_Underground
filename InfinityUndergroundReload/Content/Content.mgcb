@@ -614,3 +614,39 @@
 /processorParam:Quality=Best
 /build:Song/Explosion.mp3
 
+#begin Song/Fusion.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Song/Fusion.mp3
+
+#begin Song/Nuclear.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Song/Nuclear.mp3
+
+#begin Song/Sand.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Song/Sand.mp3
+
+#begin Song/Shield.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Song/Shield.mp3
+
+#begin Song/Slash.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Song/Slash.mp3
+
+#begin Song/Sun.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Song/Sun.mp3
+

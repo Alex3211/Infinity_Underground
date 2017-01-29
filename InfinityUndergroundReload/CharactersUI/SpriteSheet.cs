@@ -33,6 +33,7 @@ namespace InfinityUndergroundReload.CharactersUI
         string _nameSpell;
         bool _spellReapeat;
         bool _spellHitPlayer;
+        bool _playSong;
         bool _resetPosition;
         int _turn;
 
@@ -43,6 +44,25 @@ namespace InfinityUndergroundReload.CharactersUI
         {
             _timeSinceLastFrame = 0;
             _millisecondsPerFrame = 80;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether [play song].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [play song]; otherwise, <c>false</c>.
+        /// </value>
+        public bool PlaySong
+        {
+            get
+            {
+                return _playSong;
+            }
+
+            set
+            {
+                _playSong = value;
+            }
         }
 
         /// <summary>
