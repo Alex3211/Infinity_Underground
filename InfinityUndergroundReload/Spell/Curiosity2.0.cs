@@ -42,6 +42,7 @@ namespace InfinityUndergroundReload.Spell
 
         public override void Unload(ContentManager content)
         {
+            if (_music != null) _music.Dispose();
             base.Unload(content);
         }
 

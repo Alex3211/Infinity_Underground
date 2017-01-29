@@ -34,6 +34,7 @@ namespace InfinityUndergroundReload.Spell
         }
         public override void Unload(ContentManager content)
         {
+            if (_sound != null) _sound.Dispose();
             base.Unload(content);
         }
 

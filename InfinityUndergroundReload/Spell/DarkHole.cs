@@ -49,14 +49,14 @@ namespace InfinityUndergroundReload.Spell
 
         public override void LoadContent(ContentManager content)
         {
-            //try
-            //{
+            try
+            {
                 _blackSong = content.Load<SoundEffect>(@"Song\Vortex");
                 _wormSong = content.Load<SoundEffect>(@"Song\WormHole");
                 _whiteSong = content.Load<SoundEffect>("Song/WhiteHole");
-            //}
-            //catch
-            //{ }
+            }
+            catch
+            { }
 
             Spritesheet = content.Load<Texture2D>(@"Curiosity\black-hole");
             _whiteHole = content.Load<Texture2D>(@"Curiosity\white-hole");
@@ -64,6 +64,10 @@ namespace InfinityUndergroundReload.Spell
         }
         public override void Unload(ContentManager content)
         {
+            if (_blackSong != null) _blackSong.Dispose();
+            if (_wormSong != null) _wormSong.Dispose();
+            if (_whiteHole != null) _whiteHole.Dispose();
+
             if (_wormHole != null) _wormHole.Dispose();
             if (_whiteHole != null) _whiteHole.Dispose();
             base.Unload(content);
