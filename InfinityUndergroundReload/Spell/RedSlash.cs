@@ -60,7 +60,7 @@ namespace InfinityUndergroundReload.Spell
             spriteBatch.Draw(Spritesheet, destinationRectangle, sourceRectangle, Color.White);
 
             _position.Y = _position.Y - 10;
-            _position.X = _position.X + 70;
+            _position.X = _position.X + 50;
 
             if (_time >= _reload)
             {

@@ -41,7 +41,7 @@ namespace InfinityUndergroundReload.Spell
                 _sound.Play();
             }
             Rectangle sourceRectangle = new Rectangle(0, 0, Spritesheet.Width, Spritesheet.Height);
-            Rectangle destinationRectangle = new Rectangle((int)_player.PlayerAPI.Position.X - 30, (int)_player.PlayerAPI.Position.Y - 10, Spritesheet.Width/2, Spritesheet.Height/2);
+            Rectangle destinationRectangle = new Rectangle((int)_player.PlayerAPI.Position.X - 30, (int)_player.PlayerAPI.Position.Y - 10, Spritesheet.Width/3, Spritesheet.Height/3);
 
             spriteBatch.Draw(Spritesheet, destinationRectangle, sourceRectangle, Color.White);
 

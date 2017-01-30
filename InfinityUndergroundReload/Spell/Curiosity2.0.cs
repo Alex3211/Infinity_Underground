@@ -71,7 +71,7 @@ namespace InfinityUndergroundReload.Spell
 
             Rectangle sourceRectangle = new Rectangle(Width * Column, Height * CurrentRow, Width, Height);
 
-            Rectangle destinationRectangle = new Rectangle(_spellPositionX, _player.PlayerAPI.PositionY + 65, Width*4, Height*4);
+            Rectangle destinationRectangle = new Rectangle(_spellPositionX, _player.PlayerAPI.PositionY + 20, Width*4, Height*4);
 
             if (_spellPositionX > _player.PlayerAPI.PositionX)
             {

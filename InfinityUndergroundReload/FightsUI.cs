@@ -43,6 +43,8 @@ namespace InfinityUndergroundReload
         Texture2D _textArea;
         SpriteFont _fontFights;
         bool _stopSong;
+        Texture2D _speedBarTexture;
+        Texture2D _whoFightsTexture;
 
         public FightsUI(InfinityUnderground context)
         {
@@ -118,6 +120,8 @@ namespace InfinityUndergroundReload
         /// <param name="content">The content.</param>
         public void LoadContent(ContentManager content)
         {
+            _whoFightsTexture = content.Load<Texture2D>("Indication");
+            _speedBarTexture = content.Load<Texture2D>("speedBar");
             _fontFights = content.Load<SpriteFont>("fights");
             _playerAttack.LoadContent(content);
             _textArea = content.Load<Texture2D>("UI/TXTArea");
@@ -303,7 +307,22 @@ namespace InfinityUndergroundReload
 
                 spriteBatch.Draw(_textArea, destinationRectangle, Color.White);
                 spriteBatch.DrawString(_fontFights, DrawFights(_currentAttack), new Vector2(1000, 930), Color.Black);
+                spriteBatch.Draw(_speedBarTexture, new Vector2(-10, 250), Color.White);
+                spriteBatch.DrawString(_fontFights, _fights.PlayerTurnsLoading.ToString() + "%", new Vector2(30, 820), Color.Black);
+                spriteBatch.DrawString(_fontFights, _fights.MonsterTurnsLoading.ToString() + "%", new Vector2(170, 820), Color.Black);
+
                 
+                if (_turn == CharacterTurn.Player)
+                {
+                    Rectangle destRectPlay = new Rectangle(30, 330, _whoFightsTexture.Width, _whoFightsTexture.Height);
+                    spriteBatch.Draw(_whoFightsTexture, destRectPlay, Color.White);
+                }
+                else if (_turn == CharacterTurn.Monster)
+                {
+                    Rectangle destRectMonster = new Rectangle(165, 330, _whoFightsTexture.Width, _whoFightsTexture.Height);
+                    spriteBatch.Draw(_whoFightsTexture, destRectMonster, Color.White);
+                }
+
             }
 
 

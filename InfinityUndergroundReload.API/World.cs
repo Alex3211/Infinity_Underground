@@ -329,7 +329,7 @@ namespace InfinityUndergroundReload.API
         public Fights CreateFight(CNPC monster)
         {
             _lastPositionOfThePlayer = Player.Position;
-            _newPositionOfThePlayer = new Vector2(70, 720);
+            _newPositionOfThePlayer = new Vector2(370, 770);
             Player.Position = _newPositionOfThePlayer;
             return new Fights(this, Player.Position, monster);
         }

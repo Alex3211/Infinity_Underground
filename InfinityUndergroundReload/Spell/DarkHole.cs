@@ -41,7 +41,7 @@ namespace InfinityUndergroundReload.Spell
             _monster = monster;
             NameSpell = "DarkHole";
             _player = player;
-            _position = new Vector2(300, 0);
+            _position = new Vector2(400, 0);
             _lastTurn = int.MaxValue;
         }
 
@@ -135,7 +135,7 @@ namespace InfinityUndergroundReload.Spell
 
                     sourceRectangle = new Rectangle(0, 0, _wormHoleWidth, _wormHoleHeight);
 
-                    destinationRectangle = new Rectangle((int)_position.X + 400, (int)_position.Y + 500, _wormHoleWidth * 3, _wormHoleHeight * 3);
+                    destinationRectangle = new Rectangle((int)_position.X + 400, (int)_position.Y + 500, _wormHoleWidth * 2, _wormHoleHeight * 2);
 
 
                     spriteBatch.Draw(_wormHole, destinationRectangle, sourceRectangle, Color.White, _angle, _origin, SpriteEffects.None, 1);

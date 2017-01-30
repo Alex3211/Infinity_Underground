@@ -100,17 +100,22 @@ namespace InfinityUndergroundReload.Interface
         /// </summary>
         public void WriteValuesInTheFile()
         {
-            using (BinaryWriter writer = new BinaryWriter(File.Open(fileName, FileMode.Create)))
+            try
             {
-                writer.Write(LEVEL);
-                writer.Write(DAMAGE);
-                writer.Write(CRITICALCHANCE);
-                writer.Write(ATTACKSPEED);
-                writer.Write(ARMOR);
-                writer.Write(RANGE);
-                writer.Write(LIFEPOINT);
-                writer.Write(MAXLIFEPOINT);
+                using (BinaryWriter writer = new BinaryWriter(File.Open(fileName, FileMode.Create)))
+                {
+                    writer.Write(LEVEL);
+                    writer.Write(DAMAGE);
+                    writer.Write(CRITICALCHANCE);
+                    writer.Write(ATTACKSPEED);
+                    writer.Write(ARMOR);
+                    writer.Write(RANGE);
+                    writer.Write(LIFEPOINT);
+                    writer.Write(MAXLIFEPOINT);
+                }
             }
+            catch
+            { }
         }
 
         public void LoadValuesOfThePlayerInTheClass()

@@ -44,36 +44,32 @@ namespace InfinityUndergroundReload
         /// Draws the specified game time.
         /// </summary>
         /// <param name="gameTime">The game time.</param>
-        public void Draw(SpriteBatch spriteBatch, int posX, int posY, int lifepoint, GraphicsDevice graphicsDevice, int width, int height)
+        public void Draw(SpriteBatch spriteBatch, int posX, int posY, int lifepoint, GraphicsDevice graphicsDevice, int height, int width)
         {
-            _width = width;
-            _height = height;
-
+            Vector2 _origin = new Vector2(0, 0);
             SetMaxLifePoint(lifepoint);
 
             if (_speedBar != null) _speedBar.Dispose();
             _speedBar = new Texture2D(graphicsDevice, 1, 1, false, SurfaceFormat.Color);
 
             _speedBar.SetData(new Color[] { Color.Blue });
-            spriteBatch.Draw(_speedBar, new Rectangle(posX, posY, width * 2, height), Color.White);
+            spriteBatch.Draw(_speedBar, new Rectangle(46, 797, width, (int)(height * 3.55)), new Rectangle(0, 0, 100, 100), Color.White, 3.142f, _origin, SpriteEffects.FlipHorizontally, 1);
         }
 
         /// <summary>
         /// Draws the specified game time.
         /// </summary>
         /// <param name="gameTime">The game time.</param>
-        public void Draw(SpriteBatch spriteBatch, int posX, int posY, int lifepoint, GraphicsDevice graphicsDevice, int width, int height, bool isMonster)
+        public void Draw(SpriteBatch spriteBatch, int posX, int posY, int lifepoint, GraphicsDevice graphicsDevice, int height, int width, bool isMonster)
         {
-            _width = width;
-            _height = height;
-
+            Vector2 _origin = new Vector2(0, 0);
             SetMaxLifePoint(lifepoint);
 
             if (_speedBar != null) _speedBar.Dispose();
             _speedBar = new Texture2D(graphicsDevice, 1, 1, false, SurfaceFormat.Color);
 
             _speedBar.SetData(new Color[] { Color.Blue });
-            spriteBatch.Draw(_speedBar, new Rectangle(posX, posY, width * 4, height), Color.White);
+            spriteBatch.Draw(_speedBar, new Rectangle(186, 797, width, (int)(height * 3.55)), new Rectangle(0, 0, 100, 100), Color.White, 3.142f, _origin, SpriteEffects.None, 1);
         }
     }
 }
