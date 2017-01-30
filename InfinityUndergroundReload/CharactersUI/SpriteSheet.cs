@@ -570,6 +570,11 @@ namespace InfinityUndergroundReload.CharactersUI
 
         }
 
+        public virtual void DrawMonsterHealthBar(SpriteBatch spritebatch)
+        {
+
+        }
+
 
     }
 }

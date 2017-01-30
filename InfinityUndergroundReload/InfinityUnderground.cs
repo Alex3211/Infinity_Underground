@@ -81,6 +81,19 @@ namespace InfinityUndergroundReload
             }
         }
 
+        /// <summary>
+        /// Gets the content of the song.
+        /// </summary>
+        /// <value>
+        /// The content of the song.
+        /// </value>
+        public ContentManager SongContent
+        {
+            get
+            {
+                return _songContent;
+            }
+        }
 
         /// <summary>
         /// Gets the height of the get windows.

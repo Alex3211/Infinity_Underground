@@ -87,14 +87,14 @@ namespace InfinityUndergroundReload.API
                         {
                             if (turn == CharacterTurn.Monster)
                             {
-                                if (!_context.Player.Shield)
-                                {
+                                //if (!_context.Player.Shield)
+                                //{
                                     GiveDamage(_monster, _context.Player, attack);
-                                }
-                                else
-                                {
-                                    _context.Player.Shield = false;
-                                }
+                                //}
+                                //else
+                                //{
+                                //    _context.Player.Shield = false;
+                                //}
                             }
                             else
                             {
@@ -258,14 +258,23 @@ namespace InfinityUndergroundReload.API
         /// <returns></returns>
         public void GiveDamage(CCharacter sender, CCharacter receiver, CAttacks attack)
         {
+            int damage = 0;
             if (IsCritical(sender.CharacterType.CriticalChance))
             {
-                receiver.CharacterType.LifePoint -= CriticalDamage(sender.CharacterType.Damage, sender.CharacterType.CriticalDamage) + attack.Damage;
+                damage = CriticalDamage(sender.CharacterType.Damage, sender.CharacterType.CriticalDamage) + attack.Damage;
             }
             else
             {
-                receiver.CharacterType.LifePoint -= sender.CharacterType.Damage + attack.Damage;
+                damage = sender.CharacterType.Damage + attack.Damage;
             }
+
+            if (_context.Player.Shield && receiver.IsPlayer)
+            {
+                damage = Math.Abs(((damage * 80) / 100) - damage);
+                _context.Player.Shield = false;
+            }
+
+            receiver.CharacterType.LifePoint -= damage;
         }
 
         /// <summary>

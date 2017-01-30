@@ -200,7 +200,6 @@ namespace InfinityUndergroundReload.CharactersUI
 
 
                 _speedBar.Draw(spriteBatch, (int)FightsPosition.X, (int)FightsPosition.Y - 20, Monster.CharacterType.LifePoint, Context.GraphicsDevice, (int)Context.Fights.TheFights.MonsterTurnsLoading, 10, true);
-                _healthBar.Draw(spriteBatch, (int)FightsPosition.X, (int)FightsPosition.Y - 40, Monster.CharacterType.LifePoint, Context.GraphicsDevice, Monster.CharacterType.MaxLifePoint, 10, true);
                 _destinationRectangle = new Rectangle((int)FightsPosition.X, (int)FightsPosition.Y, Width * 3, Height * 3);
             }
             else
@@ -232,6 +231,12 @@ namespace InfinityUndergroundReload.CharactersUI
             }
             _lastLifePoint = Monster.CharacterType.LifePoint;
 
+        }
+
+        public override void DrawMonsterHealthBar(SpriteBatch spriteBatch)
+        {
+            _healthBar.Draw(spriteBatch, (int)FightsPosition.X, (int)FightsPosition.Y - 40, Monster.CharacterType.LifePoint, Context.GraphicsDevice, Monster.CharacterType.MaxLifePoint, 10, true);
+            base.DrawMonsterHealthBar(spriteBatch);
         }
 
     }

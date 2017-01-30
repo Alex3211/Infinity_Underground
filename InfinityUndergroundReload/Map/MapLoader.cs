@@ -573,8 +573,16 @@ namespace InfinityUndergroundReload.Map
                     spriteBatch.Draw(_backgroundMinimap, destinationRectangleMiniMap, Color.White);
                     spriteBatch.DrawString(_smallFont, "MiniMap", new Vector2((int)_context.Camera.Position.X + 1920 - 270, (int)_context.Camera.Position.Y + 30), Color.White);
                 }
-                _context.Player.DrawPlayerHeatlthBar(spriteBatch);
+                
             }
+
+            if (_context.LoadOrUnloadFights != FightsState.Close)
+            {
+                _context.Fights.MonsterFights.DrawMonsterHealthBar(spriteBatch);
+            }
+
+            _context.Player.DrawPlayerHeatlthBar(spriteBatch);
+            
 
             if (_statState && _context.LoadOrUnloadFights == FightsState.Close)
             {

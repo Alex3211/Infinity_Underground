@@ -293,7 +293,6 @@ namespace InfinityUndergroundReload.CharactersUI
 
                 _destinationRectangle = new Rectangle(_player.PositionX, _player.PositionY, Width * 2, Height * 2);
                 _speedBar.Draw(spriteBatch, (int)(PlayerAPI.PositionX + 10), (int)(PlayerAPI.PositionY), _player.CharacterType.LifePoint, Context.GraphicsDevice, (int)Context.Fights.TheFights.PlayerTurnsLoading, 10);
-                _healthBar.Draw(spriteBatch, (int)(PlayerAPI.PositionX + 10), (int)(PlayerAPI.PositionY - 12), _player.CharacterType.LifePoint, Context.GraphicsDevice, Context.WorldAPI.Player.CharacterType.MaxLifePoint, 10);
 
                 if (_player.Shield)
                 {
@@ -446,7 +445,14 @@ namespace InfinityUndergroundReload.CharactersUI
         /// <param name="spriteBatch">The sprite batch.</param>
         public void DrawPlayerHeatlthBar(SpriteBatch spriteBatch)
         {
-            _healthBar.Draw(spriteBatch, (int)(Context.Camera.Position.X + 20), (int)(Context.Camera.Position.Y + 20), _player.CharacterType.LifePoint, Context.GraphicsDevice, Context.WorldAPI.Player.CharacterType.MaxLifePoint, 10);
+            if (Context.LoadOrUnloadFights == FightsState.Close)
+            {
+                _healthBar.Draw(spriteBatch, (int)(Context.Camera.Position.X + 20), (int)(Context.Camera.Position.Y + 20), _player.CharacterType.LifePoint, Context.GraphicsDevice, Context.WorldAPI.Player.CharacterType.MaxLifePoint, 10);
+            }
+            else
+            {
+                _healthBar.Draw(spriteBatch, (int)(PlayerAPI.PositionX + 10), (int)(PlayerAPI.PositionY - 12), _player.CharacterType.LifePoint, Context.GraphicsDevice, Context.WorldAPI.Player.CharacterType.MaxLifePoint, 10);
+            }
         }
 
     }

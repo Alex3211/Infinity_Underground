@@ -18,6 +18,7 @@ namespace InfinityUndergroundReload
         int _width, _height;
         Texture2D _userInterface;
         SpriteSheet _context;
+        Texture2D _monsterInterface;
         
 
         /// <summary>
@@ -35,7 +36,8 @@ namespace InfinityUndergroundReload
 
         public void LoadContent(ContentManager content)
         {
-            _userInterface = content.Load<Texture2D>("UI/Srambad");
+            _monsterInterface = _context.Context.SongContent.Load<Texture2D>(@"UI\Baroudeur_éminent");
+            _userInterface = content.Load<Texture2D>(@"UI\Srambad");
         }
 
         /// <summary>
@@ -73,6 +75,8 @@ namespace InfinityUndergroundReload
         /// <param name="gameTime">The game time.</param>
         public void Draw(SpriteBatch spriteBatch, int posX, int posY, int lifepoint, GraphicsDevice graphicsDevice, int maxLifepoint, int height)
         {
+            
+
             if (lifepoint < 0)
             {
                 lifepoint = 0;
@@ -92,12 +96,16 @@ namespace InfinityUndergroundReload
             }
             else
             {
-                spriteBatch.Draw(_healthBar, new Rectangle(posX, posY, pourcent * 2, height), Color.White);
+                spriteBatch.Draw(_healthBar, new Rectangle(66, 110, (int)(pourcent * 1.85), 49), Color.White);
             }
 
             if (_context.Context.LoadOrUnloadFights == FightsState.Close)
             {
                 spriteBatch.Draw(_userInterface, new Rectangle(new Point(posX, posY - 40), new Point(250)), Color.White);
+            }
+            else
+            {
+                spriteBatch.Draw(_userInterface, new Rectangle(new Point(30, 0), new Point(250)), Color.White);
             }
         }
 
@@ -122,6 +130,8 @@ namespace InfinityUndergroundReload
         /// <param name="gameTime">The game time.</param>
         public void Draw(SpriteBatch spriteBatch, int posX, int posY, int lifepoint, GraphicsDevice graphicsDevice, int maxLifepoint, int height, bool isMonster)
         {
+            posY -= 600;
+            posX += 360;
             if (lifepoint < 0)
             {
                 lifepoint = 0;
@@ -137,9 +147,10 @@ namespace InfinityUndergroundReload
 
             SetRectangle(pourcent);
 
-            Rectangle destinationRectangle = new Rectangle(posX, posY, pourcent * 4, height);
+            Rectangle destinationRectangle = new Rectangle(1600 + 20, 130, (int)(pourcent * 2.08), 60);
 
             spriteBatch.Draw(_healthBar, destinationRectangle, Color.White);
+            spriteBatch.Draw(_monsterInterface, new Rectangle(new Point(1600, 0), new Point(250)), Color.White);
 
         }
 

@@ -323,6 +323,8 @@ namespace InfinityUndergroundReload
                     spriteBatch.Draw(_whoFightsTexture, destRectMonster, Color.White);
                 }
 
+                spriteBatch.DrawString(_fontFights, _context.Player.PlayerAPI.CharacterType.LifePoint + "/" + _context.Player.PlayerAPI.CharacterType.MaxLifePoint, new Vector2(110, 130), Color.White);
+
             }
 
 
