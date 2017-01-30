@@ -219,6 +219,8 @@ namespace InfinityUndergroundReload
             Content.RootDirectory = "Content";
             _songContent = new ContentManager(Content.ServiceProvider, Content.RootDirectory);
 
+            graphics.IsFullScreen = true;
+
             _zoom = 0.1f;
             _dataSave = new DataSave(this);
 
@@ -499,7 +501,7 @@ namespace InfinityUndergroundReload
                     {
                         if (_worldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "BossRoom")
                         {
-                            monster.Monster.Position = new Vector2(850, 500);
+                            monster.Monster.Position = new Vector2(800, 500);
                         }
                         else
                         {

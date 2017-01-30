@@ -375,7 +375,7 @@ namespace InfinityUndergroundReload.CharactersUI
                 if ((_player.PositionY <= (Context.Map.HeightInPixels - 50)) && (Context.Map.LayerCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)Context.Map.TileSize) + 1, ((int)Math.Floor(_player.PositionY / (decimal)Context.Map.TileSize)) + 2).Id != Context.Map.IdTileCollide) && (Context.Map.LayerDoorCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)Context.Map.TileSize) + 1, ((int)Math.Floor(_player.PositionY / (decimal)Context.Map.TileSize)) + 2).Id != Context.Map.IdTileCollide))
                 {
                     _player.ChangePosition(CDirection.Bottom);
-                    if (Context.WorldAPI.CurrentLevel == 0 && Context.Camera.Position.Y < Context.Map.HeightInPixels - 550 && _player.PositionY > (Context.GetWindowsHeight / 2 - (Context.Player.Height / 2))) Context.Camera.Move(new Vector2(0, +_player.CharacterType.MoveSpeed));
+                    if (Context.WorldAPI.CurrentLevel == 0 && Context.Camera.Position.Y < Context.Map.HeightInPixels - 1085 && _player.PositionY > (Context.GetWindowsHeight / 2 - (Context.Player.Height / 2))) Context.Camera.Move(new Vector2(0, +_player.CharacterType.MoveSpeed));
                     else if (Context.WorldAPI.CurrentLevel != 0) { Context.Camera.Move(new Vector2(0, +_player.CharacterType.MoveSpeed)); }
                 }
                 _action = from action in _playerAction where action.RowAction == (int)RowActionOnSpriteSheetPlayer.WalkBottom select action;
@@ -397,7 +397,7 @@ namespace InfinityUndergroundReload.CharactersUI
                 if ((_player.PositionX <= (Context.Map.WidthInPixels)) && (Context.Map.LayerCollide.GetTile(((int)Math.Round((decimal)_player.PositionX / Context.Map.TileSize)) + 1, ((int)Math.Round((decimal)_player.PositionY / Context.Map.TileSize)) + 1).Id != Context.Map.IdTileCollide) && (Context.Map.LayerDoorCollide.GetTile(((int)Math.Round((decimal)_player.PositionX / Context.Map.TileSize)) + 1, ((int)Math.Round((decimal)_player.PositionY / Context.Map.TileSize)) + 1).Id != Context.Map.IdTileCollide))
                 {
                     _player.ChangePosition(CDirection.Right);
-                    if (Context.WorldAPI.CurrentLevel == 0 && Context.Camera.Position.X < Context.Map.WidthInPixels - 960 && _player.PositionX > (Context.GetWindowWidth / 2 - (Context.Player.Width / 2))) Context.Camera.Move(new Vector2(+_player.CharacterType.MoveSpeed, 0));
+                    if (Context.WorldAPI.CurrentLevel == 0 && Context.Camera.Position.X < Context.Map.WidthInPixels - 1940 && _player.PositionX > (Context.GetWindowWidth / 2 - (Context.Player.Width / 2))) Context.Camera.Move(new Vector2(+_player.CharacterType.MoveSpeed, 0));
                     else if (Context.WorldAPI.CurrentLevel != 0) { Context.Camera.Move(new Vector2(+_player.CharacterType.MoveSpeed, 0)); }
                 }
                 _action = from action in _playerAction where action.RowAction == (int)RowActionOnSpriteSheetPlayer.WalkRight select action;
