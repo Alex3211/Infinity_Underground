@@ -300,7 +300,7 @@ namespace InfinityUndergroundReload.API
             if (ListOfMonster.Count == 0)
             {
 
-                if (GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "BossRoom" && GetLevel.GetRoom.RoomCharateristcs.NumberOfStyleRoom == "1")
+                if (GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "BossRoom")
                 {
                     _listOfMonster.Add(new CAngel(this));
                 }

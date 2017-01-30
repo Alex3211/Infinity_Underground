@@ -497,14 +497,14 @@ namespace InfinityUndergroundReload
                 {
                     foreach (SpriteSheet monster in ListOfMonsterUI)
                     {
-                        if (_worldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "BossRoom" && _worldAPI.GetLevel.GetRoom.RoomCharateristcs.NumberOfStyleRoom == "1")
+                        if (_worldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "BossRoom")
                         {
-                            monster.Monster.Position = new Vector2(500, 500);
+                            monster.Monster.Position = new Vector2(850, 500);
                         }
                         else
                         {
 
-                                monster.SetPosition();
+                              monster.SetPosition();
                         }
                     }
 

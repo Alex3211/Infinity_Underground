@@ -545,7 +545,7 @@ namespace InfinityUndergroundReload.CharactersUI
                     {
                         for (int y = -2; y <= 2; y++)
                         {
-                            if ((((int)_positionMonster.X) / Context.Map.TileSize) + x > 10 && (((int)_positionMonster.Y) / Context.Map.TileSize) + y > 10 && layer.GetTile((((int)_positionMonster.X) / Context.Map.TileSize) + x, (((int)_positionMonster.Y + y) / Context.Map.TileSize) + y).Id != 0/* && layer.GetTile(((int)_positionMonster.X + x) / Context.Map.TileSize, ((int)_positionMonster.Y + y) / Context.Map.TileSize).Id == Context.Map.IdTileCollide*/)
+                            if (layer.GetTile((((int)_positionMonster.X) / Context.Map.TileSize) + x, (((int)_positionMonster.Y) / Context.Map.TileSize) + y).Id != 0)
                             {
                                 validatePosition = false;
                             }
