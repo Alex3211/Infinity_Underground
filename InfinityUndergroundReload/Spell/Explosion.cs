@@ -74,7 +74,7 @@ namespace InfinityUndergroundReload.Spell
     class NuclearExplosion : SpriteSheet
     {
         SPlayer _player;
-
+        SoundEffect _sound;
 
         public NuclearExplosion(SPlayer player)
         {
@@ -91,6 +91,7 @@ namespace InfinityUndergroundReload.Spell
 
         public override void LoadContent(ContentManager content)
         {
+            _sound = content.Load<SoundEffect>(@"Song\NBomb");
             Spritesheet = content.Load<Texture2D>("Effect/nuclear-explosion");
         }
 
@@ -112,6 +113,7 @@ namespace InfinityUndergroundReload.Spell
             {
                 CurrentRow = 0;
                 ResetPosition = false;
+                _sound.Play();
             }
 
             SpriteSheetColumns = 5;

@@ -1,5 +1,6 @@
 ﻿using InfinityUndergroundReload.CharactersUI;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -11,6 +12,8 @@ namespace InfinityUndergroundReload.Spell
         SPlayer _player;
         int _spellPositionY;
         SpriteSheet _explosion;
+        SoundEffect _sound;
+        SoundEffectInstance _soundInst;
 
 
         public Meteor(SpriteSheet monster, SPlayer player)
@@ -30,7 +33,9 @@ namespace InfinityUndergroundReload.Spell
 
         public override void LoadContent(ContentManager content)
         {
-            Spritesheet = content.Load<Texture2D>("Effect/meteor");
+            _sound = content.Load<SoundEffect>(@"Song\sifl");
+            _soundInst = _sound.CreateInstance();
+            Spritesheet = content.Load<Texture2D>(@"Effect\meteor");
             _explosion.LoadContent(content);
         }
 
@@ -59,7 +64,10 @@ namespace InfinityUndergroundReload.Spell
                 CurrentRow = 0;
                 CurrentFrame = 0;
                 _spellPositionY = _player.PlayerAPI.PositionY - 600;
+                _soundInst.Play();
+                _soundInst.Volume = 0.3f;
             }
+
 
             Width = Spritesheet.Width / SpriteSheetColumns;
             Height = Spritesheet.Height / SpriteSheetRows;
