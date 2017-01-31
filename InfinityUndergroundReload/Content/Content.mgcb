@@ -212,11 +212,6 @@
 /processor:TiledMapProcessor
 /build:SecretRoom/3.tmx
 
-#begin SecretRoom/4.tmx
-/importer:TiledMapImporter
-/processor:TiledMapProcessor
-/build:SecretRoom/4.tmx
-
 #begin TrapRoom/1.tmx
 /importer:TiledMapImporter
 /processor:TiledMapProcessor
@@ -313,12 +308,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Effect/DarkMatter.png
-
-#begin fights.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:TextureFormat=Compressed
-/build:fights.spritefont
 
 #begin Icons/1.png
 /importer:TextureImporter
@@ -685,4 +674,15 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:UI/Baroudeur_éminent.png
+
+#begin fights.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:fights.spritefont
+
+#begin SecretRoom/zadzaraarz.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:SecretRoom/zadzaraarz.tmx
 
