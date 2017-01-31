@@ -182,7 +182,7 @@ namespace InfinityUndergroundReload
                             }
 
 
-                           if (_keyboard.IsKeyDown(Keys.I))
+                           if (_keyboard.IsKeyDown(Keys.E))
                             {
                                 _timeForAnimation = 0;
                                 _turn = CharacterTurn.NoOne;

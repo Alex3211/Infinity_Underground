@@ -397,14 +397,14 @@ namespace InfinityUndergroundReload.Map
             HealThePlayer();
 
 
-            if (Keyboard.GetState().IsKeyDown(Keys.F1) && LastActiveF1Menu + IntervalBetweenF1Menu < gameTime.TotalGameTime && _context.WorldAPI.CurrentLevel != 0 && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom" && !_stateEnigm)
+            if (Keyboard.GetState().IsKeyDown(Keys.I) && LastActiveF1Menu + IntervalBetweenF1Menu < gameTime.TotalGameTime && _context.WorldAPI.CurrentLevel != 0 && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom" && !_stateEnigm)
             {
                 _enigmRandom = _context.WorldAPI.Random.Next(0, 2);
                 _stateEnigm = true;
 
                 LastActiveF1Menu = gameTime.TotalGameTime;
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.F2) && LastStatsActive + IntervalBetweenStats < gameTime.TotalGameTime)
+            if (Keyboard.GetState().IsKeyDown(Keys.F1) && LastStatsActive + IntervalBetweenStats < gameTime.TotalGameTime)
             {
                 _statState = !_statState;
                 LastStatsActive = gameTime.TotalGameTime;
