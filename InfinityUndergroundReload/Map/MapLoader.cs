@@ -588,7 +588,7 @@ namespace InfinityUndergroundReload.Map
             {
 
                 i = 250;
-                Rectangle destinationRectangle = new Rectangle((int)_context.Camera.Position.X + 20, (int)_context.Camera.Position.Y + i, 275, 275);
+                Rectangle destinationRectangle = new Rectangle((int)_context.Camera.Position.X + 20, (int)_context.Camera.Position.Y + i, 300, 275);
 
                 spriteBatch.Draw(_textArea, destinationRectangle, Color.White);
 
