@@ -681,8 +681,8 @@
 /processorParam:TextureFormat=Compressed
 /build:fights.spritefont
 
-#begin SecretRoom/zadzaraarz.tmx
+#begin SecretRoom/4.tmx
 /importer:TiledMapImporter
 /processor:TiledMapProcessor
-/build:SecretRoom/zadzaraarz.tmx
+/build:SecretRoom/4.tmx
 
