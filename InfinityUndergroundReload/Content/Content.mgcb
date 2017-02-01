@@ -686,3 +686,15 @@
 /processor:TiledMapProcessor
 /build:SecretRoom/4.tmx
 
+#begin Song/sifl.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Song/sifl.mp3
+
+#begin Song/NBomb.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Song/NBomb.mp3
+
