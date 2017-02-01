@@ -451,7 +451,7 @@ namespace InfinityUndergroundReload.Map
             }
 
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Enter) && LastActiveF1Menu + IntervalBetweenF1Menu < gameTime.TotalGameTime && _context.WorldAPI.CurrentLevel != 0 && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom" && !_stateEnigm)
+            if (Keyboard.GetState().IsKeyDown(Keys.F2) && LastActiveF1Menu + IntervalBetweenF1Menu < gameTime.TotalGameTime && _context.WorldAPI.CurrentLevel != 0 && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom" && !_stateEnigm)
             {
                 _enigmRandom = _context.WorldAPI.Random.Next(0, 2);
                 _stateEnigm = true;
