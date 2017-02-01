@@ -15,6 +15,13 @@ using InfinityUndergroundReload.Interface;
 
 namespace InfinityUndergroundReload.Map
 {
+    enum PlayerContact
+    {
+        Alex,
+        Dylan,
+        None
+    }
+
     public class MapLoader
     {
         int _idTileCollide;
@@ -60,6 +67,12 @@ namespace InfinityUndergroundReload.Map
         Texture2D _textArea;
         Texture2D _textArea2;
         Texture2D _backgroundMinimap;
+        Texture2D _fontContact;
+        PlayerContact _playerC;
+        TimeSpan _time;
+        TimeSpan _timeForContact;
+        bool _drawContact;
+
 
         public MapLoader(InfinityUnderground context)
         {
@@ -75,13 +88,14 @@ namespace InfinityUndergroundReload.Map
             IntervalBetweenF1Menu = TimeSpan.FromMilliseconds(1000);
             IntervalBetweenText = TimeSpan.FromMilliseconds(4500);
             IntervalBetweenStats = TimeSpan.FromMilliseconds(1000);
+            _timeForContact = TimeSpan.FromMilliseconds(5000);
             _handler = new KeyboardHandler(context);
             _informationPlayer = new List<string>();
 
 
             _informationUnderground = new List<string>();
 
-
+            _playerC = PlayerContact.None;
         }
 
         public bool GetStateTransition { get { return _stateTransition; } set { _stateTransition = value; } }
@@ -258,6 +272,7 @@ namespace InfinityUndergroundReload.Map
         /// <param name="content">The content.</param>
         public void LoadContent(ContentManager content)
         {
+            if (_context.WorldAPI.CurrentLevel == 0) _fontContact = content.Load<Texture2D>(@"UI\FontContact");
             _textArea = _context.Content.Load<Texture2D>("UI/PanelTopLeft");
             _textArea2 = _context.Content.Load<Texture2D>("UI/PanelBottomLeft");
             _backgroundMinimap = _context.Content.Load<Texture2D>("UI/BackgroundMinimap");
@@ -396,8 +411,47 @@ namespace InfinityUndergroundReload.Map
 
             HealThePlayer();
 
+            if (_context.WorldAPI.CurrentLevel == 0
+                &&
+                Keyboard.GetState().IsKeyDown(Keys.E)
+                &&
+                _context.Player.PlayerAPI.PositionX > _context.WorldAPI.Dylan.PositionX - _context.WorldAPI.Dylan.CharacterType.HitBox
+                &&
+                _context.Player.PlayerAPI.PositionX < _context.WorldAPI.Dylan.PositionX + _context.WorldAPI.Dylan.CharacterType.HitBox
+                &&
+                _context.Player.PlayerAPI.PositionY < _context.WorldAPI.Dylan.PositionY + _context.WorldAPI.Dylan.CharacterType.HitBox
+                &&
+                _context.Player.PlayerAPI.PositionY > _context.WorldAPI.Dylan.PositionY - _context.WorldAPI.Dylan.CharacterType.HitBox
+                )
+            {
+                _playerC = PlayerContact.Dylan;
+                _drawContact = true;
+            }
+            else if (_context.WorldAPI.CurrentLevel == 0
+                &&
+                Keyboard.GetState().IsKeyDown(Keys.E)
+                &&
+                _context.Player.PlayerAPI.PositionX > _context.WorldAPI.Alex.PositionX - _context.WorldAPI.Alex.CharacterType.HitBox
+                &&
+                _context.Player.PlayerAPI.PositionX < _context.WorldAPI.Alex.PositionX + _context.WorldAPI.Alex.CharacterType.HitBox
+                &&
+                _context.Player.PlayerAPI.PositionY < _context.WorldAPI.Alex.PositionY + _context.WorldAPI.Alex.CharacterType.HitBox
+                &&
+                _context.Player.PlayerAPI.PositionY > _context.WorldAPI.Alex.PositionY - _context.WorldAPI.Alex.CharacterType.HitBox)
+            {
+                _drawContact = true;
+                _playerC = PlayerContact.Alex;
+            }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.I) && LastActiveF1Menu + IntervalBetweenF1Menu < gameTime.TotalGameTime && _context.WorldAPI.CurrentLevel != 0 && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom" && !_stateEnigm)
+            if (_drawContact && _timeForContact + _time <= gameTime.TotalGameTime)
+            {
+                _playerC = PlayerContact.None;
+                _drawContact = false;
+                _time = gameTime.TotalGameTime;
+            }
+
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Enter) && LastActiveF1Menu + IntervalBetweenF1Menu < gameTime.TotalGameTime && _context.WorldAPI.CurrentLevel != 0 && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom" && !_stateEnigm)
             {
                 _enigmRandom = _context.WorldAPI.Random.Next(0, 2);
                 _stateEnigm = true;
@@ -516,6 +570,10 @@ namespace InfinityUndergroundReload.Map
         /// <param name="spriteBatch">The sprite Batch.</param>
         public void Draw(SpriteBatch spriteBatch)
         {
+
+
+
+
             if (_context.WorldAPI.CurrentLevel != 0)
             {
                 _informationUnderground.Clear();
@@ -545,7 +603,11 @@ namespace InfinityUndergroundReload.Map
                     }
                 }
             }
-
+            if (_context.WorldAPI.CurrentLevel == 0)
+            {
+                _context.Dylan.Draw(spriteBatch);
+                _context.Alex.Draw(spriteBatch);
+            }
             _context.Player.Draw(spriteBatch);
 
 
@@ -580,6 +642,7 @@ namespace InfinityUndergroundReload.Map
             {
                 _context.Fights.MonsterFights.DrawMonsterHealthBar(spriteBatch);
             }
+
 
             _context.Player.DrawPlayerHeatlthBar(spriteBatch);
             
@@ -640,6 +703,29 @@ namespace InfinityUndergroundReload.Map
                 spriteBatch.DrawString(_font, _enigmResponse, new Vector2((int)_context.Camera.Position.X +250, (int)_context.Camera.Position.Y + 200), Color.White);
             }
             if (_statusEnigm != string.Empty && LastActiveText + IntervalBetweenText > _gametime.TotalGameTime) spriteBatch.DrawString(_font, _statusEnigm, new Vector2((int)_context.Camera.Position.X + _context.GraphicsDevice.Viewport.Width / 2 - (_statusEnigm.Length * 2), (int)_context.Camera.Position.Y + _context.GraphicsDevice.Viewport.Height - 50), Color.White);
+
+
+
+
+            if (_context.WorldAPI.CurrentLevel == 0 && _drawContact)
+            {
+                Rectangle destinationRectangle3 = new Rectangle(2700, 1175, 300, 75);
+                spriteBatch.Draw(_fontContact, destinationRectangle3, Color.White);
+                switch (_playerC)
+                {
+                    case PlayerContact.Alex:
+                        spriteBatch.DrawString(_smallFont, "Alexandre PICARD", new Vector2(2760, 1195), Color.Red);
+                        spriteBatch.DrawString(_smallFont, "apicard@intechinfo.fr", new Vector2(2740, 1220), Color.Red);
+                        break;
+
+                    case PlayerContact.Dylan:
+                        spriteBatch.DrawString(_smallFont, "Dylan HERVE", new Vector2(2780, 1195), Color.Red);
+                        spriteBatch.DrawString(_smallFont, "herve@intechinfo.fr", new Vector2(2740, 1220), Color.Red);
+                        break;
+                }
+            }
+
+
 
         }
 

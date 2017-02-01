@@ -38,8 +38,10 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CharactersUI\SAlex.cs" />
     <Compile Include="CharactersUI\SAngel.cs" />
     <Compile Include="CharactersUI\SCuriosity4.cs" />
+    <Compile Include="CharactersUI\SDylan.cs" />
     <Compile Include="FightsUI.cs" />
     <Compile Include="InfinityUnderground.cs" />
     <Compile Include="Interface\DataSave.cs" />

@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Characters\CAlex.cs" />
     <Compile Include="Characters\CAngel.cs" />
     <Compile Include="Characters\CAttacks.cs" />
     <Compile Include="Characters\CCharacter.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="Characters\CCuriosity4.0.cs" />
     <Compile Include="Characters\CDirection.cs" />
     <Compile Include="Characters\CDragon.cs" />
+    <Compile Include="Characters\CDylan.cs" />
     <Compile Include="Characters\CNPC.cs" />
     <Compile Include="Characters\CPlayer.cs" />
     <Compile Include="Door.cs" />

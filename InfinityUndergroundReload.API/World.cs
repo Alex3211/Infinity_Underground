@@ -20,6 +20,8 @@ namespace InfinityUndergroundReload.API
         //Fights _fights;
         Vector2 _lastPositionOfThePlayer;
         Vector2 _newPositionOfThePlayer;
+        CAlex _alex;
+        CDylan _dylan;
 
         public World()
         {
@@ -28,6 +30,37 @@ namespace InfinityUndergroundReload.API
             _listOfMonster = new List<CNPC>();
             _maxLevel = 1;
             _tileSize = 32;
+
+            _alex = new CAlex(this);
+            _dylan = new CDylan(this);
+        }
+
+        /// <summary>
+        /// Gets the dylan.
+        /// </summary>
+        /// <value>
+        /// The dylan.
+        /// </value>
+        public CDylan Dylan
+        {
+            get
+            {
+                return _dylan;
+            }
+        }
+
+        /// <summary>
+        /// Gets the alex.
+        /// </summary>
+        /// <value>
+        /// The alex.
+        /// </value>
+        public CAlex Alex
+        {
+            get
+            {
+                return _alex;
+            }
         }
 
         /// <summary>

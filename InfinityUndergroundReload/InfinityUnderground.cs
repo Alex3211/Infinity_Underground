@@ -50,6 +50,9 @@ namespace InfinityUndergroundReload
 
         FightsState _fightState;
 
+        SDylan _dylan;
+        SAlex _alex;
+
         /// <summary>
         /// Gets the game time.
         /// </summary>
@@ -191,6 +194,20 @@ namespace InfinityUndergroundReload
         }
 
         /// <summary>
+        /// Gets the dylan.
+        /// </summary>
+        /// <value>
+        /// The dylan.
+        /// </value>
+        public SDylan Dylan
+        {
+            get
+            {
+                return _dylan;
+            }
+        }
+
+        /// <summary>
         /// Gets the player.
         /// </summary>
         /// <value>
@@ -204,6 +221,12 @@ namespace InfinityUndergroundReload
             }
         }
 
+        /// <summary>
+        /// Gets the fights.
+        /// </summary>
+        /// <value>
+        /// The fights.
+        /// </value>
         public FightsUI Fights
         {
             get
@@ -212,6 +235,12 @@ namespace InfinityUndergroundReload
             }
         }
 
+        /// <summary>
+        /// Gets or sets the load or unload fights.
+        /// </summary>
+        /// <value>
+        /// The load or unload fights.
+        /// </value>
         public FightsState LoadOrUnloadFights
         {
             get
@@ -222,6 +251,20 @@ namespace InfinityUndergroundReload
             set
             {
                 _fightState = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the alex.
+        /// </summary>
+        /// <value>
+        /// The alex.
+        /// </value>
+        public SAlex Alex
+        {
+            get
+            {
+                return _alex;
             }
         }
 
@@ -262,6 +305,9 @@ namespace InfinityUndergroundReload
             _timeMaxForTakeNextDoor = TimeSpan.FromMilliseconds(1000);
 
             _lastLevel = int.MaxValue;
+
+            _dylan = new SDylan(this, WorldAPI.Dylan);
+            _alex = new SAlex(this, WorldAPI.Alex);
         }
 
         /// <summary>
@@ -317,6 +363,11 @@ namespace InfinityUndergroundReload
 
             _map.LoadContent(Content);
 
+            if (WorldAPI.CurrentLevel == 0)
+            {
+                Dylan.LoadContent(Content);
+                Alex.LoadContent(Content);
+            }
 
             if (ListOfMonsterUI.Count != 0)
             {
