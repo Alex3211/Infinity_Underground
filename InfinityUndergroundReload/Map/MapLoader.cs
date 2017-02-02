@@ -453,7 +453,7 @@ namespace InfinityUndergroundReload.Map
 
             if (Keyboard.GetState().IsKeyDown(Keys.F2) && LastActiveF1Menu + IntervalBetweenF1Menu < gameTime.TotalGameTime && _context.WorldAPI.CurrentLevel != 0 && _context.WorldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "SecretRoom" && !_stateEnigm)
             {
-                _enigmRandom = _context.WorldAPI.Random.Next(0, 2);
+                _enigmRandom = _context.WorldAPI.Random.Next(0, 3);
                 _stateEnigm = true;
 
                 LastActiveF1Menu = gameTime.TotalGameTime;
@@ -546,7 +546,7 @@ namespace InfinityUndergroundReload.Map
         public string DoAnEnigm()
         {
             tab = _dataXml.LoadEnigmFromTheFile("enigm");
-            string enigm = "Question : " + tab.Item(_enigmRandom).FirstChild.Value + " Réponse : " + tab.Item(_enigmRandom).Attributes["reponse"].Value;
+            string enigm = "Question : " + tab.Item(_enigmRandom).FirstChild.Value;
             return enigm;
         }
 
@@ -702,7 +702,8 @@ namespace InfinityUndergroundReload.Map
                 spriteBatch.DrawString(_font, Enigm, new Vector2((int)_context.Camera.Position.X + _context.GraphicsDevice.Viewport.Width / 2 - (Enigm.Length *7), (int)_context.Camera.Position.Y), Color.White);
                 spriteBatch.DrawString(_font, _enigmResponse, new Vector2((int)_context.Camera.Position.X +250, (int)_context.Camera.Position.Y + 200), Color.White);
             }
-            if (_statusEnigm != string.Empty && LastActiveText + IntervalBetweenText > _gametime.TotalGameTime) spriteBatch.DrawString(_font, _statusEnigm, new Vector2((int)_context.Camera.Position.X + _context.GraphicsDevice.Viewport.Width / 2 - (_statusEnigm.Length * 2), (int)_context.Camera.Position.Y + _context.GraphicsDevice.Viewport.Height - 50), Color.White);
+            if (_statusEnigm != string.Empty && LastActiveText + IntervalBetweenText > _gametime.TotalGameTime)
+                spriteBatch.DrawString(_font, _statusEnigm, new Vector2((int)_context.Camera.Position.X + _context.GraphicsDevice.Viewport.Width / 2 - (_statusEnigm.Length * 2), (int)_context.Camera.Position.Y + _context.GraphicsDevice.Viewport.Height - 50), Color.White);
 
 
 
