@@ -344,7 +344,7 @@ namespace InfinityUndergroundReload
                         return "Vous attaquez le monstre !";
 
                     case "Curiosity2":
-                        return "Curiosity 4.0 à créé un Curiosity 2.0 qui fonce sur vous !";
+                        return "Curiosity 4.0 a fabriqué un Curiosity 2.0 qui fonce sur vous !";
 
                     case "DarkHole":
                         switch(spell.TurnsDuringDamage)
@@ -368,13 +368,13 @@ namespace InfinityUndergroundReload
                         switch(spell.TurnsDuringDamage)
                         {
                             case 2:
-                                return "Un nuage de metaux se forme";
+                                return "Un nuage de métaux se forme";
 
                             case 1:
                                 return "Les métaux fusionnent !";
 
                             case 0:
-                                return "L'ange a créé un soleil !";
+                                return "L'ange a fait naître un soleil !";
 
                         }
                         break;
@@ -388,7 +388,7 @@ namespace InfinityUndergroundReload
 
             if (_context.Player.PlayerAPI.Shield)
             {
-                return "Vous avez créé un bouclier";
+                return "Vous avez un bouclier";
             }
             if (_turn == CharacterTurn.Player)
             {
