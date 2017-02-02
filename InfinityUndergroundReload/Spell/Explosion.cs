@@ -1,5 +1,6 @@
 ﻿using InfinityUndergroundReload.CharactersUI;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -13,7 +14,7 @@ namespace InfinityUndergroundReload.Spell
     class Explosion : SpriteSheet
     {
         SPlayer _player;
-
+        SoundEffect _sound;
 
         public Explosion(SPlayer player)
         {
@@ -29,11 +30,13 @@ namespace InfinityUndergroundReload.Spell
 
         public override void LoadContent(ContentManager content)
         {
+            _sound = content.Load<SoundEffect>(@"Song\Explosion");
             Spritesheet = content.Load<Texture2D>("Effect/explosion");
         }
 
         public override void Unload(ContentManager content)
         {
+            if (_sound != null) _sound.Dispose();
             base.Unload(content);
         }
 
@@ -48,6 +51,7 @@ namespace InfinityUndergroundReload.Spell
             {
                 CurrentRow = 0;
                 ResetPosition = false;
+                _sound.Play();
             }
 
             SpriteSheetColumns = 5;
@@ -70,7 +74,7 @@ namespace InfinityUndergroundReload.Spell
     class NuclearExplosion : SpriteSheet
     {
         SPlayer _player;
-
+        SoundEffect _sound;
 
         public NuclearExplosion(SPlayer player)
         {
@@ -87,6 +91,7 @@ namespace InfinityUndergroundReload.Spell
 
         public override void LoadContent(ContentManager content)
         {
+            _sound = content.Load<SoundEffect>(@"Song\NBomb");
             Spritesheet = content.Load<Texture2D>("Effect/nuclear-explosion");
         }
 
@@ -108,6 +113,7 @@ namespace InfinityUndergroundReload.Spell
             {
                 CurrentRow = 0;
                 ResetPosition = false;
+                _sound.Play();
             }
 
             SpriteSheetColumns = 5;

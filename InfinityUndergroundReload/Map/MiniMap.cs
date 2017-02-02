@@ -58,19 +58,19 @@ namespace InfinityUndergroundReload.Map
             {
                 if (room.Position == new Vector2(0, 0))
                 {
-                    spriteBatch.Draw(_roomIn, new Rectangle((int)(_context.Context.Camera.Position.X + (room.Position.X * (_widthRoom + 10) + 800)), (int)(_context.Context.Camera.Position.Y + (room.Position.Y * (_heightRoom + 10)) + 5), _widthRoom, _heightRoom), Color.White);
+                    spriteBatch.Draw(_roomIn, new Rectangle((int)(_context.Context.Camera.Position.X + (room.Position.X * (_widthRoom + 10) + 1920 - 280)), (int)(_context.Context.Camera.Position.Y + (room.Position.Y * (_heightRoom + 10)) + 60), _widthRoom, _heightRoom), Color.White);
                 }
                 else if (room.Position == _context.Context.WorldAPI.GetLevel.RoomOutPosition)
                 {
-                    spriteBatch.Draw(_roomOut, new Rectangle((int)(_context.Context.Camera.Position.X + (room.Position.X * (_widthRoom + 10) + 800)), (int)(_context.Context.Camera.Position.Y + (room.Position.Y * (_heightRoom + 10)) + 5), _widthRoom, _heightRoom), Color.White);
+                    spriteBatch.Draw(_roomOut, new Rectangle((int)(_context.Context.Camera.Position.X + (room.Position.X * (_widthRoom + 10) + 1920 - 280)), (int)(_context.Context.Camera.Position.Y + (room.Position.Y * (_heightRoom + 10)) + 60), _widthRoom, _heightRoom), Color.White);
                 }
                 else if (room.Position == _context.Context.WorldAPI.GetLevel.PositionCurrentRoom)
                 {
-                    spriteBatch.Draw(_actualRoom, new Rectangle((int)(_context.Context.Camera.Position.X + (room.Position.X * (_widthRoom + 10) + 800)), (int)(_context.Context.Camera.Position.Y + (room.Position.Y * (_heightRoom + 10)) + 5), _widthRoom, _heightRoom), Color.White);
+                    spriteBatch.Draw(_actualRoom, new Rectangle((int)(_context.Context.Camera.Position.X + (room.Position.X * (_widthRoom + 10) + 1920 - 280)), (int)(_context.Context.Camera.Position.Y + (room.Position.Y * (_heightRoom + 10)) + 60), _widthRoom, _heightRoom), Color.White);
                 }
                 else
                 {
-                    spriteBatch.Draw(_room, new Rectangle((int)(_context.Context.Camera.Position.X + (room.Position.X * (_widthRoom + 10) + 800)), (int)(_context.Context.Camera.Position.Y + (room.Position.Y * (_heightRoom + 10)) + 5), _widthRoom, _heightRoom), Color.White);
+                    spriteBatch.Draw(_room, new Rectangle((int)(_context.Context.Camera.Position.X + (room.Position.X * (_widthRoom + 10) + 1920 - 280)), (int)(_context.Context.Camera.Position.Y + (room.Position.Y * (_heightRoom + 10)) + 60), _widthRoom, _heightRoom), Color.White);
                 }
             }
 

@@ -11,8 +11,8 @@ using System.Collections.Generic;
 using System.Threading;
 using InfinityUndergroundReload.API.Characters;
 using Microsoft.Xna.Framework.Content;
-using MonoGame.Extended.Maps.Tiled;
 using InfinityUndergroundReload.Interface;
+using Microsoft.Xna.Framework.Media;
 
 namespace InfinityUndergroundReload
 {
@@ -21,8 +21,8 @@ namespace InfinityUndergroundReload
     /// </summary>
     public class InfinityUnderground : Game
     {
-        const int WindowWidth = 960;
-        const int WindowHeight = 540;
+        const int WindowWidth = 1920;
+        const int WindowHeight = 1080;
         float _zoom;
 
         GraphicsDeviceManager graphics;
@@ -40,10 +40,18 @@ namespace InfinityUndergroundReload
         //List<IEntity> _entities;
         List<SpriteSheet> _listOfMonster;
         FightsUI _fights;
-        int _timeForTakeNextDoor;
-        int _timeMaxForTakeNextDoor;
+        TimeSpan _timeForTakeNextDoor;
+        TimeSpan _timeMaxForTakeNextDoor;
+        bool _playerCantMove;
+        Song _music;
+        int _lastLevel;
+        string _lastMusic;
+        ContentManager _songContent;
 
         FightsState _fightState;
+
+        SDylan _dylan;
+        SAlex _alex;
 
         /// <summary>
         /// Gets the game time.
@@ -55,6 +63,39 @@ namespace InfinityUndergroundReload
         {
             get;
             set;
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether [player cant move].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [player cant move]; otherwise, <c>false</c>.
+        /// </value>
+        public bool PlayerCantMove
+        {
+            get
+            {
+                return _playerCantMove;
+            }
+
+            set
+            {
+                _playerCantMove = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the content of the song.
+        /// </summary>
+        /// <value>
+        /// The content of the song.
+        /// </value>
+        public ContentManager SongContent
+        {
+            get
+            {
+                return _songContent;
+            }
         }
 
         /// <summary>
@@ -153,6 +194,20 @@ namespace InfinityUndergroundReload
         }
 
         /// <summary>
+        /// Gets the dylan.
+        /// </summary>
+        /// <value>
+        /// The dylan.
+        /// </value>
+        public SDylan Dylan
+        {
+            get
+            {
+                return _dylan;
+            }
+        }
+
+        /// <summary>
         /// Gets the player.
         /// </summary>
         /// <value>
@@ -166,6 +221,12 @@ namespace InfinityUndergroundReload
             }
         }
 
+        /// <summary>
+        /// Gets the fights.
+        /// </summary>
+        /// <value>
+        /// The fights.
+        /// </value>
         public FightsUI Fights
         {
             get
@@ -174,6 +235,12 @@ namespace InfinityUndergroundReload
             }
         }
 
+        /// <summary>
+        /// Gets or sets the load or unload fights.
+        /// </summary>
+        /// <value>
+        /// The load or unload fights.
+        /// </value>
         public FightsState LoadOrUnloadFights
         {
             get
@@ -187,11 +254,29 @@ namespace InfinityUndergroundReload
             }
         }
 
+        /// <summary>
+        /// Gets the alex.
+        /// </summary>
+        /// <value>
+        /// The alex.
+        /// </value>
+        public SAlex Alex
+        {
+            get
+            {
+                return _alex;
+            }
+        }
+
         public InfinityUnderground()
         {
 
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            _songContent = new ContentManager(Content.ServiceProvider, Content.RootDirectory);
+
+            graphics.IsFullScreen = true;
+
             _zoom = 0.1f;
             _dataSave = new DataSave(this);
 
@@ -201,8 +286,9 @@ namespace InfinityUndergroundReload
             IntervalBetweenF11Menu = TimeSpan.FromMilliseconds(1000);
             
             _worldAPI = new World();
-            _map = new MapLoader(this);
+
             _player = new SPlayer(this, 21, 13);
+            _map = new MapLoader(this);
             if (_dataSave.IsExistSave)
             {
                 _dataSave.LoadValuesFromTheFile();
@@ -216,8 +302,12 @@ namespace InfinityUndergroundReload
  
 
             _fightState = FightsState.Close;
-            _timeMaxForTakeNextDoor = 1000;
-            _timeForTakeNextDoor = 0;
+            _timeMaxForTakeNextDoor = TimeSpan.FromMilliseconds(1000);
+
+            _lastLevel = int.MaxValue;
+
+            _dylan = new SDylan(this, WorldAPI.Dylan);
+            _alex = new SAlex(this, WorldAPI.Alex);
         }
 
         /// <summary>
@@ -242,12 +332,42 @@ namespace InfinityUndergroundReload
         /// </summary>
         protected override void LoadContent()
         {
-            //Content = new ContentManager(Content.ServiceProvider, "Content");
-            // Create a new SpriteBatch, which can be used to draw textures.
+            try
+            {
+                if (LoadOrUnloadFights != FightsState.Close && LoadOrUnloadFights != FightsState.Exit)
+                {
+                    _music = _songContent.Load<Song>(@"Song\FightsMusic");
+                }
+                else if (WorldAPI.CurrentLevel == 0)
+                {
+                    _music = _songContent.Load<Song>(@"Song\Surface");
+                }
+                else if (_music == null || LoadOrUnloadFights == FightsState.Exit)
+                {
+                    _music = _songContent.Load<Song>(@"Song\Underground");
+                }
+
+                MediaPlayer.Volume = 0.2f;
+
+                if ((_music.Position.TotalMilliseconds <= 1000 && WorldAPI.CurrentLevel != 0) || WorldAPI.CurrentLevel == 0 || _lastMusic != _music.Name/*LoadOrUnloadFights == FightsState.Exit*/)
+                {
+                    MediaPlayer.Play(_music);
+                    _lastMusic = _music.Name;
+                }
+                MediaPlayer.IsRepeating = true;
+            }
+            catch
+            {}
+
             spriteBatch = new SpriteBatch(graphics.GraphicsDevice);
 
             _map.LoadContent(Content);
 
+            if (WorldAPI.CurrentLevel == 0)
+            {
+                Dylan.LoadContent(Content);
+                Alex.LoadContent(Content);
+            }
 
             if (ListOfMonsterUI.Count != 0)
             {
@@ -270,6 +390,15 @@ namespace InfinityUndergroundReload
         /// </summary>
         protected override void UnloadContent()
         {
+
+            if (_lastLevel != WorldAPI.CurrentLevel && _music != null)
+            {
+                //MediaPlayer.Stop();
+                //_music.Dispose();
+                _lastLevel = WorldAPI.CurrentLevel;
+                _music = null;
+            }
+
             // TODO: Unload any non ContentManager content here
             _map.Unload(Content);
             spriteBatch.Dispose();
@@ -365,14 +494,14 @@ namespace InfinityUndergroundReload
         /// </summary>
         public void ActionChangeEnvironment(GameTime gameTime)
         {
-            _timeForTakeNextDoor += gameTime.ElapsedGameTime.Milliseconds;
-
-
+            
             _door = _worldAPI.PlayerTakeDoor();
 
-            if ((_door != null || LoadOrUnloadFights != FightsState.Close) && LoadOrUnloadFights != FightsState.InFights && _timeForTakeNextDoor >= _timeMaxForTakeNextDoor)
+            if ((_door != null || LoadOrUnloadFights != FightsState.Close) && LoadOrUnloadFights != FightsState.InFights && _timeForTakeNextDoor + _timeMaxForTakeNextDoor < gameTime.TotalGameTime)
             {
-                _timeForTakeNextDoor = 0;
+                _timeForTakeNextDoor = gameTime.TotalGameTime;
+                _playerCantMove = true;
+
                 switch(LoadOrUnloadFights)
                 {
                     case FightsState.Close:
@@ -382,14 +511,12 @@ namespace InfinityUndergroundReload
 
                     case FightsState.Enter:
                         _camera.LookAt(new Vector2(960, 500));
-                        _camera.ZoomOut(0.5f);
                         LoadOrUnloadFights = FightsState.InFights;
                         break;
 
                     case FightsState.Exit:
                         WorldAPI.ExitFights();
                         _camera.LookAt(_player.PlayerAPI.Position);
-                        _camera.ZoomIn(0.5f);
                         break;
                 }
 
@@ -436,14 +563,14 @@ namespace InfinityUndergroundReload
                 {
                     foreach (SpriteSheet monster in ListOfMonsterUI)
                     {
-                        if (_worldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "BossRoom" && _worldAPI.GetLevel.GetRoom.RoomCharateristcs.NumberOfStyleRoom == "1")
+                        if (_worldAPI.GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "BossRoom")
                         {
-                            monster.Monster.Position = new Vector2(500, 500);
+                            monster.Monster.Position = new Vector2(800, 500);
                         }
                         else
                         {
 
-                                monster.SetPosition();
+                              monster.SetPosition();
                         }
                     }
 

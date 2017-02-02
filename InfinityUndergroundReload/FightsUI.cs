@@ -40,6 +40,11 @@ namespace InfinityUndergroundReload
         SelectedAttack _selectedAttack;
         int _timeBeforeLeave;
         int _timeLeave;
+        Texture2D _textArea;
+        SpriteFont _fontFights;
+        bool _stopSong;
+        Texture2D _speedBarTexture;
+        Texture2D _whoFightsTexture;
 
         public FightsUI(InfinityUnderground context)
         {
@@ -56,6 +61,25 @@ namespace InfinityUndergroundReload
             get
             {
                 return _monster;
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether [stop song].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [stop song]; otherwise, <c>false</c>.
+        /// </value>
+        public bool StopSong
+        {
+            get
+            {
+                return _stopSong;
+            }
+
+            set
+            {
+                _stopSong = value;
             }
         }
 
@@ -96,7 +120,11 @@ namespace InfinityUndergroundReload
         /// <param name="content">The content.</param>
         public void LoadContent(ContentManager content)
         {
+            _whoFightsTexture = content.Load<Texture2D>("Indication");
+            _speedBarTexture = content.Load<Texture2D>("speedBar");
+            _fontFights = content.Load<SpriteFont>("fights");
             _playerAttack.LoadContent(content);
+            _textArea = content.Load<Texture2D>("UI/TXTArea");
         }
 
 
@@ -113,7 +141,10 @@ namespace InfinityUndergroundReload
 
                 _timeForAnimation += gameTime.ElapsedGameTime.Milliseconds;
 
-
+                if (_timeForAnimation >= _timeMaxForAnimation - 250)
+                {
+                    _stopSong = true;
+                }
                 if (_timeForAnimation >= _timeMaxForAnimation)
                 {
 
@@ -132,9 +163,7 @@ namespace InfinityUndergroundReload
                         {
 
                             _currentAttack = _fights.GetAttack(_turn);
-
-
-
+                            
                             _fights.GiveDamageWithAttack(_currentAttack, _turn);
 
                             _timeForAnimation = 0;
@@ -153,7 +182,7 @@ namespace InfinityUndergroundReload
                             }
 
 
-                           if (_keyboard.IsKeyDown(Keys.I))
+                           if (_keyboard.IsKeyDown(Keys.E))
                             {
                                 _timeForAnimation = 0;
                                 _turn = CharacterTurn.NoOne;
@@ -188,7 +217,7 @@ namespace InfinityUndergroundReload
 
             }
 
-
+            
 
 
             foreach (SpriteSheet monster in _context.ListOfMonsterUI)
@@ -271,12 +300,103 @@ namespace InfinityUndergroundReload
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            if (_context.LoadOrUnloadFights != FightsState.Close && _textArea != null)
+            {
+                Rectangle destinationRectangle = new Rectangle(950, 910, _textArea.Width * 5, _textArea.Height * 2);
+
+
+                spriteBatch.Draw(_textArea, destinationRectangle, Color.White);
+                spriteBatch.DrawString(_fontFights, DrawFights(_currentAttack), new Vector2(1000, 930), Color.Black);
+                spriteBatch.Draw(_speedBarTexture, new Vector2(-10, 250), Color.White);
+                spriteBatch.DrawString(_fontFights, _fights.PlayerTurnsLoading.ToString() + "%", new Vector2(30, 820), Color.Black);
+                spriteBatch.DrawString(_fontFights, _fights.MonsterTurnsLoading.ToString() + "%", new Vector2(170, 820), Color.Black);
+
+                
+                if (_turn == CharacterTurn.Player)
+                {
+                    Rectangle destRectPlay = new Rectangle(30, 330, _whoFightsTexture.Width, _whoFightsTexture.Height);
+                    spriteBatch.Draw(_whoFightsTexture, destRectPlay, Color.White);
+                }
+                else if (_turn == CharacterTurn.Monster)
+                {
+                    Rectangle destRectMonster = new Rectangle(165, 330, _whoFightsTexture.Width, _whoFightsTexture.Height);
+                    spriteBatch.Draw(_whoFightsTexture, destRectMonster, Color.White);
+                }
+
+                spriteBatch.DrawString(_fontFights, _context.Player.PlayerAPI.CharacterType.LifePoint + "/" + _context.Player.PlayerAPI.CharacterType.MaxLifePoint, new Vector2(110, 130), Color.White);
+
+            }
+
+
             if (_turn == CharacterTurn.Player)
             {
-
                 _playerAttack.Draw(spriteBatch, _context.GraphicsDevice, _selectedAttack);
             }
         }
+
+        public string DrawFights(CAttacks spell)
+        {
+            if (spell != null)
+            {
+                switch (spell.Name)
+                {
+                    case "RedSlash":
+                        return "Vous attaquez le monstre !";
+
+                    case "Curiosity2":
+                        return "Curiosity 4.0 a fabriqué un Curiosity 2.0 qui fonce sur vous !";
+
+                    case "DarkHole":
+                        switch(spell.TurnsDuringDamage)
+                        {
+                            case 2:
+                                return "Vous êtes aspiré par un trou noir";
+
+                            case 1:
+                                return "Vous êtes dans un trou de verre";
+
+                            case 0:
+                                return "Vous vous faites expulser par un trou blanc";
+                        }
+                        break;
+
+                    case "ThrowDarkMatter":
+                        return "Vous entrez en contact avec de la matière noire";
+
+
+                    case "BirthOfASun":
+                        switch(spell.TurnsDuringDamage)
+                        {
+                            case 2:
+                                return "Un nuage de métaux se forme";
+
+                            case 1:
+                                return "Les métaux fusionnent !";
+
+                            case 0:
+                                return "L'ange a fait naître un soleil !";
+
+                        }
+                        break;
+
+                    case "Meteor":
+                        return "Une météorite vous tombe dessus !";
+
+                }
+                return "What ?";
+            }
+
+            if (_context.Player.PlayerAPI.Shield)
+            {
+                return "Vous avez un bouclier";
+            }
+            if (_turn == CharacterTurn.Player)
+            {
+                return "Que voulez-vous faire ?";
+            }
+            return "";
+        }
+
 
 
     }

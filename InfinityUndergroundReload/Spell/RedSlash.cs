@@ -1,5 +1,6 @@
 ﻿using InfinityUndergroundReload.CharactersUI;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -16,6 +17,7 @@ namespace InfinityUndergroundReload.Spell
         Vector2 _position;
         int _reload;
         int _time;
+        SoundEffect _sound;
 
         public RedSlash(SPlayer player)
         {
@@ -27,10 +29,12 @@ namespace InfinityUndergroundReload.Spell
 
         public override void LoadContent(ContentManager content)
         {
-            Spritesheet = content.Load<Texture2D>("Effect/RedSlash");
+            _sound = content.Load<SoundEffect>(@"Song\Slash");
+            Spritesheet = content.Load<Texture2D>(@"Effect\RedSlash");
         }
         public override void Unload(ContentManager content)
         {
+            if (_sound != null) _sound.Dispose();
             base.Unload(content);
         }
 
@@ -39,6 +43,12 @@ namespace InfinityUndergroundReload.Spell
             if (_position == new Vector2(0, 0))
             {
                 _position = _player.PlayerAPI.Position;
+            }
+
+            if (PlaySong)
+            {
+                _sound.Play();
+                PlaySong = false;
             }
 
             _time += _player.Context.GetGameTime.ElapsedGameTime.Milliseconds;
@@ -50,7 +60,7 @@ namespace InfinityUndergroundReload.Spell
             spriteBatch.Draw(Spritesheet, destinationRectangle, sourceRectangle, Color.White);
 
             _position.Y = _position.Y - 10;
-            _position.X = _position.X + 70;
+            _position.X = _position.X + 50;
 
             if (_time >= _reload)
             {

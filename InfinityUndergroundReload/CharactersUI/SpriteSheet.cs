@@ -33,6 +33,7 @@ namespace InfinityUndergroundReload.CharactersUI
         string _nameSpell;
         bool _spellReapeat;
         bool _spellHitPlayer;
+        bool _playSong;
         bool _resetPosition;
         int _turn;
 
@@ -43,6 +44,25 @@ namespace InfinityUndergroundReload.CharactersUI
         {
             _timeSinceLastFrame = 0;
             _millisecondsPerFrame = 80;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether [play song].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [play song]; otherwise, <c>false</c>.
+        /// </value>
+        public bool PlaySong
+        {
+            get
+            {
+                return _playSong;
+            }
+
+            set
+            {
+                _playSong = value;
+            }
         }
 
         /// <summary>
@@ -525,7 +545,7 @@ namespace InfinityUndergroundReload.CharactersUI
                     {
                         for (int y = -2; y <= 2; y++)
                         {
-                            if ((((int)_positionMonster.X) / Context.Map.TileSize) + x > 10 && (((int)_positionMonster.Y) / Context.Map.TileSize) + y > 10 && layer.GetTile((((int)_positionMonster.X) / Context.Map.TileSize) + x, (((int)_positionMonster.Y + y) / Context.Map.TileSize) + y).Id != 0/* && layer.GetTile(((int)_positionMonster.X + x) / Context.Map.TileSize, ((int)_positionMonster.Y + y) / Context.Map.TileSize).Id == Context.Map.IdTileCollide*/)
+                            if (layer.GetTile((((int)_positionMonster.X) / Context.Map.TileSize) + x, (((int)_positionMonster.Y) / Context.Map.TileSize) + y).Id != 0)
                             {
                                 validatePosition = false;
                             }
@@ -546,6 +566,11 @@ namespace InfinityUndergroundReload.CharactersUI
         }
 
         public virtual void LoadContent(ContentManager content)
+        {
+
+        }
+
+        public virtual void DrawMonsterHealthBar(SpriteBatch spritebatch)
         {
 
         }

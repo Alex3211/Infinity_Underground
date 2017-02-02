@@ -51,6 +51,12 @@ namespace InfinityUndergroundReload.CharactersUI
         int i;
         List<SpriteSheet> _spells;
         Shield _shield;
+        int _timeForMoveAfterDoor;
+        int _actualTimeForMove;
+        TimeSpan _songAttack;
+        TimeSpan _timeNeedSongAttack;
+        bool _songShield;
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SPlayer"/> class.
@@ -60,6 +66,12 @@ namespace InfinityUndergroundReload.CharactersUI
         /// <param name="spriteSheetColumns">The sprite sheet columns.</param>
         public SPlayer(InfinityUnderground context, int spriteSheetRows, int spriteSheetColumns)
         {
+            _songShield = true;
+
+            _timeNeedSongAttack = TimeSpan.FromMilliseconds(2250);
+
+            _timeForMoveAfterDoor = 1000;
+
             Context = context;
 
             _player = Context.WorldAPI.Player;
@@ -94,7 +106,7 @@ namespace InfinityUndergroundReload.CharactersUI
             _lastAction = _actualAction;
 
             _widthHealthBar = 100;
-            _healthBar = new LifePoint(_widthHealthBar, 25);
+            _healthBar = new LifePoint(_widthHealthBar, 25, this);
             _speedBar = new SpeedBarFights(_widthHealthBar, 25);
             _spells = new List<SpriteSheet>();
 
@@ -136,6 +148,7 @@ namespace InfinityUndergroundReload.CharactersUI
         /// <param name="content">The content.</param>
         public new void LoadContent(ContentManager content)
         {
+            _healthBar.LoadContent(content);
             Spritesheet = content.Load<Texture2D>("Player/Player");
 
             if (Context.LoadOrUnloadFights == FightsState.InFights)
@@ -167,15 +180,49 @@ namespace InfinityUndergroundReload.CharactersUI
         /// <param name="gameTime">The game time.</param>
         public override void Update(GameTime gameTime)
         {
-            if (Context.LoadOrUnloadFights == FightsState.Close)
+            if (!Context.Player.PlayerAPI.Shield)
+            {
+                _songShield = false;
+            }
+
+            if ((Context.Fights.CurrentAttack != null && Context.Fights.CurrentAttack.Name == "RedSlash") || Context.Player.PlayerAPI.Shield)
+            {
+                if (_songAttack + _timeNeedSongAttack < gameTime.TotalGameTime)
+                {
+                    if (Context.Player.PlayerAPI.Shield && !_shield.PlaySong && !_songShield)
+                    {
+                        _shield.PlaySong = true;
+                        _songShield = true;
+                    }
+                    else if (Context.Fights.CurrentAttack != null && Context.Fights.CurrentAttack.Name == "RedSlash")
+                    {
+                        foreach (SpriteSheet s in _spells)
+                        {
+                            s.PlaySong = true;
+                        }
+                    }
+                    _songAttack = gameTime.TotalGameTime;
+                }
+            }
+
+            if (Context.PlayerCantMove)
+            {
+                _actualTimeForMove += gameTime.ElapsedGameTime.Milliseconds;
+            }
+
+            if (Context.LoadOrUnloadFights == FightsState.Close && (!Context.PlayerCantMove || _actualTimeForMove >= _timeForMoveAfterDoor))
+            {
                 _actualAction = PlayerAction(_state);
+                Context.PlayerCantMove = false;
+                _actualTimeForMove = 0;
+            }
             else if (Context.Fights.CurrentAttack != null && Context.Fights.CurrentAttack.Name == "RedSlash")
             {
                 _action = from action in _playerAction where action.RowAction == (int)RowActionOnSpriteSheetPlayer.AttackRight select action;
                 foreach (ActionSpriteSheet action in _action)
                     _actualAction = action;
             }
-            else
+            else if (Context.LoadOrUnloadFights != FightsState.Close)
             {
                 _action = from action in _playerAction where action.RowAction == (int)RowActionOnSpriteSheetPlayer.WalkRight select action;
                 foreach (ActionSpriteSheet action in _action)
@@ -198,7 +245,15 @@ namespace InfinityUndergroundReload.CharactersUI
         public override void Draw(SpriteBatch spriteBatch)
         {
             Rectangle _destinationRectangle;
+
+
+
             _state = Keyboard.GetState();
+
+            
+
+
+            
 
             if ((_player.Position == _lastPosition) && !_isAttacking && (Context.Fights.CurrentAttack == null || Context.Fights.CurrentAttack.Name != "RedSlash"))
             {
@@ -236,9 +291,8 @@ namespace InfinityUndergroundReload.CharactersUI
                     }
                 }
 
-                _destinationRectangle = new Rectangle(_player.PositionX, _player.PositionY, Width * 3, Height * 3);
-                _speedBar.Draw(spriteBatch, (int)(Context.Camera.Position.X - 400), (int)(Context.Camera.Position.Y + 470), _player.CharacterType.LifePoint, Context.GraphicsDevice, (int)Context.Fights.TheFights.PlayerTurnsLoading, 10);
-                _healthBar.Draw(spriteBatch, (int)(Context.Camera.Position.X - 400), (int)(Context.Camera.Position.Y + 450), _player.CharacterType.LifePoint, Context.GraphicsDevice, Context.WorldAPI.Player.CharacterType.MaxLifePoint, 10);
+                _destinationRectangle = new Rectangle(_player.PositionX, _player.PositionY, Width * 2, Height * 2);
+                _speedBar.Draw(spriteBatch, (int)(PlayerAPI.PositionX + 10), (int)(PlayerAPI.PositionY), _player.CharacterType.LifePoint, Context.GraphicsDevice, (int)Context.Fights.TheFights.PlayerTurnsLoading, 10);
 
                 if (_player.Shield)
                 {
@@ -248,7 +302,6 @@ namespace InfinityUndergroundReload.CharactersUI
             else
             {
                 _destinationRectangle = new Rectangle(_player.PositionX, _player.PositionY, Width, Height);
-                _healthBar.Draw(spriteBatch, (int)(Context.Camera.Position.X + 20), (int)(Context.Camera.Position.Y + 20), _player.CharacterType.LifePoint, Context.GraphicsDevice, Context.WorldAPI.Player.CharacterType.MaxLifePoint, 10);
             }
 
             if (_lastLifePoint > PlayerAPI.CharacterType.LifePoint || _takeHit)
@@ -321,7 +374,7 @@ namespace InfinityUndergroundReload.CharactersUI
                 if ((_player.PositionY <= (Context.Map.HeightInPixels - 50)) && (Context.Map.LayerCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)Context.Map.TileSize) + 1, ((int)Math.Floor(_player.PositionY / (decimal)Context.Map.TileSize)) + 2).Id != Context.Map.IdTileCollide) && (Context.Map.LayerDoorCollide.GetTile((int)Math.Floor(_player.PositionX / (decimal)Context.Map.TileSize) + 1, ((int)Math.Floor(_player.PositionY / (decimal)Context.Map.TileSize)) + 2).Id != Context.Map.IdTileCollide))
                 {
                     _player.ChangePosition(CDirection.Bottom);
-                    if (Context.WorldAPI.CurrentLevel == 0 && Context.Camera.Position.Y < Context.Map.HeightInPixels - 550 && _player.PositionY > (Context.GetWindowsHeight / 2 - (Context.Player.Height / 2))) Context.Camera.Move(new Vector2(0, +_player.CharacterType.MoveSpeed));
+                    if (Context.WorldAPI.CurrentLevel == 0 && Context.Camera.Position.Y < Context.Map.HeightInPixels - 1085 && _player.PositionY > (Context.GetWindowsHeight / 2 - (Context.Player.Height / 2))) Context.Camera.Move(new Vector2(0, +_player.CharacterType.MoveSpeed));
                     else if (Context.WorldAPI.CurrentLevel != 0) { Context.Camera.Move(new Vector2(0, +_player.CharacterType.MoveSpeed)); }
                 }
                 _action = from action in _playerAction where action.RowAction == (int)RowActionOnSpriteSheetPlayer.WalkBottom select action;
@@ -343,7 +396,7 @@ namespace InfinityUndergroundReload.CharactersUI
                 if ((_player.PositionX <= (Context.Map.WidthInPixels)) && (Context.Map.LayerCollide.GetTile(((int)Math.Round((decimal)_player.PositionX / Context.Map.TileSize)) + 1, ((int)Math.Round((decimal)_player.PositionY / Context.Map.TileSize)) + 1).Id != Context.Map.IdTileCollide) && (Context.Map.LayerDoorCollide.GetTile(((int)Math.Round((decimal)_player.PositionX / Context.Map.TileSize)) + 1, ((int)Math.Round((decimal)_player.PositionY / Context.Map.TileSize)) + 1).Id != Context.Map.IdTileCollide))
                 {
                     _player.ChangePosition(CDirection.Right);
-                    if (Context.WorldAPI.CurrentLevel == 0 && Context.Camera.Position.X < Context.Map.WidthInPixels - 960 && _player.PositionX > (Context.GetWindowWidth / 2 - (Context.Player.Width / 2))) Context.Camera.Move(new Vector2(+_player.CharacterType.MoveSpeed, 0));
+                    if (Context.WorldAPI.CurrentLevel == 0 && Context.Camera.Position.X < Context.Map.WidthInPixels - 1940 && _player.PositionX > (Context.GetWindowWidth / 2 - (Context.Player.Width / 2))) Context.Camera.Move(new Vector2(+_player.CharacterType.MoveSpeed, 0));
                     else if (Context.WorldAPI.CurrentLevel != 0) { Context.Camera.Move(new Vector2(+_player.CharacterType.MoveSpeed, 0)); }
                 }
                 _action = from action in _playerAction where action.RowAction == (int)RowActionOnSpriteSheetPlayer.WalkRight select action;
@@ -386,7 +439,21 @@ namespace InfinityUndergroundReload.CharactersUI
             return _lastAction;
         }
 
-
+        /// <summary>
+        /// Draws the player heatlth bar.
+        /// </summary>
+        /// <param name="spriteBatch">The sprite batch.</param>
+        public void DrawPlayerHeatlthBar(SpriteBatch spriteBatch)
+        {
+            if (Context.LoadOrUnloadFights == FightsState.Close)
+            {
+                _healthBar.Draw(spriteBatch, (int)(Context.Camera.Position.X + 20), (int)(Context.Camera.Position.Y + 20), _player.CharacterType.LifePoint, Context.GraphicsDevice, Context.WorldAPI.Player.CharacterType.MaxLifePoint, 10);
+            }
+            else
+            {
+                _healthBar.Draw(spriteBatch, (int)(PlayerAPI.PositionX + 10), (int)(PlayerAPI.PositionY - 12), _player.CharacterType.LifePoint, Context.GraphicsDevice, Context.WorldAPI.Player.CharacterType.MaxLifePoint, 10);
+            }
+        }
 
     }
 }

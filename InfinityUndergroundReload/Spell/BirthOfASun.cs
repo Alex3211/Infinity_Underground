@@ -1,5 +1,6 @@
 ﻿using InfinityUndergroundReload.CharactersUI;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -23,6 +24,9 @@ namespace InfinityUndergroundReload.Spell
         int _fusionWidth;
         int _fusionHeight;
 
+        SoundEffect _dustSong;
+        SoundEffect _fusionSong;
+        SoundEffect _sunSong;
 
         public BirthOfASun(SpriteSheet monster, SPlayer player)
         {
@@ -43,6 +47,11 @@ namespace InfinityUndergroundReload.Spell
 
         public override void LoadContent(ContentManager content)
         {
+            _dustSong = content.Load<SoundEffect>(@"Song\Sand");
+            _fusionSong = content.Load<SoundEffect>(@"Song\Fusion");
+            _sunSong = content.Load<SoundEffect>(@"Song\Sun");
+
+
             Spritesheet = content.Load<Texture2D>("SunTest");
             _smoke = content.Load<Texture2D>("Effect/Smoke");
             _fusion = content.Load<Texture2D>("Effect/fusion");
@@ -50,6 +59,9 @@ namespace InfinityUndergroundReload.Spell
 
         public override void Unload(ContentManager content)
         {
+            if (_dustSong != null) _dustSong.Dispose();
+            if (_fusionSong != null) _fusionSong.Dispose();
+            if (_sunSong != null) _sunSong.Dispose();
             if (_smoke != null) _smoke.Dispose();
             if (_fusion != null) _fusion.Dispose();
             base.Unload(content);
@@ -68,12 +80,19 @@ namespace InfinityUndergroundReload.Spell
                 {
 
                     case 2:
+                        _dustSong.Play();
                         SpriteSheetColumns = 7;
                         SpriteSheetRows = 7;
                         break;
 
                     case 0:
+                        _sunSong.Play();
+                        SpriteSheetColumns = 3;
+                        SpriteSheetRows = 4;
+                        break;
+
                     case 1:
+                        _fusionSong.Play();
                         SpriteSheetColumns = 3;
                         SpriteSheetRows = 4;
                         break;

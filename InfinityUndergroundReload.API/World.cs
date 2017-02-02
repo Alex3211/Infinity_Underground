@@ -20,6 +20,8 @@ namespace InfinityUndergroundReload.API
         //Fights _fights;
         Vector2 _lastPositionOfThePlayer;
         Vector2 _newPositionOfThePlayer;
+        CAlex _alex;
+        CDylan _dylan;
 
         public World()
         {
@@ -28,6 +30,37 @@ namespace InfinityUndergroundReload.API
             _listOfMonster = new List<CNPC>();
             _maxLevel = 1;
             _tileSize = 32;
+
+            _alex = new CAlex(this);
+            _dylan = new CDylan(this);
+        }
+
+        /// <summary>
+        /// Gets the dylan.
+        /// </summary>
+        /// <value>
+        /// The dylan.
+        /// </value>
+        public CDylan Dylan
+        {
+            get
+            {
+                return _dylan;
+            }
+        }
+
+        /// <summary>
+        /// Gets the alex.
+        /// </summary>
+        /// <value>
+        /// The alex.
+        /// </value>
+        public CAlex Alex
+        {
+            get
+            {
+                return _alex;
+            }
         }
 
         /// <summary>
@@ -148,13 +181,13 @@ namespace InfinityUndergroundReload.API
                 if (_level.PositionCurrentRoom == _level.RoomOutPosition)
                     AddDoor(new Vector2(29, 11), new Vector2(32, 13), DoorDirection.Center);
                 if (_level.PositionCurrentRoom.Y > 0)
-                    AddDoor(new Vector2(29, 2), new Vector2(32, 3), DoorDirection.Top);
+                    AddDoor(new Vector2(11, 1), new Vector2(50, 2), DoorDirection.Top);
                 if (_level.PositionCurrentRoom.X > 0)
-                    AddDoor(new Vector2(0, 11), new Vector2(1, 13), DoorDirection.Left);
+                    AddDoor(new Vector2(0, 1), new Vector2(1, 20), DoorDirection.Left);
                 if (_level.PositionCurrentRoom.Y <= (_level.RoomOutPosition.Y * 2))
-                    AddDoor(new Vector2(30, 28), new Vector2(32, 28), DoorDirection.Bottom);
+                    AddDoor(new Vector2(10, 28), new Vector2(50, 29), DoorDirection.Bottom);
                 if (_level.PositionCurrentRoom.X <= (_level.RoomOutPosition.X * 2))
-                    AddDoor(new Vector2(61, 11), new Vector2(61, 13), DoorDirection.Right);
+                    AddDoor(new Vector2(61, 1), new Vector2(65, 20), DoorDirection.Right);
             }
         }
 
@@ -240,7 +273,7 @@ namespace InfinityUndergroundReload.API
                     break;
 
                 case DoorDirection.Center:
-                    _player.Position = new Vector2(31 * _tileSize, 18 * _tileSize);
+                    _player.Position = new Vector2(31 * _tileSize, 12 * _tileSize);
                     if (!_player.IsDead)
                     {
                         if (_currentLevel == 0)
@@ -275,13 +308,13 @@ namespace InfinityUndergroundReload.API
                     break;
 
                 case DoorDirection.Top:
-                    _player.PositionY = 28 * _tileSize;
+                    _player.PositionY = 27 * _tileSize;
                     _level.PositionCurrentRoomY--;
                     _level.CreateRoom();
                     break;
 
                 case DoorDirection.Bottom:
-                    _player.PositionY = 2 * _tileSize;
+                    _player.PositionY = 3 * _tileSize;
                     _level.PositionCurrentRoomY++;
                     _level.CreateRoom();
                     break;
@@ -300,7 +333,7 @@ namespace InfinityUndergroundReload.API
             if (ListOfMonster.Count == 0)
             {
 
-                if (GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "BossRoom" && GetLevel.GetRoom.RoomCharateristcs.NumberOfStyleRoom == "1")
+                if (GetLevel.GetRoom.RoomCharateristcs.NameOfMap == "BossRoom")
                 {
                     _listOfMonster.Add(new CAngel(this));
                 }
@@ -329,7 +362,7 @@ namespace InfinityUndergroundReload.API
         public Fights CreateFight(CNPC monster)
         {
             _lastPositionOfThePlayer = Player.Position;
-            _newPositionOfThePlayer = new Vector2(70, 720);
+            _newPositionOfThePlayer = new Vector2(370, 770);
             Player.Position = _newPositionOfThePlayer;
             return new Fights(this, Player.Position, monster);
         }

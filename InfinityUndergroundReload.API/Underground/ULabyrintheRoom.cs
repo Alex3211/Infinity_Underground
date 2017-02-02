@@ -11,6 +11,7 @@ namespace InfinityUndergroundReload.API.Underground
         public ULabyrintheRoom()
             :base()
         {
+            NbOfNPC = 0;
             NameOfMap = "LabyrintheRoom";
         }
     }
